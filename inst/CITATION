@@ -1,0 +1,14 @@
+citHeader("To cite mefa in a publication use:")
+
+citEntry(entry="Article",
+	title = "mefa: Faunistic count data handling and reporting",
+        author = "P. Solymos",
+	journal = "Community Ecology",
+  	year = "submitted",
+	volume = "??",
+	pages = "??-??",
+	         
+        textVersion = "Solymos P. (in press). mefa: Faunistic count data handling and
+reporting. R package version 1.0-3. Community Ecology ??: ??-??.")
+
+citFooter("As mefa is evolving quickly, you may want to cite also its version number (found with 'library(help = mefa)').")
