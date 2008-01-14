@@ -4,7 +4,7 @@ wait <- function(vign=FALSE) {
     if (substr(tolower(ANSWER), 1, 1) == "y")
       vignette("mefa-vignette")
   } else {
-    ANSWER <- readline("Please press ENTER to contimue ... ")
+    ANSWER <- readline("Please press ENTER to continue ... ")
   }
 }
 
