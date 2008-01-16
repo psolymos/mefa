@@ -35,7 +35,7 @@ function (ssc, segment = 0, segment.name=NULL)
 		if(is.null(segment.name)) segment.name <- "mixed"
 		if(is.numeric(segment)) segment <- ssc$segment.levels[segment]
 		segnew <- as.factor(infl[,3])
-		levels(segnew)[which(is.element(segnew, segment) == TRUE)] <- segment.name
+		levels(segnew)[which(is.element(levels(segnew), segment))] <- segment.name
 		seg.id <- which((levels(segnew) == segment.name) == TRUE)
 		crosstable <- as.array(table(infl[, 1], infl[, 2], segnew))[, , seg.id]
 		segment.index <- segment.name
