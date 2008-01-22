@@ -6,12 +6,14 @@ function (ssc, segment = 0, segment.name=NULL)
 	if(length(segment) > length(ssc$segment.levels))
 		stop("segment length greater than levels of segment")
 
+if(segment != 0 & segment != "all"){
 	if(length(segment) == length(ssc$segment.levels)) {
 		if(is.numeric(segment)) segment.eval <- ssc$segment.levels[segment]
 		if(is.character(segment)) segment.eval <- segment
 		if(setequal(segment.eval, ssc$segment.levels)) {
 		segment <- 0} else {stop("segment level mismatch")}
 		}
+}
 
 #	if(sum(ssc$data$count*10^ssc$digits) >= 10000) {
 #		cat("10^digits * total count =", 10^ssc$digits, "*", sum(ssc$data$count), "=", 
