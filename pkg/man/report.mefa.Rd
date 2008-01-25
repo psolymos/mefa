@@ -53,8 +53,8 @@ spec <- xorder(vt, which="species", landsnail, 2)
 sampl <- xorder(vt, which="samples", vsample, 1)
 vmf <- mefa(vt, sampl, spec)
 v2 <- strify(vmf, strata = "site.descr", which = "samples")
-habi <- xorder(v2, which="samples", vhabitat, 2)
-vmf2 <- mefa(v2, habi, spec)
+habi <- xorder(as.xcount(v2), which="samples", vhabitat, 2)
+vmf2 <- mefa(as.xcount(v2), habi, spec)
 
 report.mefa("vspec-report.txt", vmf2, "species", c(3,2,4:7), "spec.name", "order", 0,
     FALSE, FALSE, sep = c(", "," (",")","; "))
