@@ -24,8 +24,8 @@ Utility functions are provided to check and manipulate objects.
 \tabular{ll}{
 Package: \tab mefa\cr
 Type: \tab Package\cr
-Version: \tab 1.0-4\cr
-Date: \tab 2008-01-06\cr
+Version: \tab 1.0-5\cr
+Date: \tab 2008-02-12\cr
 License: \tab GPL-2\cr
 }
 }
@@ -41,6 +41,6 @@ Peter Solymos <Solymos.Peter@aotk.szie.hu>
 library(mefa)
 demo(dolina)               ## Demo showning possible usage of 'mefa' objects
 mefadocs("ChangeLog")      ## Browse version history
-vignette("mefa-vignette")  ## Open vignette
+#vignette("mefa-vignette")  ## Open vignette (not working)
 }
 }
