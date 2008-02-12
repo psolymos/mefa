@@ -6,7 +6,7 @@
 Makes a report from the data of an object of class 'mefa' in plain text or formatted LaTeX file.
 }
 \usage{
-report.mefa(filename, mf, order = "species", biotic.data = 1, 
+report.mefa(filename, mf, ordering = "species", biotic.data = 1, 
     species.name = 1, species.order = 1, author = 0, 
     tex = FALSE, binary = FALSE, sep = c(", ", " (", ")", "; "))
 }
@@ -14,7 +14,7 @@ report.mefa(filename, mf, order = "species", biotic.data = 1,
 \arguments{
   \item{filename}{name of the file to be created in the working directory.}
   \item{mf}{an object of class 'mefa'.}
-  \item{order}{type of ordering (sectioning), by \code{"species"} (default) or by \code{"samples"}.}
+  \item{ordering}{type of ordering (sectioning), by \code{"species"} (default) or by \code{"samples"}.}
   \item{biotic.data}{list of columns (up to six columns) in the sample attribute table of the 'mefa' object,
     data will be sorted according to subsequent columns.}
   \item{species.name}{a column identifier in the species attribute table of the 'mefa' object
@@ -36,9 +36,6 @@ When \code{tex = TRUE}, the result can be directly used in a LaTeX document by c
 }
 \value{
 A text file named \code{filename} is written in the working directory.
-}
-\note{
-There is a bug concerning \code{biotic.data} ordering, will be fixed later.
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
