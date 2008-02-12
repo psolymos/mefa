@@ -1,7 +1,16 @@
 MEFA STABLE VERSIONS
 
-Version 1.0-4 -- ???, 2008
+Version 1.0-5 -- ???, 2008
 
+	* report.mefa bug fixed
+
+Version 1.0-4 -- February 11, 2008
+
+	* The demo was rewritten
+	  (and still under construction...)
+	* amf function is provided
+	* Classes definitions are rewritten
+	* print and plot S3 methods provided for classes
 	* digits argument is placed into sscount 
 	  and related functions.
 
