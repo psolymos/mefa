@@ -195,13 +195,13 @@ input.button {
 }
 #header-content h1#logo {
 	position: absolute;	
-	font: bold 45px 'Trebuchet MS', Sans-serif;
+	font: bold 38px 'Trebuchet MS', Sans-serif;
 	letter-spacing: -2px; 
 	color: #FFF;
 	margin: 0; padding: 0;		
 	
 	/* change the values of left and top to adjust the position of the logo */
-	top: 0; left: -100px;
+	top: 0; left: 0px;
 }
 #header-content h1#logo a {
 	text-decoration: none;
@@ -212,17 +212,17 @@ input.button {
 	font: bold 12px 'Trebuchet Ms', Sans-serif;
 	text-transform: none;
 	color: #FFF;	
-	margin: 0; padding: -100;
+	margin: 0; padding: 0;
 	
 	/* change the values of left and top to adjust the position of the slogan */
-	top: 55px; left: 0px;
+	top: 48px; left: 0px;
 }
 
 /* header menu */
 #header-content ul {
 	position: absolute;
-	right: -5px; top: 15px;
-	font: bolder 1.3em 'Trebuchet MS', sans-serif;
+	left: 0px; top: 71px;
+	font: bolder 14px 'Trebuchet MS', sans-serif;
 	color: #FFF;
 	list-style: none;
 	margin: 0; padding: 0;		
