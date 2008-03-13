@@ -1,0 +1,9 @@
+plot.xcount log=FALSE
+
+check.attrib mefa class -> as.xcount
+
+add.attrib problem with NULL mefaclass - >as.xcount
+
+print sscount$segment, xcount/mefa attribs cut=25 ...for empty samples/species
+
+mapmf, border=NULL or xy matrix (plot, type="l", circular) + legend ???
