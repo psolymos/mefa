@@ -2,7 +2,9 @@ MEFA STABLE VERSIONS
 
 Version 1.0-5 -- ???, 2008
 
-	* report.mefa bug fixed
+	* report.mefa bug fixed & help corrected
+	* new functions: qdef, mapmf, accumulate,
+	  ivgen, xytrend
 
 Version 1.0-4 -- February 11, 2008
 

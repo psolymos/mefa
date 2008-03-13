@@ -15,7 +15,7 @@ report.mefa(filename, mf, ordering = "species", biotic.data = 1,
   \item{filename}{name of the file to be created in the working directory.}
   \item{mf}{an object of class 'mefa'.}
   \item{ordering}{type of ordering (sectioning), by \code{"species"} (default) or by \code{"samples"}.}
-  \item{biotic.data}{list of columns (up to six columns) in the sample attribute table of the 'mefa' object,
+  \item{biotic.data}{list of columns in the sample attribute table of the 'mefa' object,
     data will be sorted according to subsequent columns.}
   \item{species.name}{a column identifier in the species attribute table of the 'mefa' object
     containing species names.}
