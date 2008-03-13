@@ -201,7 +201,7 @@ input.button {
 	margin: 0; padding: 0;		
 	
 	/* change the values of left and top to adjust the position of the logo */
-	top: 0; left: 0px;
+	top: 0; left: -100px;
 }
 #header-content h1#logo a {
 	text-decoration: none;
@@ -212,7 +212,7 @@ input.button {
 	font: bold 12px 'Trebuchet Ms', Sans-serif;
 	text-transform: none;
 	color: #FFF;	
-	margin: 0; padding: 0;
+	margin: 0; padding: -100;
 	
 	/* change the values of left and top to adjust the position of the slogan */
 	top: 55px; left: 0px;
