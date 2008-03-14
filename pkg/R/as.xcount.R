@@ -56,7 +56,7 @@ print.xcount <- function(x, ...) {
 }
 
 ### plot
-plot.xcount <- function(x, type="hist", rug=FALSE, ...) {
+plot.xcount <- function(x, type="hist", rug=FALSE, logscale=FALSE, ...) {
 
 main.A <- "Species richness"
 main.B <- "Species occurences"
@@ -74,25 +74,37 @@ if(x$totalcount == x$presences){
 	layout <- c(1,2)
 	}
 
+if(logscale){
+        srichn <- log10(x$srichn + 1)
+        specoccur <- log10(x$specoccur + 1)
+        ninds <- log10(x$ninds + 1)
+        specabund <- log10(x$specabund + 1)
+        } else {
+        srichn <- x$srichn
+        specoccur <- x$specoccur
+        ninds <- x$ninds
+        specabund <- x$specabund
+        }
+
 if(type == "hist"){
 	par(mfrow=layout, pty="s")
 		if(plot.A) {
-			hist(x$srichn, 
+			hist(srichn, 
 			main=main.A, sub=sub.A, xlab="Species richness", ...)
 			if(rug) rug(x$srichn)
 			}
 		if(plot.B) {
-			hist(x$specoccur, 
+			hist(specoccur, 
 			main=main.B, sub=sub.B, xlab="Occurence", ...)
 			if(rug) rug(x$specoccur)
 			}
 		if(plot.C) {
-			hist(x$ninds, 
+			hist(ninds, 
 			main=main.C, sub=sub.C, xlab="Number of individuals", ...)
 			if(rug) rug(x$ninds)
 			}
 		if(plot.D) {
-			hist(x$specabund, 
+			hist(specabund, 
 			main=main.D, sub=sub.D, xlab="Abundance", ...)
 			if(rug) rug(x$specabund)
 			}
@@ -103,19 +115,19 @@ if(type == "rank"){
 	xlab="Rank"
 	par(mfrow=layout, pty="s")
 		if(plot.A) {
-			plot(sort(x$srichn, decreasing = TRUE), type="b", 
+			plot(sort(srichn, decreasing = TRUE), type="b", 
 			main=main.A, sub=sub.A, xlab=xlab, ylab="Richness", ...)
 			}
 		if(plot.B) {
-			plot(sort(x$specoccur, decreasing = TRUE), type="b", 
+			plot(sort(specoccur, decreasing = TRUE), type="b", 
 			main=main.B, sub=sub.B, xlab=xlab, ylab="Occurence", ...)
 			}
 		if(plot.C) {
-			plot(sort(x$ninds, decreasing = TRUE), type="b", 
+			plot(sort(ninds, decreasing = TRUE), type="b", 
 			main=main.C, sub=sub.C, xlab=xlab, ylab="Number of individuals", ...)
 			}
 		if(plot.D) {
-			plot(sort(x$specabund, decreasing = TRUE), type="b", 
+			plot(sort(specabund, decreasing = TRUE), type="b", 
 			main=main.D, sub=sub.D, xlab=xlab, ylab="Abundance", ...)
 			}
 	par(mfrow=c(1,1))
@@ -124,9 +136,9 @@ if(type == "rank"){
 if(type == "biplot"){
 	if(x$totalcount == x$presences) stop("no abundance data for biplot")
 	par(mfrow=c(1,2), pty="s")
-		plot(x$ninds, x$srichn,
+		plot(ninds, srichn,
 			main="Within samples", xlab="Number of individuals", ylab="Species richness", ...)
-		plot(x$specabund, x$specoccur,
+		plot(specabund, specoccur,
 			main="Within species", xlab="Abundance", ylab="Occurence", ...)
 	par(mfrow=c(1,1))
 	}
