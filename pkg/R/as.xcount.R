@@ -33,7 +33,7 @@ class(out) <- "xcount"
 return(out)}
 
 ### print
-print.xcount <- function(x, ...) {
+print.xcount <- function(x, cutoff=25, ...) {
 
 	cat("Object of class 'xcount'\n")
 	cat("Call: ")
@@ -48,11 +48,23 @@ print.xcount <- function(x, ...) {
 	cat("Matrix fill: ", round(x$presences/(x$nsamples*x$nspecies),digits=3),
 		"with (", x$presences, " presences)\n")
 	if(any(x$ninds == 0)){
+		if(length(x$ninds == 0) > cutoff){
+		cat("Samples with zero total count [1:",cutoff,"]: \n")
+		print(names(x$ninds)[which(x$ninds == 0)])
+                cat("...\n")
+                } else {
 		cat("Samples with zero total count: \n")
 		print(names(x$ninds)[which(x$ninds == 0)])}
+                }
 	if(any(x$specabund == 0)){
+		if(length(x$specabund == 0) > cutoff){
+		cat("Species with zero total count [1:",cutoff,"]: \n")
+		print(names(x$ninds)[which(x$ninds == 0)])
+                cat("...\n")
+                } else {
 		cat("Species with zero total count: \n")
 		print(names(x$specabund)[which(x$specabund == 0)])}
+                }
 }
 
 ### plot
