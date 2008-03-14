@@ -2,7 +2,7 @@ Package: mefa
 Type: Package
 Title: Multivariate count data handling in ecology and biogeography
 Version: 1.0-5
-Date: 2008-03-13
+Date: 2008-03-14
 Author: Peter Solymos
 Maintainer: Peter Solymos <Solymos.Peter@aotk.szie.hu>
 Depends: R (>= 2.6.0), vegan

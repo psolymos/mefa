@@ -3,14 +3,14 @@
 %\alias{mefa}
 \docType{package}
 \title{
-Faunistic Count Data Handling and Reporting
+Multivariate Count Data Handling in Ecology and Biogeography
 }
 \description{
-R package for faunistic count data handling and reporting. The name 'mefa' stands for the term 'metafaunistics' indicating that handling of basic data is only the first, but the most critical and sometimes most time consuming part of data analysis. It contains functions to create and manage objects combining basic faunistic (sample/species/count or crosstabulated) count data and sample/species attribute tables. Segments within the count data and samples with zero count can be indicated and used in subsequent operations. Reports can be generated in plain text or LaTeX format.
+R package for multivariate count data handling in ecology and biogeography. The name 'mefa' stands for the term 'metafaunistics' indicating that data handling is the most critical and sometimes most time consuming part of data analysis. The package contains object classes and functions to manipulate basic biotic (sample/species/count or crosstabulated) count data and relational attribute tables for samples and species. Functions can handle segments within the count data and samples with zero count. Reports are generated in plain text or LaTeX format.
 
-Objects provided by this package are:
+S3 object classes provided by this package are:
 
-\code{\link{sscount}} for catch results of a field experiment referencedaccording to samples and species, samples with zero total count can be indicated, rows can be assignet to segments.
+\code{\link{sscount}} for catch results of a field experiment referenced according to samples and species, samples with zero total count can be indicated, rows can be assigned to segments.
 
 \code{\link{xcount}} for sample/species crosstabulation of an object of class \code{\link{sscount}}, samples with zero total count are retained, one \code{\link{xcount}} object refers to one segment only.
 
@@ -18,14 +18,14 @@ Objects provided by this package are:
 
 \code{\link{mefa}} contains data of an \code{\link{xcount}} and two \code{\link{xorder}} objects (for sample and species attributes).
 
-Utility functions are provided to check and manipulate objects.
+Utility functions are provided to check, manipulate and plot objects.
 }
 \details{
 \tabular{ll}{
 Package: \tab mefa\cr
 Type: \tab Package\cr
 Version: \tab 1.0-5\cr
-Date: \tab 2008-02-12\cr
+Date: \tab 2008-03-14\cr
 License: \tab GPL-2\cr
 }
 }
@@ -33,7 +33,7 @@ License: \tab GPL-2\cr
 Peter Solymos <Solymos.Peter@aotk.szie.hu>
 }
 \references{
-\url{http://www.univet.hu/users/psolymos/personal/}
+\url{http://mefa.r-forge.r-project.org/}
 }
 \keyword{ package }
 \examples{
@@ -41,6 +41,7 @@ Peter Solymos <Solymos.Peter@aotk.szie.hu>
 library(mefa)
 demo(dolina)               ## Demo showning possible usage of 'mefa' objects
 mefadocs("ChangeLog")      ## Browse version history
-#vignette("mefa-vignette")  ## Open vignette (not working)
+mefaweb()                  ## Check out website for resources
+#vignette("mefa-vignette")  ## Open vignette (not working at the moment)
 }
 }
