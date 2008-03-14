@@ -54,7 +54,7 @@ class(out) <- "mefa"
 return(out)}
 
 ### print
-print.mefa <- function(x, ...) {
+print.mefa <- function(x, cutoff=25, ...) {
 	cat("Object of class 'mefa'\n")
 	cat("Call: ")
 	print(x$call)
