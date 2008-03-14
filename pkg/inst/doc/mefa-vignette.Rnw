@@ -1,0 +1,303 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+%\VignetteIndexEntry{mefa vignette}
+
+%clear this section
+%setwd("c:/myR/mefa/vignette")
+%Sweave("mefa-vignette.Rnw",output="mefa-vignette.tex",eps=FALSE)
+
+\documentclass[a4paper]{article}
+
+\usepackage[pdftex,bookmarks,colorlinks=false]{hyperref}
+\usepackage[pdftex]{graphics}
+\usepackage[latin2]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[sort&compress]{natbib}
+
+\author{P\'eter S\'olymos
+\thanks{P\'eter S\'olymos, Department of Ecology, Faculty of Veterinary Science, Szent Istv\'an University, Rottenbiller Str.~50, 1077 Budapest, Hungary. e-mail: \href{mailto:Solymos.Peter@aotk.szie.hu}{Solymos.Peter@aotk.szie.hu}.
+}}
+\title{From biotic records to analysis\\
+Introduction to the mefa package}
+
+\begin{document}
+\SweaveOpts{strip.white=TRUE}
+
+\maketitle
+
+\begin{abstract}
+
+\noindent
+The document provide some insights on the general data model, which can be used effectively inbiotic data handling. Than, using a real world example, it gives an overview of S3 object classes and methods provided by the \texttt{mefa} package. Reporting options and possible ways of further data analysis are also briefly discussed. This vignette can be used as reerence for the \texttt{dolina} demo of the package.
+
+\end{abstract}
+
+\tableofcontents
+
+\section{What is \texttt{mefa}?}
+
+Data resulting from field inventories are often stored primarily in a hard copy notebook format, which are subsequently typed into a spreadsheet. These spreadsheets contain location (samples) and taxon (species) specific information and respective count data. These data can rarely be used directly in a statistical analysis, because one often need sample and species specific attributes to account for a given question or hypothesis. 
+
+The manipulation of the data (most commonly subseting and ordering) is time consuming and may lead to mistakes, and mistakes may lead to false conclusions. Thus it is advisable to rigorously check each step in such manipulation process. These problems can be avoided by using sophisticated database servers and database connections prior to analysis, but such instruments need IT skills that are sometimes out of the capabilities of an individual researcher or naturalist.
+
+Thus, the name \texttt{mefa} stands for ''metafaunistics'', indicating that handling of basic data is only the first, but the most critical and sometimes most time consuming part of data analysis. The aim of the \texttt{mefa} package is to give a solution in \texttt{R} for the specific requirements needed for faunistic data, shorten the time spent with data preparation and reduce mistakes during data management. Here I give a practical guide for installing \texttt{mefa}, a short overview of the general data model behind \texttt{mefa} objects, main functions of the package, reporting options, and examples for further data analysis.
+
+\section{How to get \texttt{mefa}?}
+
+Once you have a working \texttt{R} on your machine (if not, go to \href{http://www.r-project.org}{http://www.r-project.org}), you can install the stable version from \texttt{CRAN} via the menu of the \texttt{R} GUI (Packages/Install package(s)\ldots), or typing \texttt{install.packages("mefa")}.
+
+Local \texttt{ZIP} file and source is avaliable at \href{http://cran.r-project.org/src/contrib/Descriptions/mefa.html}{http://cran.r-project.org/\-src/contrib/\-Descriptions/\-mefa.html}.
+
+After choosing a repository site, \texttt{R} starts to install the package. \texttt{CRAN}, however, contains the latest \emph{stable} version of \texttt{mefa}. The rather exparimental, developement verion of the package (Nightly Package Snapshot) can be accessed from \href{https://r-forge.r-project.org/projects/mefa/}{https://r-forge.r-project.org/\-projects/mefa/} clicking on the download icon, or typing \texttt{install.packages("mefa", repos="http://r-forge.r-project.org")}
+
+The project's Subversion (SVN) repository tree can be checked out through anonymous access with the command
+\texttt{svn checkout svn://\-svn.r-forge.r-project.org/\-svnroot/mefa}, or by following the link: \href{https://r-forge.r-project.org/plugins/scmsvn/viewcvs.php/?root=mefa}{https://\-r-forge.r-project.org/\-plugins/\-scmsvn/\-viewcvs.php/\-?root=mefa}.
+
+\section{How to use \texttt{mefa}?}
+
+\subsection{Data model}
+
+General database representation of biotic (faunistic) data may include four modules according to Samu\cite{Samu99}: the project, sample, taxon, and results modules. The project module describes meta-data and background circumstances of a given field experiment. Sample module describes information relevant to the data collecting event and variables that can vary relative to the fixed project design. The taxon module deals with the taxonomic identity of the biological object. The quantitative outcome of the study is handled in the results module.
+For a given analysis, only a subset of these modules are necessary, but in an organised format.
+
+The sample and taxon specific attributes, stored in the sample (sometimes in the project) and taxon modules can be arranges into a hierarchy. Eg.~saples, nested into layers, layerd nested into sites, sites nested into regions, regions nested into continents, and finally, continents nested into the Earth itself. And so, individuals nested into populations, populations nested into species, species nested into some higher level taxonomic entities, are all relevant, and thus might be sored in the background database, or in spreadsheets.
+
+A \texttt{mefa} object is a project-oriented representation (subset) of the general database that can be used in subsequent analyses, were the data stored in the results module determines subsets taken from the sample and taxon modules based on the relational links provided by sample and taxon specific identifiers. Project module may also contain information for manipulating sample and results modules in the pre-processing phase (eg. subseting results or compiling sample attributes). The concepts of \texttt{attribue hierarchy} and \texttt{attribue duality} are central to the handling of data via \texttt{mefa} objects.
+
+\subsection{Workflow in \texttt{mefa}}
+
+First, we have to load the installed package:
+
+<<>>=
+library(mefa)
+@
+
+At this point you might want to use the demo by typing \texttt{demo(dolina)}.
+
+A basic table of count data resembles a sheet in a notebook, where one takes notes during the identification process, like in the \texttt{dolina} example data set (only first ten rows for brevity): 
+
+<<>>=
+data(dol.count)
+str(dol.count)
+dol.count[1:10,]
+@
+
+This data frame contanis four columns. Samples are the samples taken in the field. Heere we used five minutes search for snails in a one meter radius. Sample identifiers contain two numbers and a letter. First (numeric) character indicates sampling location, second (nonnumeric) character stands for the investigeted microhabitat (A: litter, H: coarse woody debris, L: living trees, R: rock), third (numeric) character indicates the replicate within microhabitats as strata. Eg.~\texttt{1A1} is the sample taken from the first location (one out of the studied dolinas), it is a litter microhabitat, and the first replicate out of seven, etc. 
+
+Species names are short identifiers (discussed later), segment refers to life stages of the individuals found (\texttt{broken}: broken shells of dead animals, \texttt{fresh}: intact shells of dead animals, \texttt{adult}: adult live animal, \texttt{juvenile}: juvenile live animal). Count column indicates the number of specimens that can be characterised by the information in the rorresponding row.
+
+What are \texttt{<NA>}-s? This data frame contains sample and taxonomic information in shortened way, sample and species identifiers are shown only for the first cases. This "notebook-style" data can be filled with respective data by the function \texttt{sscount} (see also helper function \texttt{fill.count}):
+
+<<>>=
+(ssc <- sscount(dol.count, zc="zero.count", fill=TRUE))
+@
+
+In this way, "notebook-style" data can be readily converted into an \texttt{sscount} (species/sample/count) object, with data filled up (first 10 rows):
+
+<<>>=
+ssc$data[1:10,]
+@
+
+The \texttt{zc} flag is important, because it contains information on the (arbitrarily named) "pseudo-species" used in \texttt{dol.count} object referring to samples where total count was zero, like in the first row (sample 1A1). Default for \texttt{zc} is \texttt{NULL}.
+
+In this \texttt{sscount} object, rows represent the basic units (lots) containing sample, species and segment identifiers (treated as characters) and the count. First three columns are treated as factors, and segment may contain \texttt{<NA>} if corresponding row contains species \texttt{zc} (because, it has no sense to use anysegment name for a pseudo-species). Count is 1 in this case. Basically, count should be integer, but when the result of an experiment is not an integer vaue (eg.~biomass, as a measurement variable), numeric values can be used by specifying the \texttt{digits} argument in the \texttt{sscount} function (see manual for further references).
+
+\texttt{ssc\$data} contains the data taken from the filled data frame of \texttt{dol.count}.
+Cross-tabulation of an \texttt{sscount} object results in an \texttt{xcount} object. Crosstabulation can be done for all or any segments, listed by
+
+<<>>=
+ssc$segment.levels
+@
+
+or for all segments depending on the value of the segment specifier (default is \texttt{segment = "all"} (or equivalently \texttt{segment = 0}), meaning all the segments are summed up within lots). A list of segments can also be specified (eg.\\texttt{c("adult", "juvenile")}). For all segments, simply use:
+
+<<>>=
+(xc.all <- xcount(ssc))
+@
+
+For broken shells only:
+
+<<>>=
+(xc.broken <- xcount(ssc, 2))
+@
+
+The pseudo-species for zero count samples is removed from the resulting \texttt{xcount} object, but an empty row is placed in the table. Empty rows of an \texttt{xcount} object can be removed by the function \texttt{exclmf}, detailed later. 
+
+Data tables can also be converted into \texttt{sscount} or \texttt{xcount} objects by using the functions \texttt{ttsscount} (data without unique row identifiers, use \texttt{drtsscount}) or \texttt{as.xcount} respectively (for details, see manual). Two \texttt{sscount} or \texttt{xcount} objects can be merged by functions \texttt{msscount} and \texttt{mxcount} respectively (for details, see manual).
+
+Plot method is available for \texttt{xcount} objects (Fihure~\ref{xchist}), plotting histograms by default:
+
+<<xchist,fig=TRUE,echo=TRUE,width=8,height=8,include=FALSE>>=
+plot(xc.all)
+@
+
+\begin{figure}[tb]
+	\includegraphics[width=1\textwidth]{mefa-vignette-xchist}
+	\caption{Plotting method for \texttt{xcount} objects showing histograms.\label{xchist}}
+\end{figure}
+
+But \texttt{type} can be set to "rank" (Figure~\ref{xcrank}) or "biplot" as well (for "biplot",see manual):
+
+<<xcrank,fig=TRUE,echo=TRUE,width=8,height=8,include=FALSE>>=
+plot(xc.all, type="rank")
+@
+
+\begin{figure}[tb]
+	\includegraphics[width=1\textwidth]{mefa-vignette-xcrank}
+	\caption{Plotting method for \texttt{xcount} objects showing species abundance curves.\label{xcrank}}
+\end{figure}
+
+When we have the faunistic data, that is half way of a data inicialization. To have attributes of the samples and the taxa with the same consistency is also desirable. These attributes often are very basic. Eg.~for samples, the sample identifier,  location, date of collection and name of collector (basic biotic data):
+
+<<>>=
+data(dol.sample)
+str(dol.sample)
+@
+
+Once we have the crosstabulated data (\texttt{xc}) and attributes for samples and species, we have to checks the compatibility of the sample attribute table and a given \texttt{xcount} object:
+
+<<>>=
+check.attrib(xc.all, which = "samples", dol.sample, 1)
+@
+
+If check results indicate full match of sample identifiers (without duplicates and missing elements), an \texttt{xorder} object can be created from an attribute table:
+
+<<>>=
+(xo1 <- xorder(xc.all, which="samples", dol.sample, 1))
+@
+
+And this can be done for the species attributes as well:
+
+<<>>=
+data(landsnail)
+str(landsnail)
+@
+
+Compatibility check:
+
+<<>>=
+check.attrib(xc.all, which = "species", landsnail, 2)
+@
+
+And an object of \texttt{xorder} for species attributes:
+
+<<>>=
+(xo2 <- xorder(xc.all, which="species", landsnail, 2))
+@
+
+In these \texttt{xorder} objects (\texttt{xo1} and \texttt{xo2}), original data are subsetted and ordered according to the rows/column names of the \texttt{xcount} (\texttt{xc}) object. A \texttt{mefa} object is a bundle of an \texttt{xcount} and two \texttt{xorder} (one for sample and one for species attributes) objects: 
+
+<<>>=
+(mf <- mefa(xc.all, xo1, xo2))
+@
+
+As you can see, the \texttt{mefa} object contains all necessary information for reporting and further analysis. Additional attributes can be added later to a \texttt{mefa} object by the function \texttt{add.attrib} (for details, see manual).
+
+Plotting method is also available for \texttt{mefa} objects (Figure~\ref{mf}):
+
+<<mf,fig=TRUE,echo=TRUE,width=8,height=8,include=FALSE>>=
+plot(mf, "microhabitat", "shell.dimension")
+@
+
+\begin{figure}[tb]
+	\includegraphics[width=1\textwidth]{mefa-vignette-mf}
+	\caption{Plotting method for \texttt{mefa} objects showing scatterplots or boxplots for variables in the attribute tables.\label{mf}}
+\end{figure}
+
+The \texttt{mefa} object (and \texttt{xcount} as well) can be stratified according to sample/species groups, eg.~in case of hierarchical sampling design:
+
+<<>>=
+(mic <- strify(mf, "microhabitat", "samples"))
+@
+
+or using taxonomic or trophic groups of species:
+
+<<>>=
+(fam <- strify(mf, "familia", "species"))
+@
+
+or both:
+
+<<>>=
+(mic.fam <- strify(
+  as.xcount(mic), mf$species.attr$familia, "species")
+)
+
+mic.fam$data
+@
+
+Parts of a \texttt{mefa} (or \texttt{xcount}) object can be excluded in this way:
+
+<<>>=
+(ex1 <- exclmf(mf, which = "samples", empty = TRUE, 
+        excl = which(mf$sample.attr$microhabitat != "litter")))
+@
+
+We get samples of the litter microhabitat. Since these were collected along a north-to-south transect (meaning southern-to-northern aspect), we can have a look at the transect (Figure~\ref{litter}):
+
+<<litter,fig=TRUE,echo=TRUE,width=8,height=8,include=FALSE>>=
+plot(ex1, "replicate", type="b")
+@
+
+\begin{figure}[tb]
+	\includegraphics[width=1\textwidth]{mefa-vignette-litter}
+	\caption{Plotting method for \texttt{mefa} objects showing scatterplots or boxplots for variables in the attribute tables.\label{litter}}
+\end{figure}
+
+We might exclude some families with low count numbers:
+
+<<>>=
+(ex2 <- exclmf(
+  mic.fam, "species", c("Ellobiidae", "Endodontidae"), empty = TRUE)
+)
+@
+
+In the resulting mefa object, respective parts will be excluded for both the crosstabulation and attribute teble. Empty rows or columns can be removed by specifying the \texttt{empty} argument (see manual). In the end of this subsection, let's have look into the internal structure of a \texttt{mefa} object:
+
+<<>>=
+str(ex2)
+@
+
+\subsection{Reporting with \texttt{mefa}}
+
+Parts of the \texttt{mefa} object can be reported by the \texttt{report.mefa} function into a plain text or preformatted \LaTeX file (\texttt{tex} operator) containing italicised species names, optionally authors and description dates (\texttt{author} specifier), sectioning (according to species or samples, \texttt{order} operator) and with or without count data (\texttt{binary} oprator):
+
+<<>>=
+library(mefa)
+report.mefa("dolina-report.tex", mf, order = "species", 
+    biotic.data = c(1:5), 
+    species.name = "spec.name", species.order = 1, author = 0, 
+    tex = TRUE, binary = FALSE, sep = c(", ", " (", ")", "; "))
+@
+
+The result will look like this:
+
+\vspace{0.5cm}
+
+\begin{minipage}{1\textwidth}
+
+\input{dolina-report.tex}
+
+\end{minipage}
+
+\vspace{0.5cm}
+
+Reporting can be useful for making official reports of inventories or presenting data in supporting online material of manuscripts. The \LaTeX output file can be easily copied or included into documents eg.~in the way presented in the text window by typing \texttt{mefadocs("SampleReport")}.
+ 
+\subsection{Further data analysis}
+
+The cross-tabulated count data stored in \texttt{xcount} and \texttt{mefa} objects can be used readily to calculate sample specific results (abundance, richness, etc.) or can be used in multivariate analyses. These possibilities of further data analyses are illustrated in the demo script (\texttt{demo(dolina)}). (Will be included here later \ldots)
+
+\section{How to cite \texttt{mefa}?}
+
+Please refer to the actual answer returned by the command:
+
+<<>>=
+citation("mefa")
+@
+
+
+\bibliographystyle{plain}
+\bibliography{mefa}
+
+\end{document}
