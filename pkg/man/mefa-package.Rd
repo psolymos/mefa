@@ -24,6 +24,7 @@ Utility functions are provided to check, manipulate and plot objects.
 \tabular{ll}{
 Package: \tab mefa\cr
 Type: \tab Package\cr
+Depends: \tab R (>= 2.6.0), vegan\cr
 Version: \tab 1.0-5\cr
 Date: \tab 2008-03-14\cr
 License: \tab GPL-2\cr
