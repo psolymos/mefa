@@ -9,9 +9,9 @@ The function makes an object of class 'xcount' from an object of class 'sscount'
 \usage{
 xcount(ssc, segment = 0, segment.name = NULL)
 
-\method{print}{xcount}(x, \dots)
+\method{print}{xcount}(x, cutoff = 25, \dots)
 
-\method{plot}{xcount}(x, type="hist", rug = FALSE, \dots)
+\method{plot}{xcount}(x, type = "hist", rug = FALSE, logscale = FALSE, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -27,6 +27,9 @@ xcount(ssc, segment = 0, segment.name = NULL)
     \code{"biplot"} for plot abundance vs. occurence data.}
   \item{rug}{logical, if \code{TRUE}, add rug to the plot (default is \code{FALSE}). It has effect only if 
     \code{type="hist"}.}
+  \item{logscale}{logical, if \code{TRUE}, plotted values are $log10(y+1)$ transformed.
+    Default \code{FALSE} leaves the values intact.}
+  \item{cutoff}{number of samples/species with zero toal count to be listed.}
   \item{...}{other arguments.}
 }
 \details{
@@ -92,7 +95,7 @@ dssc
 
 (xc <- xcount(dssc))
 plot(xc, type="hist")
-plot(xc, type="rank")
+plot(xc, type="rank", logscale = TRUE)
 plot(xc, type="biplot")
 
 xcount(dssc, "broken")

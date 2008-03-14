@@ -25,7 +25,7 @@ Utility functions are provided to check, manipulate and plot objects.
 Package: \tab mefa\cr
 Type: \tab Package\cr
 Depends: \tab R (>= 2.6.0), vegan\cr
-Version: \tab 1.0-5\cr
+Version: \tab 1.1-0\cr
 Date: \tab 2008-03-14\cr
 License: \tab GPL-2\cr
 }
@@ -43,6 +43,6 @@ library(mefa)
 demo(dolina)               ## Demo showning possible usage of 'mefa' objects
 mefadocs("ChangeLog")      ## Browse version history
 mefaweb()                  ## Check out website for resources
-#vignette("mefa-vignette")  ## Open vignette (not working at the moment)
+vignette("mefa-vignette")  ## Open vignette
 }
 }

@@ -9,7 +9,7 @@ Makes and object of class 'mefa' from az 'xcont' and sample and species attribut
 \usage{
 mefa(xc, xorder.samples, xorder.species)
 
-\method{print}{mefa}(x, \dots)
+\method{print}{mefa}(x, cutoff = 25, \dots)
 
 \method{plot}{mefa}(x, sample.var = NULL, species.var = NULL, \dots)
 }
@@ -20,6 +20,7 @@ mefa(xc, xorder.samples, xorder.species)
   \item{x}{an object of class 'mefa'.}
   \item{sample.var}{column index (numeric or character) of the sample attribute table to plot as independent variable.}
   \item{species.var}{column index (numeric or character) of the species attribute table to plot as independent variable.}
+  \item{cutoff}{number of samples/species with zero toal count to be listed.}
   \item{...}{other arguments.}
 }
 \details{
