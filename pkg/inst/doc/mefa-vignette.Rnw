@@ -9,7 +9,7 @@
 
 \usepackage[pdftex,bookmarks,colorlinks=false]{hyperref}
 \usepackage[pdftex]{graphics}
-\usepackage[latin2]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage[english]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[sort&compress]{natbib}
@@ -290,12 +290,7 @@ The cross-tabulated count data stored in \texttt{xcount} and \texttt{mefa} objec
 
 \section{How to cite \texttt{mefa}?}
 
-Please refer to the actual answer returned by the command:
-
-<<>>=
-citation("mefa")
-@
-
+Please refer to the actual answer returned by the command (\texttt{citation("mefa")}).
 
 \bibliographystyle{plain}
 \bibliography{mefa}
