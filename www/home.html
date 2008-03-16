@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="images/PixelGreen2.css" type="text/css" />
 
-<title>mefa</title>
+<title>mefa project</title>
 	
 </head>
 
@@ -26,7 +26,7 @@
 		
 			<div class="sidebox">	
 			
-				<h1>Be informed</h1>
+				<h1>Stay informed</h1>
 				<ul class="sidemenu">
 					<li><a href="http://r-forge.r-project.org/news/?group_id=121" class="top">News</a></li>
 					<li><a href="http://r-forge.r-project.org/forum/?group_id=121">Forums</a></li>
@@ -87,14 +87,139 @@
 			<div class="post">
 			
 				<a name="TemplateInfo"></a>	
-				<h1>Welcome to mefa project website on R-Forge!</h1>
+				<h1>Welcome to the mefa project website on R-Forge!</h1>
 				
 				<p>
-R package for faunistic count data handling and reporting. The name 'mefa' stands for the term 'metafaunistics' indicating that handling of basic data is only the first, but the most critical and sometimes most time consuming part of data analysis. It contains functions to create and manage objects combining basic faunistic (sample/species/count or crosstabulated) count data and sample/species attribute tables. Segments within the count data and samples with zero count can be indicated and used in subsequent operations. Reports can be generated in plain text or LaTeX format.
-				</p>  
-				<p>
-Documentations, resources, related projects are coming soon ...
-				</p>
+The 'mefa' is an R package for multivariate count data handling in ecology
+and biogeography. The name 'mefa' stands for the term
+'metafaunistics' indicating that data handling is the most
+critical and sometimes most time consuming part of data
+analysis. The package contains object classes and functions to
+manipulate basic biotic (sample/species/count or
+crosstabulated) count data and relational attribute tables for
+samples and species. Functions can handle segments within the
+count data and samples with zero count. Reports are generated
+in plain text or LaTeX format.
+<h2>Contents</h2>
+<ul>  
+  <li><a href="#getstart">Getting started</a></li>
+		<ul>
+		  <li><a href="#download">Download</a></li>
+		  <li><a href="#install">Installation</a></li>
+		  <li><a href="#citation">Citation</a></li>
+		</ul>
+  <li><a href="#resources">Resources</a></li>
+  <li><a href="#usage">Usage</a></li>
+		<ul>
+		  <li><a href="#preprocessing">Pre-processing</a></li>
+		  <li><a href="#postprocessing">Post-processing</a></li>
+		</ul>
+  <li><a href="#licence">Licence and disclaimer</a></li>
+</ul>
+
+</p>
+<h2><a name="getstart"></a>Getting started</h2>
+<h3><a name="download"></a>Download</h3>
+<p>
+From the right sidebox <strong>Download</strong>, choose either CRAN for latest stable version, or R-Forge for nightly build developmental version. You can find there source packages and binaries for MaxOS and Windows. Archives of source packages of previous versions can be found at CRAN. For current state of the package, see the SVN repositiry at R-Forge.
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h3><a name="install"></a>Installation</h3>
+<p>
+For stable version type into R:
+<code>
+install.packages("mefa")
+</code>
+For developmental version type into R:
+<code>
+install.packages("mefa", repos="http://r-forge.rproject.org")
+</code>
+To download a local copy of 'mefa' via anonymous subversion, use:
+<code>
+svn checkout svn://svn.r-forge.rproject.org/svnroot/mefa
+</code>
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h3><a name="citation"></a>Citation</h3>
+<p>
+When using the 'mefa' package, the placement of a current citation into manuscripts would be highly appreciated. Thank you! For current citation, type:
+<code>
+library(mefa) <br />
+citation("mefa")
+</code>
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h2><a name="resources"></a>Resources</h2>
+
+<p>
+The documentation for each functions, including object classes and methods can be found in the help pages:
+<code>
+library(mefa)<br />
+help("mefa-package")
+</code>
+For the demo, showing data pre-processing and analysis, including graphical methods, type:
+<code>
+demo(dolina)
+</code>
+To browse the 'vignette', a less technical introduction into the usage of the 'mefa' package, type:
+<code>
+vignette("mefa-vignette")
+</code>
+To stay informed, you might consider to take advantage of the news, forums, mailing lists or RSS feed provided by R-Forge (see links in the right sidebox).
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+
+<h2><a name="usage"></a>Usage</h2>
+
+<h3><a name="preprocessing"></a>Pre-processing</h3>
+<p>
+The 'mefa' package provides object classes, methods and utility function for pre-processing biotic data prior to analysis:
+<ul>
+<li>'sscount' for catch results of a field experiment referenced according to samples and species, samples with zero total count can be indicated, rows can be assigned to segments. </li>
+
+<li>'xcount' for sample/species crosstabulation of an object of class sscount, samples with zero total count are retained, one xcount object refers to one segment only. </li>
+
+<li>'xorder' contains sample or species specific attributes, subsetted and ordered according to rows/columns of an object of class xcount. </li>
+
+<li>'mefa' contains data of an xcount and two xorder objects (for sample and species attributes). A 'mefa' object is a project-oriented representation (subset) of the general database that can be used in subsequent analyses.</li>
+
+<li>S3 methods (print and plot) are provided. </li>
+
+<li>Utility functions are provided to check and manipulate objects.</li>
+</ul>
+
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h3><a name="postprocessing"></a>Post-processing</h3>
+<p>
+Post-processing includes reporting and data analysis. For worked examples of data analysis see the demo: 
+<code>demo(dolina)</code>
+Report can be made by the report.mefa() function, for usage, see:
+<code>?report.mefa</code>
+An example on how to use report.mefa() to generate LaTeX output, and how to embedd it into a noweb (Sweave) document, see:
+<code>mefadocs("SampleReport")</code>
+</p>
+<p align="right"><a href="#top">Top</a></p>
+
+<h2><a name="licence"></a>Licence and disclaimer</h2>
+<p>
+This is free software; you can redistribute it and/or modify
+it under the terms of the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> as published by
+the <a href="http://www.fsf.org/">Free Software Foundation</a>; either version 2 of the License, or
+(at your option) any later version.
+</p>
+<p>
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+<a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a> for more details.
+</p>
+<p align="right"><a href="#top">Top</a></p>
 
 			</div>
 										
