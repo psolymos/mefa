@@ -264,7 +264,7 @@ Parts of the \texttt{mefa} object can be reported by the \texttt{report.mefa} fu
 
 <<>>=
 library(mefa)
-report.mefa("dolina-report.tex", mf, order = "species", 
+report.mefa("dolina-report.tex", mf, ordering = "species", 
     biotic.data = c(1:5), 
     species.name = "spec.name", species.order = 1, author = 0, 
     tex = TRUE, binary = FALSE, sep = c(", ", " (", ")", "; "))
