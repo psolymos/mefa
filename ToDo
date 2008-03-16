@@ -1,1 +1,8 @@
-mapmf, border=NULL or xy matrix (plot, type="l", circular) + legend ??
+place amf() into vignette
+
+continue with data analysis in vignette
+
+options(useFancyQuotes=FALSE)
+?sQuote
+
+mapmf, border=NULL or xy matrix (plot, type="l", circular x+1) + legend ??
