@@ -16,17 +16,17 @@ S3 object classes provided by this package are:
 
 \code{\link{xorder}} contains sample or species specific attributes, subsetted and ordered according to rows/columns of an object of class \code{\link{xcount}}.
 
-\code{\link{mefa}} contains data of an \code{\link{xcount}} and two \code{\link{xorder}} objects (for sample and species attributes).
+\code{\link{mefa}} contains data of an \code{\link{xcount}} and up to two \code{\link{xorder}} objects (for sample and species attributes).
 
-Utility functions are provided to check, manipulate and plot objects.
+Utility functions are provided to check, manipulate objects with print and plot S3 methods.
 }
 \details{
 \tabular{ll}{
 Package: \tab mefa\cr
 Type: \tab Package\cr
-Depends: \tab R (>= 2.6.0), vegan\cr
-Version: \tab 1.1-0\cr
-Date: \tab 2008-03-14\cr
+Depends: \tab vegan\cr
+Version: \tab 1.1-1\cr
+Date: \tab 2008-04-02\cr
 License: \tab GPL-2\cr
 }
 }
