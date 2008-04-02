@@ -1,3 +1,9 @@
+test cases found in .Rd files
+
+update accumulate
+
+add taxdist, nbmc
+
 place amf() into vignette
 
 continue with data analysis in vignette
