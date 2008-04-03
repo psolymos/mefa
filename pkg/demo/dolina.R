@@ -12,6 +12,10 @@ wait <- function(vign=FALSE) {
 ###          Demo for the R package 'mefa'           ###
 ########################################################
 
+### You can use the mefa vignette for reference.
+
+wait(TRUE)
+
 ########################################################
 ###         Processing count data with 'mefa'        ###
 ########################################################
