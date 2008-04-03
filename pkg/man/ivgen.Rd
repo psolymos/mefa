@@ -1,8 +1,8 @@
 \name{ivgen}
 \alias{ivgen}
-\title{Writes Output Files for IndVal}
+\title{Write Files for IndVal}
 \description{
-Writes output files in the format suitable for analysis in the 'IndVal.exe' software by Dufrene and Legendre (1997).
+Writes files in the format suitable for further analysis in the 'IndVal.exe' software by Dufrene and Legendre (1997).
 }
 \usage{
 ivgen(x, cl, k)
@@ -14,16 +14,16 @@ ivgen(x, cl, k)
   \item{k}{an integer scalar defining the desired number of groups (partitions), used by \code{\link{cutree}}.}
 }
 \value{
-Three text files produced into the working directory.
+Three text files are produced into the working directory. Screen displays info on what to type into the IndVal propts.
 }
 \references{
 Dufrene, M. and Legendre, P. 1997. Species assemblages and indicator species: the need for a flexible asymmetrical approach. Ecological Monographs 67, 345--366.
 
-IndVal homepage at \url{http://biodiversite.wallonie.be/outils/indval/home.html}
+IndVal homepage (with errata to the atricle) at \url{http://biodiversite.wallonie.be/outils/indval/home.html}
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
-  \code{\link{cutree}}, \code{\link{dist}}, \code{\link{hclust}}
+  \code{\link{cutree}}, \code{\link{hclust}}
 }
 \examples{
 x <- matrix(rpois(24,1),6,4)

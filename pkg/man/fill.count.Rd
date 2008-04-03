@@ -1,7 +1,6 @@
 \name{fill.count}
 \alias{fill.count}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Replaces 'NA' Values}
+\title{Replace 'NA' Values}
 \description{
 This function replaces \code{NA} values according to the last non-\code{NA} value in a given column of a table.
 }
@@ -13,7 +12,7 @@ fill.count(table)
   \item{table}{a matrix or data frame.}
 }
 \details{
-It is easy and convinient way to fill up values in a data table with non-redundant entries, eg. leaving empty spaces just like on a sheet of a notebook. By this functions, such objects can be directly used in subsequent operations, eg. by function \code{\link{sscount}}.
+It is easy and convinient way to fill up values in a data table with non-redundant entries, eg. leaving empty spaces just like on a sheet of a notebook. By this function, such objects can be directly used in subsequent operations, eg. by function \code{\link{sscount}}.
 }
 \value{
 A result is a matrix or data frame according to class of \code{table}.

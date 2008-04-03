@@ -1,6 +1,6 @@
 \name{inflate}
 \alias{inflate}
-\title{Inflates a Data Frame}
+\title{Inflate Data Frame According to Integer Vector}
 \description{
 This function inflates a data frame according to a column containing integers, by repeating each rows as many times as the integer value. This is an internal function used by the function \code{\link{xcount}} converting an object of 'sscount' into 'xcount'.
 }
@@ -9,11 +9,11 @@ inflate(factors, count)
 }
 \arguments{
   \item{factors}{a data frame or matrix used. Rows in \code{factors} are repeated as many times as the value of 
-    respective value of \code{count}. Thus, number of rows in \code{factor} must equal length of \code{count}.}
+    respective value of \code{count}. Thus, number of rows in \code{factor} must equal the length of \code{count}.}
   \item{count}{a numeric (integer) vector with the same length as number of rows in \code{factors}.}
 }
 \value{
-A matrix with columns as in \code{factors} argument, and rows according to sum of \code{count}.
+A matrix with columns as in \code{factors}, and rows according to sum of \code{count}.
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
