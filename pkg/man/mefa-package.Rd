@@ -6,7 +6,7 @@
 Multivariate Count Data Handling in Ecology and Biogeography
 }
 \description{
-R package for multivariate count data handling in ecology and biogeography. The name 'mefa' stands for the term 'metafaunistics' indicating that data handling is the most critical and sometimes most time consuming part of data analysis. The package contains object classes and functions to manipulate basic biotic (sample/species/count or crosstabulated) count data and relational attribute tables for samples and species. Functions can handle segments within the count data and samples with zero count. Reports are generated in plain text or LaTeX format.
+R package for multivariate count data handling in ecology and biogeography. The name 'mefa' stands for the term 'metafaunistics' indicating that data handling is the most critical and sometimes most time consuming part of data analysis. The package contains object classes and functions to manipulate basic biotic (sample/species/count or crosstabulated) count data and relational attribute tables for samples and species. Functions can handle segments (eg. life stages, gender) within the count data and samples with zero count. Reports are generated in plain text or LaTeX format.
 
 S3 object classes provided by this package are:
 
