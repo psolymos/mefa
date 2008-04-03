@@ -16,7 +16,7 @@ data(dol.sample)
     (sample, microhabitat, replicate, aspect, depth zone ofdolina, litter moisture and litter thickness).
 }
 \seealso{
-  \code{\link{dol.sample}}
+  \code{\link{dol.count}}
 }
 \examples{
 data(dol.count)

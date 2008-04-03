@@ -1,35 +1,35 @@
 \name{exclmf}
 \alias{exclmf}
-\title{Excludes Species or Samples in Object of Class 'xcount' or 'mefa'}
+\title{Exclude Species or Samples in Object of Class 'xcount' or 'mefa'}
 \description{
 Excludes species or samples in object of class 'xcount' or 'mefa'.
 }
 \usage{
 exclmf(xc, which = c("samples", "species"), excl, empty = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{xc}{an object of class 'xcount' or 'mefa' to be used.}
   \item{which}{switch between rows (\code{"samples"}) and columns (\code{"species"}) to be excluded.}
   \item{excl}{list of rows/columns (samples/species) to be excluded (according to \code{which} argument). 
-    If \code{excl=NULL}, nothing will be excluded (only useful when \code{empty} is not \code{"none"}).}
+    If \code{excl=NULL}, nothing will be excluded (only useful when \code{empty = TRUE}).}
   \item{empty}{logical, if \code{FALSE} (default), rows with zero sum will be left intact, 
     \code{TRUE} means that exclusion of empty rows/columns will be executed according to sums of the 
-    opposite margin of the sample-species matrix, ie. if samples are to be excluded, the 
+    opposite margin of the sample-species matrix, ie. if samples are to be excluded (\code{which = "samples"}), the 
     resulting empty columns for species will be removed, and vica versa.}
 }
 \details{
 If species are excluded, some samples might have zero total count. In such cases, 
-it is advisable to use \code{empty=TRUE}.
+ \code{empty=TRUE} can be used to get rid of these null samples.
 
 Empty rows can be removed by \code{which="species"}, \code{excl=NULL} and \code{empty=FALSE}.
 }
 \value{
-A result is an object of class 'xcount' or 'mefa' depending on the input object.
+A result is an object of class 'xcount' or 'mefa' depending on the class of the input object.
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \note{
 If the resultant crosstable contains less than two rows/columns, an error message is given and there will be no output.
+(The crosstable \code{$data} in the resulting object should be at least a 2x2 matrix, or else stratification has no sense. Or at least I should keep thinking on this.)
 }
 \seealso{\code{\link{mefa}}, \code{\link{xcount}}.}
 \examples{

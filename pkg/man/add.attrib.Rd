@@ -1,7 +1,6 @@
 \name{add.attrib}
 \alias{add.attrib}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Adds Attributes to Object of Class 'mefa'}
+\title{Add Attributes to Object of Class 'mefa'}
 \description{
 The function adds attributes to an object ofclass 'mefa'.
 }
@@ -14,11 +13,11 @@ add.attrib(mf, which = c("samples", "species"), attrib, index = 0)
   \item{which}{attribute table within the 'mefa' object to be extended by new attributes, it can be the
     \code{"species"} and \code{"samples"} attribute table.}
   \item{attrib}{name of the data frame containing new attributes.}
-  \item{index}{column index of the data frame \code{attrib} containing new attributes, default (\code{index=0}) it 
+  \item{index}{column index of the data frame \code{attrib} containing new attributes, default (\code{index = 0}) it 
     refers to the rownames of the attribute table.}
 }
 \value{
-A result is an object of class 'mefa' containing the original and the new attributes as well. Index column from the new attributes table is removed, because it is a duplum.
+A result is an object of class 'mefa' containing the original and the new attributes as well. Index column (\code{index > 0}) from the new attributes table is removed, because it is a duplum.
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
@@ -61,13 +60,16 @@ spectab <- as.data.frame(rbind(
 ))
 colnames(spectab) <- c("species", "taxonomy", "size")
 
-mf <- mefa(xct <- xcount(sscount(ss, zc="zero.count")),
-xorder(xct, "samples", sampletab1, 1),
-xorder(xct, "species", spectab, 1)
-)
+xct <- xcount(sscount(ss, zc="zero.count")),
+xo1 <- xorder(xct, "samples", sampletab1, 1),
+xo2 <- xorder(xct, "species", spectab, 1)
 
-mf2 <- add.attrib(mf, "samples", sampletab2)
-mf2
+mf1 <- mefa(xct, xo1, xo2)
+
+(mf1a <- add.attrib(mf, "samples", sampletab2))
+
+mf2 <- mefa(xct, NULL, xo2)
+(mf2a <- add.attrib(mf, "samples", sampletab2))
 
 ### Example 2: field data of Villany Hills
 

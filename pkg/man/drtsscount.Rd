@@ -1,14 +1,12 @@
 \name{drtsscount}
 \alias{drtsscount}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Makes Object of Class 'sscount' from Table with Duplicate Rows}
+\title{Make Object of Class 'sscount' from Table with Duplicate Rows}
 \description{
-The function makes an object ofclass 'sscount' from a table (data frame), when some samples are presented in more than one rows (identifiers are not unique). Count and measurement type data are allowed.
+The function makes an object of class 'sscount' from a table (data frame), when some samples are presented in more than one rows (identifiers are not unique). Count and measurement type data are allowed.
 }
 \usage{
 drtsscount(table, sample, segment = "unspecified", digits = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{table}{a data frame with count data. \code{NA} values are not allowed.}
   \item{sample}{a vector with same length as number of rows in \code{table}. Used as factor for coding samples.

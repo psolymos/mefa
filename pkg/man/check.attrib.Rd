@@ -1,9 +1,9 @@
 \name{check.attrib}
 \alias{check.attrib}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Checks Integrity of 'xcount' Object and Attribute Table}
+\title{Check Consistency of 'xcount' Object and Attribute Table}
 \description{
-This function checks integrity of an object of class 'xcount' and an attribute table (data frame) by comparing row/column names (as sample/species identifiers) and values in an index column of the data frame.
+This function checks consistency of an object of class 'xcount' and an attribute table (data frame) by comparing row/column names (as sample/species identifiers) and values in an index column of the data frame.
 }
 \usage{
 check.attrib(xc, which = c("samples", "species"), attrib, index = 0)
@@ -23,7 +23,7 @@ check.attrib(xc, which = c("samples", "species"), attrib, index = 0)
   \item{set.relation}{\code{"equal"} means the two sets (row/column names of the 'xcount' object and elements in the \code{index} column) are equal, \code{"inclusion"} means the two sets are inclusive and no missing elements found, \code{"intersect"} means the two sets intersect (required elements are listed in \code{missing}), \code{"separate"} means the two sets have no common elements (required elements are listed in \code{missing}).}
   \item{duplicate}{a list of duplicate elements or \code{NULL}.}
   \item{missing}{a list of missing elements or \code{NULL}.}
-  \item{na}{indicates the number of \code{NA} values in \code{attrib}.}
+  \item{na}{indicates the number of \code{NA} values found in \code{attrib}.}
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
