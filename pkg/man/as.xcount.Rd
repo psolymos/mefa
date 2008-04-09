@@ -5,11 +5,11 @@
 The function converts a sample/species crosstable into an 'xcount' object. Count and measurement type data are allowed.
 }
 \usage{
-as.xcount(table, species.columns = TRUE, segment = "unspecified", digits=NULL)
+as.xcount(table, species.columns = TRUE, segment = "unspecified", digits = NULL, n = 1)
 }
 \arguments{
   \item{table}{a data frame or matrix with sample/species count data. It can either be an object of class 'mefa',
-    in this case, only the \code{table$data} part will be used, \code{table$segment} is inherited. 
+    in this case, only the \code{table$data} part will be used, \code{table$segment} is inherited. If \code{table} is an object of class 'xclist' or 'mflist', than the \code{n} argument is used to choose from the list.
     \code{NA} values are not allowed.}
   \item{species.columns}{if \code{FALSE}, species are rows and samples are columns. By default it is \code{TRUE}.}
   \item{segment}{arbitrary name of the segment (eg. adult, juvenile, male, female) whose data are
@@ -18,6 +18,7 @@ as.xcount(table, species.columns = TRUE, segment = "unspecified", digits=NULL)
     not integer, but \code{digits=NULL}, error message is given. If result is not of count type but some kind of measurements 
     (eg. biomass, containing decimals) \code{digits} can be used to set precision of the data representation, 
     in this case use integers (\code{digits=0} results integers, \code{digits=1} means 1 decimal, etc.).}
+  \item{n}{element of the 'xclist' or 'mflist' object to choose.}
 }
 \value{
 A result is an object of class 'xcount' .

@@ -1,6 +1,7 @@
 `mefa` <-
-function(xc, xorder.samples, xorder.species){
+function(xc, xorder.samples, xorder.species, n = 1){
 
+if(class(xc)=="xclist") mf <- as.xcount(xc,n)
 if(class(xc) != "xcount") stop("Object '",xc,"' is not of 'xcount' class.")
 
 if(is.null(xorder.samples) & is.null(xorder.species)) stop("at least one 'xorder' argument must be specified")

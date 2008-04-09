@@ -1,6 +1,12 @@
 test cases found in .Rd files
 
-update accumulate
+update accumulate - done
+
+xclist & mflist objects + helpers & methods - done, Rd files in progress
+
+animefa
+
+prabcomp
 
 add taxdist, nbmc
 
@@ -11,4 +17,4 @@ continue with data analysis in vignette
 options(useFancyQuotes=FALSE)
 ?sQuote
 
-mapmf, border=NULL or xy matrix (plot, type="l", circular x+1) + legend ??
+zmap legend ??

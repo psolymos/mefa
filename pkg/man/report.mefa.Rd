@@ -6,14 +6,15 @@
 Makes a report from the data of an object of class 'mefa' in plain text or formatted LaTeX file.
 }
 \usage{
-report.mefa(filename, mf, ordering = "species", biotic.data = 1, 
+report.mefa(filename, mf, n = 1, ordering = "species", biotic.data = 1, 
     species.name = 1, species.order = 1, author = 0, 
     tex = FALSE, binary = FALSE, sep = c(", ", " (", ")", "; "))
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{filename}{name of the file to be created in the working directory.}
-  \item{mf}{an object of class 'mefa'.}
+  \item{mf}{an object of class 'mefa' of 'mflist'. If \code{mf} is an object of class 'mflist', than the \code{n} argument is used to choose from the list.}
+  \item{n}{element of the 'mflist' object to choose.}
   \item{ordering}{type of ordering (sectioning), by \code{"species"} (default) or by \code{"samples"}.}
   \item{biotic.data}{list of columns in the sample attribute table of the 'mefa' object,
     data will be sorted according to subsequent columns.}

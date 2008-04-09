@@ -4,19 +4,20 @@
 \alias{plot.mefa}
 \title{Makes Object of Class 'mefa'}
 \description{
-Makes and object of class 'mefa' from az 'xcont' and sample and species attribute 'xorder' objects. Incomplete 'mea' object can becreated, when one out of samples or species attributes is missing.
+Makes and object of class 'mefa' from an 'xcount' and sample and species attribute 'xorder' objects. Incomplete 'mefa' object can becreated, when one out of samples or species attributes is missing.
 }
 \usage{
-mefa(xc, xorder.samples, xorder.species)
+mefa(xc, xorder.samples, xorder.species, n = 1)
 
 \method{print}{mefa}(x, cutoff = 25, \dots)
 
 \method{plot}{mefa}(x, sample.var = NULL, species.var = NULL, \dots)
 }
 \arguments{
-  \item{xc}{object of class 'xcount'.}
+  \item{xc}{object of class 'xcount' or 'xclist'. If \code{xc} is an object of class 'xclist', than the \code{n} argument is used to choose from the list.}
   \item{xorder.samples}{object of class 'xorder' for sample attributes, or \code{NULL}.}
   \item{xorder.species}{object of class 'xorder' for species attributes, or \code{NULL}.}
+  \item{n}{element of the 'xclist' object to choose.}
   \item{x}{an object of class 'mefa'.}
   \item{sample.var}{column index (numeric or character) of the sample attribute table to plot as independent variable.}
   \item{species.var}{column index (numeric or character) of the species attribute table to plot as independent variable.}

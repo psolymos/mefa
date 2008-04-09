@@ -1,8 +1,9 @@
 `report.mefa` <-
-function (filename, mf, ordering = "species", biotic.data = 1, species.name = 1, 
+function (filename, mf, n = 1, ordering = "species", biotic.data = 1, species.name = 1, 
     species.order = 1, author = 0, tex = FALSE, binary = FALSE, 
     sep = c(", ", " (", ")", "; ")) 
 {
+    if(class(table)=="mflist") mf <- as.mefa(mf,n)
     if (class(mf) != "mefa") 
         stop("not 'mefa' class")
     if (sum(is.element(c("species", "samples"), ordering)) == 0) 
