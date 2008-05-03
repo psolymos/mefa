@@ -60,8 +60,8 @@ spectab <- as.data.frame(rbind(
 ))
 colnames(spectab) <- c("species", "taxonomy", "size")
 
-xct <- xcount(sscount(ss, zc="zero.count")),
-xo1 <- xorder(xct, "samples", sampletab1, 1),
+xct <- xcount(sscount(ss, zc="zero.count"))
+xo1 <- xorder(xct, "samples", sampletab1, 1)
 xo2 <- xorder(xct, "species", spectab, 1)
 
 mf1 <- mefa(xct, xo1, xo2)
