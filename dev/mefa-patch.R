@@ -1,7 +1,179 @@
 ###
-as.mefa <- function(mfl, n=1){
-if(!inherits(mfl,"mflist")) stop("Object is not of class 'mfcount'.")
-xc <- mfl$data[[n]]
+wait <- function(vign=NULL) {
+  if (!is.null(vign)) {
+    ANSWER <- readline("Do you want to open the vignette now? ")
+    if (substr(tolower(ANSWER), 1, 1) == "y")
+      vignette(vign)
+  } else {
+    ANSWER <- readline("Please press ENTER to continue ... ")
+  }
+}
+
+###
+melt.mefa <- function(x,y=NULL)
+{
+if(!is.null(y)) y <- as.data.frame(y)
+
+if (any(apply(x, 1, sum) == 0)) cat("Zero sums detected in",length(rownames(x)[apply(x, 1, sum) == 0]), "rows.\n")
+
+if(is.null(rownames(x))) rownames(x) <- c(1:nrow(x))
+if(is.null(colnames(x))) colnames(x) <- c(1:ncol(x))
+
+n <- sum(x > 0)
+count <- array(NA,n)
+k.count <- k.vars <- 1
+
+if (!is.null(y)) {
+    v <- ncol(y)+2
+    for(i in 1:ncol(y)) y[,i] <- as.factor(y[,i])
+    y2 <- matrix(NA, nrow(y), ncol(y))
+    for(i in 1:ncol(y)) y2[,i] <- as.numeric(y[,i])
+        } else {
+    v <- 2}
+
+vars <- array(NA,(n*v))
+
+for (i in 1:nrow(x))
+    {
+    for (j in 1:ncol(x))
+        {
+        if (x[i,j] != 0) {
+            count[k.count] <- x[i,j]
+            if (!is.null(y)) vars[k.vars:(k.vars+v-1)] <- c(y2[i,],i,j)
+                else vars[k.vars:(k.vars+v-1)] <- c(i,j)
+            k.count <- k.count + 1
+            k.vars <- k.vars + v}
+        }
+    }
+
+varmat <- as.data.frame(matrix(vars,n,v,byrow=TRUE))
+
+if (!is.null(y)){
+for (i in 1:ncol(y)) {
+    varmat[,i] <- as.factor(varmat[,i])
+    levels(varmat[,i]) <- levels(y[,i])}
+    }
+
+varmat[,(v-1)] <- as.factor(varmat[,(v-1)])
+varmat[,v] <- as.factor(varmat[,v])
+levels(varmat[,(v-1)]) <- rownames(x)
+levels(varmat[,v]) <- colnames(x)
+
+out <- data.frame(varmat,count)
+if (!is.null(y)) if(is.null(colnames(y))) colnames(y) <- c(1:(v-2))
+if (!is.null(y)) colnames(out) <- c(colnames(y),"row.id","col.id","value")
+    else colnames(out) <- c("row.id","col.id","value")
+return(out)}
+
+#x <- matrix(rpois(12,2),4)
+#y <- as.data.frame(cbind(LETTERS[1:4],rep(letters[5:6],2)))
+#melt.mefa(x,y)
+
+#meltdan <- melt.mefa(transdanubia[,7:ncol(transdanubia)], transdanubia[,5])
+#meltdan <- melt.mefa(transdanubia[,7:ncol(transdanubia)])
+#meltdan <- melt.mefa(transdanubia[,7:ncol(transdanubia)], transdanubia[,1:6])
+
+
+
+##########
+mefa2sscount <-
+function(mf, segment, which=c("samples","species"),retain.zero=TRUE)
+{
+if (retain.zero & any(colnames(mf$data) == "zero.count"))
+    stop("'zero count' should not be used as valid species name.\n")
+if (which != "species" & which !="samples") stop("'which' should be defined.\n")
+
+if (which == "samples") {
+    x <- mf$data
+    y <- mf$sample.attr[,segment]
+    }
+if (which == "species") {
+    x <- t(mf$data)
+    y <- mf$species.attr[,segment]
+    }
+
+x2 <- subset(x, apply(x, 1, sum) != 0)
+y2 <- subset(y, apply(x, 1, sum) != 0)
+#y2[] <- lapply(y2, function(x) x[drop = TRUE])
+
+melted <- melt.mefa(x2,y2)
+
+if (!retain.zero) {
+    to.ssc <- melted[,c(2,3,1,4)]
+    zc <- NULL
+        } else {
+    to.ssc <- data.frame(
+        c(as.character(melted[,2]), rownames(x)[which(apply(x, 1, sum) == 0)]),
+        c(as.character(melted[,3]), rep("zero.count",length(which(apply(x, 1, sum) == 0)))),
+        c(as.character(melted[,1]), as.character(subset(y, apply(x, 1, sum) == 0))),
+        c(melted[,4], rep(1,length(which(apply(x, 1, sum) == 0)))) )
+    zc <- "zero.count"}
+
+out <- sscount(to.ssc,zc=zc,digits=mf$digits)
+out$call <- match.call()
+return(out)}
+
+#xc <- as.xcount(transdanubia[,7:ncol(transdanubia)])
+#xo <- xorder(xc,"samples", transdanubia[,1:6])
+#mf <- mefa(xc,xo,NULL)
+#ssc1 <- mefa2sscount(mf, "year", "samples", FALSE)
+#ssc2 <- mefa2sscount(mf, "year", "samples", TRUE)
+#ssc3 <- mefa2sscount(mf, "utm", "samples", TRUE)
+
+###
+`as.xcount` <-
+function (table, species.columns=TRUE, segment="unspecified", digits=NULL, n=NULL){
+
+if(class(table)=="xclist") {
+    if (!is.null(n)) table <- table$data[[n]]$data
+    if (is.null(n)) {
+    xc <- table$data[[1]]$data
+    for (i in 2:mfl$length) xc <- xc + table$data[[i]]$data
+    table <- xc}}
+
+if(class(table)=="mflist") table <- as.mefa(table, n)
+
+if(class(table) == "mefa") {
+    segment <- table$segment
+    table <- table$data
+    }
+
+if(is.null(digits)) if(sum(table) != sum(trunc(table)))
+    stop("count is not integer, use 'digits' argument")
+
+if(!is.null(digits)) if(sum(table) != sum(trunc(table))) {
+    table <- round(table, digits = digits)
+    } else {digits <- NULL}
+
+if(sum(is.na(table)) != 0) stop("NA values were detected")
+if(species.columns == FALSE) table <- t(table)
+table <- as.matrix(table[order(rownames(table)), order(colnames(table))])
+out <- list(
+	data = table,
+	call = match.call(),
+	segment = segment,
+	digits = digits,
+	nsamples = dim(table)[1],
+	nspecies = dim(table)[2],
+	totalcount = sum(table),
+	presences = sum(table > 0),
+	ninds = marmat(table, "samples", "abund"),
+	srichn = marmat(table, "samples", "occur"),
+	specabund = marmat(table, "species", "abund"),
+	specoccur = marmat(table, "species", "occur"))
+class(out) <- "xcount"
+return(out)}
+
+
+###
+as.mefa <- function(mfl, n=NULL){
+if(!inherits(mfl,"mflist")) stop("Object is not of class 'mflist'.")
+if (!is.null(n)) xc <- mfl$data[[n]]
+if (is.null(n)) {
+    xc <- mfl$data[[1]]$data
+    for (i in 2:mfl$length) xc <- xc + mfl$data[[i]]$data
+    }
+xc <- as.xcount(xc)
 if(is.null(mfl$sample.attr)) xo1 <- NULL else xo1 <- xorder(xc, "samples", mfl$sample.attr)
 if(is.null(mfl$species.attr)) xo2 <- NULL else xo2 <- xorder(xc, "species", mfl$species.attr)
 return(mefa(xc, xo1, xo2))}
@@ -469,6 +641,7 @@ function (xc, which = c("samples", "species"), attrib, index = 0)
     if (class(xc) != "xcount" & class(xc) != "xclist") 
         stop("Object '", xc, "' is not of 'xcount' or 'xclist' class.")
     if (class(xc) == "xclist") xc <- xc$data[[1]]
+#if(!is.data.frame(attrib)) attrib <- as.data.frame(attrib)
 #to
 
     check1 <- check.attrib(xc, which, attrib, index)$set.relation
@@ -530,6 +703,7 @@ function (xc, which = c("samples", "species"), attrib, index = 0)
     if (class(xc) != "xcount" & class(xc) != "xclist") 
         stop("Object '", xc, "' is not of 'xcount' or 'xclist' class.")
     if (class(xc) == "xclist") xc <- xc$data[[1]]
+#if(!is.data.frame(attrib)) attrib <- as.data.frame(attrib)
 #to
 
 #    if (class(xc) != "xcount") 
@@ -705,8 +879,8 @@ invisible(NULL)
 
 ### makes temporal accumulation statistics from sscount object,
 ### where segment is date (eg. year)
-
-accumulate <- function(x){
+accumulate <-
+function(x){
 tabl <- x$data[order(x$data$segment),]
 nyr <- length(levels(tabl$segment))
 
@@ -714,7 +888,7 @@ nsamp <- newsamp <- nrecord <- nspec <- newspec <- rep(0, nyr)
 first <- tabl[which(tabl$segment == levels(tabl$segment)[1]),]
 first[] <- lapply(first, function(x) x[drop = TRUE])
 nrecord[1] <- sum(first$count)
-nspec[1] <- newspec[1] <- nrow(first)
+nspec[1] <- newspec[1] <- nlevels(first$species)
 oldlist1 <- first$species
 oldlist2 <- first$sample
 
@@ -732,9 +906,45 @@ for (i in 2:nyr){
     oldlist2 <- newlist2
     }
 
-out <- data.frame(as.numeric(levels(tabl$segment)), nrecord, newsamp, newspec, cumsum(nrecord), nsamp, nspec)
-colnames(out) <- c("segment", "newrecord", "newsamp", "newspec", "cumrecord", "cumsamp", "cumspec")
+out <- list(call=match.call(),
+data=data.frame(as.numeric(levels(tabl$segment)), nrecord, newsamp, newspec, cumsum(nrecord), nsamp, nspec)
+)
+colnames(out$data) <- c("segment", "newrecord", "newsamp", "newspec", "cumrecord", "cumsamp", "cumspec")
+
+class(out) <- "accum"
 return(out)}
+
+###
+print.accum <-
+function(x, ...)
+{
+print(x$data)
+}
+
+###
+plot.accum <- function(x, type="time", xlab=NULL, col.l=2, col.h=3, ...)
+{
+x <- x$data
+if (type == "time"){
+    xax <- x$segment
+    x.lab <- "segments"
+    nc <- 3
+    tp <- "l"}
+if (type == "biplot"){
+    xax <- x$cumrecord
+    x.lab <- "# records"
+    nc <- 2
+    tp <- "b"}
+if (!is.null(xlab)) x.lab <- xlab
+par(mfrow=c(1,nc),pty="s")
+if (type == "time") plot(xax,x$cumrecord,type=tp,col=col.l,xlab=x.lab,ylab="# records",...)
+if (type == "time") points(xax,x$newrecord,type="h",col=col.h,...)
+plot(xax,x$cumsamp,type=tp,col=col.l,xlab=x.lab,ylab="# samples",...)
+if (type == "time")  points(xax,x$newsamp,type="h",col=col.h,...)
+plot(xax,x$cumspec,type=tp,col=col.l,xlab=x.lab,ylab="# species",...)
+if (type == "time")  points(xax,x$newspec,type="h",col=col.h,...)
+par(mfrow=c(1,1))
+}
 
 ### check.ettrib-nál invisible(out) !!!
 check.mefa <-
