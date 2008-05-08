@@ -1,3 +1,9 @@
+write report.mflist to perform ordering according to "samples"
+
+improve print methods via ggplot
+
+identify bottlenexks in xcount and xclist functions (package reshape???)
+
 test cases found in .Rd files
 
 update accumulate - done

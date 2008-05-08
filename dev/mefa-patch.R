@@ -1,3 +1,276 @@
+###   This patch is to be used along with 1.1-0 version on CRAN.
+###   The R-Forge version update will take some time to be stable,
+###   and fully documented. I also plan to add a new vignette 
+###   explaining new features, and demonstrate post-processing
+###   data analysis options (amf).
+###   This patch file is continuously updated, and contains
+###   latest development, including:
+###      - xclist & mflist object classes,
+###      - animated functions (animefa, animap),
+###      - many utilities and methods (ssc2mefa, report.mflist).
+###   All feedback is welcome!
+
+##########################################################
+report.mflist <-
+function (filename, mf, n = NULL, ordering = "species",
+    biotic.data = NULL, kill.redundancy = NULL, collapse=TRUE,
+    species.name = 1, author = NULL, species.order = NULL, 
+    grouping = FALSE, tex = FALSE, binary = FALSE,
+    control.tex = list(ital.spec = TRUE, noindent = TRUE, 
+    bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
+    sep = c(",", ":", "(", ":", ",", ")", ";"))
+{
+
+# test
+    if(!inherits(mf,"mefa") & !inherits(mf,"mflist")) stop("Object is not of class 'mflist'.")
+    if (sum(is.element(c("species", "samples"), ordering)) == 0) 
+        stop("Specify 'ordering' parameter.")
+    if (length(sep) != 7) 
+        stop("Specify exactly 7 separators.")
+    if (is.null(species.order)) species.order <- species.name
+    if (is.character(n)) n <- which(is.element(mf$segment,n))
+    if (class(mf) == "mefa") length.n <- 1
+    if (class(mf) == "mflist") {
+        if (is.null(n)) length.n <- mf$length else length.n <- length(n)
+        }
+    
+# ordering sample attributes
+    if (is.null(biotic.data))
+        loca <- mf$sample.attr else loca <- mf$sample.attr[, biotic.data]
+    loc <- loca[do.call(order, loca), ]
+
+    if (!is.null(kill.redundancy) & length(kill.redundancy) >= ncol(loca))
+        stop("Length of kill.redundancy should. be lower than length of biotic.data.")
+
+# total count data
+    if (class(mf) == "mefa") {
+        mfdata <- mf$data
+        mfd <- list(mf$data)
+        }
+    if (class(mf) == "mflist") {
+        if (is.null(n)) {
+            mfdata <- as.mefa(mf)$data
+            mfd <- list()
+            for (i in 1:mf$length) {
+                runname <- paste(mf$segment[i])
+                mfd[[runname]] <- mf$data[[i]]$data
+                }
+            }
+        if (!is.null(n)) {
+            if (length(n) == 1) mfdata <- table$data[[n]]$data
+            if (length(n) > 1) {
+                mfdata <- mf$data[[n[1]]]$data
+            for (i in 2:length(n)) mfdata <- mfdata + mf$data[[n[i]]]$data
+            }
+            mfd <- list()
+            for (i in 1:length(n)) {
+                runname <- paste(mf$segment[n[i]])
+                mfd[[runname]] <- mf$data[[n[i]]]$data
+                }
+        }
+    }
+
+# ordering counts
+    xcr <- mfdata[do.call(order, loca), order(mf$species.attr[, species.order])]
+    mfdl <- list()
+    for (i in 1:length.n) {
+        mfdl[[i]] <- mfd[[i]][do.call(order, loca), order(mf$species.attr[, species.order])]
+        }
+    names(mfdl) <- names(mfd)
+
+# species names
+    nam <- as.vector(mf$species.attr)[, species.name][order(mf$species.attr[, 
+        species.order])]
+    if (!is.null(author)) 
+        autv <- as.vector(mf$species.attr)[, author][order(mf$species.attr[, 
+            species.order])]
+
+# formatting
+#    sep <- c(",", ":", "(", ":", ")", ";")
+    if (tex & control.tex$ital.spec) ti <- "\\textit{" else ti <- ""
+    if (tex & control.tex$bold.1st) tb <- "\\textbf{" else tb <- ""
+    if (tex & control.tex$bold.sect) tb2 <- "\\textbf{" else tb2 <- ""
+    if (tex) noin <- "\\noindent " else noin <- ""
+    if (tex & control.tex$noindent) noin1 <- "\\noindent " else noin1 <- ""
+    if (tex & grouping & control.tex$noindent) noin2 <- "\\noindent " else noin2 <- ""
+    if (tex & control.tex$ital.spec) clbr <- "}" else clbr <- ""
+    if (tex & control.tex$bold.1st) clbr2 <- "}" else clbr2 <- ""
+    if (tex & control.tex$bold.sect) clbr3 <- "}" else clbr3 <- ""
+    vspace1 <- control.tex$vspace1
+    vspace2 <- control.tex$vspace2
+    calling <- deparse(match.call())
+    calling <- gsub("  ", "", calling)
+    mfclass <- deparse(class(mf))
+
+# START ordering=species
+    if (ordering == "species") {
+
+        zz <- file(filename, "w")
+        cat("%Start writing data from ",mfclass, " object sorted by species into file \"", 
+            filename, "\" on ", date(), ".\n%Call: ", calling, "\n", file = zz, sep = "")
+
+# start of SPEC loop
+    for (spec in 1:length(nam)) {
+
+# start of IF >0
+    if (sum(xcr[, spec]) > 0) {
+
+# specname cat
+            if (is.null(author)) {
+                spprint <- paste(noin,tb2,ti,nam[spec],clbr,clbr3,"\n\n",sep="")
+                } else{
+                spprint <- paste(noin,tb2,ti,nam[spec],clbr," ",autv[spec],clbr3,"\n\n",sep="")
+                }
+            cat("\n\n", file = zz, sep = "")
+            if (tex) cat(paste("\\vspace{",vspace1,"cm} ",sep=""), file = zz, sep = "")
+            cat(spprint, file = zz, sep = "")
+            if (tex & !grouping) cat(paste("\\vspace{",vspace2,"cm} ",sep=""), file = zz, sep = "")
+
+# nonzero count subsets
+            loc.sub <- as.matrix(subset(loc, xcr[, spec] > 0))
+            lev.sub <- as.factor(loc.sub[,1])
+            xcr.sub <- subset(xcr[, spec], xcr[, spec] > 0)
+            mfdl.sub <- matrix(NA,length(xcr.sub),length.n)
+            colnames(mfdl.sub) <- names(mfdl)
+            for (i in 1:length.n) {
+               mfdl.sub[,i] <- as.vector(subset(mfdl[[i]][, spec], xcr[, spec] > 0))
+               }
+
+# collapse - exclude and aggregate
+    leave <- rep(1,nrow(loc.sub))
+    aggr <- c(1:nrow(loc.sub))
+    if (collapse) {
+        for (i in 1:nrow(loc.sub)){
+            if (i > 1) if (sum(loc.sub[i,] == loc.sub[(i-1),]) == ncol(loc.sub)) leave[i] <- 0
+            aggr[i] <- paste(loc.sub[i,],collapse="")
+            }
+        aggr <- as.numeric(as.factor(aggr))
+        loc.sub <- subset(loc.sub, leave==1)
+        lev.sub <- subset(lev.sub, leave==1)
+        xcr.sub <- aggregate(xcr.sub,list(aggr),sum)[,2]
+        mfdl.sub <- aggregate(mfdl.sub,list(aggr),sum)[,-1]
+        }
+
+    if (!is.null(kill.redundancy)) {
+        kloc.sub <- as.matrix(loc.sub)
+    if (nrow(kloc.sub) > 1) {
+        for (col in 1:kill.redundancy) {
+            for (row in 1:(nrow(loc.sub)-1)) {
+                if (loc.sub[row, col] == loc.sub[(row+1), col]) kloc.sub[(row+1), col] <- ""
+            }
+        }
+    if (kill.redundancy > 1) {
+        for (col in 2:kill.redundancy) {
+            for (row in 1:nrow(loc.sub)) {
+                if (kloc.sub[row, (col-1)] != "") kloc.sub[row, col] <- loc.sub[row, col]
+            }
+        }}
+        for (col in 1:kill.redundancy) {
+            for (row in 1:(nrow(loc.sub)-1)) {
+                if (kloc.sub[row, col] != "" & kloc.sub[(row+1), col] == "")
+                    kloc.sub[row, col] <- paste(sep[2],sep[2],kloc.sub[row, col],sep[2]," ",sep="")
+            }
+        }
+    } # end IF nrow > 1
+    } else kloc.sub <- loc.sub
+
+    for (j in 1:ncol(kloc.sub)) {
+        for (i in 1:nrow(kloc.sub)) {
+            test.1st <- substr(kloc.sub[i,j],1,2) == paste(sep[2],sep[2],sep="")
+            if (kloc.sub[i,j] != "" & !test.1st & j!=ncol(kloc.sub))
+                kloc.sub[i,j] <- paste(kloc.sub[i,j],sep[1]," ",sep="")
+            if (kloc.sub[i,j] != "" & !test.1st & j==ncol(kloc.sub))
+                kloc.sub[i,j] <- paste(kloc.sub[i,j]," ",sep="")
+            if (test.1st) kloc.sub[i,j] <- gsub(paste(sep[2],sep[2],sep=""),"",kloc.sub[i,j])
+        }
+    }
+
+if (!grouping) cat(noin1, file = zz, sep = "")
+
+# loop for first column levels (grouping also)
+        for (lev in 1:nlevels(lev.sub)) {
+            if (tex & grouping) cat(paste("\\vspace{",vspace2,"cm} ",sep=""), file = zz, sep = "")
+            xcr.sub2 <- subset(xcr.sub, lev.sub == levels(lev.sub)[lev])
+            loc.sub2 <- subset(loc.sub, lev.sub == levels(lev.sub)[lev])
+            kloc.sub2 <- subset(kloc.sub, lev.sub == levels(lev.sub)[lev])
+            printcount <- rep("",length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
+
+if (class(mf) == "mflist"){
+        mfdl.sub2 <- subset(mfdl.sub, lev.sub == levels(lev.sub)[lev])
+        mfdl.sub2[mfdl.sub2==0]  <- paste("DELETEME",sep[5],sep="")
+        for (i in 1:nrow(mfdl.sub2)) {
+            for (j in 1:ncol(mfdl.sub2)) {
+                if (mfdl.sub2[i,j] != paste("DELETEME",sep[5],sep=""))
+                    if (binary) {
+                        mfdl.sub2[i,j] <- paste(colnames(mfdl.sub2)[j],sep="")
+                            } else {
+                        mfdl.sub2[i,j] <- paste(colnames(mfdl.sub2)[j],sep[4]," ",mfdl.sub2[i,j],sep="")}
+            }
+            printcount[i] <- paste(mfdl.sub2[i,],collapse=paste(sep[5]," ",sep=""))
+            printcount[i] <- gsub(paste("DELETEME",sep[5],sep[5]," ",sep=""),"", printcount[i])
+#            printcount[i] <- gsub("DELETEME,, ","", printcount[i])
+            printcount[i] <- gsub(paste("DELETEME",sep[5],sep=""),"", printcount[i])
+#            printcount[i] <- gsub("DELETEME,","", printcount[i])
+        }
+    }
+if (class(mf) == "mefa") {
+    for (i in 1:length(printcount))
+        if (binary) {
+            printcount[i] <- paste("",sep="")
+                } else {
+            printcount[i] <- paste(xcr.sub2[i],sep="")}
+    }
+
+if (binary & class(mf) == "mefa") {
+    brace1 <- rep("",length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
+    brace2 <- rep("",length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
+        } else {
+    brace1 <- rep(sep[3],length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
+    brace2 <- rep(sep[6],length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
+    }
+
+ending <- c(rep(paste(sep[7]," ",sep=""),length(lev.sub[lev.sub==levels(lev.sub)[lev]])-1),". ")
+
+printout0 <- data.frame(kloc.sub2, brace1, printcount, brace2, ending)
+colnames(printout0) <- letters[1:ncol(printout0)]
+printout <- as.matrix(printout0)
+paragraph <- ""
+
+for (i in 1:nrow(printout)) {
+    for (j in 1:ncol(printout)) {
+    if (i==1 & j==1) printout[i,j] <- paste(noin2,tb,as.character(printout[i,j]),clbr2,sep="")
+        else printout[i,j] <- paste(as.character(printout[i,j]),sep="")
+    paragraph <- paste(paragraph,printout[i,j],sep="")
+    }}
+
+# add here paste + sep[] !!!
+    paragraph <- gsub("  "," ", paragraph)
+    paragraph <- gsub(paste(sep[5]," ",sep[6],sep=""),paste(sep[6],sep=""), paragraph)
+#    paragraph <- gsub(", )",")", paragraph)
+    paragraph <- gsub(paste(" ",sep[7]," ",sep=""),paste(sep[7]," ",sep=""), paragraph)
+#    paragraph <- gsub(" ; ","; ", paragraph)
+    paragraph <- gsub(" . ",". ", paragraph)
+    paragraph <- gsub(paste(sep[5],". ",sep=""),". ", paragraph)
+
+    cat(paragraph, file = zz, sep = "")
+
+if (grouping) cat("\n\n", file = zz, sep = "")
+} # end of LEV loop
+} # end of IF >0
+} # end of SPEC loop
+
+        cat("\n\n%End of output.\n", file = zz, sep = "")
+        close(zz)
+    } #END of species ordering
+
+if (ordering == "samples") stop("not implemented yet...")
+} # end of function
+
+
+
+
+###############################################################
+
 ###
 wait <- function(vign=NULL) {
   if (!is.null(vign)) {
@@ -168,7 +441,7 @@ return(out)}
 ###
 as.mefa <- function(mfl, n=NULL){
 if(!inherits(mfl,"mflist")) stop("Object is not of class 'mflist'.")
-if (!is.null(n)) xc <- mfl$data[[n]]
+if (!is.null(n)) xc <- mfl$data[[n]]$data
 if (is.null(n)) {
     xc <- mfl$data[[1]]$data
     for (i in 2:mfl$length) xc <- xc + mfl$data[[i]]$data
@@ -303,7 +576,7 @@ plot(mf, ...)
 
 ###fun xclist
 xclist <- 
-function(ssc, nested=TRUE, probs = seq(0, 1, 0.25)){
+function(ssc, nested=FALSE, probs = seq(0, 1, 0.25)){
     if (class(ssc) != "sscount") 
         stop("Object '", ssc, "' is not of 'sscount' class.")
 
@@ -323,8 +596,8 @@ outdat <- list()
 for(i in 1:nseg) {
     #cat("Processing segment",i,"of",nseg,"\n")
     if(nested) segm <- c(1:i) else segm <- i
-    outdat[[i]] <- xcount(ssc2,segm)
-    outdat[[i]]$segment <- seglist[i]}
+    outdat[[paste(seglist[i])]] <- xcount(ssc2,segm)
+    outdat[[paste(seglist[i])]]$segment <- seglist[i]}
 if(nested) probsout <- probs else probsout <- NULL 
 out <- list(data=outdat,call=match.call(),nested=nested,
     length=length(outdat),probs=probsout,segment=seglist,
