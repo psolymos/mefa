@@ -32,7 +32,7 @@
 					<li><a href="http://r-forge.r-project.org/R/?group_id=121">Devel version at R-Forge</a></li>
 					<li><a href="http://cran.r-project.org/src/contrib/Archive/mefa">mefa archive at CRAN</a></li>
 					<li><a href="http://r-forge.r-project.org/scm/?group_id=121">SVN Tree at R-Forge</a></li>
-					<li><a href="https://mefa.r-forge.r-project.org/misc/mefa-patch.R">patch</a></li>
+					<li><a href="http://r-forge.r-project.org/plugins/scmsvn/viewcvs.php/dev/mefa-patch.R?rev=85&root=mefa&view=log">patch</a></li>
 				</ul>	
 				
 			</div>	
@@ -44,7 +44,7 @@
 					<li><a href="http://cran.r-project.org/web/packages/mefa/mefa.pdf" class="top">Reference manual</a></li>
 					<li><a href="http://cran.r-project.org/web/packages/mefa/vignettes/mefa-vignette.pdf">Vignette</a></li>
 					<li><a href="http://cran.r-project.org/web/packages/mefa/ChangeLog">ChangeLog at CRAN</a></li>
-					<li><a href="https://mefa.r-forge.r-project.org/misc/TODO">TODO list</a></li>
+					<li><a href="http://r-forge.r-project.org/plugins/scmsvn/viewcvs.php/dev/TODO?rev=85&root=mefa&view=log">TODO list</a></li>
 				</ul>	
 				
 			</div>	
@@ -100,6 +100,37 @@ crosstabulated) count data and relational attribute tables for
 samples and species. Functions can handle segments within the
 count data and samples with zero count. Reports are generated
 in plain text or LaTeX format.
+</p>
+<h2>New features</h2>
+<p>
+I provide a patch is to be used along with 1.1-0 version on CRAN.
+The R-Forge version update will take some time to be stable,
+and fully documented. I also plan to add a new vignette 
+explaining new features, and demonstrate post-processing
+data analysis options (amf). The patch file contains
+latest development, including: 
+</p>
+<ul>
+<li>xclist & mflist object classes,</li>
+<li>animated functions (animefa, animap),</li>
+<li>many utilities and methods (ssc2mefa, report.mflist).</li>
+</ul>
+'Old' and 'new' features are announced in these short communications:
+<ul>
+<li>Sólymos, P. 2008. From malacological records to analysis: an R package for handling and reporting count data. 
+Tentacle, 16: 26.
+(<a href="http://www.hawaii.edu/cowielab/Tentacle/Tentacle%2016%20(Cowie%202008).pdf">PDF</a>)</li>
+
+<li>Sólymos, P. 2008. The mefa package: a tool for reproducible data processing in biogeography.
+IBS Newsletter, 6(1): 9-13.
+(<a href="http://www.biogeography.org/Newsletter/IBS%20Newsletter%206(1).pdf">PDF</a>)</li>
+</ul>
+<p>
+Animated features are available at: <a href="http://www.univet.hu/users/psolymos/animefa/">http://www.univet.hu/users/psolymos/animefa/</a>.
+</p>
+<p>
+All feedback is welcome!
+</p>
 <h2>Contents</h2>
 <ul>  
   <li><a href="#getstart">Getting started</a></li>
