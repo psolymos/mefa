@@ -66,7 +66,7 @@ xo2 <- xorder(xct, "species", spectab, 1)
 
 mf1 <- mefa(xct, xo1, xo2)
 
-(mf1a <- add.attrib(mf, "samples", sampletab2))
+(mf1a <- add.attrib(mf1, "samples", sampletab2))
 
 mf2 <- mefa(xct, NULL, xo2)
 (mf2a <- add.attrib(mf, "samples", sampletab2))
