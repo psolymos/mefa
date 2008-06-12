@@ -1,3 +1,19 @@
+as.mefa <- 
+function(x, n=NULL, ...){
+mfl <- x
+if(!inherits(mfl,"mflist")) stop("Object is not of class 'mflist'.")
+if (!is.null(n)) xc <- mfl$data[[n]]$data
+if (is.null(n)) {
+    xc <- mfl$data[[1]]$data
+    for (i in 2:mfl$length) xc <- xc + mfl$data[[i]]$data
+    }
+xc <- as.xcount(xc)
+if(is.null(mfl$sample.attr)) xo1 <- NULL else xo1 <- xorder(xc, "samples", mfl$sample.attr)
+if(is.null(mfl$species.attr)) xo2 <- NULL else xo2 <- xorder(xc, "species", mfl$species.attr)
+return(mefa(xc, xo1, xo2))}
+
+
+
 `mefa` <-
 function(xc, xorder.samples, xorder.species, n = 1){
 
@@ -55,8 +71,7 @@ class(out) <- "mefa"
 return(out)}
 
 ### print
-print.mefa <- function(mf, cutoff=25, ...) {
-    x <- mf
+print.mefa <- function(x, cutoff=25, ...) {
 	cat("Object of class 'mefa'\n")
 	cat("Call: ")
 	print(x$call)
@@ -108,8 +123,7 @@ print.mefa <- function(mf, cutoff=25, ...) {
 #x<- vmf; sample.var="site.descr"; species.var="shell.dimension"
 #x<- vmf; sample.var=3; species.var=5
 
-plot.mefa <- function(mf, sample.var=NULL, species.var=NULL, ...){
-    x <- mf
+plot.mefa <- function(x, sample.var=NULL, species.var=NULL, ...){
 if(is.null(sample.var) & is.null(species.var)) {
 	plot(as.xcount(x), ...)} else {
 

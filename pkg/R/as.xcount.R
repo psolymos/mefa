@@ -1,8 +1,14 @@
 `as.xcount` <-
-function (table, species.columns=TRUE, segment="unspecified", digits=NULL, n=1){
+function (table, species.columns=TRUE, segment="unspecified", digits=NULL, n=NULL){
 
-if(class(table)=="xclist") table <- table$data[[n]]
-if(class(table)=="mflist") table <- table$data[[n]]
+if(class(table)=="xclist") {
+    if (!is.null(n)) table <- table$data[[n]]$data
+    if (is.null(n)) {
+    xc <- table$data[[1]]$data
+    for (i in 2:table$length) xc <- xc + table$data[[i]]$data
+    table <- xc}}
+
+if(class(table)=="mflist") table <- as.mefa(table, n)
 
 if(class(table) == "mefa") {
     segment <- table$segment

@@ -1,14 +1,15 @@
 report <- 
-function(...)
+function(x, ...)
 {
     UseMethod("report")
 }
 
 `report.mefa` <-
-function (mf, filename, n = 1, ordering = "species", biotic.data = 1, species.name = 1, 
+function (x, filename, n = 1, ordering = "species", biotic.data = 1, species.name = 1, 
     species.order = 1, author = 0, tex = FALSE, binary = FALSE, 
-    sep = c(", ", " (", ")", "; ")) 
+    sep = c(", ", " (", ")", "; "), ...) 
 {
+    mf <- x
     if(class(table)=="mflist") mf <- as.mefa(mf,n)
     if (class(mf) != "mefa") 
         stop("not 'mefa' class")
