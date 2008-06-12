@@ -1,7 +1,6 @@
 \name{ttsscount}
 \alias{ttsscount}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{Makes Object of Class 'sscount' from Table}
+\title{Make Object of Class 'sscount' from Table}
 \description{
 The function makes an object of class 'sscount' from a table (data frame). Count and measurement type data are allowed.
 }

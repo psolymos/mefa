@@ -5,7 +5,7 @@ function(...)
 }
 
 `report.mefa` <-
-function (filename, mf, n = 1, ordering = "species", biotic.data = 1, species.name = 1, 
+function (mf, filename, n = 1, ordering = "species", biotic.data = 1, species.name = 1, 
     species.order = 1, author = 0, tex = FALSE, binary = FALSE, 
     sep = c(", ", " (", ")", "; ")) 
 {

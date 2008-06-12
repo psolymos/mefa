@@ -26,6 +26,7 @@ Empty rows can be removed by \code{which="species"}, \code{excl=NULL} and \code{
 \value{
 A result is an object of class 'xcount' or 'mefa' depending on the class of the input object.
 }
+\note{This function will be entirely rewritten soon.}
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \note{
 If the resultant crosstable contains less than two rows/columns, an error message is given and there will be no output.

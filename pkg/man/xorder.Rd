@@ -1,7 +1,7 @@
 \name{xorder}
 \alias{xorder}
 \alias{print.xorder}
-\title{Makes Object of Class 'xorder'}
+\title{Make Object of Class 'xorder'}
 \description{
 The function makes an object of class 'xorder' from an attribute table (data frame) based on comparison with an 'xcount' object. Data frame subsetting is made according to results of function \code{\link{check.attrib}}.
 }

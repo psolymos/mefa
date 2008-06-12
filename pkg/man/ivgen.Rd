@@ -16,6 +16,9 @@ ivgen(x, cl, k)
 \value{
 Three text files are produced into the working directory. Screen displays info on what to type into the IndVal propts.
 }
+\note{
+This functiona can be used for an external software, maybe a better choice to use the function \code{duleg} in the package 'labdsv' of Dave Roberts.
+}
 \references{
 Dufrene, M. and Legendre, P. 1997. Species assemblages and indicator species: the need for a flexible asymmetrical approach. Ecological Monographs 67, 345--366.
 

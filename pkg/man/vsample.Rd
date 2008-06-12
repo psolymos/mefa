@@ -12,7 +12,7 @@ data(vtable)}
 \format{
   \code{vhabitat} is a data frame with habitat features (site, site description, location, vegetation, plant cover, base rock and aspect) of 18 habitats.
   
-  \code{vsample} is a data frame with 72 samples, contains numeric sample identifier, numeric site (habitat) identifier and short name of sites (habitats). Habitat identifiers refer to rows of \code{vhabitat}.
+  \code{vsample} is a data frame with 72 samples, contains numeric sample identifiers, numeric site (habitat) identifiers and short name of sites (habitats). Habitat identifiers refer to rows of \code{vhabitat}.
   
   \code{vtable} is a data frame with count data of 27 species (rows) and 72 samples (columns, same as rows in
     \code{vsample}).

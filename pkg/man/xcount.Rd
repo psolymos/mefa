@@ -18,9 +18,9 @@ xcount(ssc, segment = 0, segment.name = NULL)
   \item{ssc}{an object of class 'sscount'.}
   \item{segment}{identifier of the \code{segment} within the 'sscount' object
     to make the crosstabulation, the default \code{0} refers to \code{"all"} segments.
-    It can have more than one element (but lessthan or equal to the number of elements in the segment list).
+    It can have more than one element (but less than or equal to the number of elements in the segment list).
     When it is a vector, corresponding levels are combined and named as specified by \code{segment.name}.}
-  \item{segment.name}{character, it has effect only when \code{segment} is vector. If not specified, segment value 
+  \item{segment.name}{character, it has effect only when \code{segment} has more than one element. If not specified, segment value 
     in the result is set to \code{"mixed"} (if all segments are listed, it is set to \code{"all"}).}
   \item{x}{an object of class 'xcount'.}
   \item{type}{character, can be \code{"hist"} for histogram, \code{"rank"} for rank abundance/occurence curves and 
@@ -36,8 +36,8 @@ xcount(ssc, segment = 0, segment.name = NULL)
 If data in the 'sscount' object are of measurement type, \code{digits} value is inherited from the 'sscount' object
 and used in crosstabulation. For large (>2) \code{digit} values, computing time may take several seconds. Current implementation of handling measurement type data is based on the \code{\link{inflate}} function, which is not fully vectorized.
 
-The \code{print} method produces 4 graphs in one window, displaying histograms \code{type="hist"} or rank abundance curves \code{type="rank"} of the vectors \code{ninds}, \code{srichn}, 
-\code{specabund} and \code{specoccur}. If the data are of presence/absence and not abundance type, only \code{srichn} and \code{specoccur} are displayed. These values are based on the function \code{\link{marmat}}. The option \code{type="biplot"} deisplays 2 graphs, one for samples and one for species, combining presence/absence and abundance data in the same plot.
+The \code{print} method produces 4 graphs in one window, displaying histograms (\code{type = "hist"}) or rank abundance/incidence curves (\code{type = "rank"}) of the vectors \code{ninds}, \code{srichn}, 
+\code{specabund} and \code{specoccur}. If the data are of presence/absence and not abundance type, only \code{srichn} and \code{specoccur} are displayed. These values are based on the function \code{\link{marmat}}. The option (\code{type = "biplot"}) deisplays 2 graphs, one for samples and one for species, combining presence/absence and abundance data in same plots.
 }
 \value{
 A result is an object of class 'xcount'.

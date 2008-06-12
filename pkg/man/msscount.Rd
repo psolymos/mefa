@@ -1,7 +1,7 @@
 \name{msscount}
 \alias{msscount}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Merges Two Objects of Class 'sscount'}
+\title{Merge Two Objects of Class 'sscount'}
 \description{
 The function merges two objects of class 'sscount'.
 }
@@ -21,7 +21,7 @@ Merge operation terminates with error message if zero count identifier of one 's
 }
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
-  \code{\link{sscount}}, \code{\link{xcount}}
+  \code{\link{sscount}}
 }
 \examples{
 ss <- data.frame(

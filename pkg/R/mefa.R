@@ -55,7 +55,8 @@ class(out) <- "mefa"
 return(out)}
 
 ### print
-print.mefa <- function(x, cutoff=25, ...) {
+print.mefa <- function(mf, cutoff=25, ...) {
+    x <- mf
 	cat("Object of class 'mefa'\n")
 	cat("Call: ")
 	print(x$call)
@@ -107,7 +108,8 @@ print.mefa <- function(x, cutoff=25, ...) {
 #x<- vmf; sample.var="site.descr"; species.var="shell.dimension"
 #x<- vmf; sample.var=3; species.var=5
 
-plot.mefa <- function(x, sample.var=NULL, species.var=NULL, ...){
+plot.mefa <- function(mf, sample.var=NULL, species.var=NULL, ...){
+    x <- mf
 if(is.null(sample.var) & is.null(species.var)) {
 	plot(as.xcount(x), ...)} else {
 

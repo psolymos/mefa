@@ -1,7 +1,7 @@
 \name{mxcount}
 \alias{mxcount}
 %- Also NEED an '\alias' for EACH other topic documented here.
-\title{Merges Two Objects of Class 'xcount'}
+\title{Merge Two Objects of Class 'xcount'}
 \description{
 The function merges two objects of class 'xcount'. Rows with zero total counts are handled internally by functions \code{\link{msscount}} and \code{\link{ttsscount}}.
 }

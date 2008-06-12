@@ -17,6 +17,7 @@ mapmf(xy, z, probs = seq(0, 1, 0.25), type = "heat", pch = 21, cex = 1.5, ...)
   \item{cex}{default for \code{cex} used in the plot (see \code{\link{par}}).}
   \item{\dots}{Arguments to be passed to methods, such as graphical parameters (see \code{\link{par}}).}
 }
+\note{This function will be replaced soon.}
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
   \code{\link{qdef}}

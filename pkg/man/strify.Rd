@@ -1,6 +1,6 @@
 \name{strify}
 \alias{strify}
-\title{Stratifies Object of Class 'xcount' or 'mefa'}
+\title{Stratifie (Aggregate) Object of Class 'xcount' or 'mefa'}
 \description{
 Stratifies an object of class 'xcount' or 'mefa' according to levels of a factor, or sample/species attribute, respectively.
 }
@@ -15,11 +15,12 @@ strify(xc, strata, which = c("samples", "species"))
   \item{which}{switches between rows (\code{"samples"}) and columns (\code{"species"}) to be stratified.}
 }
 \details{
-If the original object is of class 'xcount', the result will be also of 'xcount'. I the original object is of class 'mefa', it must have at least one attribute table, that is not \code{NULL} (and not the same as stated by \code{which}), because the stratified attribute table will be \code{NULL} in the end. If both attribute tables are not \code{NULL}, the result will be of 'mefa', if the other attribute table is \code{NULL}, the result will be of 'xcount'. Sttatifying according to a \code{NULL} attribute table has no sense, and an error message is given. In this case use function \code{\link{as.xcount}}.
+If the original object is of class 'xcount', the result will be also of 'xcount'. If the original object is of class 'mefa', it must have at least one attribute table, that is not \code{NULL}. The stratified attribute table will be \code{NULL} in the resulting object. If neither attribute tables are \code{NULL}, the result will a 'mefa', if both attribute tables are \code{NULL}, the result will an 'xcount' object. Stratifying according to a \code{NULL} attribute table has no sense, and an error message is given. In this case use function \code{\link{as.xcount}}.
 }
 \value{
-A result is an object of class 'xcount' of 'mefa'.
+A result is an object of class 'xcount' or 'mefa'.
 }
+\note{This function will be entirely rewritten soon.}
 \author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
 \seealso{
   \code{\link{as.xcount}}, \code{\link{check.attrib}}, \code{\link{mefa}}, \code{\link{sscount}}, 
