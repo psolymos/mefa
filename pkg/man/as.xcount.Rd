@@ -5,7 +5,7 @@
 The function converts a sample/species crosstable into an 'xcount' object. Count and measurement type data are allowed.
 }
 \usage{
-as.xcount(table, species.columns = TRUE, segment = "unspecified", digits = NULL, n = 1)
+as.xcount(table, species.columns = TRUE, segment = "unspecified", digits = NULL, n = NULL)
 }
 \arguments{
   \item{table}{a data frame or matrix with sample/species count data. It can either be an object of class 'mefa',
