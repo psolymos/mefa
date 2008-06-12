@@ -1,5 +1,6 @@
 \name{mefa}
 \alias{mefa}
+\alias{as.mefa}
 \alias{print.mefa}
 \alias{plot.mefa}
 \alias{report.mefa}
@@ -11,21 +12,22 @@ Makes and object of class 'mefa' from an 'xcount' and sample and species attribu
 \usage{
 mefa(xc, xorder.samples, xorder.species, n = 1)
 
-report(mf, \dots)
+\method{print}{mefa}(x, cutoff = 25, \dots)
 
-\method{print}{mefa}(mf, cutoff = 25, \dots)
+\method{plot}{mefa}(x, sample.var = NULL, species.var = NULL, \dots)
 
-\method{plot}{mefa}(mf, sample.var = NULL, species.var = NULL, \dots)
+\method{as}{mefa}(x, n = NULL, \dots)
 
-\method{report}{mefa}(mf, filename, n = 1, ordering = "species", biotic.data = 1, 
+report(x, \dots)
+\method{report}{mefa}(x, filename, n = 1, ordering = "species", biotic.data = 1, 
     species.name = 1, species.order = 1, author = 0, 
-    tex = FALSE, binary = FALSE, sep = c(", ", " (", ")", "; "))
+    tex = FALSE, binary = FALSE, sep = c(", ", " (", ")", "; "), \dots)
 }
 \arguments{
   \item{xc}{object of class 'xcount' or 'xclist'. If \code{xc} is an object of class 'xclist', than the \code{n} argument is used to choose from the list.}
   \item{xorder.samples}{object of class 'xorder' for sample attributes, or \code{NULL}.}
   \item{xorder.species}{object of class 'xorder' for species attributes, or \code{NULL}.}
-  \item{mf}{an object of class 'mefa' of 'mflist'. If \code{mf} is an object of class 'mflist', than the \code{n} argument is used to choose from the list. For the \code{report} method, the object \code{mf} can not have any \code{NULL} attribute tables.}
+  \item{x}{an object of class 'mefa' of 'mflist' (for \code{as.mefa}). If \code{mf} is an object of class 'mflist', than the \code{n} argument is used to choose from the list. For the \code{report} method, the object \code{mf} can not have any \code{NULL} attribute tables.}
   \item{n}{element of the 'xclist' or 'mflist' object to choose.}
   \item{cutoff}{number of samples/species with zero toal count to be listed.}
   \item{sample.var}{column index (numeric or character) of the sample attribute table to plot as independent variable.}
