@@ -23,7 +23,7 @@
 	%% put here your Sweave chunk containing eg.:
 	<<>>=
 	mf <- mefa(...)
-	report.mefa("report.tex", mf, tex=TRUE, ...)
+	report.mefa(mf, "report.tex", tex=TRUE, ...)
 	@
 
 	\input{report.tex}

@@ -292,7 +292,7 @@ The cross-tabulated count data stored in \texttt{xcount} and \texttt{mefa} objec
 
 \section{How to cite \texttt{mefa}?}
 
-Please refer to the actual answer returned by the command (\texttt{citation("mefa")}).
+Please refer to the actual answer returned by the command (\texttt{citation("mefa")}). Thank you!
 
 \bibliographystyle{plain}
 \bibliography{mefa}

@@ -25,8 +25,8 @@ Utility functions are provided to check, manipulate objects with print and plot 
 Package: \tab mefa\cr
 Type: \tab Package\cr
 Depends: \tab vegan\cr
-Version: \tab 1.1-2\cr
-Date: \tab 2008-06-12\cr
+Version: \tab 1.1-3\cr
+Date: \tab 2008-06-24\cr
 License: \tab GPL-2\cr
 }
 }
@@ -34,6 +34,8 @@ License: \tab GPL-2\cr
 Peter Solymos <Solymos.Peter@aotk.szie.hu>
 }
 \references{
+Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} \strong{9}, 125--127.
+        
 \url{http://mefa.r-forge.r-project.org/}
 }
 \keyword{ package }
