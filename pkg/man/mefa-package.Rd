@@ -20,16 +20,6 @@ S3 object classes provided by this package are:
 
 Utility functions are provided to check, manipulate objects with print and plot S3 methods.
 }
-\details{
-\tabular{ll}{
-Package: \tab mefa\cr
-Type: \tab Package\cr
-Depends: \tab vegan\cr
-Version: \tab 1.1-3\cr
-Date: \tab 2008-06-24\cr
-License: \tab GPL-2\cr
-}
-}
 \author{
 Peter Solymos <Solymos.Peter@aotk.szie.hu>
 }

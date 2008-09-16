@@ -2,8 +2,8 @@
 function(factors, count){
 
 if(nrow(factors) != length(count)) stop("Number of dimensions must be equal!")
-if(any(count) < 0) stop("Negative count value.")
-if(any(count) == 0) stop("Zero count value")
+if(any(count < 0)) stop("Negative count value.")
+if(any(count == 0)) stop("Zero count value")
 
 infl.data <- array(data=NA, dim=c(ncol(factors), sum(count)))
 

@@ -1,6 +1,18 @@
-MEFA STABLE VERSIONS
+MEFA VERSIONS
 
-Version 1.1-3 -- June 24, 2008 (opened)
+Version 1.1-4 -- September 15, 2008 (opened)
+    * Major transition is ahead: I started
+      to rewrite object classes, but 
+      the for the 1.2-0 major release,
+      I would also provide improved and
+      more useful data sets and
+      the documentation and a new vignette
+      will also take some time.
+      Rewritten code is in the dev directory.
+    * inflate: arguments of any() corrected
+
+
+Version 1.1-3 -- September 15, 2008 (closed)
     * citation entry added
 
 Version 1.1-2 -- June 24, 2008 (closed)
