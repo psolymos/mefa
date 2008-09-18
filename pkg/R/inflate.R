@@ -13,6 +13,6 @@ function (x, y)
         names(z) <- NULL # this is needed to overcome dupl. row names
         unlist(z)
         })
-    return(out)
+    return(data.frame(out))
 }
 
