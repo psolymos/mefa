@@ -25,6 +25,6 @@ Peter Solymos, \email{solymos@ualberta.ca},
 \examples{
 x <- matrix(rpois(20,1), 5, 4)
 m <- mefa(x)
-check.mefaStructure(m)
+.mefaStructure(m)
 }
 \keyword{ manip }

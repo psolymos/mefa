@@ -36,9 +36,9 @@ f <- data.frame(matrix(rnorm(30), 10, 3))
 rownames(f) <- letters[1:10]
 f
 ## Reverse alphabetical names preserved
-check.mefaTables(x, f, 1)
+.mefaTables(x, f, 1)
 ## Now result is the intersect
 rownames(f) <- letters[3:12]
-check.mefaTables(x, f, 1, xtab.fixed = FALSE)
+.mefaTables(x, f, 1, xtab.fixed = FALSE)
 }
 \keyword{ manip }
