@@ -1,11 +1,11 @@
 \name{crosstab}
-\alias{crosstab}
+\alias{.mefaCrosstab}
 \title{Crosstabulation of an object of class 'stsc'}
 \description{
 The function makes crosstabulation of an object of class 'stsc'. Similar to the \code{\link{table}} function but handles specialties of the 'stsc' object class (i.e. removes 'pseudo species' created to indicate empty samples). This is used internally by the function \code{\link{mefa}} to make 3 dimensional representation of the data.
 }
 \usage{
-crosstab(x, segment = FALSE, nested = FALSE, drop.zero = FALSE)
+.mefaCrosstab(x, segment = FALSE, nested = FALSE, drop.zero = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

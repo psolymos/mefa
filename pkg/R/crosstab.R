@@ -1,4 +1,4 @@
-`crosstab` <-
+`.mefaCrosstab` <-
 function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
 {
     if (!is.stsc(x))

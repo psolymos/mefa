@@ -1,11 +1,11 @@
 \name{check.mefaStructure}
-\alias{check.mefaStructure}
+\alias{.mefaStructure}
 \title{Checking 'mefa' objects}
 \description{
 The function evaluates the internal structute of a 'mefa' object. This function is called by the \code{\link{is.mefa}} function.
 }
 \usage{
-check.mefaStructure(x)
+.mefaStructure(x)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}

@@ -1,11 +1,11 @@
 \name{check.mefaTables}
-\alias{check.mefaTables}
+\alias{.mefaTables}
 \title{Subsetting and ordering matrix and data frame based on row or column names}
 \description{
 This function is called by the \code{\link{mefa}} function, but can be applied more generally for sobsetting and ordering.
 }
 \usage{
-check.mefaTables(xtab, dframe, margin, index = NULL, drop.index = FALSE, xtab.fixed = TRUE)
+.mefaTables(xtab, dframe, margin, index = NULL, drop.index = FALSE, xtab.fixed = TRUE)
 }
 \arguments{
   \item{xtab}{a data matrix.}
