@@ -26,7 +26,7 @@ Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}, 
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{stsc}}}
 \examples{

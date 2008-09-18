@@ -23,7 +23,7 @@ Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}, 
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \note{This function is not vectorized, so can be a bit slow for large data sets.}
 \seealso{\code{\link{stsc}}}

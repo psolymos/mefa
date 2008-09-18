@@ -10,7 +10,10 @@ mefaweb()
 \details{
 The website contains resources for the 'mefa' package, and many more. Please check out for more!
 }
-\author{Peter Solymos, \email{Solymos.Peter@aotk.szie.hu}, \url{http://www.univet.hu/users/psolymos/personal/}}
+\author{
+Peter Solymos, \email{solymos@ualberta.ca}
+}
+
 \examples{
 \dontrun{
 mefaweb()
