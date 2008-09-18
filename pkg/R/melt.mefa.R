@@ -7,14 +7,20 @@ function (x, segm.var, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         count <- array(t(x$xtab))
         samp <- rep(dimnames(x)[[1]], each=dim(x)[2])
         taxa <- rep(dimnames(x)[[2]], dim(x)[1])
-        segm <- rep(x$samp[, segm.var], each=dim(x)[2])
+        if (length(segm.var) > 1)
+            segm.var2 <- interaction(x$samp[, segm.var])
+            else segm.var2 <- x$samp[, segm.var]
+        segm <- rep(segm.var2, each=dim(x)[2])
         } else {
         if (is.null(x$taxa))
             stop("$taxa is NULL")
         count <- array(x$xtab)
         samp <- rep(dimnames(x)[[1]], dim(x)[2])
         taxa <- rep(dimnames(x)[[2]], each=dim(x)[1])
-        segm <- rep(x$taxa[, segm.var], dim(x)[1])
+        if (length(segm.var) > 1)
+            segm.var2 <- interaction(x$taxa[, segm.var])
+            else segm.var2 <- x$taxa[, segm.var]
+        segm <- rep(segm.var2, dim(x)[1])
         }
     out <- data.frame(samp=samp, taxa=taxa, count=count, segm=segm)
     if (raw.out) {
