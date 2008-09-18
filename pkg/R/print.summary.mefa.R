@@ -3,7 +3,7 @@ function(x, nlist=10, ...)
 {
     mstat <- cbind(summary(x[[1]]), summary(x[[2]]),
         summary(x[[3]]), summary(x[[4]]))
-    colnames(mstat) <- c("S richnness", "N indsividuals", "Occupancy", "Abundance")
+    colnames(mstat) <- c("S richnness", "N individuals", "Occupancy", "Abundance")
     Summary <- c(x$ntot, round(x$mfill*100), x$nsamp, x$ntaxa, x$nsegm)
     names(Summary) <- c("Total sum", "Matrix fill (%)", "Number of samples", "Number of taxa", "Number of segments")
 
