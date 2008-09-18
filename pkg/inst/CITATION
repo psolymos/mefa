@@ -11,5 +11,5 @@ citEntry(entry="Article",
         textVersion = "Solymos P. 2008. mefa: an R package for handling and reporting count data.
         Community Ecology 9: 125-127.")
 
-citFooter("As mefa is evolving quickly, you may want to cite also its version number:",
+citFooter("You may want to cite also the version number:",
         utils::packageDescription("mefa", field="Version"))

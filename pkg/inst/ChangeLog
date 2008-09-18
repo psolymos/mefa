@@ -1,6 +1,6 @@
 MEFA VERSIONS
 
-Version 1.1-4 -- September 15, 2008 (opened)
+Version 1.1-4 -- September 16, 2008 (opened)
     * Major transition is ahead: I started
       to rewrite object classes, but 
       the for the 1.2-0 major release,
@@ -8,7 +8,9 @@ Version 1.1-4 -- September 15, 2008 (opened)
       more useful data sets and
       the documentation and a new vignette
       will also take some time.
-      Rewritten code is in the dev directory.
+      I placed the old version int the
+      dev/oldver directory.
+      I will not make a minor release to CRAN.
     * inflate: arguments of any() corrected
 
 
