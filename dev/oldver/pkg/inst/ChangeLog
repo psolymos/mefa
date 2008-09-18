@@ -1,0 +1,93 @@
+MEFA VERSIONS
+
+Version 1.1-4 -- September 15, 2008 (opened)
+    * Major transition is ahead: I started
+      to rewrite object classes, but 
+      the for the 1.2-0 major release,
+      I would also provide improved and
+      more useful data sets and
+      the documentation and a new vignette
+      will also take some time.
+      Rewritten code is in the dev directory.
+    * inflate: arguments of any() corrected
+
+
+Version 1.1-3 -- September 15, 2008 (closed)
+    * citation entry added
+
+Version 1.1-2 -- June 24, 2008 (closed)
+
+    * several minor fixes in .Rd files
+    * xytrend moved to sedar
+    * preliminary modifications made according to later
+      introduction of 'list' objects
+    * report as generic function added for methods
+    * as.mefa added
+    * startup message is added
+
+
+Version 1.1-1 -- June 12, 2008 (closed)
+                 April 02, 2008 (started)
+
+	* accumulate was rewritten
+	* vignette is corrected and updated
+	* help pages are corrected and updated
+
+Version 1.1-0 -- March 14, 2008
+
+	* vignette is made available
+	  and can be used as reference for the
+	  dolina demo
+	* add.attrib can now handle mefa objects
+	  containing NULL attribute table
+	* logscale argument inserted into plot methods
+	* cutoff argument inserted into print methods
+	* report.mefa bug fixed & help corrected
+	* new functions: qdef, mapmf, accumulate,
+	  ivgen, xytrend
+	* mefa from now depends on other packages
+	  (xytrend requires vegan)
+	* mefa developement is now on R-Forge
+
+Version 1.0-4 -- February 11, 2008
+
+	* the demo was rewritten
+	  (and still under construction...)
+	* amf function is provided
+	* class definitions are rewritten
+	* print and plot S3 methods provided for classes
+	* digits argument is placed into sscount 
+	  and related functions
+
+Version 1.0-3 -- January 4, 2008
+
+	* mefa object can be used in function as.xcount
+	* default setting of index argument
+	  in add.attrib was changed
+	* "SampleReport" option is available 
+	  in mefadocs function, showing options for 
+	  Sweave report generation.
+	* bug fixed in exclmf
+	* bug fixed in dolina demo.
+	* warning message is placed in strify code
+
+Version 1.0-2 -- December 18, 2007
+
+	* new function: exclmf
+	* default setting of index argument 
+	  in xorder and check.attrib has changed
+	* thus manual was modified inseveral pages
+	* There is a mefadocs function, 
+	  based on J. Oksanen's vegandocs function
+	* currently only "changelog" is active
+	* A bug is present in report.mefa, 
+	  a WARNING is placed in the manual 
+	  will be fixed later
+
+Version 1.0-1 -- December 7, 2007
+
+	* bugs fixed in function stify
+
+Version 1.0 -- November 13, 2007
+
+	* the first public version
