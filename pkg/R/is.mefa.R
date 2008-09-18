@@ -1,6 +1,6 @@
 `is.mefa` <-
 function(x)
 {
-    is.null(check.mefaStructure(x))
+    check.mefaStructure(x)[[1]]
 }
 
