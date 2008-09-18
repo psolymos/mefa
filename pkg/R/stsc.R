@@ -29,6 +29,8 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     if (!is.null(zpart)){
         if (zero.pseudo %in% unique(as.character(x[,2 ])))
             stop("\"zero.pseudo\" found in taxa names: specify zero.pseudo")
+        if (zero.pseudo == "not.defined")
+            stop("\"not.defined\" found in taxa names: specify in other way")
         zpart[,2] <- rep(zero.pseudo, nrow(zpart))
         zpart[,4] <- rep(zero.pseudo, nrow(zpart))
         joint <- which(unique(zpart[,1]) %in% unique(x[,1]))
@@ -37,12 +39,10 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
             if (nrow(zpart) == 0)
                 zpart <- NULL
             warning("zero count for non zero sample found")}
-            }
-    if (!is.null(zpart)){
         colnames(x) <- 1:4
         colnames(zpart) <- 1:4
         x <- merge(x, zpart, all = TRUE)
-        } else zero.pseudo <- NULL
+        } else zero.pseudo <- "not.defined"
     rownames(x) <- NULL
     colnames(x) <- c("samp", "taxa", "count", "segm")
     x$samp <- as.factor(x$samp)
