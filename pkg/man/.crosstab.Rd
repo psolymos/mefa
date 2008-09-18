@@ -34,8 +34,8 @@ x <- data.frame(sample = LETTERS[c(1,1,2,2,3,4)],
     species = c(letters[c(5,5,5,6,7)], "zero.pseudo"),
     count = c(1,2,10,3,4,0), segment = letters[c(8,9,8,9,8,8)])
 y <- stsc(x)
-crosstab(y)
-crosstab(y, segment = TRUE)
-crosstab(y, segment = TRUE, nested = TRUE)
+.mefaCrosstab(y)
+.mefaCrosstab(y, segment = TRUE)
+.mefaCrosstab(y, segment = TRUE, nested = TRUE)
 }
 \keyword{ manip }
