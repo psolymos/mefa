@@ -1,4 +1,4 @@
-`stsc` <-
+`stcs` <-
 function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 {
     x <- xtab
@@ -49,7 +49,7 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     x$taxa <- as.factor(x$taxa)
     x$segm <- as.factor(x$segm)
     x[] <- lapply(x, function(x) x[drop = TRUE])
-    class(x) <- c("stsc", "data.frame")
+    class(x) <- c("stcs", "data.frame")
     attr(x, "expand") <- expand
     attr(x, "zero.count") <- any(x$count == 0)
     attr(x, "zero.pseudo") <- zero.pseudo

@@ -9,11 +9,11 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         stop("xtab contains NA")
     if (nested && !segment)
         warning("nested = TRUE has no effect if segment = FALSE")
-    if (!is.stsc(x)) {
+    if (!is.stcs(x)) {
         xtab <- as.matrix(x)
         segm <- NULL}
 
-    if (is.stsc(x)) {
+    if (is.stcs(x)) {
         xtab <- .mefaCrosstab(x, segment=FALSE, drop.zero=drop.zero)
         segm <- if (segment) {
             .mefaCrosstab(x, segment=TRUE, nested=nested, drop.zero=drop.zero)

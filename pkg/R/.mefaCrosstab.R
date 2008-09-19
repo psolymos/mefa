@@ -1,10 +1,10 @@
 `.mefaCrosstab` <-
 function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
 {
-    if (!is.stsc(x))
-        stop("x must be of class stsc")
+    if (!is.stcs(x))
+        stop("x must be of class stcs")
     if (!attr(x, "expand"))
-        ss <- stsc(x, expand = TRUE, drop.zero=drop.zero)
+        ss <- stcs(x, expand = TRUE, drop.zero=drop.zero)
     if (!segment) {
         out <- as.matrix(table(ss$samp, ss$taxa))
         if (!is.null(attr(ss, "zero.pseudo")) && !drop.zero)
