@@ -12,8 +12,11 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     x <- data.frame(x)
     if (ncols == 2)
         x <- data.frame(x, rep(1, nrows), rep("undefined", nrows))
-    if (ncols == 3)
-        x <- data.frame(x, rep("undefined", nrows))
+    if (ncols == 3) {
+        if (is.factor(x[,3]) || is.character(x[,3])) {
+            x <- data.frame(x[,1:2], rep(1, nrows), x[,3])
+            } else {
+            x <- data.frame(x, rep("undefined", nrows))}}
     if (!is.numeric(x[, 3]))
         stop("count column must be numeric")
     if (any(x[, 3] == 0)) {
