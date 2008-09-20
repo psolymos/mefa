@@ -1,6 +1,6 @@
 `plot.mefa` <-
 function(x, which=1:4, type=c("hist", "rank"), trafo=c("none", "log",
-"ratio"), ylab=NULL, xlab=NULL, plot=TRUE, ...)
+"ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
    if (!all(which %in% 1:4))
        stop("which must be in 1:4")
@@ -39,21 +39,25 @@ function(x, which=1:4, type=c("hist", "rank"), trafo=c("none", "log",
    if (trafo=="log") {
        yvar <- log10(yvar)
        if (is.null(ylab) && type=="hist")
-           ylab <- paste("log10", ylab2)
+           ylab2 <- paste("log10", ylab2)
        if (is.null(ylab) && type=="rank")
-           xlab <- paste("log10", xlab2)}
+           xlab2 <- paste("log10", xlab2)}
    if (trafo=="ratio") {
        yvar <- yvar / max(yvar)
        if (is.null(ylab) && type=="hist")
-           ylab <- paste("Relative", tolower(ylab2))
+           ylab2 <- paste("Relative", tolower(ylab2))
        if (is.null(ylab) && type=="rank")
-           xlab <- paste("Relative", tolower(xlab2))}
-   if (plot) {
-       if (type=="hist")
-           plot(table(yvar), xlab=xlab2, ylab=ylab2, ...)
-       if (type=="rank")
-           plot(yvar[order(yvar, decreasing=TRUE)], type="l",
-xlab=ylab2, ylab=xlab2, ...)
-       }
+           xlab2 <- paste("Relative", tolower(xlab2))}
+
+
+       if (type=="hist") {
+           yvar <- table(yvar)
+           if (show)
+                plot(yvar, xlab=xlab2, ylab=ylab2, ...)}
+       if (type=="rank") {
+           yvar <- yvar[order(yvar, decreasing=TRUE)]
+           if (show)
+                plot(yvar, type="l", xlab=ylab2, ylab=xlab2, ...)}
+
    invisible(yvar)
 }
