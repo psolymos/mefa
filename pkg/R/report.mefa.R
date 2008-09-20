@@ -99,8 +99,8 @@ mf <- x
     if (by.taxa) {
 
         zz <- file(filename, "w")
-        cat("%Start writing data from ",mfclass, " object sorted by species into file \"", 
-            filename, "\" on ", date(), ".\n%Call: ", calling, "\n", file = zz, sep = "")
+        cat("%% Start writing data from ",mfclass, " object sorted by species into file \"", 
+            filename, "\" on ", date(), ".\n%% Call: ", calling, "\n", file = zz, sep = "")
 
 # start of SPEC loop
     for (spec in 1:length(nam)) {
@@ -252,7 +252,7 @@ if (grouping) cat("\n\n", file = zz, sep = "")
 } # end of IF >0
 } # end of SPEC loop
 
-        cat("\n\n%End of output.\n", file = zz, sep = "")
+        cat("\n\n%% End of output.\n", file = zz, sep = "")
         close(zz)
     } #END of species ordering
 

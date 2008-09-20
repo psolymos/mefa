@@ -1,19 +1,19 @@
-\name{count}
-\alias{count}
-\alias{samples}
-\alias{taxa}
+\name{dolina}
+\alias{DOLINAcounts}
+\alias{DOLINAsamples}
+\alias{DOLINAtaxa}
 \docType{data}
-\title{Data sets for the mefa package}
+\title{Land snails in dolines}
 \description{
-Data sets for demostrating the capabilities of the mefa package.
+Data were collected in dolines (karstic depressions) of Northeast Hungary.
 }
 \usage{
-data(count)
-data(samples)
-data(taxa)
+data(DOLINAcounts)
+data(DOLINAsamples)
+data(DOLINAtaxa)
 }
 \format{
-  The \code{count} data set is a data frame with 697 observations on the following 4 variables.
+  The \code{DOLINAcounts} data set is a data frame with 697 observations on the following 4 variables.
   \describe{
     \item{\code{samp}}{a factor with levels for samples.}
     \item{\code{taxa}}{a factor with levels for the species.}
@@ -21,7 +21,7 @@ data(taxa)
     \item{\code{segm}}{a factor with levels for segments.}
   }
 
-  The \code{samples} data set is a data frame with 64 observations on the following 10 variables.
+  The \code{DOLINAsamples} data set is a data frame with 64 observations on the following 10 variables.
   \describe{
     \item{\code{subsample}}{a factor with levels for subsamples (corresponding levels of \code{count$samp}).}
     \item{\code{sample}}{a factor with levels for samples}
@@ -35,7 +35,7 @@ data(taxa)
     \item{\code{ldepth}}{a numeric vector for litter depth (cm).}
   }
 
-  The \code{taxa} data set is a data frame with 121 observations on the following 8 variables.
+  The \code{DOLINAtaxa} data set is a data frame with 121 observations on the following 8 variables.
   \describe{
     \item{\code{id}}{a factor with levels for four letter acronyms of the species names.}
     \item{\code{species}}{a factor with levels the species names.}
@@ -51,14 +51,16 @@ data(taxa)
 The data sets are results of the 'Dolina 2007' field study. Species characteristics are based on Kerney et al. (1983).
 }
 \source{
+Paper for count and sample characteristics in preparation. Please cite according to the mefa package, see \code{\citation("mefa")}.
+
 Kerney, M.P., Cameron, R.A.D. & Jungbluth, J.H., 1983. \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
 }
 \examples{
-data(count)
-str(count)
-data(samples)
-str(samples)
-data(taxa)
-str(taxa)
+data(DOLINAcounts)
+str(DOLINAcounts)
+data(DOLINAsamples)
+str(DOLINAsamples)
+data(DOLINAtaxa)
+str(DOLINAtaxa)
 }
 \keyword{datasets}

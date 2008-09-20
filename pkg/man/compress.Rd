@@ -12,14 +12,13 @@ report(x, \dots)
 \method{compress}{factor}(x, y)
 }
 \arguments{
-  \item{x}{a factor or a vector.}
-  \item{y}{a vector with discrete values.}
+  \item{x, y}{factor or any vector.}
 }
 \details{
-\code{x} and \code{y} should have same lengths, and \code{y} should be nested into \code{x} to fulfill that \code{length(unique(interaction(x, y))) == length(unique(y))}. The procedure is similar to \code{\link{aggregate}}, but it can not be easily applied for factors. It can, however, be the case when aggregating data in hierarchically nested sampling design.
+\code{x} and \code{y} should have same lengths, and \code{y} should be nested into \code{x} to fulfill that \code{length(unique(interaction(x, y))) == length(unique(y))}. The procedure is similar to \code{\link{aggregate}} in a sense that we wan to get a shorter vector and preserving values in a nested fashion. But \code{\link{aggregate}} can not be applied for factors or character vectors.
 }
 \value{
-A factor with length as the number of discrete values in \code{y}.}
+A factor with length as the number of discrete values in \code{y}. Values correspond to the values of \code{x} in unique values of \code{y}.}
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
