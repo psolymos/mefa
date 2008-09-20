@@ -10,7 +10,7 @@ qvector(x, probs = seq(0, 1, 0.25))
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a numeric vector.}
-  \item{probs}{numeric vector of probabilities with values in code{[0,1]} used by \code{\link{quantile}}.}
+  \item{probs}{numeric vector of probabilities with values in [0, 1] used by \code{\link{quantile}}.}
 }
 \value{
 A vector of length the same as the input vector, containing the respective quantile values.
