@@ -1,5 +1,5 @@
 `image.mefa` <-
-function(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), probs = seq(0, 1, 0.05), ordering=TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
+function(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), probs = seq(0, 1, 0.05), ordering=TRUE, reverse=TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
 if (!is.mefa(x))
     stop("object is not of class mefa")
@@ -18,7 +18,8 @@ if (trafo == "bins")
     mm <- matrix(qvector(array(mm), probs), nrow(mm), ncol(mm))
 if (trafo == "prab")
     mm <- matrix(as.numeric(mm > 0), nrow(mm), ncol(mm))
-mm <- max(mm) - mm
+if (reverse)
+    mm <- max(mm) - mm
 
 if (is.null(ylab)) ylab <- "Samples"
 if (is.null(xlab)) xlab <- "Taxa"
