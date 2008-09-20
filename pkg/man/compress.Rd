@@ -2,9 +2,9 @@
 \alias{compress}
 \alias{compress.default}
 \alias{compress.factor}
-\title{Compress a factor based on discrete values in a vector}
+\title{Compress a factor based on unique values in a vector}
 \description{
-The function compress a factor (or any vector) based on discrete values in a vector, if the levels of the vector are nested in the levels of the factor.
+The function compress a factor (or any vector) based on unique values in a vector, if the levels of the vector are nested in the levels of the factor.
 }
 \usage{
 report(x, \dots)

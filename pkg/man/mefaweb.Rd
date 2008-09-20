@@ -1,6 +1,6 @@
 \name{mefaweb}
 \alias{mefaweb}
-\title{Open 'mefa' Website}
+\title{Open 'mefa' website}
 \description{
 Opens the 'mefa' website in the default navigator.
 }
@@ -8,7 +8,7 @@ Opens the 'mefa' website in the default navigator.
 mefaweb()
 }
 \details{
-The website contains resources for the 'mefa' package, and many more. Please check out for more!
+The website contains resources for the 'mefa' package, please check out for more. Thank you!
 }
 \author{
 Peter Solymos, \email{solymos@ualberta.ca}
@@ -19,4 +19,4 @@ Peter Solymos, \email{solymos@ualberta.ca}
 mefaweb()
 }
 }
-\keyword{ utilities }
+\keyword{ documentation }

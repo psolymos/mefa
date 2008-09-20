@@ -7,7 +7,6 @@ The function inflates a data frame based on count values in a vector correspondi
 \usage{
 inflate(x, y)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a matrix or data frame, but can be a vector.}
   \item{y}{a vector containing positive (non zero) real numbers.}

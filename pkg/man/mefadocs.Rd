@@ -1,6 +1,6 @@
 \name{mefadocs}
 \alias{mefadocs}
-\title{Display Package Documentation}
+\title{Display package documentation}
 \description{
   Display package documentation using \code{pager} or \code{pdfviewer}
   defined in \code{\link{options}}.
@@ -21,5 +21,4 @@ mefadocs("Change")
 mefadocs("Sample")
 }
 }
-\keyword{ utilities }
 \keyword{ documentation }

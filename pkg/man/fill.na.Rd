@@ -1,6 +1,6 @@
 \name{fill.na}
 \alias{fill.na}
-\title{Filling <NA> values with nearest above values}
+\title{Filling <NA> values with nearest above values in a matrix}
 \description{
 The function fills \code{<NA>} values with the nearest values above them in the same column.
 }
@@ -9,7 +9,7 @@ fill.na(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{a matrix or data frame}
+  \item{x}{a matrix or data frame.}
 }
 \details{
 This function is useful when converting a 'notebook style' data into an 'stsc' object. The 'notebook style' data means that observations are registeres in a non-redundant way, e.g. when typing in a spreadsheet.
