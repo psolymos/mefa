@@ -10,8 +10,6 @@ melt(x, \dots)
 \method{melt}{mefa}(x, segm.var = NULL, by.samp = TRUE, inside = TRUE,
 raw.out = FALSE, drop.zero = FALSE, \dots)
 }
-}
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{an object of class 'mefa'}
   \item{segm.var}{\code{NULL} (default) or column indices of samples (if \code{by.samp = TRUE}) or taxa tables (if \code{by.samp = FALSE}). If it refers more than one column, their interaction is taken. If \code{NULL}, the resulting segment column is filled with \code{"undefined"}.}
