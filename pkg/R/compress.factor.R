@@ -1,5 +1,5 @@
 `compress.factor` <-
-function(x, y)
+function(x, y, ...)
 {
 i <- interaction(x,y)
 if (length(unique(i)) != length(unique(y)))

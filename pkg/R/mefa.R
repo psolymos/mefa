@@ -14,18 +14,16 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         segm <- NULL}
 
     if (is.stcs(x)) {
-        xtab <- .mefaCrosstab(x, segment=FALSE, drop.zero=drop.zero)
+        xtab <- mefaCrosstab(x, segment=FALSE, drop.zero=drop.zero)
         segm <- if (segment) {
-            .mefaCrosstab(x, segment=TRUE, nested=nested, drop.zero=drop.zero)
+            mefaCrosstab(x, segment=TRUE, nested=nested, drop.zero=drop.zero)
             } else {NULL}}
 
-## ide j<U+00F6>n a samp & taxa lev<U+00E1>logat<U+00E1>s <U+00E9>s sorba rendez<U+00E9>s, j<U+00F3> lenne ha az xtab sor & oszlopnevek maradn<U+00E1>nak
-## xtab.fixed=TRUE, xtab sor/oszlop nevei fixek, ha F akkor a legsz<U+0171>kebb halmazt adja eredm<U+00E9>ny<U+00FC>l
     xtab2 <- xtab
     if (!is.null(samp)) {
         if (dim(as.matrix(samp))[2] == 1)
             stop("at least 2 columns needed for samp")
-        samp.list <- .mefaTables(xtab2, samp, 1, id.samp,
+        samp.list <- mefaTables(xtab2, samp, 1, id.samp,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- samp.list$xtab
         samp2 <- samp.list$dtab
@@ -35,14 +33,13 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
     if (!is.null(taxa)) {
         if (dim(as.matrix(taxa))[2] == 1)
             stop("at least 2 columns needed for taxa")
-        taxa.list <- .mefaTables(xtab2, taxa, 2, id.taxa,
+        taxa.list <- mefaTables(xtab2, taxa, 2, id.taxa,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- taxa.list$xtab
         taxa2 <- taxa.list$dtab
         } else {
         taxa2 <- NULL}
 
-## segm list subsetting xtab2 alapj<U+00E1>n
     if (segment && !is.null(segm) && !xtab.fixed) {
         row.sub <- which(rownames(segm[[1]]) %in% rownames(xtab2))
         col.sub <- which(colnames(segm[[1]]) %in% colnames(xtab2))

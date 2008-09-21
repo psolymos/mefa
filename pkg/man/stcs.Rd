@@ -1,13 +1,13 @@
-\name{stsc}
-\alias{stsc}
-\alias{is.stsc}
-\alias{as.stsc}
+\name{stcs}
+\alias{stcs}
+\alias{is.stcs}
+\alias{as.stcs}
 \title{Create object of class 'stcs'}
 \description{
 This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the mefa package. The 'stcs' object can be used converted into an object of class 'mefa' with the function \code{mefa}
 }
 \usage{
-stsc(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
+stcs(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{is}{stcs}(x)
 \method{as}{stcs}(x, \dots)
 }
@@ -23,12 +23,12 @@ stsc(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \details{
 If the data are in a long (database style) format, the \code{stcs} function prepares the ground for the \code{mefa} function to make the cross tabulation. But if only a crosstabulated matrix is needed, the \code{\link{table}} function can be applies as well (in this case be sure to set \code{expand = TRUE}). For subsetting, simply use subastraction methods available for data frames (square brackets).
 
-The \code{stsc} function nearly equivalent to the \code{sscount} function in older (< 2.0) versions of the mefa package.
+The \code{stcs} function nearly equivalent to the \code{sscount} function in older (< 2.0) versions of the mefa package.
 }
 \value{
 Returns an object of class 'stcs' with 4 columns. The column names are converted consistently into \code{samp} for samples, \code{taxa} for taxa names, \code{count} for counts and \code{segm} for segment names.
 
-The class has some own methods (i.e. \code{is} and \code{as}), but also has a \code{data.frame} class attribute. Thus all methods available for data frames are applicable to an object of class 'stsc' (e.g. \code{summary}, \code{str}).
+The class has some own methods (i.e. \code{is} and \code{as}), but also has a \code{data.frame} class attribute. Thus all methods available for data frames are applicable to an object of class 'stcs' (e.g. \code{summary}, \code{str}).
 }
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.

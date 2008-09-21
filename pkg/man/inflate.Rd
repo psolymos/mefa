@@ -12,7 +12,7 @@ inflate(x, y)
   \item{y}{a vector containing positive (non zero) real numbers.}
 }
 \details{
-Each rows of the data frame \code{x} will be repeated as many times as the corresponding value in the vector \code{y}. This function is called internally by the function \code{\link{stsc}}.
+Each rows of the data frame \code{x} will be repeated as many times as the corresponding value in the vector \code{y}. This function is called internally by the function \code{\link{stcs}}.
 }
 \value{
 A data frame with columns as in the original (\code{x}) and \code{sum(y)} number of rows.}
@@ -24,7 +24,7 @@ Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph
 \author{
 Peter Solymos, \email{solymos@ualberta.ca}, 
 }
-\seealso{\code{\link{stsc}}}
+\seealso{\code{\link{stcs}}}
 \examples{
 x <- data.frame(sample = LETTERS[c(1,1,2,2,3)],
     species = letters[c(5,5,5,6,7)],

@@ -1,4 +1,4 @@
-`.mefaTables` <-
+`mefaTables` <-
 function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
 {
     if (margin != 1 && margin != 2)

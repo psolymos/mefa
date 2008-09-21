@@ -26,7 +26,7 @@ Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph
 Peter Solymos, \email{solymos@ualberta.ca}
 }
 \note{This function is not vectorized, so can be a bit slow for large data sets.}
-\seealso{\code{\link{stsc}}}
+\seealso{\code{\link{stcs}}}
 \examples{
 x <- data.frame(
     samp = c("s1",NA,"s2",NA,"s3","s4"),

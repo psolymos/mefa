@@ -1,5 +1,5 @@
 `report` <-
-function (x,...)
+function (x, ...)
 {
     UseMethod("report")
 }

@@ -1,4 +1,4 @@
-`.mefaStructure` <-
+`mefaStructure` <-
 function(x)
 {
     if (!inherits(x, "mefa"))

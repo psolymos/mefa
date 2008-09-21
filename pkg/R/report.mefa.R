@@ -5,7 +5,7 @@ function (x, filename, segment = FALSE, n = NULL, by.taxa = TRUE,
     grouping = FALSE, tex = FALSE, binary = FALSE,
     tex.control = list(ital.taxa = TRUE, noindent = TRUE, 
     bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
-    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir=NULL)
+    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir=NULL, ...)
 {
 if (!is.null(outdir)) {
     current.dir <- getwd()

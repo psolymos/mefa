@@ -6,14 +6,14 @@
 The data of the 'mefa' object is written into a file in a standard format used by most local journals for publishing distribution data of living organisms. The aim is to provide an export facility that can directly be used for generating reports, parts of research papers, or supplementary materials.
 }
 \usage{
-report(x, \dots)
+report(x, \ldots)
 \method{report}{mefa}(x, filename, segment = FALSE, n = NULL,
     by.taxa = TRUE, samp.var = NULL, drop.redundant = NULL,
     collapse = TRUE, taxa.name = NULL, author.name = NULL,
     taxa.order = NULL, grouping = FALSE, tex = FALSE, binary = FALSE,
     tex.control = list(ital.taxa = TRUE, noindent = TRUE, 
     bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
-    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir = NULL)
+    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir = NULL, \ldots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -34,7 +34,7 @@ report(x, \dots)
   \item{tex.control}{}
   \item{sep}{}
   \item{outdir}{character, full path of the directory where the file should be written (working directory is then restored). If \code{NULL}, the current rowking directoty is used.}
-  \item{\dots}{ ~~Describe \code{\dots} here~~ }
+  \item{\ldots}{further arguments potentially passed (currently there are none).}
 }
 \details{
   ~~ If necessary, more details than the description above ~~

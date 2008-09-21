@@ -1,11 +1,11 @@
-\name{check.mefaTables}
-\alias{.mefaTables}
+\name{mefaTables}
+\alias{mefaTables}
 \title{Subsetting and ordering matrix and data frame based on row or column names}
 \description{
 This function is called by the \code{\link{mefa}} function, but can be applied more generally for sobsetting and ordering.
 }
 \usage{
-.mefaTables(xtab, dframe, margin, index = NULL, drop.index = FALSE, xtab.fixed = TRUE)
+mefaTables(xtab, dframe, margin, index = NULL, drop.index = FALSE, xtab.fixed = TRUE)
 }
 \arguments{
   \item{xtab}{a data matrix.}
@@ -36,9 +36,9 @@ f <- data.frame(matrix(rnorm(30), 10, 3))
 rownames(f) <- letters[1:10]
 f
 ## Reverse alphabetical names preserved
-.mefaTables(x, f, 1)
+mefaTables(x, f, 1)
 ## Now result is the intersect
 rownames(f) <- letters[3:12]
-.mefaTables(x, f, 1, xtab.fixed = FALSE)
+mefaTables(x, f, 1, xtab.fixed = FALSE)
 }
 \keyword{ manip }

@@ -1,5 +1,5 @@
 `melt` <-
-function (x,...)
+function (x, ...)
 {
     UseMethod("melt")
 }

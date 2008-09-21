@@ -7,7 +7,7 @@ The function converts a wide formatted 'mefa' object into a long formatted 'stcs
 }
 \usage{
 melt(x, \dots)
-\method{ment}{mefa}(x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, \dots)
+\method{melt}{mefa}(x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, \dots)
 }
 }
 %- maybe also 'usage' for other objects documented here.
@@ -40,7 +40,7 @@ Similar functions in the \code{reshape} package of Hadley Wickham: \code{\link[r
 
 Similar function in the \code{Hmist} package by Frank Harrel: \code{\link[Hmisc]{reShape}}.
 
-Similar function in the \code{simba} package by  Gerald Jurasinski: \code{\link[]{liste}}.
+Similar function in the \code{simba} package by  Gerald Jurasinski: \code{\link[simba]{liste}}.
 }
 \examples{
 

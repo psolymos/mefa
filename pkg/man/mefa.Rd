@@ -6,6 +6,8 @@
 \alias{print.mefa}
 \alias{summary.mefa}
 \alias{print.summary.mefa}
+\alias{dim.mefa}
+\alias{dimnames.mefa}
 \title{Create an object of class 'mefa'}
 \description{
 An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa. Some of the methods for 'mefa' objects are discussed here, others can be found on help pages of the functions \code{\link{aggregate.mefa}}, \code{\link{melt.mefa}}, \code{\link{report.mefa}} and \code{\link{plot.mefa}}.

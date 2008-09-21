@@ -1,5 +1,5 @@
 `compress` <-
-function (x,...)
+function (x, ...)
 {
     UseMethod("compress")
 }
