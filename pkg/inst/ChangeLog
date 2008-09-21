@@ -1,21 +1,46 @@
 MEFA VERSIONS
 
-Version 1.1-4 -- September 16, 2008 (opened)
-    * Major transition is ahead: I started
-      to rewrite object classes, but 
-      the for the 1.2-0 major release,
-      I would also provide improved and
-      more useful data sets and
-      the documentation and a new vignette
-      will also take some time.
-      I placed the old version int the
-      dev/oldver directory.
-      I will not make a minor release to CRAN.
+
+Version 2.0-0 -- September 20, 2008 (opened)
+
+    * The package was extensively rewritten
+      (started on September 16, 2008).
+      It is more easy and efficient than
+      < 2.0 versions. The number of object
+      classes reduced. The new class stcs
+      is almost equivalent to the old sscount.
+      The new class mefa can be used either
+      as the old xcount and mefa classes
+      (and the xclist and mflist classes
+      only provided with the undocumented
+      patch file). The old xorder class
+      is bow useless, too.
+    * New methods are provided for manipulating
+      pbjects. The "[.mefa" replaces the old
+      exclmf function, the aggregate method
+      replaces the old strify function.
+    * plot, print and summary methods only
+      provided for the class mefa. For the
+      stcs class, methods for data frames can
+      be used (because an stcs object is
+      essentially a data frame with some
+      conventions and additional attributes).
+    * The melt method is provided to convert
+      a mefa object into stcs, or redefine
+      new segments.
+    * dim and dimnames methods also available
+      for mefa objects.
+
+
+Version 1.1-4 -- September 20, 2008 (closed)
+
     * inflate: arguments of any() corrected
 
 
 Version 1.1-3 -- September 15, 2008 (closed)
+
     * citation entry added
+
 
 Version 1.1-2 -- June 24, 2008 (closed)
 
@@ -35,6 +60,7 @@ Version 1.1-1 -- June 12, 2008 (closed)
 	* vignette is corrected and updated
 	* help pages are corrected and updated
 
+
 Version 1.1-0 -- March 14, 2008
 
 	* vignette is made available
@@ -51,6 +77,7 @@ Version 1.1-0 -- March 14, 2008
 	  (xytrend requires vegan)
 	* mefa developement is now on R-Forge
 
+
 Version 1.0-4 -- February 11, 2008
 
 	* the demo was rewritten
@@ -60,6 +87,7 @@ Version 1.0-4 -- February 11, 2008
 	* print and plot S3 methods provided for classes
 	* digits argument is placed into sscount 
 	  and related functions
+
 
 Version 1.0-3 -- January 4, 2008
 
@@ -72,6 +100,7 @@ Version 1.0-3 -- January 4, 2008
 	* bug fixed in exclmf
 	* bug fixed in dolina demo.
 	* warning message is placed in strify code
+
 
 Version 1.0-2 -- December 18, 2007
 
@@ -86,9 +115,11 @@ Version 1.0-2 -- December 18, 2007
 	  a WARNING is placed in the manual 
 	  will be fixed later
 
+
 Version 1.0-1 -- December 7, 2007
 
 	* bugs fixed in function stify
+
 
 Version 1.0 -- November 13, 2007
 
