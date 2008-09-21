@@ -1,5 +1,5 @@
-`[.mefa` <-
-function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
+`"[.mefa"` <-
+function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], ..., drop=FALSE)
 {
     if (length(i) == 0 || length(j) == 0 || length(k) == 0)
         return(NULL)
