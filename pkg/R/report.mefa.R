@@ -1,13 +1,19 @@
 `report.mefa` <-
 function (x, filename, segment = FALSE, n = NULL, by.taxa = TRUE,
     samp.var = NULL, drop.redundant = NULL, collapse = TRUE,
-    taxa.name = 1, author.name = NULL, taxa.order = NULL, 
+    taxa.name = NULL, author.name = NULL, taxa.order = NULL, 
     grouping = FALSE, tex = FALSE, binary = FALSE,
     tex.control = list(ital.taxa = TRUE, noindent = TRUE, 
     bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
-    sep = c(",", ":", "(", ":", ",", ")", ";"))
+    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir=NULL)
 {
+if (!is.null(outdir)) {
+    current.dir <- getwd()
+    setwd(outdir)}
 mf <- x
+if (is.null(taxa.name)) {
+    taxa.name <- 1
+    mf$taxa <- data.frame(rownames(mf), mf)}
 
 # test
     if(!is.mefa(mf))
@@ -257,6 +263,10 @@ if (grouping) cat("\n\n", file = zz, sep = "")
     } #END of species ordering
 
 if (!by.taxa) stop("sorry, not implemented yet\n")
+
+if (!is.null(outdir))
+    setwd(current.dir)
+invisible()
 } # end of function
 
 
