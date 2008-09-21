@@ -6,13 +6,14 @@
 These methods are usefult when extracting or aggrgating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa can be extracted or aggrgated at the same time.
 }
 \usage{
-\method{aggregate}{mefa}(x, by.samp = NULL, by.taxa = NULL, \ldots)
+\method{aggregate}{mefa}(x, by.samp = NULL, by.taxa = NULL, inside = TRUE, \ldots)
 \method{[}{mefa}(x, i = 1:dim(x)[1], j = 1:dim(x)[2], k = 1:dim(x)[3], drop = FALSE)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
   \item{by.samp}{a vector with length as the number of samples and more than one unique values to use aggregating samples.}
   \item{by.taxa}{a vector with length as the number of taxa and more than one unique values to use aggregating taxa.}
+  \item{inside}{logica, if \code{TRUE} \code{by.samp} and \code{by.taxa} are searched in \code{x$samp} and \code{x$taxa} (inside \code{x}). If \code{FALSE}, \code{by.samp} and \code{by.taxa}  can be any vector with appropriate length.}
   \item{i}{index value or a vector of indices for samples.}
   \item{j}{index value or a vector of indices for taxa.}
   \item{k}{index value or a vector of indices for segments.}

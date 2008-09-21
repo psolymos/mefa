@@ -1,10 +1,13 @@
 `aggregate.mefa` <-
-function(x, by.samp=NULL, by.taxa=NULL, ...)
+function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
 {
     if (is.null(by.samp) && is.null(by.taxa))
-        return(x)
+        return(x) else {
+
     xtab <- as.data.frame(x$xtab)
     if (!is.null(by.samp)) {
+        if (inside)
+            by.samp <- x$samp[, by.samp]
         if (length(unique(by.samp)) == 1)
             stop("by.samp should contain at least 2 levels")
         x$samp <- NULL
@@ -18,6 +21,8 @@ function(x, by.samp=NULL, by.taxa=NULL, ...)
                 x$segm[[i]][,1] <- NULL}}
         }
     if (!is.null(by.taxa)) {
+        if (inside)
+            by.taxa <- x$taxa[, by.taxa]
         if (length(unique(by.taxa)) == 1)
             stop("by.taxa should contain at least 2 levels")
         x$taxa <- NULL
@@ -35,5 +40,6 @@ function(x, by.samp=NULL, by.taxa=NULL, ...)
     x$xtab <- as.matrix(xtab)
     x$call <- match.call()
     return(x)
+    }
 }
 

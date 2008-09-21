@@ -1,5 +1,5 @@
 `melt.mefa` <-
-function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
+function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))
@@ -10,10 +10,14 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         if (is.null(segm.var)) {
             segm <- rep("undefined", length(count))
             } else {
-            if (length(segm.var) > 1)
-                segm.var2 <- interaction(x$samp[, segm.var])
-                else segm.var2 <- x$samp[, segm.var]
-            segm <- rep(segm.var2, each=dim(x)[2])}
+            if (inside) {
+                if (length(segm.var) > 1)
+                    segm.var2 <- interaction(x$samp[, segm.var])
+                    else segm.var2 <- x$samp[, segm.var]
+                segm <- rep(segm.var2, each=dim(x)[2])
+                } else {
+                segm <- rep(segm.var, each=dim(x)[2])}
+                }
         } else {
         if (is.null(x$taxa) && !is.null(segm.var))
             stop("$taxa is NULL")
@@ -23,10 +27,14 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         if (is.null(segm.var)) {
             segm <- rep("undefined", length(count))
             } else {
-            if (length(segm.var) > 1)
-                segm.var2 <- interaction(x$taxa[, segm.var])
-                else segm.var2 <- x$taxa[, segm.var]
-            segm <- rep(segm.var2, dim(x)[1])}
+            if (inside) {
+                if (length(segm.var) > 1)
+                    segm.var2 <- interaction(x$taxa[, segm.var])
+                    else segm.var2 <- x$taxa[, segm.var]
+                segm <- rep(segm.var2, dim(x)[1])
+                } else {
+                segm <- rep(segm.var, dim(x)[1])}
+            }
         }
     out <- data.frame(samp=samp, taxa=taxa, count=count, segm=segm)
     if (raw.out) {

@@ -7,7 +7,8 @@ The function converts a wide formatted 'mefa' object into a long formatted 'stcs
 }
 \usage{
 melt(x, \dots)
-\method{melt}{mefa}(x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, \dots)
+\method{melt}{mefa}(x, segm.var = NULL, by.samp = TRUE, inside = TRUE,
+raw.out = FALSE, drop.zero = FALSE, \dots)
 }
 }
 %- maybe also 'usage' for other objects documented here.
@@ -15,6 +16,7 @@ melt(x, \dots)
   \item{x}{an object of class 'mefa'}
   \item{segm.var}{\code{NULL} (default) or column indices of samples (if \code{by.samp = TRUE}) or taxa tables (if \code{by.samp = FALSE}). If it refers more than one column, their interaction is taken. If \code{NULL}, the resulting segment column is filled with \code{"undefined"}.}
   \item{by.samp}{logical, if \code{TRUE} (default) \code{segm.var} is taken from the samples table (\code{x$samp}), if \code{FALSE} \code{segm.var} is taken from the taxa table (\code{x$taxa}).}
+  \item{inside}{logica, if \code{TRUE} \code{segm.var} is searched in \code{x$samp} (\code{by.samp = TRUE}) or \code{x$taxa} (\code{by.samp = FALSE}) (inside \code{x}). If \code{FALSE}, \code{segm.var} can be any vector with appropriate length.}
   \item{raw.out}{logical, whether the result should contain all the zeros that is in the crosstabulated (wide) matrix (\code{TRUE}) or not (\code{FALSE}, default). Removing the zeros is straightforward for sparse matrices. But empty samples can be ratained if \code{drop.zero = FALSE}.}
   \item{drop.zero}{logical, whether samples with zero total count should be leaved out (\code{TRUE}) or not (\code{FALSE}, default).}
   \item{\dots}{other arguments passed to the function \code{\link{stcs}}.}
@@ -46,9 +48,14 @@ Similar function in the \code{simba} package by  Gerald Jurasinski: \code{\link[
 \dontrun{
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
 x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+## Long format with undefined segment
 melt(x)
+## These two are identical
 melt(x, "microhab")
+melt(x, x$samp$microhab, inside = FALSE)
+## Interaction
 melt(x, c("method", "microhab"))
+## From taxa table
 melt(x, "familia", by.samp = FALSE)
 }
 }
