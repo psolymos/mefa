@@ -21,10 +21,10 @@ These methods are usefult when extracting or aggrgating 'mefa' objects. The coun
   \item{\ldots}{other arguments passed to the generic function.}
 }
 \details{
-The resulting 'mefa' object must contain at least 2 samples, 2 taxa.
+
 }
 \value{
-An object of class 'mefa'.
+An object of class 'mefa'. The resulting 'mefa' object must contain at least 2 samples, 2 taxa.
 }
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
@@ -39,6 +39,26 @@ The \code{aggregate} method replaces the function \code{strify}, the \code{[} me
 }
 \seealso{\code{\link{mefa}}}
 \examples{
+data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
+x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+## These two are identical
+aggregate(x, "microhab")
+aggregate(x, x$samp$microhab, inside = FALSE)
+## Interaction
+aggregate(x, c("method", "microhab"))
+## Both samples and taxa tables
+aggregate(x, "microhab", "familia")
+## Extraction
+x[1:10, ]
+x[, 1:5]
+x[, , "broken"]
+x[1:10, 1:5]
+x[1:10, 1:5, 2:3]
+## Note factor levels
+y <- x[which(x$samp$method == "time"), ]
+levels(y$samp$method)
+z <- x[which(x$samp$method == "time"), drop = TRUE]
+levels(z$samp$method)
 }
 \keyword{ manip }
 \keyword{ methods }

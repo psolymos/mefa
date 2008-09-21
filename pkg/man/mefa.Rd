@@ -25,9 +25,9 @@ xtab.fixed = TRUE)
 \method{dimnames}{mefa}(x)
 }
 \arguments{
-  \item{xtab}{ ~~Describe \code{xtab} here~~ }
-  \item{samp}{a data frame containing rows for samples, or \code{NULL}. See argument \xtab.fixed} and details for sample matching options.}
-  \item{taxa}{a data frame containing rows for taxa, or \code{NULL}. See argument \xtab.fixed} and details for taxa matching options.}
+  \item{xtab}{count data. Can be an object of class 'stcs', or a matrix or data frame.}
+  \item{samp}{a data frame containing rows for samples, or \code{NULL}. See argument \code{xtab.fixed} and details for sample matching options.}
+  \item{taxa}{a data frame containing rows for taxa, or \code{NULL}. See argument \code{xtab.fixed} and details for taxa matching options.}
   \item{id.samp}{\code{NULL} if sample names for matching are the rownames of \code{samp}, otherwise, the index of the column of \code{samp} where the names are located.}
   \item{id.taxa}{\code{NULL} if taxa names for matching are the rownames of \code{taxa}, otherwise, the index of the column of \code{taxa} where the names are located.}
   \item{segment}{logical, whether segments column of the 'stcs' object should be used (\code{TRUE}, default). It has no effect when \code{xtab} is matrix or data frame.}
@@ -68,7 +68,6 @@ The \code{mefa} function alone can be used instead of the combination of object 
 The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \code{reshape} package of Hadley Wickham, and by the \code{\link[simba]{mama}} function in the \code{simba} package by  Gerald Jurasinski. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} function), or linking sample and taxa data tables with the count data.
 }
 \examples{
-\dontrun{
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
 ## Input is an stcs object
 x1 <- mefa(stcs(DOLINAcounts))
@@ -87,7 +86,6 @@ summary(x4)
 is(x4, "mefa")
 dim(x4)
 dimnames(x4)
-}
 }
 \keyword{ classes }
 \keyword{ manip }

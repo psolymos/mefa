@@ -1,10 +1,10 @@
 `plot.mefa` <-
-function(x, which=1:4, type=c("hist", "rank"), trafo=c("none", "log",
+function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
 "ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
-   if (!all(which %in% 1:4))
-       stop("which must be in 1:4")
-   if (!length(which) == 1) which <- 1
+   if (!all(stat %in% 1:4))
+       stop("stat must be in 1:4")
+   if (!length(stat) == 1) stat <- 1
    if (!length(type) == 1) type <- type[1]
    if (!length(trafo) == 1) trafo <- trafo[1]
    type <- match.arg(type, c("hist", "rank"))
@@ -19,19 +19,19 @@ function(x, which=1:4, type=c("hist", "rank"), trafo=c("none", "log",
    if (is.null(ylab) && type=="rank")
        ylab2 <- "Rank"
 
-   if (which == 1) {
+   if (stat == 1) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(samples)")
        if (is.null(xlab)) xlab2 <- "Number of taxa"
        yvar <- summary(x)$srich}
-   if (which == 2) {
+   if (stat == 2) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(samples)")
        if (is.null(xlab)) xlab2 <- "Number of individuals"
        yvar <- summary(x)$ninds}
-   if (which == 3) {
+   if (stat == 3) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Occupancy"
        yvar <- summary(x)$spocc}
-   if (which == 4) {
+   if (stat == 4) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Abundance"
        yvar <- summary(x)$spabu}

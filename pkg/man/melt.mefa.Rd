@@ -45,7 +45,6 @@ Similar function in the \code{Hmist} package by Frank Harrel: \code{\link[Hmisc]
 Similar function in the \code{simba} package by  Gerald Jurasinski: \code{\link[simba]{liste}}.
 }
 \examples{
-\dontrun{
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
 x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
 ## Long format with undefined segment
@@ -57,7 +56,6 @@ melt(x, x$samp$microhab, inside = FALSE)
 melt(x, c("method", "microhab"))
 ## From taxa table
 melt(x, "familia", by.samp = FALSE)
-}
 }
 \keyword{ methods }
 \keyword{ manip }

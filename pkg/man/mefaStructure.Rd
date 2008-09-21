@@ -21,7 +21,7 @@ Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph
 \author{
 Peter Solymos, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{is.mefa}}}
+\seealso{\code{\link{mefa}}, \code{\link{is.mefa}}}
 \examples{
 x <- matrix(rpois(20,1), 5, 4)
 m <- mefa(x)

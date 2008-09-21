@@ -59,9 +59,9 @@ The \code{by.taxa = FALSE} option is not implemented.
 }
 \seealso{\code{\link{mefa}}, \code{\link{write}}}
 \examples{
-\dontrun{
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
 x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+\dontrun{
 report(x, "report.txt")
 report(x, "report.tex", tex=TRUE)
 }

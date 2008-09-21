@@ -65,6 +65,10 @@ stcs(x[,c(1:2,4)])
 z <- stcs(x[x$count != 0, ], expand = TRUE)
 table(z[,1:2])
 table(z[,c(1:2,4)])
+## The DOLINA dataset
+data(DOLINAcounts)
+dol <- stcs(DOLINAcounts)
+dol
 }
 \keyword{ manip }
 \keyword{ methods }

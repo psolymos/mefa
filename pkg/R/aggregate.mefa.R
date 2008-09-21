@@ -7,7 +7,9 @@ function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
     xtab <- as.data.frame(x$xtab)
     if (!is.null(by.samp)) {
         if (inside)
-            by.samp <- x$samp[, by.samp]
+            if (length(by.samp) == 1)
+                by.samp <- x$samp[, by.samp] else {
+                by.samp <- interaction(x$samp[, by.samp])}
         if (length(unique(by.samp)) == 1)
             stop("by.samp should contain at least 2 levels")
         x$samp <- NULL
@@ -22,7 +24,9 @@ function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
         }
     if (!is.null(by.taxa)) {
         if (inside)
-            by.taxa <- x$taxa[, by.taxa]
+            if (length(by.samp) == 1)
+                by.taxa <- x$taxa[, by.taxa] else {
+                by.taxa <- interaction(x$taxa[, by.taxa])}
         if (length(unique(by.taxa)) == 1)
             stop("by.taxa should contain at least 2 levels")
         x$taxa <- NULL

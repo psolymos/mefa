@@ -6,16 +6,16 @@
 \description{
 Various methods for plotting objects of class 'mefa'.}
 \usage{
-\method{plot}{mefa}(x, which=1:4, type=c("hist", "rank"),
-trafo=c("none", "log", "ratio"), ylab=NULL, xlab=NULL, show=TRUE, \dots)
-\method{boxplot}{mefa}(x, which = 1:4, ylab = NULL, xlab = NULL, \dots)
+\method{plot}{mefa}(x, stat = 1:4, type = c("hist", "rank"),
+trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
+\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
-probs = seq(0, 1, 0.05), ordering=TRUE, reverse=TRUE, ylab=NULL, 
-xlab=NULL, show=TRUE, \dots)
+probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
+xlab = NULL, show = TRUE, \dots)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
-  \item{which}{numeric, to determine what characteristic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
+  \item{stat}{numeric, to determine what characteristic statistic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
   \item{type}{character, \code{"hist"} produces histogram (default), \code{"rank"} ranked curves based on the characteristic defined by \code{which}.}
   \item{trafo}{character, transformation of the plotted variable. \code{"none"}: no transdormation (default), \code{"log"}: logarithmic transformation (base 10), \code{"ratio"}: divides the values by the maximum of them and rescales to the [0, 1] interval (useful for plotting multiple relative abundance curves), \code{"bins"}: recodes the values accurding to quantiles based on \code{probs}, \code{"prab"}: presence absence transformation of count data.}
   \item{ylab}{character to owerwrive default label for the y axis. If \code{NULL}, than default labels are returned on the plot.}
@@ -47,9 +47,38 @@ Peter Solymos, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{image}}, \code{\link{plot}}, \code{\link{boxplot}}, \code{\link{filled.contour}}, \code{\link{par}}, \code{\link{heat.colors}}, \code{\link{heat.colors}}, \code{\link{topo.colors}}, \code{\link{terrain.colors}}, \code{\link{rainbow}}}
 \examples{
-
-
-
+data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
+x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+## Histograms
+par(mfrow=c(2,2))
+plot(x, 1)
+plot(x, 2)
+plot(x, 3)
+plot(x, 4)
+par(mfrow=c(1,1))
+## Ranked curves
+par(mfrow=c(2,2))
+plot(x, 1, type="rank")
+plot(x, 2, type="rank")
+plot(x, 3, type="rank")
+plot(x, 4, type="rank")
+par(mfrow=c(1,1))
+## Boxplot for segments
+par(mfrow=c(2,2))
+boxplot(x, 1)
+boxplot(x, 2)
+boxplot(x, 3)
+boxplot(x, 4)
+par(mfrow=c(1,1))
+## Image (levelplot) for all segments
+image(x, trafo = "bins")
+## Image (levelplot) for each segments
+par(mfrow=c(2,2))
+image(x, segm = 1, trafo = "bins", main = dimnames(x)$segm[1])
+image(x, segm = 2, trafo = "bins", main = dimnames(x)$segm[2])
+image(x, segm = 3, trafo = "bins", main = dimnames(x)$segm[3])
+image(x, segm = 4, trafo = "bins", main = dimnames(x)$segm[4])
+par(mfrow=c(1,1))
 }
 \keyword{ hplot }
 \keyword{ methods }

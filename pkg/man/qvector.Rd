@@ -27,8 +27,10 @@ Peter Solymos, \email{solymos@ualberta.ca}
   \code{\link{quantile}}
 }
 \examples{
-(x <- rnorm(20))
-(y <- qvector(x))
+x <- rnorm(20)
+x
+y <- qvector(x)
+y
 plot(x, y, type="h")
 }
 \keyword{ manip }
