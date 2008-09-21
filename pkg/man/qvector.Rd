@@ -13,7 +13,7 @@ qvector(x, probs = seq(0, 1, 0.25))
   \item{probs}{numeric vector of probabilities with values in [0, 1] used by \code{\link{quantile}}.}
 }
 \value{
-A vector of length the same as the input vector, containing the respective quantile values.
+A numeric vector of length the same as the input vector, containing the respective (upper) quantile values.
 }
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.

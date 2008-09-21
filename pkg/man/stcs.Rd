@@ -9,7 +9,7 @@ This function creates object of class 'stcs' from a data frame. This is the prim
 \usage{
 stsc(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{is}{stcs}(x)
-\method{as}{stcs}(x, ...)
+\method{as}{stcs}(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

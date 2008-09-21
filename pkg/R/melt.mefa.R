@@ -1,5 +1,5 @@
 `melt.mefa` <-
-function (x, segm.var, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
+function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
     if (by.samp) {
         if (is.null(x$samp))
@@ -43,6 +43,6 @@ function (x, segm.var, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         zpart <- data.frame(samp=zsamp, taxa=rep("zero.pseudo", n),
             count=rep(0, n), segm=rep("zero.pseudo", n))
         out <- merge(cpart, zpart, all = TRUE)
-        return(stsc(out, drop.zero=drop.zero, ...))}
+        return(stcs(out, drop.zero=drop.zero, ...))}
 }
 

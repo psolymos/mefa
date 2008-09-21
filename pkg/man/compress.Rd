@@ -7,7 +7,7 @@
 The function compress a factor (or any vector) based on unique values in a vector, if the levels of the vector are nested in the levels of the factor.
 }
 \usage{
-report(x, \dots)
+compress(x, \dots)
 \method{compress}{default}(x, y)
 \method{compress}{factor}(x, y)
 }

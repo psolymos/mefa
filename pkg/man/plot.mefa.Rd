@@ -7,12 +7,11 @@
 Various methods for plotting objects of class 'mefa'.}
 \usage{
 \method{plot}{mefa}(x, which=1:4, type=c("hist", "rank"),
-trafo=c("none", "log", "ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
-\method{boxplot}{mefa}(x, which = 1:4, ylab = NULL, xlab = NULL, ...)
+trafo=c("none", "log", "ratio"), ylab=NULL, xlab=NULL, show=TRUE, \dots)
+\method{boxplot}{mefa}(x, which = 1:4, ylab = NULL, xlab = NULL, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering=TRUE, reverse=TRUE, ylab=NULL, 
-xlab=NULL, show=TRUE, ...)
-
+xlab=NULL, show=TRUE, \dots)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
