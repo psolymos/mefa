@@ -11,13 +11,13 @@ function(x, nlist=10, ...)
     print(x$call, ...)
     cat("\n")
     print(data.frame(Summary), ...)
-    if(x$segm.orig) cat("\n") else {
-        seglist <- x$segment
-        if (length(seglist) > nlist)
-            seglist <- c(seglist[1:nlist], "[...]")
-        cat("\nSegments:\n", sep="")
-        cat(seglist, sep=", ")
-        cat("\n\n")}
+    seglist <- x$segment
+    if (length(seglist) > nlist)
+        seglist <- c(seglist[1:nlist], "[...]")
+    if (length(seglist) == 1)
+        cat("\nSegment:\n", sep="") else cat("\nSegments:\n", sep="")
+    cat(seglist, sep=", ")
+    cat("\n\n")
     print(mstat, ...)
     cat("\n")
 

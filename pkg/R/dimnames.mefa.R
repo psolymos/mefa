@@ -1,8 +1,11 @@
 `dimnames.mefa` <-
 function (x)
 {
-  list(samp = rownames(x$xtab),
+  out <- list(samp = rownames(x$xtab),
        taxa = colnames(x$xtab),
        segm = names(x$segm))
+  if (is.null(out$segm))
+       out$segm <- "undefined"
+  return(out)
 }
 

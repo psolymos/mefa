@@ -13,7 +13,6 @@ out <- list(
     ntaxa = dim(x)[2],
     nsegm = dim(x)[3],
     segment = dimnames(x)$segm,
-    segm.orig = is.null(x$segm),
     call = x$call,
     nested = attr(x, "nested"),
     drop.zero = attr(x, "drop.zero"),
