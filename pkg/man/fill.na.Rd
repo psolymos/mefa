@@ -1,8 +1,8 @@
 \name{fill.na}
 \alias{fill.na}
-\title{Filling <NA> values with nearest above values in a matrix}
+\title{Replace <NA> values with nearest above values in a matrix}
 \description{
-The function fills \code{<NA>} values with the nearest values above them in the same column.
+The function replaces \code{<NA>} values with the nearest values above them in the same column.
 }
 \usage{
 fill.na(x)

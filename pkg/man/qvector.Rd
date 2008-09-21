@@ -1,6 +1,6 @@
 \name{qvector}
 \alias{qvector}
-\title{Numeric Vector Conversion Based on Quantiles}
+\title{Vector conversion based on quantiles}
 \description{
 Converts a numeric vector into an ordinal one based on quantiles.
 }

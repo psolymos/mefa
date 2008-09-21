@@ -51,7 +51,7 @@ data(DOLINAtaxa)
 The data sets are results of the 'Dolina 2007' field study. Species characteristics are based on Kerney et al. (1983).
 }
 \source{
-Paper for count and sample characteristics in preparation. Please cite according to the mefa package, see \code{\citation("mefa")}.
+Paper for count and sample characteristics in preparation. Please cite according to the mefa package, see \code{citation("mefa")}.
 
 Kerney, M.P., Cameron, R.A.D. & Jungbluth, J.H., 1983. \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
 }
