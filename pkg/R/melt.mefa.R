@@ -2,7 +2,7 @@
 function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
     if (by.samp) {
-        if (is.null(x$samp))
+        if (is.null(x$samp) && !is.null(segm.var))
             stop("$samp is NULL")
         count <- array(t(x$xtab))
         samp <- rep(dimnames(x)[[1]], each=dim(x)[2])
@@ -15,7 +15,7 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
                 else segm.var2 <- x$samp[, segm.var]
             segm <- rep(segm.var2, each=dim(x)[2])}
         } else {
-        if (is.null(x$taxa))
+        if (is.null(x$taxa) && !is.null(segm.var))
             stop("$taxa is NULL")
         count <- array(x$xtab)
         samp <- rep(dimnames(x)[[1]], dim(x)[2])
