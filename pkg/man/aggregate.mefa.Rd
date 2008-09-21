@@ -1,13 +1,13 @@
 \name{aggregate.mefa}
 \alias{aggregate.mefa}
-\alias{"[.mefa"}
-\title{Substracting and aggregating objects of class 'mefa'}
+\alias{[.mefa}
+\title{Extracting and aggregating objects of class 'mefa'}
 \description{
-These methods are usefult when substracting or aggrgating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa can be substracted or aggrgated at the same time.
+These methods are usefult when extracting or aggrgating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa can be extracted or aggrgated at the same time.
 }
 \usage{
 \method{aggregate}{mefa}(x, by.samp = NULL, by.taxa = NULL, \ldots)
-\method{"["}{mefa}(x, i = 1:dim(x)[1], j = 1:dim(x)[2], k = 1:dim(x)[3], drop = FALSE)
+\method{[}{mefa}(x, i = 1:dim(x)[1], j = 1:dim(x)[2], k = 1:dim(x)[3], drop = FALSE)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
@@ -17,7 +17,7 @@ These methods are usefult when substracting or aggrgating 'mefa' objects. The co
   \item{j}{index value or a vector of indices for taxa.}
   \item{k}{index value or a vector of indices for segments.}
   \item{drop}{logical, if \code{TRUE} the unused factor leves in the linked tables for samples and species will be dropped after sunstraction. If \code{FALSE} (default) uniused factor levels are left intact.}
-  \item{\ldots}{other arguments passed to the generic function \code{\ling{aggregate}}.}
+  \item{\ldots}{other arguments passed to the generic function.}
 }
 \details{
 The resulting 'mefa' object must contain at least 2 samples, 2 taxa.
