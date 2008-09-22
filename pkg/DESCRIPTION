@@ -5,7 +5,7 @@ Version: 1.9-9
 Date: 2008-09-20
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
-Description: Object classes for long (database style) and wide (crosstabulated) representations of count data coded by sample, taxon and segment (ie. gender, life stage, sampling period) names. Supports easy processing of the count table along with relational data tables for samples and taxa. Methods are provided for substraction, aggregation, conversion, plotting, summary and reporting. Reports can be generated in plain text or LaTeX format.
+Description: Object classes for long (database style, class stcs) and wide (crosstabulated, class mefa) representations of count data coded by sample, taxon and segment (i.e. sub populations, repeated measures) names. Supports easy processing of the count data along with relational data tables for samples and taxa. An object of class mefa is a project specific compendium of the data and can be easily used in further analyses. Methods are provided for extraction, aggregation, conversion, plotting, summary and reporting of mefa objects. Reports can be generated in plain text or LaTeX format.
 License: GPL-2
 URL: http://mefa.r-forge.r-project.org/
 LazyLoad: yes
