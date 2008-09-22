@@ -10,10 +10,10 @@ function (x, filename, segment = FALSE, n = NULL, by.taxa = TRUE,
 if (!is.null(outdir)) {
     current.dir <- getwd()
     setwd(outdir)}
-mf <- x
+mf <- x[drop = TRUE]
 if (is.null(taxa.name)) {
     taxa.name <- 1
-    mf$taxa <- data.frame(rownames(mf), mf)}
+    mf$taxa <- data.frame(rownames(mf$taxa), mf$taxa)}
 
 # test
     if(!is.mefa(mf))
@@ -28,6 +28,8 @@ if (is.null(taxa.name)) {
         n <- which(names(mf$segm) %in% n)
     length.n <- 1
     if (!is.null(n) && is.null(mf$segm))
+        stop("no segments found")
+    if (segment && is.null(mf$segm))
         stop("no segments found")
     if (segment && is.null(n))
         length.n <- dim(mf)[3]
@@ -50,7 +52,7 @@ if (is.null(taxa.name)) {
 
     if (segment) {
         if (is.null(n)) {
-            mfdata <- mf$segm
+            mfdata <- mf$xtab
             mfd <- list()
             for (i in 1:dim(mf)[3]) {
                 runname <- paste(dimnames(mf)$segm[i])
@@ -85,7 +87,6 @@ if (is.null(taxa.name)) {
         autv <- as.vector(mf$taxa)[, author.name][order(mf$taxa[, taxa.order])]
 
 # formatting
-#    sep <- c(",", ":", "(", ":", ")", ";")
     if (tex & tex.control$ital.taxa) ti <- "\\textit{" else ti <- ""
     if (tex & tex.control$bold.1st) tb <- "\\textbf{" else tb <- ""
     if (tex & tex.control$bold.sect) tb2 <- "\\textbf{" else tb2 <- ""
@@ -99,13 +100,12 @@ if (is.null(taxa.name)) {
     vspace2 <- tex.control$vspace2
     calling <- deparse(match.call())
     calling <- gsub("  ", "", calling)
-    mfclass <- deparse(class(mf))
 
 # START ordering=species
     if (by.taxa) {
 
         zz <- file(filename, "w")
-        cat("%% Start writing data from ",mfclass, " object sorted by species into file \"", 
+        cat("%% Start writing data from a 'mefa' object sorted by species into file \"", 
             filename, "\" on ", date(), ".\n%% Call: ", calling, "\n", file = zz, sep = "")
 
 # start of SPEC loop
@@ -194,7 +194,7 @@ if (!grouping) cat(noin1, file = zz, sep = "")
             kloc.sub2 <- subset(kloc.sub, lev.sub == levels(lev.sub)[lev])
             printcount <- rep("",length(lev.sub[lev.sub==levels(lev.sub)[lev]]))
 
-if (class(mf) == "mflist"){
+if (segment){
         mfdl.sub2 <- subset(mfdl.sub, lev.sub == levels(lev.sub)[lev])
         mfdl.sub2[mfdl.sub2==0]  <- paste("DELETEME",sep[5],sep="")
         for (i in 1:nrow(mfdl.sub2)) {
@@ -207,9 +207,7 @@ if (class(mf) == "mflist"){
             }
             printcount[i] <- paste(mfdl.sub2[i,],collapse=paste(sep[5]," ",sep=""))
             printcount[i] <- gsub(paste("DELETEME",sep[5],sep[5]," ",sep=""),"", printcount[i])
-#            printcount[i] <- gsub("DELETEME,, ","", printcount[i])
             printcount[i] <- gsub(paste("DELETEME",sep[5],sep=""),"", printcount[i])
-#            printcount[i] <- gsub("DELETEME,","", printcount[i])
         }
     }
 if (!segment) {
@@ -242,12 +240,9 @@ for (i in 1:nrow(printout)) {
     paragraph <- paste(paragraph,printout[i,j],sep="")
     }}
 
-# add here paste + sep[] !!!
     paragraph <- gsub("  "," ", paragraph)
     paragraph <- gsub(paste(sep[5]," ",sep[6],sep=""),paste(sep[6],sep=""), paragraph)
-#    paragraph <- gsub(", )",")", paragraph)
     paragraph <- gsub(paste(" ",sep[7]," ",sep=""),paste(sep[7]," ",sep=""), paragraph)
-#    paragraph <- gsub(" ; ","; ", paragraph)
     paragraph <- gsub(" . ",". ", paragraph)
     paragraph <- gsub(paste(sep[5],". ",sep=""),". ", paragraph)
 

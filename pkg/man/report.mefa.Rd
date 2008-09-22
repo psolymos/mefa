@@ -24,27 +24,23 @@ report(x, \ldots)
   \item{by.taxa}{logical, whether the main sectioning shold be made according to taxa (\code{TRUE}, default) or samples (\code{FALSE}, currently unavailable).}
   \item{samp.var}{variables in the samples table (\code{x$samp}) to be used in the report. Variables will be used in the order given here.}
   \item{drop.redundant}{logical, whether redundant elements should be dropped (an integer up to \code{length(samp.var)-1}) or not (\code{NULL}, default).}
-  \item{collapse}{logical, whether all data of a given species should be collapsed into single paragraph (\code{TRUE}, defauld) or written into separate paragraphs (\code{FALSE}).}
+  \item{collapse}{logical, if \code{TRUE} samples with identical values in \code{samp.var} for a given species are collapsed to avoid redundancy.}
   \item{taxa.name}{column in the taxa table (\code{x$taxa}) where the taxa names are stored. By default (\code{NULL}) \code{dimnames(x)$taxa} is used.}
   \item{author.name}{column in the taxa table (\code{x$taxa}) where the author names and dates of description are stored. By default it is not used (\code{NULL}).}
   \item{taxa.order}{column in the taxa table (\code{x$taxa}) where the variable for ordering is stored. By default (\code{NULL}) \code{taxa.name} is used for ordering.}
-  \item{grouping}{logical, whether .}
-  \item{tex}{}
-  \item{binary}{}
-  \item{tex.control}{}
-  \item{sep}{}
-  \item{outdir}{character, full path of the directory where the file should be written (working directory is then restored). If \code{NULL}, the current rowking directoty is used.}
+  \item{grouping}{logical, whether all records of a given species should be collapsed into single paragraph without grouping (\code{FALSE}, default), or grouped into separate paragraphs (\code{TRUE}).}
+  \item{tex}{logical, whether to generate formatted LaTeX output (\code{TRUE}) or plain text file (\code{FALSE}).}
+  \item{binary}{logical, if \code{TRUE} the result will contains count data.}
+  \item{tex.control}{a list with LaTex formatting options (if \code{tex = TRUE}). The \code{ital.taxa} controls italicised taxa names, \code{noindent} controls indentation of paragraphs, \code{bold.sect} controls boldface type of paragraph openings, \code{bold.1st} controls the boldface type of first elements of each record of a given species, \code{vspace1} controls the space between species blocks, \code{vspace2} controls the space between paragraphs of the same species (if \code{gouping = FALSE}).}
+  \item{sep}{character vector with 7 elements. The 1st separates values in \code{samp.var}, 2nd is placed between values of \code{samp.var} if redundant elements were dropped, 3rd is the opening character before count data, 4th stands after the segment name, 5th separates values of segments, 6th is the closing character after the count data, 7th separates the records.}
+  \item{outdir}{character, full path of the directory where the file should be written (working directory is then restored). If \code{NULL}, the current working directoty is used.}
   \item{\ldots}{further arguments potentially passed (currently there are none).}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+ The resulting file can be recicled by copy-and-pasting into a document (if \code{tex =FALSE}) or be included into a LaTeX report (e.g. via the package \code{Sweave}, see \code{mefadocs("SampleReport")}). Contrary to the many arguments, the default values do not need modifications in most of the cases (see examples).
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Writes a file into the working (or a specified) directory.
 }
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
@@ -62,8 +58,17 @@ The \code{by.taxa = FALSE} option is not implemented.
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
 x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
 \dontrun{
-report(x, "report.txt")
-report(x, "report.tex", tex=TRUE)
+## Plain text
+## Count values from x$xtab
+report(x, "report-all.txt")
+## Count values for each segments
+report(x, "report-segm-all.txt", samp.var=c("method","microhab","stratum"), segment=TRUE)
+## Count values for segments 2 and 3
+report(x, "report.-segm-23.txt", samp.var=c("method","microhab","stratum"), segment=TRUE, n=2:3)
+## LaTeX formatting
+report(x, "report-all.tex", tex=TRUE)
+## For how to include into a TeX or Rnw file, see:
+mefadocs("SampleReport")
 }
 }
 \keyword{ methods }

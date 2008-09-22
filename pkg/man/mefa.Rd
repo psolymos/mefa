@@ -40,7 +40,9 @@ xtab.fixed = TRUE)
   \item{\dots}{other arguments passed to functions.}
 }
 \details{
-mefa -- effects of options
+A mefa object can be viewed as project oriented a compendium of the data. It contains 3 dimensional (samples, taxa, segments) representation of the count data and data tables for samples and taxa. Segments contain information on some particular internal division of the data (sub populations, method specific partitions, repeated measures), and it has basically tachnical significance. Thus data tables for segments are not supported.
+
+Methods provided for the 'mefa' object are useful for extracting, subsetting, plotting and summarizing the data. The print method returns basic information, instead of a long structural representation. The 'mefa' objects can used for generating reports and further analyses (see examples).
 
 The method \code{dim} returns a vector with 3 values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identican.to the matrix \code{x$xtab}, thus no need for a replicate). The \code{dimnames} method returns
 }
@@ -63,7 +65,8 @@ Peter Solymos, \email{solymos@ualberta.ca}
 \note{
 The \code{mefa} function alone can be used instead of the combination of object classes \code{xcount} and \code{xorder} used in older (< 2.0) versions of the mefa package. Further it is also extended by previously undocumented features.
 }
-\seealso{Further methods detailed on seperate help pages: see \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} for plotting options.
+\seealso{
+Further methods detailed on seperate help pages: see \code{\link{[.mefa}} and \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} for plotting options.
 
 The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \code{reshape} package of Hadley Wickham, and by the \code{\link[simba]{mama}} function in the \code{simba} package by  Gerald Jurasinski. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} function), or linking sample and taxa data tables with the count data.
 }
@@ -82,10 +85,21 @@ x3
 x4 <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
 x4
 ## Methods
+## (chapter 'See also' provides
+## links for further methods)
 summary(x4)
 is(x4, "mefa")
 dim(x4)
 dimnames(x4)
+## Simple examples how to analyse mefa objects
+## GLM on sample abundances
+mod <- glm(rowSums(x4$xtab) ~ .^2,
+    data = x4$samp[, c(4, 6)], family = quasipoisson)
+summary(mod)
+## Cluster analysis of community matrix
+x5 <- aggregate(x4, c("method", "microhab"))
+h <- hclust(dist(x5$xtab))
+plot(h)
 }
 \keyword{ classes }
 \keyword{ manip }

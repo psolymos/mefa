@@ -16,15 +16,23 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
         for (nn in 1:length(k))
             segm.out[[nn]] <- x$segm[[k[nn]]][i, j]
         names(segm.out) <- names(x$segm)[k]
-        x$segm <- segm.out}
+        }
 
-    if (!subsegm) xtab.out <- x$xtab[i, j]
-        else {
-        if (!is.null(x$segm) && length(k) == 1)
-            xtab.out <- segm.out[[1]] else {
+    if (!subsegm) {
+        xtab.out <- x$xtab[i, j]
+        } else {
+        if (!is.null(x$segm) && length(k) == 1) {
             xtab.out <- segm.out[[1]]
-            for (nn in 2:length(k))
-                xtab.out <- xtab.out + segm.out[[nn]] }}
+            } else {
+                if (attr(x, "nested")) {
+                    xtab.out <- x$segm[[max(k)]]
+                    } else {
+                    xtab.out <- segm.out[[1]]
+                    for (nn in 2:length(k))
+                        xtab.out <- xtab.out + segm.out[[nn]] }
+            }
+        }
+    x$segm <- segm.out
     x$xtab <- xtab.out
     if (is.null(x$samp))
         x$samp <- NULL else {
