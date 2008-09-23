@@ -11,7 +11,10 @@ function(x)
     mt[2] <- is.matrix(x$xtab)
     if (!is.null(x$segm)) {
         mt[3] <- is.list(x$segm)
-        mt[4] <- sum(x$xtab) == sum(unlist(x$segm))
+        if (attr(x, "nested")) {
+            mt[4] <- sum(x$xtab) == sum(x$segm[[length(x$segm)]])
+            } else {
+            mt[4] <- sum(x$xtab) == sum(unlist(x$segm))}
         for (i in 1:dim(x)[3]) {
             mt[5] <- identical(rownames(x$xtab), rownames(x$segm[[i]]))
             mt[6] <- identical(colnames(x$xtab), colnames(x$segm[[i]]))

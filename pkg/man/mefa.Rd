@@ -42,9 +42,13 @@ xtab.fixed = TRUE)
 \details{
 A mefa object can be viewed as project oriented a compendium of the data. It contains 3 dimensional (samples, taxa, segments) representation of the count data and data tables for samples and taxa. Segments contain information on some particular internal division of the data (sub populations, method specific partitions, repeated measures), and it has basically tachnical significance. Thus data tables for segments are not supported.
 
-Methods provided for the 'mefa' object are useful for extracting, subsetting, plotting and summarizing the data. The print method returns basic information, instead of a long structural representation. The 'mefa' objects can used for generating reports and further analyses (see examples).
+The print method returns basic information, instead of a long structural representation.
+
+The summary method returns a list invisibly containing summary statistics (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, stv.) of the 'mefa' object. This self explaining list can be recalled by \code{unclass(summary(x))}
 
 The method \code{dim} returns a vector with 3 values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identican.to the matrix \code{x$xtab}, thus no need for a replicate). The \code{dimnames} method returns
+
+Methods provided for the 'mefa' object are useful for extracting, subsetting, plotting and summarizing the data. The 'mefa' objects can used for generating reports and further analyses (see examples).
 }
 \value{
 An object of class 'mefa'. It is a list with 5 elements:
@@ -88,8 +92,13 @@ x4
 ## (chapter 'See also' provides
 ## links for further methods)
 summary(x4)
+## Descriptives inside the summary
+unclass(summary(x4))
+## Testing mefa objects
 is(x4, "mefa")
+## Dimensions
 dim(x4)
+## Dimnames
 dimnames(x4)
 ## Simple examples how to analyse mefa objects
 ## GLM on sample abundances
