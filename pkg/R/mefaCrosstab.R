@@ -7,14 +7,15 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
         ss <- stcs(x, expand = TRUE, drop.zero=drop.zero)
     if (!segment) {
         out <- as.matrix(table(ss$samp, ss$taxa))
-        if (!is.null(attr(ss, "zero.pseudo")) && !drop.zero)
+        if (attr(ss, "zero.count") && !drop.zero)
             out <- out[, -which(colnames(out) %in% attr(ss, "zero.pseudo"))]}
     if (segment) {
         out <- list()
-        nsegm <- if (!is.null(attr(ss, "zero.pseudo")))
+        nsegm <- if (attr(ss, "zero.count"))
             nlevels(ss$segm) - 1 else nlevels(ss$segm)
-        if (nsegm == 1) out <- NULL
-            else {
+        if (nsegm == 1) {
+            out <- NULL
+            } else {
             for (i in 1:nsegm) {
                 if (drop.zero || levels(ss$segm)[i] != attr(ss, "zero.pseudo")) {
                     out[[i]] <- as.matrix(table(ss$samp, ss$tax, ss$segm)[,,i])

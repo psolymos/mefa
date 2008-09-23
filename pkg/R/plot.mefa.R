@@ -30,11 +30,11 @@ function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
    if (stat == 3) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Occupancy"
-       yvar <- summary(x)$spocc}
+       yvar <- summary(x)$occup}
    if (stat == 4) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Abundance"
-       yvar <- summary(x)$spabu}
+       yvar <- summary(x)$abund}
 
    if (trafo=="log") {
        yvar <- log10(yvar)
