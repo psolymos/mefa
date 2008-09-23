@@ -23,7 +23,8 @@ Peter Solymos, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{mefa}}, \code{\link{is.mefa}}}
 \examples{
-x <- matrix(rpois(20,1), 5, 4)
+x <- matrix(rpois(20,1), 5, 4,
+    dimnames = list(1:5, 1:4))
 m <- mefa(x)
 mefaStructure(m)
 }
