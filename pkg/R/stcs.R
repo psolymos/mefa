@@ -11,7 +11,8 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     if (ncols > 4) stop("2-4 columns required")
     x <- data.frame(x)
     if (ncols == 2)
-        x <- data.frame(x, rep(1, nrows), rep("undefined", nrows))
+        x <- data.frame(as.factor(x[, 1]), as.factor(x[, 2]),
+            rep(1, nrows), rep("undefined", nrows))
     if (ncols == 3) {
         if (is.factor(x[,3]) || is.character(x[,3])) {
             x <- data.frame(x[,1:2], rep(1, nrows), x[,3])
