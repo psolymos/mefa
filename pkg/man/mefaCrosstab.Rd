@@ -12,7 +12,7 @@ mefaCrosstab(x, segment = FALSE, nested = FALSE, drop.zero = FALSE)
   \item{x}{an object of class 'stcs'.}
   \item{segment}{logical, if \code{TRUE}, the crosstabulation is made in 2 dimensions by the \code{samp} (sample) and \code{taxa} columns of the \code{x}. Otherwise, crosstabulation is made in 3 dimensions by the \code{samp}, \code{taxa} and \code{segm} (segment) columns.}
   \item{nested}{logical, if \code{FALSE} count values of each segments are independent, if \code{TRUE} crosstabulated matrices are summes in a nested fashion from segment level 1 to the number of segments (it is indicated in the segment levels as well).}
-  \item{drop.zero}{argument passed to the function \code{\link{stcs}}, indicatinh whether empty samples (with zero sum) should be removed prior to crosstabulation (\code{TRUE}), or not (\code{FALSE}).}
+  \item{drop.zero}{argument passed to the function \code{\link{stcs}}, indicating whether empty samples (with zero sum) should be removed prior to crosstabulation (\code{TRUE}), or not (\code{FALSE}).}
 }
 \details{
 The cross tabulation of an object of class 'stcs' is made after the inflation of the data table by the \code{expand = TRUE} argument of the function \code{\link{stcs}}. The inflation is made by the function \code{\link{inflate}}.

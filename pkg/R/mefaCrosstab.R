@@ -17,9 +17,9 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
             out <- NULL
             } else {
             for (i in 1:nsegm) {
-                if (drop.zero || levels(ss$segm)[i] != attr(ss, "zero.pseudo")) {
+                if (drop.zero || (levels(ss$segm)[i] != attr(ss, "zero.pseudo"))) {
                     out[[i]] <- as.matrix(table(ss$samp, ss$tax, ss$segm)[,,i])
-                if (!is.null(attr(ss, "zero.pseudo")) && !drop.zero)
+                if (attr(ss, "zero.count") && !drop.zero)
                     out[[i]] <- out[[i]][, -which(colnames(out[[i]]) %in% attr(ss, "zero.pseudo"))]
                 names(out)[i] <- levels(ss$segm)[i]}}
             if (nested) {
