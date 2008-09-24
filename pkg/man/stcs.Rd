@@ -41,9 +41,11 @@ Peter Solymos, \email{solymos@ualberta.ca}
 \seealso{\code{\link{data.frame}}, \code{\link{summary.data.frame}}, \code{\link{str}}, \code{\link{table}}}
 \examples{
 ## General long format of the data
-x <- data.frame(sample = LETTERS[c(1,1,2,2,3,4)],
-    species = c(letters[c(5,5,5,6,7)], "zero.pseudo"),
-    count = c(1,2,10,3,4,0), segment = letters[c(8,9,8,9,8,8)])
+x <- data.frame(
+    sample = paste("Sample", c(1,1,2,2,3,4), sep="."),
+    species = c(paste("Species", c(1,1,1,2,3), sep="."),  "zero.pseudo"),
+    count = c(1,2,10,3,4,0),
+    segment = letters[c(6,13,6,13,6,6)])
 x
 ## Long format as stcs
 y <- stcs(x)
@@ -55,7 +57,7 @@ is(y, "data.frame")
 ## Effects of arguments
 stcs(x, expand = TRUE)
 stcs(x, drop.zero = TRUE)
-stcs(x, zero.pseudo = "pseudop.secies")
+stcs(x, zero.pseudo = "pseudo.secies")
 ## Input options
 stcs(x[,1:2])
 stcs(x[,1:3])
