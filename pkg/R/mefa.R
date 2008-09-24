@@ -10,9 +10,9 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
     if (nested && !segment)
         warning("nested = TRUE has no effect if segment = FALSE")
     if (!is.stcs(x)) {
-        if (is.null(rownames(x)))
+        if (is.null(rownames(x)) && !is.null(samp))
             stop("rownames(x) should not be NULL")
-        if (is.null(colnames(x)))
+        if (is.null(colnames(x)) && !is.null(taxa))
             stop("colnames(x) should not be NULL")
         xtab <- as.matrix(x)
         segm <- NULL}

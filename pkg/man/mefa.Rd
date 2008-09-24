@@ -40,23 +40,43 @@ xtab.fixed = TRUE)
   \item{\dots}{other arguments passed to functions.}
 }
 \details{
-A mefa object can be viewed as project oriented a compendium of the data. It contains 3 dimensional (samples, taxa, segments) representation of the count data and data tables for samples and taxa. Segments contain information on some particular internal division of the data (sub populations, method specific partitions, repeated measures), and it has basically tachnical significance. Thus data tables for segments are not supported.
+Main goals of the \code{mefa} function are to (1) convert a long formatted object of 'stcs' into a crosstabulated and optionally segmented 'mefa' object and (2) link this crosstabulation with tables of samples and taxa. The segments can be nested within each other. This feature can be useful, if segments represent e.g. sampling periods (years) and the the aim is to detect effects of data accumulation over time.
+
+A mefa object can be viewed as project oriented a compendium of the data. It contains 3 dimensional (samples, taxa, segments) representation of the count data and data tables for samples and taxa. Segments contain information on some particular internal division of the data (sub populations, method specific partitions, repeated measures), and it has technical significance. Thus data tables for segments are not supported.
+
+If the input \code{xtab} is a matrix, dimnames are necessary if either \code{samp} or \code{taxa} tables are provided. In other cases, dimnames are not necessary. In this way, simple statistics can be returned for the matrix.
 
 The print method returns basic information, instead of a long structural representation.
 
-The summary method returns a list invisibly containing summary statistics (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, stv.) of the 'mefa' object. This self explaining list can be recalled by \code{unclass(summary(x))}
+The summary contains statistics calculated from the 'mefa' object (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, etc., see 'Value' section). The list can be recalled by e.g. \code{unclass(summary(x))}, elements of the list e.g. \code{summary(x)$srich}.
 
-The method \code{dim} returns a vector with 3 values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identican.to the matrix \code{x$xtab}, thus no need for a replicate). The \code{dimnames} method returns
-
-Methods provided for the 'mefa' object are useful for extracting, subsetting, plotting and summarizing the data. The 'mefa' objects can used for generating reports and further analyses (see examples).
+Methods provided for extracting, subsetting, plotting and reporting 'mefa' objects are also provided (see links in 'See also' section). The 'mefa' objects can be used in further analyses (see examples).
 }
 \value{
-An object of class 'mefa'. It is a list with 5 elements:
+The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 elements:
   \item{call}{the function call.}
   \item{xtab}{crosstabulated count data, rows are samples, columns are taxa.}
   \item{segm}{list of matrices if segments are used, otherwise \code{NULL}.}
   \item{samp}{a data frame for sample related data (rows correspond to samples) if provided, otherwise \code{NULL}.}
   \item{taxa}{a data frame for taxa related data (rows correspond to taxa) if provided, otherwise \code{NULL}.}
+
+The \code{summary.mefa} function returns a list invisibly, with elements:
+  \item{srich}{vector with species richness values for the samples.}
+  \item{ninds}{vector with number of individuals values for the samples.}
+  \item{occup}{number of sites occupied by each species.}
+  \item{abund}{abundances of each species.}
+  \item{ntot}{total number of individuals.}
+  \item{mfill}{matrix fill in.}
+  \item{nsamp}{number of samples.}
+  \item{ntaxa}{number of taxa.}
+  \item{nsegm}{number of segments.}
+  \item{segment}{segment names.}
+  \item{call}{the function call from the 'mefa' object.}
+  \item{nested, drop.zero, xtab.fixed}{attributes of the 'mefa' object.}
+
+The method \code{dim} returns a vector of length 3 with values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identican.to the matrix \code{x$xtab}, thus no need for a replicate).
+
+The \code{dimnames} method returns a list of three character vectors for names of samples, taxa and segments. Some ofthese can be \code{NULL}.
 }
 \references{
 Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
@@ -72,7 +92,7 @@ The \code{mefa} function alone can be used instead of the combination of object 
 \seealso{
 Further methods detailed on seperate help pages: see \code{\link{[.mefa}} and \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} for plotting options.
 
-The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \code{reshape} package of Hadley Wickham, and by the \code{\link[simba]{mama}} function in the \code{simba} package by  Gerald Jurasinski. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} function), or linking sample and taxa data tables with the count data.
+The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \code{reshape} package of Hadley Wickham, and by the \code{\link[simba]{mama}} function in the \code{simba} package by  Gerald Jurasinski. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} function), or linking data tables for sample and taxa to the count data.
 }
 \examples{
 data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
