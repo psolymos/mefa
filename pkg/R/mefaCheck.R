@@ -7,7 +7,8 @@ function(x)
     mt <- rep(TRUE, 10)
     re <- list()
 
-    mt[1] <- length(x) == 5
+# when extracting or aggregating, it can be shorter, when e.g. x$samp <- NULL
+#    mt[1] <- length(x) == 5
     mt[2] <- is.matrix(x$xtab)
     if (!is.null(x$segm)) {
         mt[3] <- is.list(x$segm)
