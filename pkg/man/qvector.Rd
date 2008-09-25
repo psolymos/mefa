@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{qvector}
 \alias{qvector}
-\title{Vector conversion based on quantiles}
+\title{Discretize a vector}
 \description{
 Converts a numeric vector into an ordinal one based on quantiles.
 }
@@ -32,6 +32,7 @@ x <- rnorm(20)
 x
 y <- qvector(x)
 y
+rbind(x, y)
 plot(x, y, type="h")
 }
 \keyword{ manip }

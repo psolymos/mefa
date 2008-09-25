@@ -49,12 +49,12 @@ data(DOLINAtaxa)
   }
 }
 \details{
-The data sets are results of the 'Dolina 2007' field study. Species characteristics are based on Kerney et al. (1983).
+The data sets are results of the 'DOLINA 2007' expedition (Vilisics et al. 2008). Species characteristics are based on Kerney et al. (1983).
 }
 \source{
-Paper for count and sample characteristics in preparation. Please cite according to the mefa package, see \code{citation("mefa")}.
+Vilisics, F., Nagy, A., \enc{Sólymos}{Solymos}, P., Farkas, R., Kemencei, Z., \enc{Páll}{Pall}-Gergely, B., Kisfali, M., & Hornung, E., 2008. Data on the terrestrial isopoda fauna of the \enc{Alsó}{Also}-hegy, Aggtelek National Park, Hungary. \emph{Folia Faunistica Slovaca} 13, 9--12.
 
-Kerney, M.P., Cameron, R.A.D. & Jungbluth, J.H., 1983. \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
+Kerney, M. P., Cameron, R. A. D. & Jungbluth, J. H., 1983. \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
 }
 \examples{
 data(DOLINAcounts)

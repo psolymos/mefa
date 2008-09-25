@@ -13,10 +13,10 @@ fill.na(x)
   \item{x}{a matrix or data frame.}
 }
 \details{
-This function is useful when converting a 'notebook style' data into an 'stsc' object. The 'notebook style' data means that observations are registeres in a non-redundant way, e.g. when typing in a spreadsheet.
+This function is useful when converting a 'notebook style' data into an 'stcs' object. The 'notebook style' data means that observations are registered in a non-redundant way, e.g. when typing in a spreadsheet.
 }
 \value{
-A matrix or data frame.
+A matrix or a data frame.
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.

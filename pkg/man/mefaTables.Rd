@@ -3,21 +3,22 @@
 \alias{mefaTables}
 \title{Subsetting and ordering matrix and data frame based on row or column names}
 \description{
-This function is called by the \code{\link{mefa}} function, but can be applied more generally for sobsetting and ordering.
+This function is called by the \code{\link{mefa}} function, but can be applied more generally for subsetting and ordering.
 }
 \usage{
-mefaTables(xtab, dframe, margin, index = NULL, drop.index = FALSE, xtab.fixed = TRUE)
+mefaTables(xtab, dframe, margin, index = NULL,
+drop.index = FALSE, xtab.fixed = TRUE)
 }
 \arguments{
   \item{xtab}{a data matrix.}
   \item{dframe}{a data frame.}
-  \item{margin}{margin of the \code{xtab} matrix to use row \code{margin = 1} or column names \code{margin = 2} in comparison with the rownames of \code{dframe}.}
+  \item{margin}{margin of the \code{xtab} matrix to use row (\code{margin = 1}) or column (\code{margin = 2}) names in comparison with the rownames of \code{dframe}.}
   \item{index}{if \code{NULL} rownames are used directly, else it can be used to set which column of \code{dframe} should be used as rowname and for comparison.}
   \item{drop.index}{logical, should the \code{index} column of \code{dframe} be deleted (if \code{index != NULL}).}
-  \item{xtab.fixed}{logical, if \code{TRUE} the \code{xtab} matrix is left intact, and \code{dframe} is subsetted accordingly. If \code{FALSE}, both \code{xtab} and \code{dframe} are subsetted returning values based on the the intersect of the compared names.}
+  \item{xtab.fixed}{logical, if \code{TRUE} the \code{xtab} matrix is left intact, and \code{dframe} is subsetted accordingly. If \code{FALSE}, both \code{xtab} and \code{dframe} are subsetted, and returned values are based on the the intersect of the compared names.}
 }
 \value{
-Returns a list with elements \code{xtab} (matrix) and \code{dtab} (data frame), corresponding to the subsetted \code{xtab} and \code{dframe} data sets, respectively. Original column and row ordering in the input matrix is preserved.
+Returns a list with elements \code{xtab} (matrix) and \code{dtab} (data frame), corresponding to the subsetted \code{xtab} and \code{dframe} data sets, respectively. Original column and row orderings in the input matrix \code{xtab} are preserved.
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.

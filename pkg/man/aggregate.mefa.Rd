@@ -15,16 +15,14 @@ These methods are useful when extracting or aggregating 'mefa' objects. The coun
   \item{by.samp}{a vector with length as the number of samples and more than one unique values to use aggregating samples.}
   \item{by.taxa}{a vector with length as the number of taxa and more than one unique values to use aggregating taxa.}
   \item{inside}{logica, if \code{TRUE} \code{by.samp} and \code{by.taxa} are searched in \code{x$samp} and \code{x$taxa} (inside \code{x}). If \code{FALSE}, \code{by.samp} and \code{by.taxa}  can be any vector with appropriate length.}
-  \item{i}{index value or a vector of indices for samples.}
-  \item{j}{index value or a vector of indices for taxa.}
-  \item{k}{index value or a vector of indices for segments.}
-  \item{drop}{logical, if \code{TRUE} the unused factor leves in the linked tables for samples and species will be dropped after sunstraction. If \code{FALSE} (default) uniused factor levels are left intact.}
+  \item{i, j, k}{index value or a vector of indices for samples, taxa and segments, respectively.}
+  \item{drop}{logical, if \code{TRUE} the unused factor leves in the linked tables for samples and species will be dropped after extraction. If \code{FALSE} (default) unused factor levels are left intact.}
   \item{\ldots}{other arguments passed to the generic function.}
 }
 \details{
-If a 'mefa' object is aggregated, the either or both tables for samples and taxa (depending on if the aggregation was made by rows, columns or both) are set to \code{NULL}. Because aggregation is not straightforward for data frames with mixed type of data (e.g. factors, character vectors), and the applied function (mean, sum, etc.) depends on the type of the numeric variables. Consequently, if new data table is needed, that must be defined again by the function \code{\link{mefa}}. If the original data frame contained only numeric columns, it can be easily aggregated if the applied function is known. For factors and numeric columns, however, such aggregation is not defined.
+If a 'mefa' object is aggregated, either or both tables for samples and taxa (depending on if the aggregation was made by rows, columns or both) are set to \code{NULL}. Because aggregation is not straightforward for data frames with mixed type of data (e.g. factors, character vectors), and the applied function (mean, sum, etc.) depends on the type of the numeric variables. Consequently, if new data table is needed, that must be defined again by the function \code{\link{mefa}}. If the original data frame contained only numeric columns, it can be easily aggregated if the function to apply is known. For factors and numeric columns, however, such aggregation is not defined.
 
-The extracting method retains samples and taxa tables as well. If non-nested segments are extracted, the \code{x$xtab} matrix will contain the sum of segments, and not the original values. Thus if a resulting 'mefa' object has only one segment, it will be identical to the \code{x$xtab} matrix. If nested segments are extracted, \code{x$xtab} will be identical to the last segment and not the sum of segments. See the examples for these differences.
+The extracting method retains samples and taxa tables as well. If non-nested segments are extracted, the \code{x$xtab} matrix will contain the sum of segments, and not the original values of \code{x$xtab}. Thus if a resulting 'mefa' object has only one segment, it will be identical to the \code{x$xtab} matrix. If nested segments are extracted, \code{x$xtab} will be identical to the last segment and not the sum of segments. See the examples for these differences.
 
 The resulting 'mefa' object must contain at least 2 samples and 2 taxa.
 }
@@ -40,7 +38,7 @@ An object of class 'mefa'.
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \note{
-The \code{aggregate} method replaces the function \code{strify}, the \code{[} method replaces the function \code{exclmf} of the old (< 2.0) versions of the mefa package.
+The \code{aggregate} method replaces the function \code{strify}, the \code{[} method replaces the function \code{exclmf} of the old (< 2.0) versions of the \strong{mefa} package.
 }
 \seealso{\code{\link{mefa}}}
 \examples{
