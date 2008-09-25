@@ -3,7 +3,7 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 {
     x <- xtab
     if (any(is.na(x)))
-        stop("xtab contains NA")
+        stop("'xtab' contains 'NA'")
     if (min(dim(as.matrix(x))) == 1)
         stop("2-4 columns required")
     nrows <- nrow(x)
@@ -32,9 +32,9 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
     if (!is.null(zpart)){
         if (zero.pseudo %in% unique(as.character(x[,2 ])))
-            stop("\"zero.pseudo\" found in taxa names: specify zero.pseudo")
+            stop("'zero.pseudo' found in taxa names: specify other value")
         if (zero.pseudo == "not.defined")
-            stop("\"not.defined\" found in taxa names: specify in other way")
+            stop("'not.defined' found in taxa names: change the name")
         zpart[,2] <- rep(zero.pseudo, nrow(zpart))
         zpart[,4] <- rep(zero.pseudo, nrow(zpart))
         joint <- which(unique(zpart[,1]) %in% unique(x[,1]))

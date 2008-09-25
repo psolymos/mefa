@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{aggregate.mefa}
 \alias{aggregate.mefa}
 \alias{[.mefa}
@@ -31,12 +32,12 @@ The resulting 'mefa' object must contain at least 2 samples and 2 taxa.
 An object of class 'mefa'.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \note{
 The \code{aggregate} method replaces the function \code{strify}, the \code{[} method replaces the function \code{exclmf} of the old (< 2.0) versions of the mefa package.
@@ -57,7 +58,7 @@ x[1:10, ]
 x[, 1:5]
 x[, , "broken"]
 x[1:10, 1:5]
-x[1:10, 1:5, 2:3]
+x[1:10, 1:5, 2]
 ## Note factor levels
 y <- x[which(x$samp$method == "time"), ]
 levels(y$samp$method)
@@ -65,8 +66,8 @@ z <- x[which(x$samp$method == "time"), drop = TRUE]
 levels(z$samp$method)
 ## Note the differences in total sums
 y <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa, nested = TRUE)
-x[ , , 2:3]
-y[ , , 2:3]
+x[ , , 2]
+y[ , , 2]
 }
 \keyword{ manip }
 \keyword{ methods }

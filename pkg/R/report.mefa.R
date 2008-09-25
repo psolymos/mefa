@@ -17,11 +17,11 @@ if (is.null(taxa.name)) {
 
 # test
     if(!is.mefa(mf))
-        stop("object is not of class mefa")
+        stop("object is not of class 'mefa'")
     if (is.null(mf$samp) || is.null(mf$taxa))
-        stop("report needs both $samp and $taxa")
+        stop("report needs both '$samp' and '$taxa'")
     if (length(sep) != 7) 
-        stop("specify exactly 7 separators")
+        stop("specify exactly 7 'sep' values")
     if (is.null(taxa.order))
         taxa.order <- taxa.name
     if (is.character(n))
@@ -42,7 +42,7 @@ if (is.null(taxa.name)) {
     loc <- loca[do.call(order, loca), ]
 
     if (!is.null(drop.redundant) & length(drop.redundant) >= ncol(loca))
-        stop("drop.redundant should be lower than length of samp.var")
+        stop("'drop.redundant' should be smaller than length of 'samp.var'")
 
 # total count data
     if (!segment) {

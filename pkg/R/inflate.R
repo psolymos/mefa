@@ -1,16 +1,16 @@
 `inflate` <-
-function (x, y)
+function (x, by)
 {
     x <- data.frame(x)
-    if (nrow(x) != length(y))
+    if (nrow(x) != length(by))
         stop("dimensions do not match")
-    if (!identical(all.equal(y, round(y)), TRUE))
-        stop("y must be integer")
-    if (any(y <= 0))
-        stop("y must be positive")
+    if (!identical(all.equal(by, round(by)), TRUE))
+        stop("'by' must be integer")
+    if (any(by <= 0))
+        stop("'by' must be positive")
     out <- apply(x, 2, function(x) {
-        z <- mapply(rep, x, y)
-        names(z) <- NULL # this is needed to overcome dupl. row names
+        z <- mapply(rep, x, by)
+        names(z) <- NULL
         unlist(z)
         })
     return(data.frame(out))

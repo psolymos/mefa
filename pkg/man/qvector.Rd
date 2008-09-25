@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{qvector}
 \alias{qvector}
 \title{Vector conversion based on quantiles}
@@ -16,12 +17,12 @@ qvector(x, probs = seq(0, 1, 0.25))
 A numeric vector of length the same as the input vector, containing the respective (upper) quantile values.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
   \code{\link{quantile}}

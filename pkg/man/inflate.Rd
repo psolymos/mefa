@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{inflate}
 \alias{inflate}
 \title{Inflate a data frame based on count values in a vector}
@@ -5,24 +6,24 @@
 The function inflates a data frame based on count values in a vector corresponding the rows.
 }
 \usage{
-inflate(x, y)
+inflate(x, by)
 }
 \arguments{
   \item{x}{a matrix or data frame, but can be a vector.}
-  \item{y}{a vector containing positive (non zero) real numbers.}
+  \item{by}{a vector containing positive (non zero) real numbers.}
 }
 \details{
-Each rows of the data frame \code{x} will be repeated as many times as the corresponding value in the vector \code{y}. This function is called internally by the function \code{\link{stcs}}.
+Each rows of the data frame \code{x} will be repeated as many times as the corresponding value in the vector \code{by}. This function is called internally by the function \code{\link{stcs}}.
 }
 \value{
-A data frame with columns as in the original (\code{x}) and \code{sum(y)} number of rows.}
+A data frame with columns as in the original (\code{x}) and \code{sum(by)} number of rows.}
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}, 
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{stcs}}}
 \examples{

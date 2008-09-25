@@ -2,7 +2,7 @@
 function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
 {
     if (margin != 1 && margin != 2)
-        stop("margin should be 1 or 2")
+        stop("'margin' should be 1 or 2")
     if (margin == 1) {
         rank.orig <- c(1:nrow(xtab))[order(rownames(xtab))]
         nam.orig <- rownames(xtab)
@@ -34,7 +34,7 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
     nsub <- if (margin == 1)
         rownames(xsub) else colnames(xsub)
     if (!identical(rownames(dsub), nsub))
-        stop("tables do not match")
+        stop("names do not match")
     if (!is.null(index) && drop.index)
         dsub[, index] <- NULL
     return(list(xtab=xsub, dtab=dsub))

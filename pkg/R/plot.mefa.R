@@ -3,7 +3,7 @@ function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
 "ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
    if (!all(stat %in% 1:4))
-       stop("stat must be in 1:4")
+       stop("'stat' must be in 1:4")
    if (!length(stat) == 1) stat <- 1
    if (!length(type) == 1) type <- type[1]
    if (!length(trafo) == 1) trafo <- trafo[1]

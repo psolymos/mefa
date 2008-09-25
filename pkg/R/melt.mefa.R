@@ -3,7 +3,7 @@ function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=
 {
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))
-            stop("$samp is NULL")
+            stop("'$samp' is 'NULL'")
         count <- array(t(x$xtab))
         samp <- rep(dimnames(x)[[1]], each=dim(x)[2])
         taxa <- rep(dimnames(x)[[2]], dim(x)[1])
@@ -20,7 +20,7 @@ function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=
                 }
         } else {
         if (is.null(x$taxa) && !is.null(segm.var))
-            stop("$taxa is NULL")
+            stop("'$taxa' is 'NULL'")
         count <- array(x$xtab)
         samp <- rep(dimnames(x)[[1]], dim(x)[2])
         taxa <- rep(dimnames(x)[[2]], each=dim(x)[1])

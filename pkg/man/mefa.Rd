@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{mefa}
 \alias{mefa-package}
 \alias{mefa}
@@ -79,12 +80,12 @@ The method \code{dim} returns a vector of length 3 with values for number of sam
 The \code{dimnames} method returns a list of three character vectors for names of samples, taxa and segments. Some ofthese can be \code{NULL}.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \note{
 The \code{mefa} function alone can be used instead of the combination of object classes \code{xcount} and \code{xorder} used in older (< 2.0) versions of the mefa package. Further it is also extended by previously undocumented features.

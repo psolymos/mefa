@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{stcs}
 \alias{stcs}
 \alias{is.stcs}
@@ -31,12 +32,12 @@ Returns an object of class 'stcs' with 4 columns. The column names are converted
 The class has some own methods (i.e. \code{is} and \code{as}), but also has a \code{data.frame} class attribute. Thus all methods available for data frames are applicable to an object of class 'stcs' (e.g. \code{summary}, \code{str}).
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{data.frame}}, \code{\link{summary.data.frame}}, \code{\link{str}}, \code{\link{table}}}
 \examples{

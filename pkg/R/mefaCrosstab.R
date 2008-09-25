@@ -2,10 +2,8 @@
 function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
 {
     if (!is.stcs(x))
-        stop("x must be of class stcs")
-    if (!attr(x, "expand")) {
-        ss <- stcs(x, expand = TRUE, drop.zero=drop.zero)
-        } else ss <- x
+        stop("'x' must be of class 'stcs'")
+    ss <- stcs(x, expand = !attr(x, "expand"), drop.zero=drop.zero)
     if (!segment) {
         out <- as.matrix(table(ss$samp, ss$taxa))
         if (attr(ss, "zero.count") && !drop.zero)

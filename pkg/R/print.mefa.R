@@ -2,7 +2,7 @@
 function(x, ...)
 {
 #cat("\nCall: ", deparse(x$call), "\n", sep="")
-cat("\nAn object of class \"mefa\" containing\n\n", sep="")
+cat("\nAn object of class 'mefa' containing\n\n", sep="")
 indiv <- if (sum(x$xtab) == 1) " individual" else " individuals"
 cat(" - ", sum(x$xtab), indiv, " of ", ncol(x$xtab), " taxa in ", nrow(x$xtab), " samples,\n", sep="")
 cat(" - ", sep="")

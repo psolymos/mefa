@@ -11,7 +11,7 @@ function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
                 by.samp <- x$samp[, by.samp] else {
                 by.samp <- interaction(x$samp[, by.samp])}
         if (length(unique(by.samp)) == 1)
-            stop("by.samp should contain at least 2 levels")
+            stop("'by.samp' should contain at least 2 levels")
         x$samp <- NULL
         xtab <- aggregate(xtab, list(by.samp), sum, ...)
         rownames(xtab) <- xtab[,1]
@@ -28,7 +28,7 @@ function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
                 by.taxa <- x$taxa[, by.taxa] else {
                 by.taxa <- interaction(x$taxa[, by.taxa])}
         if (length(unique(by.taxa)) == 1)
-            stop("by.taxa should contain at least 2 levels")
+            stop("'by.taxa' should contain at least 2 levels")
         x$taxa <- NULL
         xtab <- aggregate(t(xtab), list(by.taxa), sum, ...)
         rownames(xtab) <- xtab[,1]

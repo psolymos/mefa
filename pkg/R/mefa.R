@@ -4,16 +4,16 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
 {
     x <- xtab
     if (min(dim(as.matrix(x))) == 1)
-        stop("xtab should have dimensions at leat 2*2")
+        stop("'xtab' should have dimensions at leat 2*2")
     if (any(is.na(x)))
-        stop("xtab contains NA")
+        stop("'xtab' contains NA")
     if (nested && !segment)
-        warning("nested = TRUE has no effect if segment = FALSE")
+        warning("'nested = TRUE' has no effect if 'segment = FALSE'")
     if (!is.stcs(x)) {
         if (is.null(rownames(x)) && !is.null(samp))
-            stop("rownames(x) should not be NULL")
+            stop("'rownames(x)' should not be 'NULL'")
         if (is.null(colnames(x)) && !is.null(taxa))
-            stop("colnames(x) should not be NULL")
+            stop("'colnames(x)' should not be 'NULL'")
         xtab <- as.matrix(x)
         segm <- NULL}
 
@@ -26,7 +26,7 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
     xtab2 <- xtab
     if (!is.null(samp)) {
         if (dim(as.matrix(samp))[2] == 1)
-            stop("at least 2 columns needed for samp")
+            stop("at least 2 columns needed for 'samp'")
         samp.list <- mefaTables(xtab2, samp, 1, id.samp,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- samp.list$xtab
@@ -36,7 +36,7 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
 
     if (!is.null(taxa)) {
         if (dim(as.matrix(taxa))[2] == 1)
-            stop("at least 2 columns needed for taxa")
+            stop("at least 2 columns needed for 'taxa'")
         taxa.list <- mefaTables(xtab2, taxa, 2, id.taxa,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- taxa.list$xtab

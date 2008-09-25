@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{melt}
 \alias{melt}
 \alias{melt.mefa}
@@ -28,12 +29,12 @@ Besides the goal to convert from wide format to long format, this 'mefa' specifi
 An object of class 'stsc'.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 Similar functions in the \code{reshape} package of Hadley Wickham: \code{\link[reshape]{melt.default}}, \code{\link[reshape]{melt.data.frame}}, \code{\link[reshape]{melt.array}}.

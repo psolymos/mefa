@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{report.mefa}
 \alias{report.mefa}
 \alias{report}
@@ -43,12 +44,12 @@ report(x, \ldots)
 Writes a file into the working (or a specified) directory.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \note{
 The \code{by.taxa = FALSE} option is not implemented.

@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{fill.na}
 \alias{fill.na}
 \title{Replace <NA> values with nearest above values in a matrix}
@@ -18,12 +19,12 @@ This function is useful when converting a 'notebook style' data into an 'stsc' o
 A matrix or data frame.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \note{This function is not vectorized, so can be a bit slow for large data sets.}
 \seealso{\code{\link{stcs}}}

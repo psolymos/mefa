@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{plot.mefa}
 \alias{plot.mefa}
 \alias{boxplot.mefa}
@@ -38,12 +39,12 @@ xlab = NULL, show = TRUE, \dots)
 All methods return the plotted values invisibly.
 }
 \references{
-Solymos P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+\enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{\code{\link{image}}, \code{\link{plot}}, \code{\link{boxplot}}, \code{\link{filled.contour}}, \code{\link{par}}, \code{\link{heat.colors}}, \code{\link{heat.colors}}, \code{\link{topo.colors}}, \code{\link{terrain.colors}}, \code{\link{rainbow}}}
 \examples{
@@ -73,11 +74,10 @@ par(mfrow=c(1,1))
 ## Image (levelplot) for all segments
 image(x, trafo = "bins")
 ## Image (levelplot) for each segments
-par(mfrow=c(2,2))
+par(mfrow=c(1,3))
+image(x, trafo = "bins", main = "All segments")
 image(x, segm = 1, trafo = "bins", main = dimnames(x)$segm[1])
 image(x, segm = 2, trafo = "bins", main = dimnames(x)$segm[2])
-image(x, segm = 3, trafo = "bins", main = dimnames(x)$segm[3])
-image(x, segm = 4, trafo = "bins", main = dimnames(x)$segm[4])
 par(mfrow=c(1,1))
 }
 \keyword{ hplot }

@@ -4,7 +4,7 @@ function(x, stat=1:4, ylab=NULL, xlab=NULL, ...)
     if (is.null(x$segm) || dim(x)[3] == 1)
         stop("at least 2 segments needed")
     if (!all(stat %in% 1:4))
-        stop("stat must be in 1:4")
+        stop("'stat' must be in 1:4")
     if (!length(stat) == 1) stat <- 1
 
     yval <- list()
