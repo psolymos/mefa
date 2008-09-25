@@ -1,5 +1,5 @@
 `melt.mefa` <-
-function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
+function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))
@@ -10,7 +10,7 @@ function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=
         if (is.null(segm.var)) {
             segm <- rep("undefined", length(count))
             } else {
-            if (inside) {
+            if (!is.object(segm.var)) {
                 if (length(segm.var) > 1)
                     segm.var2 <- interaction(x$samp[, segm.var])
                     else segm.var2 <- x$samp[, segm.var]
@@ -27,7 +27,7 @@ function (x, segm.var=NULL, by.samp=TRUE, inside=TRUE, raw.out=FALSE, drop.zero=
         if (is.null(segm.var)) {
             segm <- rep("undefined", length(count))
             } else {
-            if (inside) {
+            if (!is.object(segm.var)) {
                 if (length(segm.var) > 1)
                     segm.var2 <- interaction(x$taxa[, segm.var])
                     else segm.var2 <- x$taxa[, segm.var]

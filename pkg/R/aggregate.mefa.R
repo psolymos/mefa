@@ -1,12 +1,12 @@
 `aggregate.mefa` <-
-function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
+function(x, by.samp=NULL, by.taxa=NULL, ...)
 {
     if (is.null(by.samp) && is.null(by.taxa))
         return(x) else {
 
     xtab <- as.data.frame(x$xtab)
     if (!is.null(by.samp)) {
-        if (inside)
+        if (!is.object(by.samp))
             if (length(by.samp) == 1)
                 by.samp <- x$samp[, by.samp] else {
                 by.samp <- interaction(x$samp[, by.samp])}
@@ -23,8 +23,8 @@ function(x, by.samp=NULL, by.taxa=NULL, inside=TRUE, ...)
                 x$segm[[i]][,1] <- NULL}}
         }
     if (!is.null(by.taxa)) {
-        if (inside)
-            if (length(by.samp) == 1)
+        if (!is.object(by.taxa))
+            if (length(by.taxa) == 1)
                 by.taxa <- x$taxa[, by.taxa] else {
                 by.taxa <- interaction(x$taxa[, by.taxa])}
         if (length(unique(by.taxa)) == 1)
