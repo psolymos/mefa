@@ -1,4 +1,4 @@
-`mefaStructure` <-
+`mefaCheck` <-
 function(x)
 {
     if (!inherits(x, "mefa"))

@@ -1,12 +1,12 @@
 \encoding{UTF-8}
-\name{mefaStructure}
-\alias{mefaStructure}
+\name{mefaCheck}
+\alias{mefaCheck}
 \title{Checking 'mefa' objects}
 \description{
 The function evaluates the internal structute of a 'mefa' object. This function is called by the \code{\link{is.mefa}} function.
 }
 \usage{
-mefaStructure(x)
+mefaCheck(x)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
@@ -26,6 +26,6 @@ Returns a list, first element is logical with \code{TRUE} indicating that all re
 \examples{
 x <- matrix(rpois(20,1), 5, 4)
 m <- mefa(x)
-mefaStructure(m)
+mefaCheck(m)
 }
 \keyword{ manip }
