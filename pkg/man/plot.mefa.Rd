@@ -9,7 +9,7 @@ Various methods for plotting objects of class 'mefa'.}
 \usage{
 \method{plot}{mefa}(x, stat = 1:4, type = c("hist", "rank"),
 trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, , show = TRUE, \dots)
+\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, show = TRUE, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
 xlab = NULL, show = TRUE, \dots)
@@ -25,7 +25,7 @@ xlab = NULL, show = TRUE, \dots)
   \item{ordering}{logical, if \code{TRUE} (default) the samples-by-taxa matrix is ordered by row and columns sums, if \code{FALSE} row and columns are not rearranged.}
   \item{reverse}{logical, if the values to plot should be reversed (\code{TRUE}, default, original zero values are lightly, while higher values are strongly coloured) or not (\code{FALSE}). This is related to \code{col} argument of the generic function \code{\link{image}}. Currently, \code{\link{heat.colors}} is the default color scheme.}
   \item{show}{logical, produce a plot (\code{TRUE}) or not (\code{FALSE}). \code{FALSE} can be useful, if the returned plotted values are reused (e.g. the matrix returned invisibly \code{image} can be used by \code{\link{filled.contour}}, or multiple values are used in one plot).}
-  \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{bosplot}}.}
+  \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{boxplot}}.}
 }
 \details{
 \code{plot} returns histogram, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
