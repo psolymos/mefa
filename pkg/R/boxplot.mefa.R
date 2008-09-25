@@ -1,5 +1,5 @@
 `boxplot.mefa` <-
-function(x, stat=1:4, ylab=NULL, xlab=NULL, ...)
+function(x, stat=1:4, ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
     if (is.null(x$segm) || dim(x)[3] == 1)
         stop("at least 2 segments needed")
@@ -17,7 +17,9 @@ function(x, stat=1:4, ylab=NULL, xlab=NULL, ...)
         "Occupancy", "Abundance")[stat]
     if (is.null(xlab))
         xlab <- "Segments"
-    plot(yval ~ xval, xlab=xlab, ylab=ylab, ...)
-    invisible()
+    if (show)
+        boxplot(yval ~ xval, xlab=xlab, ylab=ylab, ...)
+    if (show)
+        invisible() else return(cbind(x=xval, y=yval))
 }
 

@@ -9,7 +9,7 @@ Various methods for plotting objects of class 'mefa'.}
 \usage{
 \method{plot}{mefa}(x, stat = 1:4, type = c("hist", "rank"),
 trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, \dots)
+\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, , show = TRUE, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
 xlab = NULL, show = TRUE, \dots)
@@ -24,8 +24,8 @@ xlab = NULL, show = TRUE, \dots)
   \item{probs}{numeric vector of probabilities with values in [0, 1] (passed internally to \code{\link{qvector}}).}
   \item{ordering}{logical, if \code{TRUE} (default) the samples-by-taxa matrix is ordered by row and columns sums, if \code{FALSE} row and columns are not rearranged.}
   \item{reverse}{logical, if the values to plot should be reversed (\code{TRUE}, default, original zero values are lightly, while higher values are strongly coloured) or not (\code{FALSE}). This is related to \code{col} argument of the generic function \code{\link{image}}. Currently, \code{\link{heat.colors}} is the default color scheme.}
-  \item{show}{logical, produce a plot (\code{TRUE}) or not (\code{FALSE}). \code{FALSE} can be useful, if the plotted values (returned invisibly) are recicled (e.g. the matrix returned invisibly \code{image} can be used by \code{\link{filled.contour}}).}
-  \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}.}
+  \item{show}{logical, produce a plot (\code{TRUE}) or not (\code{FALSE}). \code{FALSE} can be useful, if the returned plotted values are reused (e.g. the matrix returned invisibly \code{image} can be used by \code{\link{filled.contour}}, or multiple values are used in one plot).}
+  \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{bosplot}}.}
 }
 \details{
 \code{plot} returns histogram, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
@@ -35,7 +35,7 @@ xlab = NULL, show = TRUE, \dots)
 \code{image} creates a grid of colored rectangles with colors corresponding to the values in the segment defined by the argument \code{segm}. If \code{ordering = TRUE}, the ordering of the segment will be based on the \code{x$xtab} matrix and not on the matrix for the segment itself. This is due to better comparison among segments.
 }
 \value{
-All methods return the plotted values invisibly.
+All methods produce a plot if \code{show = TRUE}, and return the plotted values if \code{show = FALSE} without plotting them.
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.

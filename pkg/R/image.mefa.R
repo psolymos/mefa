@@ -26,5 +26,6 @@ if (is.null(xlab)) xlab <- "Taxa"
 
 if (show)
     image(1:ncol(m), 1:nrow(m), mm, ylab=ylab, xlab=xlab, ...)
-invisible(mm)
+if (show)
+    invisible() else return(mm)
 }

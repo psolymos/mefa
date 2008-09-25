@@ -58,6 +58,6 @@ function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
            yvar <- yvar[order(yvar, decreasing=TRUE)]
            if (show)
                 plot(yvar, type="l", xlab=ylab2, ylab=xlab2, ...)}
-
-   invisible(yvar)
+    if (show)
+        invisible() else return(yvar)
 }
