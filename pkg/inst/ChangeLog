@@ -30,6 +30,9 @@ Version 2.0-0 -- September 27, 2008 (opened - r193)
       new segments.
     * dim and dimnames methods also available
       for mefa objects.
+    * the mefalogo function depicts the
+      general representation of an object
+      of class mefa.
 
 
 Version 1.1-4 -- September 20, 2008 (closed)
