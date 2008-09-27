@@ -3,7 +3,7 @@
 \alias{stcs}
 \alias{is.stcs}
 \alias{as.stcs}
-\title{Create object of class 'stcs'}
+\title{Create an Object of Class 'stcs'}
 \description{
 This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the \strong{mefa} package. The 'stcs' object can be converted into an object of class 'mefa' with the function \code{mefa}
 }

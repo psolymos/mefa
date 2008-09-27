@@ -3,7 +3,7 @@
 \alias{plot.mefa}
 \alias{boxplot.mefa}
 \alias{image.mefa}
-\title{Plotting methods for objects of class 'mefa'}
+\title{Plotting Methods for Object of Class 'mefa'}
 \description{
 Various methods for plotting objects of class 'mefa'.}
 \usage{

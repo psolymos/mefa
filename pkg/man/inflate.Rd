@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{inflate}
 \alias{inflate}
-\title{Inflate data frame based on count values in a vector}
+\title{Inflate a Data Frame}
 \description{
 The function inflates a data frame based on count values in a vector corresponding the rows.
 }

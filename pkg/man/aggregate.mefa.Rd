@@ -2,7 +2,7 @@
 \name{aggregate.mefa}
 \alias{aggregate.mefa}
 \alias{[.mefa}
-\title{Extracting and aggregating objects of class 'mefa'}
+\title{Extract and Aggregate Objects of Class 'mefa'}
 \description{
 These methods are useful when extracting or aggregating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa are extracted or aggrgated at the same time.
 }

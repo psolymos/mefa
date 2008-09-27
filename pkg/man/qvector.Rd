@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{qvector}
 \alias{qvector}
-\title{Discretize a vector}
+\title{Ordinal Transformation of a Vector}
 \description{
 Converts a numeric vector into an ordinal one based on quantiles.
 }

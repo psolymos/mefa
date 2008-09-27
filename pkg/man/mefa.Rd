@@ -9,7 +9,7 @@
 \alias{print.summary.mefa}
 \alias{dim.mefa}
 \alias{dimnames.mefa}
-\title{Create an object of class 'mefa'}
+\title{Create an Object of Class 'mefa'}
 \description{
 An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa.
 }

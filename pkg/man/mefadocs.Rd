@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{mefadocs}
 \alias{mefadocs}
-\title{Display package documentation}
+\title{Display Package Documentation}
 \description{
   Display package documentation using \code{pager} or \code{pdfviewer}
   defined in \code{\link{options}}.

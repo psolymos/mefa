@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{mefaCheck}
 \alias{mefaCheck}
-\title{Checking 'mefa' objects}
+\title{Check an Object of Class 'mefa'}
 \description{
 The function evaluates the internal structute of a 'mefa' object. This function is called by the \code{\link{is.mefa}} function.
 }

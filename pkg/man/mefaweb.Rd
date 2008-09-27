@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{mefaweb}
 \alias{mefaweb}
-\title{Open 'mefa' website}
+\title{Open 'mefa' Website}
 \description{
 Opens the 'mefa' website in the default navigator.
 }

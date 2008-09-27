@@ -2,7 +2,7 @@
 \name{melt}
 \alias{melt}
 \alias{melt.mefa}
-\title{Melt (convert) a 'mefa' object into an 'stcs' object}
+\title{Melt (Convert) a Object of Class 'mefa' Into 'stcs'}
 \description{
 The function converts a wide formatted 'mefa' object into a long formatted 'stcs' object. The resulting segment column can take various formats.
 }

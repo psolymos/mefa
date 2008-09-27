@@ -4,7 +4,7 @@
 \alias{DOLINAsamples}
 \alias{DOLINAtaxa}
 \docType{data}
-\title{Land snails in dolines}
+\title{The Dolina Dataset}
 \description{
 Data were collected in dolines (karstic depressions) of Northeast Hungary.
 }

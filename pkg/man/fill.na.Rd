@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{fill.na}
 \alias{fill.na}
-\title{Replace <NA> values with nearest above values in a matrix}
+\title{Replace <NA> Values with Nearest Above Values}
 \description{
 The function replaces \code{<NA>} values with the nearest values above them in the same column.
 }

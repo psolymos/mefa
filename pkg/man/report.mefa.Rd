@@ -2,7 +2,7 @@
 \name{report.mefa}
 \alias{report.mefa}
 \alias{report}
-\title{Write report into file based on an object of class 'mefa'}
+\title{Write Report of an Object of Class 'mefa' into File}
 \description{
 The data of the 'mefa' object is written into a file in a standard format used by most local journals for publishing distribution data of organisms. The aim is to provide an exporting facility that can directly be used for generating reports, parts of research papers, or supplementary materials.
 }

@@ -1,9 +1,9 @@
 \encoding{UTF-8}
 \name{mefaTables}
 \alias{mefaTables}
-\title{Subsetting and ordering matrix and data frame based on row or column names}
+\title{Subsetting and Ordering of Related Data Tables}
 \description{
-This function is called by the \code{\link{mefa}} function, but can be applied more generally for subsetting and ordering.
+This function is called by the \code{\link{mefa}} function to subset the community data matrix and the related data frames, but can be applied more generally for subsetting and ordering.
 }
 \usage{
 mefaTables(xtab, dframe, margin, index = NULL,

@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{mefaCrosstab}
 \alias{mefaCrosstab}
-\title{Cross tabulation of an object of class 'stcs'}
+\title{Cross Tabulate an Object of Class 'stcs'}
 \description{
 The function makes cross tabulation of an object of class 'stcs'. Similar to the \code{\link{table}} function but handles specialties of the 'stcs' object class (i.e. removes 'pseudo species' created to indicate empty samples). This is used internally by the function \code{\link{mefa}} to make 3 dimensional representation of the data.
 }
