@@ -1,5 +1,5 @@
 `plot.mefa` <-
-function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
+function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
 "ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
    if (!all(stat %in% 1:4))
@@ -7,14 +7,14 @@ function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
    if (!length(stat) == 1) stat <- 1
    if (!length(type) == 1) type <- type[1]
    if (!length(trafo) == 1) trafo <- trafo[1]
-   type <- match.arg(type, c("hist", "rank"))
+   type <- match.arg(type, c("bar", "rank"))
    trafo <- match.arg(trafo, c("none", "log", "ratio"))
 
    if (!is.null(ylab))
        ylab2 <- ylab
    if (!is.null(xlab))
        xlab2 <- xlab
-   if (is.null(ylab) && type=="hist")
+   if (is.null(ylab) && type=="bar")
        ylab2 <- "Frequency"
    if (is.null(ylab) && type=="rank")
        ylab2 <- "Rank"
@@ -38,19 +38,19 @@ function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
 
    if (trafo=="log") {
        yvar <- log10(yvar)
-       if (is.null(ylab) && type=="hist")
+       if (is.null(ylab) && type=="bar")
            ylab2 <- paste("log10", ylab2)
        if (is.null(ylab) && type=="rank")
            xlab2 <- paste("log10", xlab2)}
    if (trafo=="ratio") {
        yvar <- yvar / max(yvar)
-       if (is.null(ylab) && type=="hist")
+       if (is.null(ylab) && type=="bar")
            ylab2 <- paste("Relative", tolower(ylab2))
        if (is.null(ylab) && type=="rank")
            xlab2 <- paste("Relative", tolower(xlab2))}
 
 
-       if (type=="hist") {
+       if (type=="bar") {
            yvar <- table(yvar)
            if (show)
                 plot(yvar, xlab=xlab2, ylab=ylab2, ...)}

@@ -7,7 +7,7 @@
 \description{
 Various methods for plotting objects of class 'mefa'.}
 \usage{
-\method{plot}{mefa}(x, stat = 1:4, type = c("hist", "rank"),
+\method{plot}{mefa}(x, stat = 1:4, type = c("bar", "rank"),
 trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
 \method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, show = TRUE, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
@@ -17,7 +17,7 @@ xlab = NULL, show = TRUE, \dots)
 \arguments{
   \item{x}{an object of class 'mefa'.}
   \item{stat}{numeric, to determine which characteristic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
-  \item{type}{character, \code{"hist"} produces histogram (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
+  \item{type}{character, \code{"bar"} produces barchart (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
   \item{trafo}{character, transformation of the plotted variable. \code{"none"}: no transformation (default), \code{"log"}: logarithmic transformation (base 10), \code{"ratio"}: normalizes values by the maximum and rescales to the [0, 1] interval (useful for plotting multiple rank abundance curves), \code{"bins"}: recodes the values according to quantiles based on \code{probs}, \code{"prab"}: presence absence transformation of count data.}
   \item{ylab, xlab}{character to overwrite default label for the y and x axes. If \code{NULL}, than default labels are returned on the plot.}
 \item{segm}{if \code{NULL} the \code{x$xtab} matrix is used for plotting. Otherways, this defines the segment (one element in \code{x$segm}) for plotting (can be numeric or character with the name of the segment).}
@@ -28,7 +28,7 @@ xlab = NULL, show = TRUE, \dots)
   \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{boxplot}}.}
 }
 \details{
-\code{plot} returns histogram, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
+\code{plot} returns barchart, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
 
 \code{boxplot} returns box-and-whiskers plots for the summary statistics based on matrices for each segments in \code{x$segm}.
 
