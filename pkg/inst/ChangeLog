@@ -3,6 +3,7 @@ MEFA VERSIONS
 
 Version 2.0-1 -- September 29, 2008 (opened - r???)
 
+    * extract.mefa: column extraction bug fixed
     * type arg of plot.mefa: "hist" replaced by "bar"
 
 
