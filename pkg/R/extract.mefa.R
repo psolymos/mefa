@@ -2,10 +2,19 @@
 function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 {
     if (length(i) == 0 || length(j) == 0 || length(k) == 0)
-        return(NULL)
-    if (length(i) == 1 || length(j) == 1) {
-        warning("dimensions are too few to be extracted")
-        return(x)}
+        return(x)
+    if ((any(i < 0) & !all(i < 0)) || (any(j < 0) & !all(j < 0)) || (any(k < 0) & !all(k < 0)))
+        stop("unresolvable indexing")
+    if (all(i < 0))
+        i <- which(!(1:dim(x)[1] %in% abs(i)))
+    if (all(j < 0))
+        j <- which(!(1:dim(x)[2] %in% abs(j)))
+    if (all(k < 0))
+        k <- which(!(1:dim(x)[3] %in% abs(k)))
+
+    if (length(i) == 1 || length(j) == 1)
+        stop("dimensions are too few to be extracted")
+
     subsegm <- if (!is.null(x$segm))
         length(k) != length(x$segm) else FALSE
     x$call <- match.call()
