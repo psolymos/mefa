@@ -1,7 +1,12 @@
 MEFA VERSIONS
 
 
-Version 2.0-1 -- September 29, 2008 (opened - r???)
+Version 2.0-2 -- October 24, 2008 (opened - r???)
+
+    * ...
+
+
+Version 2.0-1 -- October 24, 2008 (closed - r205)
 
     * extract.mefa: now accepts negative indexing
       for exclusion (not as character).
