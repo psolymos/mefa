@@ -20,7 +20,7 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
     x$call <- match.call()
 
     if (is.null(x$segm)) {
-        x$segm <- NULL} else {
+        segm.out <- NULL} else {
         segm.out <- list()
         for (nn in 1:length(k))
             segm.out[[nn]] <- x$segm[[k[nn]]][i, j]
@@ -29,7 +29,6 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 
     if (!subsegm) {
         xtab.out <- x$xtab[i, j]
-        segm.out <- x$segm
         } else {
         if (!is.null(x$segm) && length(k) == 1) {
             xtab.out <- segm.out[[1]]
