@@ -20,6 +20,7 @@ function(x, stat=1:4, ylab=NULL, xlab=NULL, show=TRUE, ...)
     if (show)
         boxplot(yval ~ xval, xlab=xlab, ylab=ylab, ...)
     if (show)
+# invisibly returns plotted walues
         invisible() else return(cbind(x=xval, y=yval))
 }
 

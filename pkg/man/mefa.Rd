@@ -11,7 +11,7 @@
 \alias{dimnames.mefa}
 \title{Create an Object of Class 'mefa'}
 \description{
-An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa.
+An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\srtong{me}ta\srtong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
 }
 \usage{
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,

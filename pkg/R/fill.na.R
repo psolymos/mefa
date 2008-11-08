@@ -1,6 +1,7 @@
 `fill.na` <-
 function (x)
 {
+# not vectorized
     out <- x
     for (cols in 1:ncol(x)) {
         for (rows in 1:nrow(x)) {

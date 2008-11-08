@@ -8,6 +8,7 @@ function(x)
     re <- list()
 
 # when extracting or aggregating, it can be shorter, when e.g. x$samp <- NULL
+# so leave it as TRUE
 #    mt[1] <- length(x) == 5
     mt[2] <- is.matrix(x$xtab)
     if (!is.null(x$segm)) {
@@ -29,6 +30,7 @@ function(x)
         mt[9] <- is.data.frame(x$taxa)
         mt[10] <- identical(colnames(x$xtab), rownames(x$taxa))
         }
+# re list contains the final result and description of problems
     re[[1]] <- all(mt == TRUE)
     i <- 2
     if (!mt[1]) {re[[i]] <- "object length is not 5"

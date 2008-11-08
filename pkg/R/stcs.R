@@ -1,5 +1,5 @@
 `stcs` <-
-function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
+function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 {
     x <- xtab
     if (any(is.na(x)))
@@ -9,6 +9,7 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     nrows <- nrow(x)
     ncols <- ncol(x)
     if (ncols > 4) stop("2-4 columns required")
+# evaluate according to input column numbers
     x <- data.frame(x)
     if (ncols == 2)
         x <- data.frame(as.factor(x[, 1]), as.factor(x[, 2]),
@@ -20,6 +21,7 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
             x <- data.frame(x, rep("undefined", nrows))}}
     if (!is.numeric(x[, 3]))
         stop("count column must be numeric")
+# treating zero cases
     if (any(x[, 3] == 0)) {
         zpart <- x[x[, 3] == 0,]
         x <- x[x[, 3] != 0,]
@@ -27,9 +29,11 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
         zpart <- NULL}
     if (drop.zero && !is.null(zpart))
         zpart <- NULL
+# expand argument
     if (expand) {
         tmp <- data.frame(inflate(x[, c(1:2,4)], x[, 3]))
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
+# check match with predefined characters
     if (!is.null(zpart)){
         if (zero.pseudo %in% unique(as.character(x[,2 ])))
             stop("'zero.pseudo' found in taxa names: specify other value")
@@ -37,6 +41,7 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
             stop("'not.defined' found in taxa names: change the name")
         zpart[,2] <- rep(zero.pseudo, nrow(zpart))
         zpart[,4] <- rep(zero.pseudo, nrow(zpart))
+# gives warning for mismatch of zero.pseudo and count=0 cases
         joint <- which(unique(zpart[,1]) %in% unique(x[,1]))
         if (length(joint) != 0) {
             zpart <- zpart[-joint,]
@@ -45,13 +50,17 @@ function(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
             warning("zero count for non zero sample found")}
         colnames(x) <- 1:4
         colnames(zpart) <- 1:4
+# put the 2 parts together
         x <- merge(x, zpart, all = TRUE)
         } else zero.pseudo <- "not.defined"
+# refresh dimnames
     rownames(x) <- NULL
     colnames(x) <- c("samp", "taxa", "count", "segm")
+# set type
     x$samp <- as.factor(x$samp)
     x$taxa <- as.factor(x$taxa)
     x$segm <- as.factor(x$segm)
+# drop unused levels
     x[] <- lapply(x, function(x) x[drop = TRUE])
     if (max(x$count) == 1) expand <- TRUE
     class(x) <- c("stcs", "data.frame")

@@ -1,6 +1,7 @@
 `melt.mefa` <-
 function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
+# melt by samples
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))
             stop("'$samp' is 'NULL'")
@@ -18,6 +19,7 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
                 } else {
                 segm <- rep(segm.var, each=dim(x)[2])}
                 }
+# melt by taxa
         } else {
         if (is.null(x$taxa) && !is.null(segm.var))
             stop("'$taxa' is 'NULL'")
@@ -36,12 +38,15 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
                 segm <- rep(segm.var, dim(x)[1])}
             }
         }
+# get molten result
     out <- data.frame(samp=samp, taxa=taxa, count=count, segm=segm)
+# result with zeros
     if (raw.out) {
         if (drop.zero){
             out <- out[out[ ,3] != 0, ]
             out[] <- lapply(out, function(x) x[drop = TRUE])}
         return(out)
+# result without zeros
     } else {
         cpart <- out[out[ ,3] != 0, ]
         csamp <- unique(as.character(out[out[ ,3] != 0, 1]))

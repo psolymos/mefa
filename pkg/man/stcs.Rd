@@ -5,16 +5,16 @@
 \alias{as.stcs}
 \title{Create an Object of Class 'stcs'}
 \description{
-This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the \strong{mefa} package. The 'stcs' object can be converted into an object of class 'mefa' with the function \code{mefa}
+This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the \strong{mefa} package. The 'stcs' object can be converted into an object of class 'mefa' with the function \code{mefa}. The function name 'stcs' refers to first letters of column names of the resulting object: \srtong{s}amples, \srtong{t}axa, \srtong{c}ounts, \srtong{s}ebments.
 }
 \usage{
-stcs(xtab, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
+stcs(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{is}{stcs}(x)
 \method{as}{stcs}(x, \dots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{xtab}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
+  \item{dframe}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
   \item{expand}{logical, whether the object should be (\code{TRUE}) expanded (via the function \code{\link{inflate}}) or not (\code{FALSE}, default). If expanded, each rows correspond to one individual observation (value of the \code{count} column is 1) or a zero sample.}
   \item{drop.zero}{logical, whether samples with zero total count should be left out (\code{TRUE}) or not (\code{FALSE}, default).}
   \item{zero.pseudo}{character, value in the \code{taxa} column that indicates zero samples.}

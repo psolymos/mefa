@@ -9,6 +9,8 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         stop("'xtab' contains NA")
     if (nested && !segment)
         warning("'nested = TRUE' has no effect if 'segment = FALSE'")
+# if xtab is matrix/data.frame
+# also in this case row/col names are necessary for matching
     if (!is.stcs(x)) {
         if (is.null(rownames(x)) && !is.null(samp))
             stop("'rownames(x)' should not be 'NULL'")
@@ -16,16 +18,16 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
             stop("'colnames(x)' should not be 'NULL'")
         xtab <- as.matrix(x)
         segm <- NULL}
-
+# if xtab is of class stcs, mefaCrosstab is used
     if (is.stcs(x)) {
         xtab <- mefaCrosstab(x, segment=FALSE, drop.zero=drop.zero)
         segm <- if (segment) {
             mefaCrosstab(x, segment=TRUE, nested=nested, drop.zero=drop.zero)
             } else {NULL}}
-
+# make stab
     xtab2 <- xtab
     if (!is.null(samp)) {
-        if (dim(as.matrix(samp))[2] == 1)
+        if (NCOL(samp) == 1)
             stop("at least 2 columns needed for 'samp'")
         samp.list <- mefaTables(xtab2, samp, 1, id.samp,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
@@ -33,9 +35,9 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         samp2 <- samp.list$dtab
         } else {
         samp2 <- NULL}
-
+# make taxa
     if (!is.null(taxa)) {
-        if (dim(as.matrix(taxa))[2] == 1)
+        if (NCOL(taxa) == 1)
             stop("at least 2 columns needed for 'taxa'")
         taxa.list <- mefaTables(xtab2, taxa, 2, id.taxa,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
@@ -43,13 +45,13 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         taxa2 <- taxa.list$dtab
         } else {
         taxa2 <- NULL}
-
+# make segment
     if (segment && !is.null(segm) && !xtab.fixed) {
         row.sub <- which(rownames(segm[[1]]) %in% rownames(xtab2))
         col.sub <- which(colnames(segm[[1]]) %in% colnames(xtab2))
         for (i in 1:length(segm)) {
             segm[[i]] <- segm[[i]][row.sub, col.sub]}}
-
+# put parts together
     out <- list(call = match.call(), xtab = xtab2, segm = segm, samp = samp2, taxa = taxa2)
     class(out) <- c("mefa")
     attr(out, "nested") <- nested
