@@ -55,10 +55,10 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         n <- length(zsamp)
         zpse1 <- "zero.pseudo"
         while (zpse1 %in% unique(cpart$taxa))
-            zpse1 <- paste("zero.pseudo", round(runif(1,100000,999999)), sep=".")
+            zpse1 <- paste("zero.pseudo", round(runif(1,1000,9999)), sep=".")
         zpse2 <- zpse1
         while (zpse2 %in% unique(cpart$segm))
-            zpse2 <- paste("zero.pseudo", round(runif(1,100000,999999)), sep=".")
+            zpse2 <- paste("zero.pseudo", round(runif(1,1000,9999)), sep=".")
         zpart <- data.frame(samp=zsamp, taxa=rep(zpse1, n),
             count=rep(0, n), segm=rep(zpse2, n))
         out <- merge(cpart, zpart, all = TRUE)

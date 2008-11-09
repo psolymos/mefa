@@ -45,7 +45,13 @@ The class has some own methods (i.e. \code{is} and \code{as}), but also has a \c
 \note{
 The \code{stcs} function nearly equivalent to the \code{sscount} function in older (< 2.0) versions of the \strong{mefa} package.
 }
-\seealso{\code{\link{data.frame}}, \code{\link{summary.data.frame}}, \code{\link{str}}, \code{\link{table}}}
+\seealso{
+\code{\link{data.frame}}, \code{\link{summary.data.frame}}, \code{\link{str}}, \code{\link{table}}
+
+See \code{\link{plot.stcs}} \code{\link{boxplot.stcs}} and \code{\link{image.stcs}} for graphical display options.
+
+Similar standardized count data formats can be found in the \strong{untb} package by Robin K. S. Hankin: \code{\link[untb]{count}}, \code{\link[untb]{census}}.
+}
 \examples{
 ## General long format data
 x <- data.frame(

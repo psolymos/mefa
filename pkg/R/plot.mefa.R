@@ -29,7 +29,7 @@ function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
        }
    if (stat == 3) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
-       if (is.null(xlab)) xlab2 <- "Occupancy"
+       if (is.null(xlab)) xlab2 <- "Frequency of occurrence"
        }
    if (stat == 4) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
