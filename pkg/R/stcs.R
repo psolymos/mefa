@@ -39,10 +39,14 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
 # check match with predefined characters
     if (!is.null(zpart)){
-        if (any(zero.pseudo %in% unique(as.character(x[,2 ]))))
+        if (any(zero.pseudo %in% unique(as.character(x[, 2]))))
             stop("'zero.pseudo' found in taxa names: specify other value")
-        if ("not.defined" %in% unique(as.character(x[,2 ])))
+        if (any(zero.pseudo %in% unique(as.character(x[, 4]))))
+            stop("'zero.pseudo' found in segment names: specify other value")
+        if ("not.defined" %in% unique(as.character(x[, 2])))
             stop("'not.defined' found in taxa names: change the name")
+        if ("not.defined" %in% unique(as.character(x[, 4])))
+            stop("'not.defined' found in segment names: change the name")
         if ("not.defined" %in% zero.pseudo)
             stop("'not.defined' found in 'zero.pseudo': change the argument")
         zpart[,2] <- rep(zero.pseudo[1], nrow(zpart))

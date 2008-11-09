@@ -9,6 +9,8 @@ TODO:
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
+    * melt.mefa: takes care of zero.pseudo flags silently,
+     and returns call attribute as well of raw=FALSE.
     * print.mefa: returns segment names to avoid confusion
     when all other details are the same.
     * mefaTables: xtab.fixed argument now works properly.

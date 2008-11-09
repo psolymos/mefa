@@ -53,9 +53,17 @@ function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
         zsamp <- as.character(unique(out[out[ ,3] == 0, 1]))
         zsamp <- zsamp[!(zsamp %in% csamp)]
         n <- length(zsamp)
-        zpart <- data.frame(samp=zsamp, taxa=rep("zero.pseudo", n),
-            count=rep(0, n), segm=rep("zero.pseudo", n))
+        zpse1 <- "zero.pseudo"
+        while (zpse1 %in% unique(cpart$taxa))
+            zpse1 <- paste("zero.pseudo", round(runif(1,100000,999999)), sep=".")
+        zpse2 <- zpse1
+        while (zpse2 %in% unique(cpart$segm))
+            zpse2 <- paste("zero.pseudo", round(runif(1,100000,999999)), sep=".")
+        zpart <- data.frame(samp=zsamp, taxa=rep(zpse1, n),
+            count=rep(0, n), segm=rep(zpse2, n))
         out <- merge(cpart, zpart, all = TRUE)
-        return(stcs(out, drop.zero=drop.zero, ...))}
+        rval <- stcs(out, drop.zero=drop.zero, zero.pseudo=c(zpse1, zpse2), ...)
+        attr(rval, "call") <- match.call()
+        return(rval)}
 }
 
