@@ -32,7 +32,7 @@ Methods for extracting, subsetting are the same as for data frame objects. Plott
 \value{
 Returns an object of class 'stcs' with 4 columns. The column names are converted consistently into \code{samp} for samples, \code{taxa} for taxa names, \code{count} for counts and \code{segm} for segment names.
 
-The class has some own methods (i.e. \code{is} and \code{as}), but also has a \code{data.frame} class attribute. Thus all methods available for data frames are applicable to an object of class 'stcs' (e.g. \code{summary}, \code{str}).
+The class has its own methods (i.e. \code{is}, \code{as}, \code{summary} and \code{plot}), but also has a \code{data.frame} class attribute. Thus other methods that available for data frames are applicable to an object of class 'stcs' (e.g. \code{print}, \code{str}).
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
@@ -75,9 +75,9 @@ stcs(x, zero.pseudo = "pseudo.secies")
 stcs(x[,1:2])
 stcs(x[,1:3])
 stcs(x[,c(1:2,4)])
-## The DOLINA dataset
-data(DOLINAcounts)
-dol <- stcs(DOLINAcounts)
+## The Dolina dataset
+data(dol.count)
+dol <- stcs(dol.count)
 dol
 plot(dol)
 }

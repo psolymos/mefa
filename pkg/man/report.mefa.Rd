@@ -56,18 +56,15 @@ The \code{by.taxa = FALSE} option is not implemented.
 }
 \seealso{\code{\link{mefa}}, \code{\link{write}}}
 \examples{
-data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
-x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+data(dol.count, dol.samp, dol.taxa)
+x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 \dontrun{
 ## Plain text
 ## Count values from x$xtab
 report(x, "report-all.txt")
 ## Count values for each segments
 report(x, "report-segm-all.txt",
-    samp.var = c("method","microhab","stratum"), segment = TRUE)
-## Count values for segments 2 and 3
-report(x, "report.-segm-23.txt",
-    samp.var = c("method","microhab","stratum"), segment = TRUE, n = 2:3)
+    samp.var = c("method","microhab"), segment = TRUE)
 ## LaTeX formatting
 report(x, "report-all.tex", tex=TRUE)
 ## For how to include into a TeX or Rnw file, see:

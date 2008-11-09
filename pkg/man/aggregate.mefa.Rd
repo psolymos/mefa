@@ -43,8 +43,8 @@ The \code{aggregate} method replaces the function \code{strify}, the \code{[} me
 }
 \seealso{\code{\link{mefa}}}
 \examples{
-data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
-x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+data(dol.count, dol.samp, dol.taxa)
+x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 ## These two are identical
 aggregate(x, "microhab")
 aggregate(x, x$samp$microhab, inside = FALSE)
@@ -66,7 +66,7 @@ levels(y$samp$method)
 z <- x[which(x$samp$method == "time"), drop = TRUE]
 levels(z$samp$method)
 ## Note the differences in total sums
-y <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa, nested = TRUE)
+y <- mefa(stcs(dol.count), dol.samp, dol.taxa, nested = TRUE)
 x[ , , 2]
 y[ , , 2]
 }

@@ -58,8 +58,8 @@ All methods produce a plot if \code{show = TRUE}, and return the plotted values 
 }
 \seealso{\code{\link{image}}, \code{\link{plot}}, \code{\link{boxplot}}, \code{\link{filled.contour}}, \code{\link{par}}, \code{\link{heat.colors}}, \code{\link{heat.colors}}, \code{\link{topo.colors}}, \code{\link{terrain.colors}}, \code{\link{rainbow}}}
 \examples{
-data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
-x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+data(dol.count, dol.samp, dol.taxa)
+x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 ## Histograms
 par(mfrow=c(2,2))
 plot(x, 1)

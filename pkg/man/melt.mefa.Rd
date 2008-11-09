@@ -43,8 +43,8 @@ Similar function in the \strong{Hmisc} package by Frank Harrel is the \code{\lin
 Similar function in the \strong{simba} package by  Gerald Jurasinski is the \code{\link[simba]{liste}}.
 }
 \examples{
-data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
-x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+data(dol.count, dol.samp, dol.taxa)
+x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 ## Long format with undefined segment
 melt(x)
 ## These two are identical

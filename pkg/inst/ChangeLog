@@ -2,13 +2,15 @@ MEFA VERSIONS
 
 TODO:
 
-    * DOLINA data sets: reworked
     * vignette: added to inst/doc.
     * Makefile: added to inst/doc.
 
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
+    * DOLINA data sets: reworked. A more simple example
+    is given, but the previous full data set is available
+    on the DVN at: hdl:1902.1/12060.
     * plot: labels corrected.
     * melt.mefa: takes care of zero.pseudo flags silently,
      and returns call attribute as well of raw=FALSE.

@@ -99,18 +99,18 @@ Further methods are discussed on seperate help pages: see \code{\link{[.mefa}} a
 The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \strong{reshape} package of Hadley Wickham, by the \code{\link[simba]{mama}} function in the \strong{simba} package by  Gerald Jurasinski, and by the function \code{\link[labdsv]{matrify}} in the \strong{labdsv} package of David W. Roberts. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} and \code{\link{xtabs}} functions), or linking data tables for sample and taxa with the count data.
 }
 \examples{
-data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
+data(dol.count, dol.samp, dol.taxa)
 ## Input is stcs
-x1 <- mefa(stcs(DOLINAcounts))
+x1 <- mefa(stcs(dol.count))
 x1
 ## Input is matrix
 x2 <- mefa(x1$xtab)
 x2
 ## Attach data frame for samples
-x3 <- mefa(stcs(DOLINAcounts), DOLINAsamples)
+x3 <- mefa(stcs(dol.count), dol.samp)
 x3
 ## Attach data frame for samples and taxa
-x4 <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
+x4 <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 x4
 ## Methods
 ## (chapter 'See also' provides
@@ -127,7 +127,7 @@ dimnames(x4)
 ## Simple examples how to use mefa objects in analyis
 ## GLM on sample abundances
 mod <- glm(summary(x4)$s.abu ~ .^2,
-    data = x4$samp[, c(4, 6)], family = quasipoisson)
+    data = x4$samp, family = quasipoisson)
 summary(mod)
 ## See vignette for more examples
 #vignette("mefa")
