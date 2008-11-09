@@ -51,7 +51,7 @@ The print method returns basic information, instead of a long structural represe
 
 The summary contains statistics calculated from the 'mefa' object (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, etc., see 'Value' section). The list can be recalled by e.g. \code{unclass(summary(x))}, elements of the list e.g. \code{summary(x)$s.rich}.
 
-Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples' and the vignette.
+Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples' and the vignette (\code{vignette("mefa")}).
 }
 \value{
 The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 elements:
@@ -129,6 +129,8 @@ dimnames(x4)
 mod <- glm(summary(x4)$s.abu ~ .^2,
     data = x4$samp[, c(4, 6)], family = quasipoisson)
 summary(mod)
+## See vignette for more examples
+#vignette("mefa")
 ## Cluster analysis of community matrix
 x5 <- aggregate(x4, c("method", "microhab"))
 h <- hclust(dist(x5$xtab))

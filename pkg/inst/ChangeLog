@@ -1,15 +1,17 @@
 MEFA VERSIONS
 
+TODO:
+
+    * DOLINA data sets: reworked
+    * vignette: added to inst/doc.
+    * Makefile: added to inst/doc.
+
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
-    * xtab.fixed argument checked
-    * DOLINA data sets: reworked
+    * mefaTables: xtab.fixed argument now works properly.
     * stcs: argument zero.pseudo now accepts a two element
-    vector for species and segments.
-    * vignette added
-    * add Makefile
-
+    vector for species and segments, respectively.
     * summary.mefa: returns list with different names
     for [1:4] elements due to consistency with
     samples/taxa sides: s.rich, s.abu, t.occ, t.abu,

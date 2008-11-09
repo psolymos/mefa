@@ -19,7 +19,7 @@ stcs(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
   \item{dframe}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
   \item{expand}{logical, whether the object should be (\code{TRUE}) expanded (via the function \code{\link{inflate}}) or not (\code{FALSE}, default). If expanded, each rows correspond to one individual observation (value of the \code{count} column is 1) or a zero sample.}
   \item{drop.zero}{logical, whether samples with zero total count should be left out (\code{TRUE}) or not (\code{FALSE}, default).}
-  \item{zero.pseudo}{character, value in the \code{taxa} column that indicates zero samples.}
+  \item{zero.pseudo}{character, value in the \code{taxa} column that indicates zero samples. If it is a vector of length 2, first element is used for taxa names, second for segment names to indicate zero samples.}
   \item{x, object}{an object of class 'stcs'.}
   \item{\dots}{further arguments passed to the function \code{stcs}.}
 }

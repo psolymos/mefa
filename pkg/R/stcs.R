@@ -9,6 +9,10 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     nrows <- nrow(x)
     ncols <- ncol(x)
     if (ncols > 4) stop("2-4 columns required")
+    if (length(zero.pseudo) > 2)
+        stop("length of 'zero.pseudo' should be <= 2")
+    if (length(zero.pseudo) == 1)
+        zero.pseudo <- rep(zero.pseudo, 2)
 # evaluate according to input column numbers
     x <- data.frame(x)
     if (ncols == 2)
@@ -35,12 +39,16 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
 # check match with predefined characters
     if (!is.null(zpart)){
-        if (zero.pseudo %in% unique(as.character(x[,2 ])))
+        if (any(zero.pseudo %in% unique(as.character(x[,2 ]))))
             stop("'zero.pseudo' found in taxa names: specify other value")
-        if (zero.pseudo == "not.defined")
+        if ("not.defined" %in% unique(as.character(x[,2 ])))
             stop("'not.defined' found in taxa names: change the name")
-        zpart[,2] <- rep(zero.pseudo, nrow(zpart))
-        zpart[,4] <- rep(zero.pseudo, nrow(zpart))
+        if ("not.defined" %in% zero.pseudo)
+            stop("'not.defined' found in 'zero.pseudo': change the argument")
+        zpart[,2] <- rep(zero.pseudo[1], nrow(zpart))
+        zpart[,4] <- rep(zero.pseudo[2], nrow(zpart))
+        if (identical(zero.pseudo[1], zero.pseudo[2]))
+            zero.pseudo <- zero.pseudo[1]
 # gives warning for mismatch of zero.pseudo and count=0 cases
         joint <- which(unique(zpart[,1]) %in% unique(x[,1]))
         if (length(joint) != 0) {

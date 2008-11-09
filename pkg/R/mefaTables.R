@@ -19,7 +19,7 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
         rownames(dframe) <- dframe[, index]
     dnam <- rownames(dframe)
 # xtab fixed
-    if (xtab.fixed || identical(xnam, dnam)) {
+    if (xtab.fixed && identical(xnam, dnam)) {
         dsub <- dframe[dnam %in% xnam, ]
         dsub <- dsub[order(rownames(dsub)), ]
         xsub <- xtab
@@ -28,6 +28,7 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
     } else {
         int <- intersect(dnam, xnam)
         dsub <- dframe[dnam %in% int, ]
+        dsub <- dsub[order(rownames(dsub)), ]
         rank.final <- rank.orig[nam.orig %in% int]
         xsub <- if (margin == 1)
             xtab[xnam %in% int, ] else xsub <- xtab[, xnam %in% int]
