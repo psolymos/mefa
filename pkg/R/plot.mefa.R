@@ -22,19 +22,20 @@ function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
    if (stat == 1) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(samples)")
        if (is.null(xlab)) xlab2 <- "Number of taxa"
-       yvar <- summary(x)$srich}
+       }
    if (stat == 2) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(samples)")
        if (is.null(xlab)) xlab2 <- "Number of individuals"
-       yvar <- summary(x)$ninds}
+       }
    if (stat == 3) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Occupancy"
-       yvar <- summary(x)$occup}
+       }
    if (stat == 4) {
        if (is.null(ylab)) ylab2 <- paste(ylab2, "(taxa)")
        if (is.null(xlab)) xlab2 <- "Abundance"
-       yvar <- summary(x)$abund}
+       }
+    yvar <- summary(x)[[stat]]
 
    if (trafo=="log") {
        yvar <- log10(yvar)

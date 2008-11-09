@@ -3,7 +3,10 @@
 \alias{plot.mefa}
 \alias{boxplot.mefa}
 \alias{image.mefa}
-\title{Plotting Methods for Object of Class 'mefa'}
+\alias{plot.stcs}
+\alias{boxplot.stcs}
+\alias{image.stcs}
+\title{Plotting Methods for Object of Class 'mefa' and 'stcs'}
 \description{
 Various methods for plotting objects of class 'mefa'.}
 \usage{
@@ -13,9 +16,15 @@ trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
 xlab = NULL, show = TRUE, \dots)
+\method{plot}{stcs}(x, stat = 1:4, type = c("bar", "rank"),
+trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
+\method{boxplot}{stcs}(x, stat = 1:4, ylab = NULL, xlab = NULL, show = TRUE, \dots)
+\method{image}{stcs}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
+probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
+xlab = NULL, show = TRUE, \dots)
 }
 \arguments{
-  \item{x}{an object of class 'mefa'.}
+  \item{x}{an object of class 'mefa' or 'stcs'.}
   \item{stat}{numeric, to determine which characteristic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
   \item{type}{character, \code{"bar"} produces barchart (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
   \item{trafo}{character, transformation of the plotted variable. \code{"none"}: no transformation (default), \code{"log"}: logarithmic transformation (base 10), \code{"ratio"}: normalizes values by the maximum and rescales to the [0, 1] interval (useful for plotting multiple rank abundance curves), \code{"bins"}: recodes the values according to quantiles based on \code{probs}, \code{"prab"}: presence absence transformation of count data.}
@@ -33,6 +42,8 @@ xlab = NULL, show = TRUE, \dots)
 \code{boxplot} returns box-and-whiskers plots for the summary statistics based on matrices for each segments in \code{x$segm}.
 
 \code{image} creates a grid of colored rectangles with colors corresponding to the values in the segment defined by the argument \code{segm}. If \code{ordering = TRUE}, the ordering of the segment will be based on the \code{x$xtab} matrix and not on the matrix for the segment itself. This is due to better comparison among segments.
+
+All graphical display methods for objects of class 'stcs' are based on the conversion of the object into 'mefa', and than the respective plotting method is applied.
 }
 \value{
 All methods produce a plot if \code{show = TRUE}, and return the plotted values if \code{show = FALSE} without plotting them.

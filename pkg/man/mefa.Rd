@@ -11,7 +11,7 @@
 \alias{dimnames.mefa}
 \title{Create an Object of Class 'mefa'}
 \description{
-An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\srtong{me}ta\srtong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
+An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\strong{me}ta\strong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
 }
 \usage{
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
@@ -49,9 +49,9 @@ If the input \code{xtab} is a matrix, dimnames are necessary if either \code{sam
 
 The print method returns basic information, instead of a long structural representation.
 
-The summary contains statistics calculated from the 'mefa' object (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, etc., see 'Value' section). The list can be recalled by e.g. \code{unclass(summary(x))}, elements of the list e.g. \code{summary(x)$srich}.
+The summary contains statistics calculated from the 'mefa' object (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, etc., see 'Value' section). The list can be recalled by e.g. \code{unclass(summary(x))}, elements of the list e.g. \code{summary(x)$s.rich}.
 
-Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples'.
+Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples' and the vignette.
 }
 \value{
 The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 elements:
@@ -65,10 +65,10 @@ The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 
 
 The \code{summary.mefa} function returns a list invisibly, with elements:
 
-  \item{srich}{vector with species richness values for the samples.}
-  \item{ninds}{vector with number of individuals values for the samples.}
-  \item{occup}{number of sites occupied by each species.}
-  \item{abund}{abundances of each species.}
+  \item{s.rich}{vector with species richness values for the samples.}
+  \item{s.abu}{vector with number of individuals values for the samples.}
+  \item{t.occ}{number of sites occupied by each species.}
+  \item{t.abu}{abundances of each species.}
   \item{ntot}{total number of individuals.}
   \item{mfill}{matrix fill.}
   \item{nsamp}{number of samples.}
@@ -126,7 +126,7 @@ dim(x4)
 dimnames(x4)
 ## Simple examples how to use mefa objects in analyis
 ## GLM on sample abundances
-mod <- glm(summary(x4)$nind ~ .^2,
+mod <- glm(summary(x4)$s.abu ~ .^2,
     data = x4$samp[, c(4, 6)], family = quasipoisson)
 summary(mod)
 ## Cluster analysis of community matrix

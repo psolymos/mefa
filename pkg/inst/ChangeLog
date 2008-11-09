@@ -3,7 +3,25 @@ MEFA VERSIONS
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
-    * changes due to JSS revision
+    * xtab.fixed argument checked
+    * DOLINA data sets: reworked
+    * stcs: argument zero.pseudo now accepts a two element
+    vector for species and segments.
+    * vignette added
+    * add Makefile
+
+    * summary.mefa: returns list with different names
+    for [1:4] elements due to consistency with
+    samples/taxa sides: s.rich, s.abu, t.occ, t.abu,
+    and these are used in the print.summary method, too.
+    Accordingly, the class has now a call attribute to
+    return it by the summary.
+    * help pages: lots of minor improvements.
+    * R code: annotated with comments.
+    * summary.stcs: returns same info as summary.mefa,
+    but print.stcs remained the default data frame method.
+    * plot, boxplot, image methods for stcs: also added
+    for avoiding the use of calls like plot(mefa(x)).
 
 
 Version 2.0-1 -- November 8, 2008 (closed - r205)

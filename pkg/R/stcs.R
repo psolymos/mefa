@@ -1,7 +1,7 @@
 `stcs` <-
 function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 {
-    x <- xtab
+    x <- dframe
     if (any(is.na(x)))
         stop("'xtab' contains 'NA'")
     if (min(dim(as.matrix(x))) == 1)
@@ -64,6 +64,7 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     x[] <- lapply(x, function(x) x[drop = TRUE])
     if (max(x$count) == 1) expand <- TRUE
     class(x) <- c("stcs", "data.frame")
+    attr(x, "call") <- match.call()
     attr(x, "expand") <- expand
     attr(x, "zero.count") <- any(x$count == 0)
     attr(x, "zero.pseudo") <- zero.pseudo
