@@ -1,5 +1,5 @@
 `print.mefa` <-
-function(x, ...)
+function(x, nlist=10, ...)
 {
 #cat("\nCall: ", deparse(x$call), "\n", sep="")
 cat("\nAn object of class 'mefa' containing\n\n", sep="")
@@ -9,7 +9,12 @@ cat(" - ", sep="")
 
 if (!is.null(x$segm)) {
     cat(length(x$segm), sep="")
-    if (attr(x, "nested")) cat(" nested segments,\n", sep="") else cat(" (non nested) segments,\n", sep="")
+    if (attr(x, "nested")) cat(" nested segments:\n", sep="") else cat(" (non nested) segments:\n", sep="")
+    dimn <- if (dim(x)[3] > nlist) {
+        c(paste(dimnames(x)[[3]][1:nlist], rep(", ", nlist), sep=""), "...")
+        } else {
+        paste(dimnames(x)[[3]], c(rep(", ", dim(x)[3]-1), ""), sep="")}
+    cat("   (", dimn, "),\n", sep="")
     } else cat("1 (all inclusive) segment,\n", sep="")
 
 prov <- if (is.null(x$samp)) "not provided,\n" else {
