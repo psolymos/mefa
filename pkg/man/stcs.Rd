@@ -14,7 +14,6 @@ stcs(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{as}{stcs}(x, \dots)
 \method{summary}{stcs}(object, \ldots)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dframe}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
   \item{expand}{logical, whether the object should be (\code{TRUE}) expanded (via the function \code{\link{inflate}}) or not (\code{FALSE}, default). If expanded, each rows correspond to one individual observation (value of the \code{count} column is 1) or a zero sample.}

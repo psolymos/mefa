@@ -19,7 +19,7 @@ segment = TRUE, nested = FALSE, drop.zero = FALSE, drop.index = FALSE,
 xtab.fixed = TRUE)
 \method{as}{mefa}(x, \ldots)
 \method{is}{mefa}(x)
-\method{print}{mefa}(x, \ldots)
+\method{print}{mefa}(x, nlist = 10, \ldots)
 \method{summary}{mefa}(object, \ldots)
 \method{print}{summary.mefa}(x, nlist = 10, \ldots)
 \method{dim}{mefa}(x)
