@@ -14,7 +14,7 @@ if (!is.null(x$segm)) {
         c(paste(dimnames(x)[[3]][1:nlist], rep(", ", nlist), sep=""), "...")
         } else {
         paste(dimnames(x)[[3]], c(rep(", ", dim(x)[3]-1), ""), sep="")}
-    cat("   (", dimn, "),\n", sep="")
+    cat("   ", dimn, ",\n", sep="")
     } else cat("1 (all inclusive) segment,\n", sep="")
 
 prov <- if (is.null(x$samp)) "not provided,\n" else {
