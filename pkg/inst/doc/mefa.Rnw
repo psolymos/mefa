@@ -494,7 +494,7 @@ Then we do the clustering on each elements of the list object \code{m.list} usin
 opar <- par(mfrow=c(2, 2))
 for (i in 1:4) {
     tmp <- hclust(vegdist(m.list[[i]]$xtab, "bray"), "ward")
-    plot(tmp, main = LETTERS[i], sub = names(dol.list)[i], xlab = "")
+    plot(tmp, main = LETTERS[i], sub = names(m.list)[i], xlab = "")
 }
 par(opar)
 @
