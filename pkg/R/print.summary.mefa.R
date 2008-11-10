@@ -1,6 +1,8 @@
 `print.summary.mefa` <-
-function(x, nlist=10, ...)
+function(x, nlist, ...)
 {
+    if (missing(nlist))
+        nlist <- attr(x, "nlist")
     mstat <- cbind(summary(x[[1]]), summary(x[[2]]),
         summary(x[[3]]), summary(x[[4]]))
     colnames(mstat) <- c("s.rich", "s.abu", "t.occ", "t.abu")

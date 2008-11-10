@@ -1,5 +1,5 @@
 `summary.mefa` <-
-function(object, ...)
+function(object, nlist = 10, ...)
 {
 x <- object
 out <- list(
@@ -18,5 +18,6 @@ out <- list(
     drop.zero = attr(x, "drop.zero"),
     xtab.fixed = attr(x, "xtab.fixed"))
 class(out) <- c("summary.mefa")
+attr(out, "nlist") <- nlist
 return(out)}
 

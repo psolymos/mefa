@@ -1,13 +1,10 @@
 MEFA VERSIONS
 
-TODO:
-
-    * vignette: added to inst/doc.
-    * Makefile: added to inst/doc.
-
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
+    * vignette: added to inst/doc based on a manuscript
+    submitted to JSS.
     * DOLINA data sets: reworked. A more simple example
     is given, but the previous full data set is available
     on the DVN at: hdl:1902.1/12060.

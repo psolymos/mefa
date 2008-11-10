@@ -13,7 +13,7 @@ function(x, stat=1:4, ylab=NULL, xlab=NULL, show=TRUE, ...)
     yval <- unlist(yval)
     xval <- as.factor(rep(dimnames(x)$segm, each=length(summary(x)[[stat]])))
     if (is.null(ylab))
-        ylab <- c("Number of taxa", "Number of individuals",
+        ylab <- c("Frequency of taxa", "Frequency of individuals",
         "Frequency of occurrence", "Abundance")[stat]
     if (is.null(xlab))
         xlab <- "Segments"
