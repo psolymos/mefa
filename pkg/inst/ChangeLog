@@ -3,7 +3,8 @@ MEFA VERSIONS
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
-    * demo: added, based on the vignette.
+    * demo: added, based on the vignette (also a tests
+    directory to check the demo script).
     * vignette: added to inst/doc based on a manuscript
     submitted to JSS.
     * DOLINA data sets: reworked. A more simple example
