@@ -12,7 +12,7 @@ wait <- function(vign=NULL) {
 
 ## You can use the vignette for reference.
 
-wait(TRUE)
+wait("mefa")
 
 ## Load the package and the example data set
 
@@ -214,9 +214,6 @@ wait()
 
 opar <- par(mfrow=c(2, 2))
 for (i in 1:4) {
-# require vegan package
-#    tmp <- hclust(vegdist(m.list[[i]]$xtab, "bray"), "ward")
-# alternatively with Euclidean distance
     tmp <- hclust(dist(m.list[[i]]$xtab), "ward")
     plot(tmp, main = LETTERS[i], sub = names(m.list)[i], xlab = "")
 }

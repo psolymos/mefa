@@ -3,7 +3,6 @@
 
 %\VignetteIndexEntry{Processing Ecological Data in R With the mefa Package}
 %\VignettePackage{mefa}
-%\VignetteDepends{vegan}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -459,15 +458,13 @@ It is clear that the proportion of fresh shells is not constant among microhabit
 
 We employ a nonparametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function (\cite{mcardle-01}, \cite{anderson-01}) of the \pkg{vegan} package. The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the imput data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well:
 
-<<results=hide>>=
+\begin{verbatim}
+# This part requires vegan package
 library(vegan)
-@
-
-<<>>=
 m6 <- m2[summary(m2)$s.abu != 0, , ]
 adonis(m6$xtab ~ .^2,
     data = m6$samp, permutations = 100)
-@
+\end{verbatim}
 
 The results revealed that 18 percent of the total variation in community composition was due to sampling method (see also Figure~\ref{image}), and 24.6 percent was explained by microhabitats. Their interaction was also significant, explaining 15.4 percent of the total variation.
 
@@ -489,12 +486,12 @@ for (i in 1:4) {
 }
 @
 
-Then we do the clustering on each elements of the list object \code{m.list} using Bray--Curtis dissimilarities and Ward's method:
+Then we do the clustering on each elements of the list object \code{m.list} using Euclidean distance and Ward's method:
 
 <<clust, fig=TRUE, include=FALSE>>=
 opar <- par(mfrow=c(2, 2))
 for (i in 1:4) {
-    tmp <- hclust(vegdist(m.list[[i]]$xtab, "bray"), "ward")
+    tmp <- hclust(dist(m.list[[i]]$xtab), "ward")
     plot(tmp, main = LETTERS[i], sub = names(m.list)[i], xlab = "")
 }
 par(opar)
