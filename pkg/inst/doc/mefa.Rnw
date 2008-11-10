@@ -1,0 +1,563 @@
+\documentclass[nojss,shortnames]{sjj}
+\usepackage{thumbpdf}
+
+%\VignetteIndexEntry{Processing Ecological Data in R With the mefa Package}
+%\VignettePackage{mefa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\author{P\'eter S\'olymos\\University of Alberta}
+\title{Processing Ecological Data in \proglang{R} With the \pkg{mefa} Package}
+
+\Plainauthor{P\'eter S\'olymos}
+\Plaintitle{Processing Ecological Data in R With the mefa Package}
+\Shorttitle{Processing Ecological Data}
+
+\Abstract{
+The \pkg{mefa} is an \proglang{R} package for multivariate count data handling in ecology and biogeography. It provides object classes to represent count data coded by names of samples, taxa and segments (i.e.~subpopulations, repeated measures). Supports easy processing of the count data along with relational data tables for samples and taxa. An object of class 'mefa' is a project specific compendium of the dataset and can be easily used in further analyses. Methods are provided for extraction, aggregation, conversion, plotting, summary and reporting of 'mefa' objects. Reports can be generated in plain text or \LaTeX~format. This paper presents worked examples on a variety of ecological analyses.
+}
+\Keywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, \proglang{R}}
+\Plainkeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
+
+%% publication information
+%% NOTE: Typically, this can be left commented and will be filled out by the technical editor
+%% \Volume{13}
+%% \Issue{9}
+%% \Month{September}
+%% \Year{2008}
+%% \Submitdate{2008-10-09} %% taken from first submission e-mail datum
+%% \Acceptdate{2008-09-29}
+
+\Address{
+  P\'eter S\'olymos\\
+  Department of Mathematical and Statistical Sciences\\
+  University of Alberta\\
+  Edmonton, Alberta, T6G 2G1, Canada\\
+  E-mail: \email{solymos@ualberta.ca}\\
+  and\\
+  Department of Ecology\\
+  Faculty of Veterinary Science, Szent Istv\'an University\\
+  Rottenbiller Str. 50, 1077 Budapest, Hungary
+}
+
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+
+<<echo=FALSE, results=hide>>=
+options("prompt" = "R> ", "continue" = "+ ", "useFancyQuotes" = FALSE)
+@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Introduction]{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Fortunately, many packages are available for the analysis of ecological data in \proglang{R} (\cite{rcore-manual}), e.g.~the \pkg{ade4} (\cite{ade4-jss-07}), \pkg{labdsv} (\cite{labdsv-manual}) and \pkg{vegan} (\cite{vegan-manual}) packages among other more standard statistical packages e.g.~\pkg{MASS} (\cite{mass-book-02}), \pkg{stats} (\cite{rcore-manual}). These, however, often require the multivariate data in the form of a matrix or data frame.
+
+Extensive ecological data sets (with observations of multiple taxa at multiple locations) are not stored in cross tabulated format because most biodiversity data sets are sparse with matrix fill often lower than 30 percent. The conversion between data formats of biodiversity databases and ecological packages might require substantial work. Of course there are many possibilities for general data manupulation in \proglang{R} (\cite{spector-manip-08}). The \pkg{Hmisc} (\cite{hmisc-manual}), \pkg{reshape} (\cite{reshape-manual}), \pkg{simba} (\cite{simba-manual}) and \pkg{labdsv} (\cite{labdsv-manual}) packages contain functions for converting ecological data in database formats into crosstabulated data matrices, and vica versa.
+
+When the problems are more complex (e.g.~a survey spanning across multiple spatial or temporal scales), results are stored in several related data tables. Most multivariate methods require a matrix, whereas response modelling usually require data frame as input. The simultaneous manipulation and checking of the community data matrix and related data frames can be time consuming with the standard tools.
+
+The aim of the \pkg{mefa} \proglang{R} package is to provide standardized computational environment for specialist work in ecology and biogeography by bridging the gap between the data and the analysis, and reducing the time spent with data preprocessing. It provides object classes and methods for convenient manipulation of related data tables and can be used for generating reports in plain text or \LaTeX~format.
+
+The package name \pkg{mefa} is a short for \emph{metafaunistics} indicating that data processing is a critical prior to data analysis. The \emph{faunistics} part refers to the study of the fauna of some territory or area, while the \emph{meta} part refers to the procedures (data processing and analysis) beyond the data collection part of the scientific endeavour. Of course the package intend to be more general than covering only faunistics. It can be useful when dealing with almost all kinds of organisms that can be counted, including microorganisms, fungi and plants as well.
+
+Compared to previous versions (< 2.0, \cite{mefa-comecol-08}), the package has been extensively rewritten to enhance efficiency and speed, and with a focus on methods. The data model is the same but the code has been extensively rewritten since the version 1.0 (\cite{mefa-comecol-08}). Stable version of the package is available via the Comprehensive \proglang{R} Archive Network (CRAN, \url{http://cran.r-project.org}), develompmental version is available at the R-Forge (\url{http://r-forge.r-project.org/}).
+
+In this paper I outline the motivation and the general idea behind the package, and I describe the structure of the object classes. Then a real data set is used to demonstrate the methods in the package and the use of objects in further data analysis.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Example dataset]{Example Dataset}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The ''Dolina 2007'' survey was aimed to discover the soil and litter dwelling macroinvertebrates (land snails, and terrestrial isopods) with special respect to microhabitat characteristics. We have surveyed dolines (sinkholes, karstic depressions) at the Als\'o-hegy plateau of the Aggtelek National Park, North Hungary, August, 2007. These dolines were mainly covered by hornbeam and beech, and were 0.5--2 acres in extent. The dolines contained keystone habitat elements i.e.~large pieces of coarse woody debris and different rock formations.
+
+We collected invertebrates from four different microhabitats (\textbf{L}itter, live \textbf{W}ood, \textbf{D}ead wood as an equivalent for coarse woody debris, and \textbf{R}ock%%
+\footnote{Strong letters indicate the notation used for first characters of sample names. Second characters stand for sampling method, and third is the replicate number. The first quadrat and timed samples from the rock microhabitat are \code{RQ1} and \code{RT1}, respectively.}%%
+) with at least three replicates per microhabitat per doline. We collected 1 L of litter per replicate (\code{"quadrat"} method for short) and employed a time restricted search (\code{"time"} method, five minutes per replicate) in a 1 m radius around the litter sample location. Litter samples were taken from the bottom of live trees, dead trees and rocks (\cite{eureco-abstract}, \cite{vilisics-08}).
+
+Here I will use the data of land snails from the first dolina only, that is provided with the package (dataset \code{dol.count}). Samples are names after the microhabitat, the applied method and a number for replication. Snails were identified to species and categorized according to extent of shell decay. Live animals and fresh shells constituted the \code{"fresh"} group. Whitened, decayed and broken shells constituted the \code{"broken"} group.
+
+A data frame containing microsite characteristics of the samples and the applied methods is provided in the dataset \code{dol.samp}. Characteristics (nomenclature, taxonomy, adult shell dimension) of the snail species are in the dataset \code{dol.taxa}) and is based on \cite{kcj-83}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Motivation]{Motivation}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Load the package and the example data set (showing only the first 16 rows out of 297):
+
+<<>>=
+library(mefa)
+data(dol.count)
+dol.count[1:16, ]
+@
+
+This is a typical format for biodiversity datasets, where the \code{samp} column represents the observational units (samples). In planned ecological field experiments and surveys these units are expected to be comparable in terms of sampling effort. However, when data came from unplanned field observations, samples are often not comparable but refer to an observation, or set of individuals collected from a given location, by a given person in a given time.
+
+The \code{taxa} column refers to the taxonomic identity of the individuals found in a given sample. The taxonomic resolution might vary due to expert knowledge and development stage of the individuals. When an actual sample did not contain individuals, it is convenient to refer to this situation by a pseudo-species (here, it is named as \code{"zero.pseudo"}) indicating that 0 individuals were found in the sample coded as \code{LT1} (first replicate from the litter microhabitat collected by timed search).
+
+The \code{counts} column contains the outcome of the field experiment, the number of individuals of a given taxa (i.e.~a species) that were found in a given sample. It is zero when the sample contained no individuals. This notation is only necessary, if we are interested in zero samples (i.e.~indication very low abundances).
+
+The \code{segm} column is used to distinguish segments (subpopulations) within individuals of the same species (nested into samples and species). Here we use \code{"fresh"} and \code{"broken"} segments to classify individuals based on shell decay. Other common examples for such segments are when distinguishing between males and females, different life stages or age classes. But it can also be used to identify subsets of the data, e.g.~in case of a repeated measures experiment, when samples are nested within subsequent sampling period. As an example, data from museum collections can be used in this way to describe data accumulation trends through time (\cite{solymos-feher-ibs-08}).
+
+This format is ideal for the storage of the data but not adequate for data analysis. Prior to analysis, we have to crosstabulate the data to get a matrix filled with count values and with rows as samples and columns as taxa. Besides the functions \code{table} (in package \pkg{base}, for factors, \cite{rcore-manual}), there are some other functions in \proglang{R} to do this. For two-way crosstabulation of such data, there is the function \code{reshape} in the \pkg{reshape} package (\cite{reshape-manual}), the \code{mama} function in the \pkg{simba} package (\cite{simba-manual}) based on the \code{reshape} function, and the \code{matrify} function in the \pkg{labdsv} package (\cite{labdsv-manual}).
+
+Complications may arise, however, when we are dealing with three-way crosstabulation of the data (see \code{xtabs} in package \pkg{stats}, with formula interface, \cite{rcore-manual}) and complex data structures, like the results of a hierarchical sampling design. We have to aggregate the samples into higher level units or the taxa into taxonomic or functional groups. And we might want to extract a subset of the crosstabulated data along with subsetted tables for samples and taxa at the same time. The way to do it with the \pkg{mefa} is shown in the next sections.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Object classes]{Object Classes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The structure of the above data set with the four column is basically the prototype of an object of class 'stcs'. This is the primary format for database style data sets in the \pkg{mefa} package. The four letter acronym comes from the first letters of the column names (\textbf{s}amples, \textbf{t}axa, \textbf{c}ounts, \textbf{s}egments). To convert our example into an 'stcs' object we do:
+
+<<>>=
+x1 <- stcs(dol.count)
+str(x1)
+unique(x1$count)
+@
+
+The objects inherits from the data frame class, thus methods available for data frames apply for 'stcs' objects as well. But there are four additional attributes. The \code{call} attribute is the function call. The \code{expand} attribute refers to the count column. If the counts are 1s, and each rows represent one individual, than \code{expand} attribute is \code{TRUE}. We can achieve this by the \code{expand} argument:
+
+<<>>=
+x2 <- stcs(dol.count, expand = TRUE)
+str(x2)
+sum(x2$count)
+unique(x2$count)
+@
+
+As an effect, the data frame is expanded and count column contain 1 and 0 values. As we see, now the result contains 732 rows instead of 297. The 732 is the sum of the counts (one row for each count) plus one row for the empty sample. This expansion can be done with any data frame by the \code{inflate} function of the package.
+
+The \code{zero.count} attribute refers to the presence or absence of empty samples in the data set. If empty samples are present, taxa and segment indices of the corresponding rows are set to the value stored in the \code{zero.pseudo} attribute. This can be set by the \code{zero.pseudo} argument in the function call. Count values of this pseudo species should be 0, the segment value is indifferent (but it can be set as the second element of a character vector supplied as the \code{zero.pseudo} argument).
+
+Empty samples can be dropped by the \code{drop.zero = TRUE} argument (some multivariate methods, i.e.~dissimilarity or diversity indices, does not allow empty rows to be present):
+
+<<>>=
+x3 <- stcs(dol.count, drop.zero = TRUE)
+str(x3)
+unique(x2$count)
+@
+
+Now the \code{zero.count} attribute is \code{FALSE} and the \code{zero.count} attribute is \code{"not.defined"} as a result.
+
+The number of columns in the input data frame may vary from two to four. If two columns are provided, it is assumed that the first column contains sample, while the second taxa names. If three columns are provided, the first two are treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If four columns are provided, those are assumed to be in the samples, taxa, counts, segments order.
+
+To crosstabulate the data of a 'stcs' object, use:
+
+<<>>=
+m1 <- mefa(x1)
+m1
+@
+
+The \code{mefa} function returns an object of class 'mefa'. The print method for the 'mefa' objects returns basic informations on the dimensions of the data. The \code{$xtab} list element contains the cross tabulated count data. The pseudo species has been removed, thus the last row is empty. Row and column ordering follows the original internal coding of factors in the 'stcs' object. The \code{$segm} contains the matrices for each segment, with dimensions being the same as for \code{$xtab}:
+
+<<>>=
+str(m1$xtab)
+str(m1$segm)
+@
+
+If segments represent e.g.~successive sampling periods (years, decades) it can be useful to use the \code{nested = TRUE} argument to inspect the data accumulation over time. In this case, values in subsequent segments are added up and segment names indicate this also:
+
+<<>>=
+mefa(x1, nested = TRUE)
+@
+
+If we do not want to use segments, use the \code{segment = FALSE} argument:
+
+<<>>=
+mefa(x1, segment = FALSE)
+@
+
+If the input object for the \code{mefa} function is a matrix or data frame, segments cannot be specified directly. Segments can, however, be defined indirectly through a 'mefa'$\rightarrow$'stcs'$\rightarrow$'mefa' loop by the \code{melt} method (discussed in the examples later).
+
+Besides the count data, we also have a data frame for the samples. Here are the covariates for the 24 samples (2 methods, 4 microhabitat types):
+
+<<>>=
+data(dol.samp)
+str(dol.samp)
+@
+
+And we also have a table containing variables related to the species (three factors, one numeric):
+
+<<>>=
+data(dol.taxa)
+str(dol.taxa)
+@
+
+These two tables, or either only one of them can easily be combined with the crosstabulation:
+
+<<>>=
+mefa(x1, dol.samp)
+mefa(x1, , dol.taxa)
+m2 <- mefa(x1, dol.samp, dol.taxa)
+m2
+str(m2$xtab)
+str(m2$samp)
+str(m2$taxa)
+@
+
+The tables are subsetted and ordered according to the row and column names in the crosstabulation. If names do not match, an error message is produced. This can be the case e.g.~if the input object for the \code{mefa} function is a matrix without row or column names. It is not necessary to have names, only if tables for samples and taxa are provided.
+
+In those cases, when the tables for samples and taxa do not contain rows for all the crosstabulated ones, the \code{xtab.fixed = FALSE} argument can be useful. This results in a 'mefa' object containing samples and taxa that are common in the names:
+
+<<>>=
+m2.sub <- mefa(x1, dol.samp[-c(1:5), ], dol.taxa[-c(1:80), ], xtab.fixed = FALSE)
+m2.sub
+str(m2.sub$xtab)
+str(m2.sub$samp)
+str(m2.sub$taxa)
+@
+
+As we see, the count data matrix is also subsetted, according to the related tables of samples and taxa.
+
+An object of class 'mefa' is a list of length five. First element is the function call (\code{$call}), second is a matrix with the cross tabulated count data (\code{$xtab}). These two are always present, the remaining three depend on the availability of data and the aims of the study. The third element contains a list of matrices for segments (\code{$segm}), the fourth and fifth contains data frames with data for samples (\code{$samp}) and taxa (\code{$taxa}), respectively. Elements, except for the count data matrix, can be missing. The general structure of an objetc of class 'mefa' follows a relational data model, where dimnames attributes of the main count data matrix, the segment data matrices and the samples/taxa data tables for the rows and columns are identical. The print method for the 'mefa' objects shows the names of these elements to help memorizing the notation. Besides this, a figure (Figure~\ref{mefastr}) depicting the structure can be called as:
+
+<<mefastr, fig=TRUE, include=FALSE>>=
+mefalogo()
+@
+
+\begin{figure}[tb]
+    \includegraphics[width=1\textwidth]{mefa-mefastr}
+    \caption{Representation of the relational data model in an object of class 'mefa'.\label{mefastr}}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[S3 method]{S3 Methods}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%
+\subsection[Summary and graphical display]{Summary and Graphical Display}
+%%%%%%%%%%%%%
+
+
+Dimension and dimension names can be retrieved by the \code{dim} and \code{dimnames} methods:
+
+<<>>=
+dim(m2)
+dimnames(m2)
+@
+
+To get a summary of the data, use the \code{summary} method:
+
+<<>>=
+summary(m2)
+@
+
+This returns basic characteristics of the data matrix. There are observations of 731 land snail individuals in the object and 26 \% of the matrix cells are non zero. There is also a list with segment levels, and summaries of the marginal tables derived from the count data matrix. Four vectors are based on marginal tables, the number of taxa (species) and individuals in the samples (\code{s.rich} and \code{s.abu}), and the number of occupied samples and individuals per species (\code{t.occ} and \code{t.abu}). The characteristics shown in the summary can be extracted according to their names:
+
+<<>>=
+names(summary(m2))
+@
+
+for example to return species richness values for the samples, or matrix fill, use:
+
+<<>>=
+summary(m2)$s.rich
+summary(m2)$mfill
+@
+
+To get summaries for the linked data tables, use e.g.~\code{summary(dol$samp)} or \code{summary(dol$taxa)}.
+
+The first four characteristics of the samples and taxa can be plotted as barchart (\code{type = "bar"}; Figure~\ref{plot}A) or ranked in decreasing order (\code{type = "rank"}; Figure~\ref{plot}B) by the \code{plot} method. Values can be log transformed (\code{trafo = "log"}; Figure~\ref{plot}B) or normalized by their maxima (\code{trafo = "ratio"}). Here, only two cases are shown:
+
+<<plot, fig=TRUE, include=FALSE, height=3>>=
+opar <- par(mfrow = c(1, 2))
+plot(m2, 1, main="A")
+plot(m2, 4, type="rank", trafo="log", main="B")
+par(opar)
+@
+
+\begin{figure}[tb]
+    \includegraphics[width=1\textwidth]{mefa-plot}
+    \caption{Plotting an object of class 'mefa': barcharts for species richness (A), and ranked log abundances for species (B).\label{plot}}
+\end{figure}
+
+
+The \code{boxplot} method is provided to retreive these statistics for each segment (Fig. \ref{boxplot}):
+
+<<boxplot, fig=TRUE, include=FALSE, height=3>>=
+opar <- par(mfrow = c(1, 4))
+for (i in 1:4) boxplot(m2, i, main=LETTERS[i])
+par(opar)
+@
+
+\begin{figure}[tb]
+    \includegraphics[width=1\textwidth]{mefa-boxplot}
+    \caption{Boxplots to depict differences among segments for species richness (A) and number of individuals (B) in samples, frequency of occurrences (C) and species abundances (D).\label{boxplot}}
+\end{figure}
+
+The \code{melt} method refers to the conversion of a 'mefa' object into an 'stcs' representation. The generic function is defined here, but can be found in the \pkg{reshape} package as well (transforming between wide and long formatted data), which also contains methods for data frames, arrays, matrices, tables and lists. The method for 'mefa' objects is defined in the \pkg{mefa} package. Use the sampling method column in the samples table for segments (\code{m2$samp$method}), and make an object of class 'stcs' as follows:
+
+<<>>=
+molten <- melt(m2, "method")
+str(molten)
+@
+
+Then make an object of class 'mefa' using the samples and taxa tables, because those have not changed, only the segments (instead of shell decay stage, now it refers to sampling methods, see segment names in the following example):
+
+<<>>=
+m3 <- mefa(molten, dol.samp, dol.taxa)
+m3
+@
+
+This kind of melting--refreezing trick can be useful, if segments were not defined in the original 'stcs' object, or the 'mefa' object was based on a matrix or data frame (without segments). In this way, we can create segmented representations based on groups of samples (e.g.~spatial units, repeated samples) or groups of taxa (e.g.~taxonomic or functional groups) to explore their differences.
+
+Here we used melting--refreezing to explore the effects of sampling methods (note, originally shell decay stages were used as segments, and not sampling methods). We can visualize the relationship by the \code{image} method. This method creates a grid of colored rectangles with colors corresponding to the values in count data table. Segments can be specified as well. The rows and the columns are ordered according to their sums, being the top-left corner with the highest values. Transformations (log, order-scaled values based on quantiles, presence-absence) are also available to best represent the data in the plot. Figure~\ref{image} shows differences between the samples compared to the main data matrix.
+
+<<image, fig=TRUE, include=FALSE, height=3>>=
+opar <- par(mfrow = c(1, 3))
+image(m3, trafo = "log", sub = "all segments", main="A")
+for (i in 1:2)
+    image(m3, segm = i, trafo = "log",
+    sub = dimnames(m3)$segm[i], main = LETTERS[i + 1])
+par(opar)
+@
+
+\begin{figure}[tb]
+    \includegraphics[width=1\textwidth]{mefa-image}
+    \caption{Levelplot representation of an object of class 'mefa'. Intensity of red coloring refers to increasing log abundances in the cells of the main data matrix (A) and the segments for the quadrat (B), and the time restricted search (C) methods.\label{image}}
+\end{figure}
+
+Methods for objects of class 'stcs' (\code{summary}, \code{plot}, \code{boxplot}, \code{image}) are also provided for convenience, but those are merely use the crostabulated results to do the same job as the respective method for the 'mefa' objects. Other methods for 'stcs' objects rely on methods for data frames (e.g.~\code{print}, \code{str}, \code{dim}, \code{dimnames}).
+
+%%%%%%%%%%%%%
+\subsection[Extraction and aggregation]{Extraction and Aggregation}
+%%%%%%%%%%%%%
+
+
+I we want to analyse only a subset of the data, the extraction of the 'mefa' objects can be done via square brackets and by indexing the samples, taxa and segments to extract. Indexing can be numeric, or can refer to dimnames:
+
+<<>>=
+ex1 <- m2[1:20, 11:15, "fresh"]
+dim(ex1)
+dim(ex1$samp)
+dim(ex1$taxa)
+@
+
+As a result, the count data and the samples/taxa tables were subsetted. If negative numeric values are given, the respective parts of the object are omitted, e.g.~the first element in the second dimension can be excluded by \code{m2[ ,-1]}. Unused factor levels in the \code{$samp} and \code{$taxa} tables can be dropped as:
+
+<<>>=
+ex2 <- m2[m2$samp$method == "time"]
+levels(ex2$samp$method)
+ex3 <- m2[m2$samp$method == "time", drop = TRUE]
+levels(ex3$samp$method)
+@
+
+The data set can be easily aggregated if we want to calculate statistics, e.g.~species richness, on different levels of the sampling hierarchy (like in additive diversity partitioning, \cite{lande-96}). Aggregation can be done by internal vectors, when the name of the variable refers to a column in the samples or taxa tables. If external vectors (that are not part of the 'mefa' object) are used, the current implementation require a class attribute (e.g.~\code{"factor"}) to be recognised as an external object. Now we create a factor with levels \code{"large"} and \code{"small"} for snail species with adult body size lagrer or equal to, or smaller than 5 millimeters, respectively. Then, aggregate the object according to the internal \code{"microhab"} (microhabitat type) variable for samples and this external body size factor for taxa:
+
+<<>>=
+size.5 <- as.factor(is.na(m3$taxa$size) | m3$taxa$size < 5)
+levels(size.5) <- c("large", "small")
+m4 <- aggregate(m3, "microhab", size.5)
+t(m4$xtab)
+lapply(m4$segm, t)
+@
+
+From these results it is clear, that the proportion of size categories differ among sampling methods and microhabitats. We will further analyse this in the next chapters.
+
+The methods provided for the object classes in the \pkg{mefa} package are reviewed in Table~\ref{methtab}.
+
+%%%%%%%%%%%%%
+\subsection[Writing reports]{Writing Reports}
+%%%%%%%%%%%%%
+
+
+If the count data as the result of a field experiment is given, along with information about the sampling locations, making a report is easy with the \code{report} method. This writes a text file into the specified or the working directory. Contents of theis text file can be further used e.g.~by copy-pasting it into a word processor. But it is more straightforward to use the \code{tex = TRUE} argument to write a formatted \LaTeX~file and use the \LaTeX~function \code{input} to include the results into the main document. A sample document on how to use the function in a \pkg{Sweave} document (\cite{leisch-sweave}) can be viewed by calling \code{mefadocs("SampleReport")}.
+
+Now we write the dataset into a file after extracting the ten randomly selected species only, retaining all samples and both segments in the object \code{m2}:
+
+<<>>=
+set.seed(1234)
+m5 <- m2[ , sample(1:dim(m2)[2], 10)]
+report(m5, "report.tex", tex = TRUE, 
+    segment = TRUE, taxa.name = 1, author.name = 2,
+    drop.redundant = 1)
+@
+
+The result is shown in Figure~\ref{minipg} with appropriate \LaTeX~formatting. The formatting rules can be modified via the \code{tex.control} argument, and it can even be turned off by using \code{tex = FALSE} (this is the default).
+
+\begin{figure}[tb]
+    \begin{center}
+        \fbox{
+            \begin{minipage}[tb]{0.9\textwidth}
+                \begin{small}
+                \input{report.tex}
+                \end{small}
+            \end{minipage}
+        }
+    \end{center}
+    \caption{Report generated from a 'mefa' object by the \code{report} method.\label{minipg}}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Data analysis]{Data Analysis}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%
+\subsection[Single taxon response modeling]{Single Taxon Response Modeling}
+%%%%%%%%%%%%%
+
+Here we use the data of the land snail species \emph{Discus perspectivus} (\code{"dper"}) and the samples data table in the Dolina dataset to investigate the effect of microhabitat and sampling method on the abundance of this species. The extraction of the 'mefa' object is done directly within the function (using just the \code{dper} column of the \code{m2$xtab} matrix). For the data argument of the Poisson GLM, we simply provide the \code{m2$xamp} table:
+
+<<>>=
+mod.amin <- glm(m2$xtab[, "dper"] ~ .,
+    data = m2$samp, family = poisson)
+summary(mod.amin)
+@
+
+The model output indicates that the species was more frequenty in live wood and rock microhabitats than dead wood and litter, further most of the individuals were collected by the quadrat method.
+
+%%%%%%%%%%%%%
+\subsection[Modeling the marginal sum as response]{Modeling the Marginal Sum as Response}
+%%%%%%%%%%%%%
+
+
+The distribution of the number of snails in the samples is still skewed and likely overdispersed, thus we use a negative binomial model to analyse the relationship between land snail abundances and sample covariates. The negative binomial model is implemented in the \pkg{MASS} package (\cite{mass-book-02}). As part of the maximum likelihood fit, a shape parameter (\code{theta}) is also estimated in order to model the data as gamma mixture of Poisson distributions. We use the \code{summary} method to get the vector of the number of individuals, and the samples table again for covariates using their interaction as well:
+
+<<>>=
+library(MASS)
+mod.abu <- glm.nb(summary(m2)$s.abu ~ .^2,
+    data = m2$samp)
+summary(mod.abu)
+@
+
+The abundance of snails in the samples was positively associated with dead wood and rock microhabitats. The interaction of the sampling method and the microhabitats is proved to be significant, indicating that the collecting efficiency of snails varied among microhabitats. The number of snails collected by the quadrat method was higher for the litter and live wood microhabitats, while in the dead wood microhabitat, the timed search resulted in snails.
+
+We can take advantage of the segments in the analysis as well. We now investigate, whether the proportion of fresh shells (including living animals) differ among microhabitats and sampling methods. First, we make a two-column matrix with the number of fresh shells per samples and the total number of shells (fresh and broken) collected per samples. Than, assuming that decay status (fresh or broken) of a single shell follows a Bernoulli process, we use this matrix in a binomial GLM (logistic regression) with number of trials equal to the total number of species per sample:
+
+<<>>=
+prop.fr <- cbind(summary(m2[ , , "fresh"])$s.abu, summary(m2)$s.abu)
+mod.fr <- glm(prop.fr ~ .^2,
+    data = m2$samp, family = binomial)
+summary(mod.fr)
+@
+
+It is clear that the proportion of fresh shells is not constant among microhabitats and sampling methods. The proportion was lowest in the rock microhabitats, although the quadrat method resulted more fresh shells from the rock microhabitats than the timed search methor (due to the significant microhabitat $\times$ method interaction).
+
+
+%%%%%%%%%%%%%
+\subsection[Multivariate response modeling]{Multivariate Response Modeling}
+%%%%%%%%%%%%%
+
+
+We employ a nonparametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function (\cite{mcardle-01}, \cite{anderson-01}) of the \pkg{vegan} package. The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the imput data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well:
+
+<<results=hide>>=
+library(vegan)
+@
+
+<<>>=
+m6 <- m2[summary(m2)$s.abu != 0, , ]
+adonis(m6$xtab ~ .^2,
+    data = m6$samp, permutations = 100)
+@
+
+The results revealed that 18 percent of the total variation in community composition was due to sampling method (see also Figure~\ref{image}), and 24.6 percent was explained by microhabitats. Their interaction was also significant, explaining 15.4 percent of the total variation.
+
+
+%%%%%%%%%%%%%
+\subsection[Analysing multiple subsets]{Analysing Multiple Subsets}
+%%%%%%%%%%%%%
+
+The modular structure of the 'mefa' objects enables easy processing of the data in a loop. Now we use hierarchical cluster analysis based on multiple subsets of the data to assess the effects of shell decay stages and sampling methods on the community composition. We first make a list with four subsets of the Dolina dataset, referring to combinations of timed search and quadrat method, and fresh and broken shells. We also aggregate the samples over microhabitats:
+
+<<>>=
+m.list <- list()
+n1 <- rep(c("time", "quadrat"), each = 2)
+n2 <- rep(c("fresh", "broken"), 2)
+n3 <- paste(n1, n2, sep=".")
+for (i in 1:4) {
+    m.list[[n3[i]]] <-
+    aggregate(m2[m2$samp$method == n1[i], , n2[i]], "microhab")
+}
+@
+
+Then we do the clustering on each elements of the list object \code{m.list} using Bray--Curtis dissimilarities and Ward's method:
+
+<<clust, fig=TRUE, include=FALSE>>=
+opar <- par(mfrow=c(2, 2))
+for (i in 1:4) {
+    tmp <- hclust(vegdist(m.list[[i]]$xtab, "bray"), "ward")
+    plot(tmp, main = LETTERS[i], sub = names(dol.list)[i], xlab = "")
+}
+par(opar)
+@
+
+\begin{figure}[tb]
+    \includegraphics[width=1\textwidth]{mefa-clust}
+    \caption{Hierarchical cluster analysis of multiple subsets of the Dolina dataset. Subsets are extracted to represent combinations of shell decay stages (A, C: fresh; B, D: broken) and sampling methods (A--B: timed search; C--D: quadrat method).\label{clust}}
+\end{figure}
+
+Figure~\ref{clust} shows that the dendrograms for the fresh and broken segments of the quadrat method are congruent, while that of for the timed search are not. For the fresh shells, the dead wood communities resembled the rock community. While for the broken shells only, dead wood communities were more similar to live wood and litter communities than to the rock.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Conclusions]{Conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+The \pkg{mefa} package provides a convenient tool for ecologists and biogeographers working on biodiversity data sets in \proglang{R}. The object classes ('stcs' and 'mefa') and S3 methods provide a coherent framework for data preprocessing of structured data sets. Based on 'mefa' objects, reports can be generated in plain text or \LaTeX~format. It is presented how the objects can be directly used in further analyses.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Acknowledgements]{Acknowledgements}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Initial development of the \pkg{mefa} package was motivated by complex spatial sampling designs for landscape scale invertebrate surveys, especially in the ''Dolina 2007'' experiment. I would like to thank to Zita Kemencei, Ferenc Vilisics, Elisabeth Hornung, Roland Farkas and Zolt\'an Feh\'er for discussions and feedback, and providing their data to improve the package. The helpful reviews of two anonymous referees considerably improved the earlier version of the manuscript and the package itself. During the preparation of this manuscript, I was supported by a postdoctoral fellowship from the NSERC and the Alberta Biodiversity Monitoring Institute (Edmonton, Alberta, Canada).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{mefa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{table}[p]
+\begin{center}
+\begin{tabular}[tb]{llp{10cm}}
+\hline
+Class & Method & Description \\ 
+\hline
+\texttt{stcs} & \texttt{is.stcs}   & evaluates if an object is of class 'stcs'. \\ 
+            & \texttt{as.stcs}   & equivalent to the function \texttt{stcs}. \\ 
+            & \texttt{summary}   & does the same as \texttt{summary.mefa}, just for convenience. \\ 
+            & \texttt{plot}      & does the same as \texttt{plot.mefa}, just for convenience. \\ 
+            & \texttt{boxplot}   & does the same as \texttt{boxplot.mefa}, just for convenience. \\ 
+            & \texttt{image}     & does the same as \texttt{image.mefa}, just for convenience. \\ 
+\texttt{mefa} & \texttt{is.mefa}   & evaluates if an object is of class 'mefa'. \\ 
+            & \texttt{as.mefa}   & equivalent to the function \texttt{mefa}. \\ 
+            & \texttt{print}     & print basic characteristics of the object. \\ 
+            & \texttt{summary}   & print basic summaries on the count data. \\ 
+            & \texttt{plot}      & graphical display of basic summaries of the count data based on the main data matrix. \\ 
+            & \texttt{boxplot}   & graphical display of basic summaries of the count data based on data matrices for segments. \\ 
+            & \texttt{image}     & graphical display of count values in the main data matrix or data matrix for a segment. \\ 
+            & \texttt{aggregate} & aggregate (sum) the values in the matrices (main data and segments). \\ 
+            & \texttt{[}         & extract an object (count data matrices and relational data frames) based on indexing for rows (samples) columns (taxa) and segments.\\ 
+            & \texttt{melt}      & convert an object of class 'mefa' into an object of class 'stcs'. \\ 
+            & \texttt{report}    & writes data from an object of class 'mefa' into a file. \\ 
+            & \texttt{dim}       & return dimension of the object. \\ 
+            & \texttt{dimnames}  & return names for rows (samples) columns (taxa) and segments. \\
+\hline
+\end{tabular}
+\end{center}
+  \caption{Description of methods provided for the object classes.\label{methtab}}
+\end{table}
+
+
+\end{document}
