@@ -3,6 +3,10 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
 {
     if (margin != 1 && margin != 2)
         stop("'margin' should be 1 or 2")
+    if (NCOL(dframe) == 1) {
+        dframe <- data.frame(x=dframe, copy=dframe)
+        onecol <- TRUE
+    } else onecol <- FALSE
 # ordering tables
     if (margin == 1) {
         rank.orig <- c(1:nrow(xtab))[order(rownames(xtab))]
@@ -45,6 +49,8 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
 # drop index
     if (!is.null(index) && drop.index)
         dsub[, index] <- NULL
+    if (onecol)
+        dsub <- as.data.frame(x=dsub[,1])
     return(list(xtab=xsub, dtab=dsub))
 }
 

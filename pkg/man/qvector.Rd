@@ -6,12 +6,14 @@
 Converts a numeric vector into an ordinal one based on quantiles.
 }
 \usage{
-qvector(x, probs = seq(0, 1, 0.25))
+qvector(x, probs = seq(0, 1, 0.25), na.rm = FALSE, \ldots)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{a numeric vector.}
   \item{probs}{numeric vector of probabilities with values in [0, 1] used by \code{\link{quantile}}.}
+  \item{na.rm}{logical, if true, any \code{NA} and \code{NaN}s are removed from \code{x} before the quantiles are computed.}
+  \item{\ldots}{further arguments passed to the function \code{\link{quantile}}.}
 }
 \value{
 A numeric vector of length the same as the input vector, containing the respective (upper) quantile values.

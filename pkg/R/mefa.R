@@ -27,8 +27,8 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
 # make stab
     xtab2 <- xtab
     if (!is.null(samp)) {
-        if (NCOL(samp) == 1)
-            stop("at least 2 columns needed for 'samp'")
+#        if (NCOL(samp) == 1)
+#            stop("at least 2 columns needed for 'samp'")
         samp.list <- mefaTables(xtab2, samp, 1, id.samp,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- samp.list$xtab
@@ -37,8 +37,8 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         samp2 <- NULL}
 # make taxa
     if (!is.null(taxa)) {
-        if (NCOL(taxa) == 1)
-            stop("at least 2 columns needed for 'taxa'")
+#        if (NCOL(taxa) == 1)
+#            stop("at least 2 columns needed for 'taxa'")
         taxa.list <- mefaTables(xtab2, taxa, 2, id.taxa,
             drop.index=drop.index, xtab.fixed=xtab.fixed)
         xtab2 <- taxa.list$xtab

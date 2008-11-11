@@ -3,40 +3,44 @@ MEFA VERSIONS
 
 Version 2.0-2 -- November 8, 2008 (opened - r???)
 
+    * mefa: the restriction of at least 2 columns for
+      samp and taxa tables is no longer necessary.
+    * qvector: na.rm and ... arguments added.
     * demo: added, based on the vignette (also a tests
-    directory to check the demo script).
+      directory to check the demo script).
     * vignette: added to inst/doc based on a manuscript
-    submitted to JSS.
+      submitted to JSS. Dependencies are excluded and
+      a verbatim code is placed in the vignette instead.
     * DOLINA data sets: reworked. A more simple example
-    is given, but the previous full data set is available
-    on the DVN at: hdl:1902.1/12060.
+      is given: dol.count, dol.samp, dol.taxa. The previous
+      full data set is available at: hdl:1902.1/12060.
     * plot: labels corrected.
     * melt.mefa: takes care of zero.pseudo flags silently,
-     and returns call attribute as well of raw=FALSE.
+      and returns call attribute as well of raw=FALSE.
     * print.mefa: returns segment names to avoid confusion
-    when all other details are the same.
+      when all other details are the same.
     * mefaTables: xtab.fixed argument now works properly.
     * stcs: argument zero.pseudo now accepts a two element
-    vector for species and segments, respectively.
+      vector for species and segments, respectively.
     * summary.mefa: returns list with different names
-    for [1:4] elements due to consistency with
-    samples/taxa sides: s.rich, s.abu, t.occ, t.abu,
-    and these are used in the print.summary method, too.
-    Accordingly, the class has now a call attribute to
-    return it by the summary.
+      for [1:4] elements due to consistency with
+      samples/taxa sides: s.rich, s.abu, t.occ, t.abu,
+      and these are used in the print.summary method, too.
+      Accordingly, the class has now a call attribute to
+      return it by the summary.
     * help pages: lots of minor improvements.
     * R code: annotated with comments.
     * summary.stcs: returns same info as summary.mefa,
-    but print.stcs remained the default data frame method.
+      but print.stcs remained the default data frame method.
     * plot, boxplot, image methods for stcs: also added
-    for avoiding the use of calls like plot(mefa(x)).
+      for avoiding the use of calls like plot(mefa(x)).
 
 
 Version 2.0-1 -- November 8, 2008 (closed - r205)
 
     * extract.mefa: now accepts negative indexing
-      for exclusion (not as character).
-    * extract.mefa: column extraction bug fixed
+      for exclusion (not as character), and
+      column extraction bug fixed
     * type arg of plot.mefa: "hist" replaced by "bar"
 
 
