@@ -2,13 +2,13 @@
 \name{mefaCheck}
 \alias{mefaCheck}
 \alias{mefaCompare}
-\title{Check an Compare Object(s) of Class 'mefa'}
+\title{Check and Compare Object(s) of Class 'mefa'}
 \description{
 The functions evaluates the internal structute of a 'mefa' object.
 }
 \usage{
 mefaCheck(x)
-mefaCompare{x1, x2}
+mefaCompare(x1, x2)
 }
 \arguments{
   \item{x, x1, x2}{an objects of class 'mefa'.}

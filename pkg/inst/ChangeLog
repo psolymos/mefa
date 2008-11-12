@@ -2,8 +2,11 @@ MEFA VERSIONS
 
 Version 2.1-0 -- November 11, 2008 (opened - r???)
 
-Version 2.0-2 -- November 11, 2008 (closed - r235)
+Version 2.0-2 -- November 11, 2008 (closed - r237)
 
+    * mefaCompare: compares 2 objects of class mefa,
+      based on dimnames and numeric values. Sample
+      and taxa tables are not compared.
     * demo: added, based on the vignette (also a tests
       directory to check the demo script).
     * vignette: added to inst/doc based on a manuscript
@@ -17,7 +20,7 @@ Version 2.0-2 -- November 11, 2008 (closed - r235)
     * mefaCrosstab: xtabs function is now used for
       crosstabulation internally, instead of the
       inflate function. This implementation allows
-      non integer calues as 'count'. All other
+      non integer values as 'count'. All other
       functions (stcs, melt, aggregate) accept it, too.
       The inflate function is in use for integer counts
       used by stcs when expand is TRUE. Help pages and
