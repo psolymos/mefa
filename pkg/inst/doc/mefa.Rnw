@@ -16,6 +16,11 @@
 
 \Abstract{
 The \pkg{mefa} is an \proglang{R} package for multivariate data handling in ecology and biogeography. It provides object classes to represent the data coded by samples, taxa and segments (i.e.~subpopulations, repeated measures). Supports easy processing of the data along with relational data tables for samples and taxa. An object of class 'mefa' is a project specific compendium of the dataset and can be easily used in further analyses. Methods are provided for extraction, aggregation, conversion, plotting, summary and reporting of 'mefa' objects. Reports can be generated in plain text or \LaTeX~format. This paper presents worked examples on a variety of ecological analyses.
+
+This vignette is based on a manuscript submitted to the \emph{Journal of Statistical Software},
+processed with \pkg{mefa}
+\Sexpr{packageDescription("mefa", field="Version")}
+in \Sexpr{R.version.string} on \today.
 }
 \Keywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, \proglang{R}}
 \Plainkeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
