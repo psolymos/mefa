@@ -2,8 +2,9 @@ MEFA VERSIONS
 
 Version 2.1-0 -- November 11, 2008 (opened - r???)
 
-Version 2.0-2 -- November 11, 2008 (closed - r237)
+Version 2.0-2 -- November 11, 2008 (closed - r241)
 
+    * intro text: mefa gives date info when loaded.
     * mefaCompare: compares 2 objects of class mefa,
       based on dimnames and numeric values. Sample
       and taxa tables are not compared.
