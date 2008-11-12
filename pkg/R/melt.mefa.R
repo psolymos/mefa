@@ -1,10 +1,15 @@
 `melt.mefa` <-
 function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
+# internal function to apply recursively
+meltMefa <-
+function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
+{
 if (is.null(dimnames(x$xtab)[[1]]))
     rownames(x$xtab) <- 1:nrow(x$xtab)
 if (is.null(dimnames(x)[[2]]))
     colnames(x$xtab) <- 1:ncol(x$xtab)
+
 # melt by samples
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))
@@ -13,7 +18,7 @@ if (is.null(dimnames(x)[[2]]))
         samp <- rep(dimnames(x)[[1]], each=dim(x)[2])
         taxa <- rep(dimnames(x)[[2]], dim(x)[1])
         if (is.null(segm.var)) {
-            segm <- rep("undefined", length(count))
+                segm <- rep("undefined", length(count))
             } else {
             if (!is.object(segm.var)) {
                 if (length(segm.var) > 1)
@@ -49,7 +54,7 @@ if (is.null(dimnames(x)[[2]]))
         if (drop.zero){
             out <- out[out[ ,3] != 0, ]
             out[] <- lapply(out, function(x) x[drop = TRUE])}
-        return(out)
+        return(list(rval=out, zpse="zero.pseudo"))
 # result without zeros
     } else {
         cpart <- out[out[ ,3] != 0, ]
@@ -67,7 +72,26 @@ if (is.null(dimnames(x)[[2]]))
             count=rep(0, n), segm=rep(zpse2, n))
         out <- merge(cpart, zpart, all = TRUE)
         rval <- stcs(out, drop.zero=drop.zero, zero.pseudo=c(zpse1, zpse2), ...)
-        attr(rval, "call") <- match.call()
-        return(rval)}
+        return(list(rval=rval, zpse=c(zpse1, zpse2)))}
 }
 
+    if (dim(x)[3] > 1 && is.null(segm.var)) {
+        out <- meltMefa(x[,,1], segm.var=NULL, by.samp=TRUE, raw.out, drop.zero, ...)
+        zpse <- out$zpse
+        out <- out$rval
+        out$segm <- as.character(out$segm)
+        out$segm[out$segm == "undefined"] <- dimnames(x)$segm[1]
+        for (i in 1:dim(x)[3]) {
+            tmp <- meltMefa(x[,,i], segm.var=NULL, by.samp=TRUE, raw.out, drop.zero, ...)$rval
+            tmp$segm <- as.character(tmp$segm)
+            tmp$segm[tmp$segm == "undefined"] <- dimnames(x)$segm[i]
+            out <- merge(out, tmp, all = TRUE)
+        }
+        if (!raw.out)
+            out <- stcs(out, drop.zero=drop.zero, zero.pseudo=zpse, ...)
+    } else {
+        out <- meltMefa(x, segm.var, by.samp, raw.out, drop.zero, ...)$rval
+    }
+    attr(out, "call") <- match.call()
+    return(out)
+}

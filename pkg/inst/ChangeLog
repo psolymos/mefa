@@ -12,6 +12,8 @@ Version 2.0-2 -- November 11, 2008 (closed - r232)
     * DOLINA data sets: reworked. A more simple example
       is given: dol.count, dol.samp, dol.taxa. The previous
       full data set is available at: hdl:1902.1/12060.
+    * as.mefa: if class is mefa, the object can be
+      rebuilt with new arguments (e.g. drop.zero = TRUE).
     * mefaCrosstab: xtabs function is now used for
       crosstabulation internally, instead of the
       inflate function. This implementation allows
@@ -24,7 +26,11 @@ Version 2.0-2 -- November 11, 2008 (closed - r232)
       segments and the separate segments in the same graph.
     * melt.mefa: now accepts mefa object with xtab
       element without dimnames. In this case, rows and
-      columns are names by integers.
+      columns are names by integers. When only melt(x)
+      is used and x has original segments, those are
+      used to build the stcs object. This can however be
+      avoided by melt(as.mefa(x, segment = FALSE)).
+      As a result, ordering of dimnames can be different.
     * mefa: the restriction of at least 2 columns for
       samp and taxa tables is no longer necessary.
     * qvector: na.rm and ... arguments added.

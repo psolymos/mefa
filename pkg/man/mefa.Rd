@@ -122,6 +122,8 @@ summary(x4)
 unclass(summary(x4))
 ## Testing mefa objects
 is(x4, "mefa")
+## Removing empty samples
+as.mefa(x4, drop.zero = TRUE)
 ## Dimensions
 dim(x4)
 ## Dimnames

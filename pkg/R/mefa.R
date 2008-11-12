@@ -17,6 +17,8 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         if (is.null(colnames(x)) && !is.null(taxa))
             stop("'colnames(x)' should not be 'NULL'")
         xtab <- as.matrix(x)
+        if (drop.zero)
+            xtab <- xtab[which(rowSums(xtab) > 0),]
         segm <- NULL}
 # if xtab is of class stcs, mefaCrosstab is used
     if (is.stcs(x)) {
