@@ -1,7 +1,7 @@
 Package: mefa
 Type: Package
 Title: Multivariate Data Handling in Ecology and Biogeography
-Version: 2.0-2
+Version: 2.1-0
 Date: 2008-11-08
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>

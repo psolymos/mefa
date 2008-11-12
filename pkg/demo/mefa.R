@@ -203,8 +203,9 @@ wait()
 # require vegan package
 #library(vegan)
 #m6 <- m2[summary(m2)$s.abu != 0, , ]
-#adonis(m6$xtab ~ .^2,
+#m6.ado <- adonis(m6$xtab ~ .^2,
 #    data = m6$samp, permutations = 100)
+#m6.ado
 
 wait()
 

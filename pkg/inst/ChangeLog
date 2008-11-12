@@ -1,8 +1,17 @@
 MEFA VERSIONS
 
+Version 2.1-0 -- November 11, 2008 (opened - r???)
 
-Version 2.0-2 -- November 8, 2008 (opened - r???)
+Version 2.0-2 -- November 11, 2008 (closed - r232)
 
+    * demo: added, based on the vignette (also a tests
+      directory to check the demo script).
+    * vignette: added to inst/doc based on a manuscript
+      submitted to JSS. Dependencies are excluded and
+      a verbatim code is placed in the vignette instead.
+    * DOLINA data sets: reworked. A more simple example
+      is given: dol.count, dol.samp, dol.taxa. The previous
+      full data set is available at: hdl:1902.1/12060.
     * mefaCrosstab: xtabs function is now used for
       crosstabulation internally, instead of the
       inflate function. This implementation allows
@@ -19,14 +28,6 @@ Version 2.0-2 -- November 8, 2008 (opened - r???)
     * mefa: the restriction of at least 2 columns for
       samp and taxa tables is no longer necessary.
     * qvector: na.rm and ... arguments added.
-    * demo: added, based on the vignette (also a tests
-      directory to check the demo script).
-    * vignette: added to inst/doc based on a manuscript
-      submitted to JSS. Dependencies are excluded and
-      a verbatim code is placed in the vignette instead.
-    * DOLINA data sets: reworked. A more simple example
-      is given: dol.count, dol.samp, dol.taxa. The previous
-      full data set is available at: hdl:1902.1/12060.
     * plot: labels corrected.
     * melt.mefa: takes care of zero.pseudo flags silently,
       and returns call attribute as well of raw=FALSE.
