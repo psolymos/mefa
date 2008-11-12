@@ -2,7 +2,7 @@ MEFA VERSIONS
 
 Version 2.1-0 -- November 11, 2008 (opened - r???)
 
-Version 2.0-2 -- November 11, 2008 (closed - r232)
+Version 2.0-2 -- November 11, 2008 (closed - r235)
 
     * demo: added, based on the vignette (also a tests
       directory to check the demo script).
