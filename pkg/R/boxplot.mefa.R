@@ -1,17 +1,25 @@
 `boxplot.mefa` <-
-function(x, stat=1:4, ylab=NULL, xlab=NULL, show=TRUE, ...)
+function(x, stat=1:4, all = TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
 {
     if (is.null(x$segm) || dim(x)[3] == 1)
         stop("at least 2 segments needed")
     if (!all(stat %in% 1:4))
         stop("'stat' must be in 1:4")
     if (!length(stat) == 1) stat <- 1
-
+    if (all)
+        k <- 1 else k <- 0
     yval <- list()
-    for (i in 1:dim(x)[3])
-        yval[[i]] <- summary(mefa(x$segm[[i]]))[[stat]]
+    if (all)
+        yval[[1]] <- summary(x)[[stat]]
+    for (i in (1 + k):(dim(x)[3] + k))
+        yval[[i]] <- summary(mefa(x$segm[[(i - k)]]))[[stat]]
     yval <- unlist(yval)
-    xval <- as.factor(rep(dimnames(x)$segm, each=length(summary(x)[[stat]])))
+    if (all) {
+    levs <- if ("all" %in% dimnames(x)$segm)
+        paste("segm", dimnames(x)$segm, sep=".") else dimnames(x)$segm
+    levs <- tolower(c("all", levs))
+    } else levs <- tolower(dimnames(x)$segm)
+    xval <- as.factor(rep(levs, each=length(summary(x)[[stat]])))
     if (is.null(ylab))
         ylab <- c("Frequency of taxa", "Frequency of individuals",
         "Frequency of occurrence", "Abundance")[stat]

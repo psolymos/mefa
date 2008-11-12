@@ -8,7 +8,6 @@ The function makes cross tabulation of an object of class 'stcs'. Similar to the
 \usage{
 mefaCrosstab(x, segment = FALSE, nested = FALSE, drop.zero = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{an object of class 'stcs'.}
   \item{segment}{logical, if \code{TRUE}, the crosstabulation is made in 2 dimensions by the \code{samp} (sample) and \code{taxa} columns of the \code{x}. Otherwise, crosstabulation is made in 3 dimensions by the \code{samp}, \code{taxa} and \code{segm} (segment) columns.}
@@ -16,7 +15,7 @@ mefaCrosstab(x, segment = FALSE, nested = FALSE, drop.zero = FALSE)
   \item{drop.zero}{argument passed to the function \code{\link{stcs}}, indicating whether empty samples (with zero sum) should be removed prior to cross tabulation (\code{TRUE}), or not (\code{FALSE}).}
 }
 \details{
-The cross tabulation of an object of class 'stcs' is made after the inflation of the data table by the \code{expand = TRUE} argument of the function \code{\link{stcs}}. The inflation is made by the function \code{\link{inflate}}.
+The cross tabulation of an object of class 'stcs' is made by the function \code{\link{xtabs}}, whic accepts non-integer values too.
 }
 \value{
 It returs a matrix if \code{segment = FALSE} or a list with matrices for the segments if \code{segment = TRUE}.
@@ -38,5 +37,9 @@ y <- stcs(x)
 mefaCrosstab(y)
 mefaCrosstab(y, segment = TRUE)
 mefaCrosstab(y, segment = TRUE, nested = TRUE)
+## Examples for non-integer data
+y[1:5, 3] <- y[1:5, 3] + 0.123
+mefaCrosstab(y)
+mefaCrosstab(y, segment = TRUE)
 }
 \keyword{ manip }

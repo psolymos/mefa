@@ -11,7 +11,7 @@
 \alias{dimnames.mefa}
 \title{Create an Object of Class 'mefa'}
 \description{
-An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples count data, and optionally count data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\strong{me}ta\strong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
+An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (count) data, and optionally (count) data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\strong{me}ta\strong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
 }
 \usage{
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
@@ -26,7 +26,7 @@ xtab.fixed = TRUE)
 \method{dimnames}{mefa}(x)
 }
 \arguments{
-  \item{xtab}{count data. Can be an object of class 'stcs', or a matrix or data frame.}
+  \item{xtab}{data. Can be an object of class 'stcs', or a matrix or data frame. Can be count (integer) or non-integer.}
   \item{samp}{a data frame containing rows for samples, or \code{NULL}. See argument \code{xtab.fixed} and details for sample matching options.}
   \item{taxa}{a data frame containing rows for taxa, or \code{NULL}. See argument \code{xtab.fixed} and details for taxa matching options.}
   \item{id.samp}{\code{NULL} if sample names for matching are the rownames of \code{samp}, otherwise, the index refers to the column of \code{samp} where the names are located.}
@@ -44,6 +44,8 @@ xtab.fixed = TRUE)
 Main goals of the \code{mefa} function are to (1) convert a long formatted object of 'stcs' into a crosstabulated and optionally segmented 'mefa' object and (2) link this crosstabulation with tables of samples and taxa. The segments can be nested within each other. This feature can be useful, if segments represent e.g. subsequent sampling periods (years) and the the aim is to detect effects of data accumulation over time.
 
 A mefa object can be viewed as a project oriented compendium of the data. It contains 3 dimensional (samples, taxa, segments) representation of the count data and data tables for samples and taxa. Segments contain information on some particular internal division of the data (sub populations, method specific partitions, repeated measures), but it has technical significance. Thus data tables for segments are not supported.
+
+Input values may contain non-integer values as well.
 
 If the input \code{xtab} is a matrix, dimnames are necessary if either \code{samp} or \code{taxa} tables are provided. In other cases, dimnames are not necessary. In this way, simple statistics can be returned for the matrix.
 
@@ -129,7 +131,8 @@ dimnames(x4)
 mod <- glm(summary(x4)$s.abu ~ .^2,
     data = x4$samp, family = quasipoisson)
 summary(mod)
-## See vignette for more examples
+## See the demo and vignette for more examples
+#demo(mefa)
 #vignette("mefa")
 ## Cluster analysis of community matrix
 x5 <- aggregate(x4, c("method", "microhab"))

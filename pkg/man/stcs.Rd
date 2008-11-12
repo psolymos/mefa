@@ -15,15 +15,15 @@ stcs(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{summary}{stcs}(object, \ldots)
 }
 \arguments{
-  \item{dframe}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric, and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
-  \item{expand}{logical, whether the object should be (\code{TRUE}) expanded (via the function \code{\link{inflate}}) or not (\code{FALSE}, default). If expanded, each rows correspond to one individual observation (value of the \code{count} column is 1) or a zero sample.}
+  \item{dframe}{a data frame with 2-4 columns. If 2 columns are provided, it is assumed that first column contains sample, while second taxa names. If 3 columns are provided, the first two is treated as sample and taxa names, while the third is treated as count if numeric (either interer or non-integer values can be supplied), and segment if character or factor. If 4 columns are provided, those are assumed to be in the samples, taxa, count, segment order.}
+  \item{expand}{logical, whether the object should be (\code{TRUE}) expanded (via the function \code{\link{inflate}}) or not (\code{FALSE}, default). If expanded, each rows correspond to one individual observation (value of the \code{count} column is 1) or a zero sample. \code{expand = TRUE} works only with integer values.}
   \item{drop.zero}{logical, whether samples with zero total count should be left out (\code{TRUE}) or not (\code{FALSE}, default).}
   \item{zero.pseudo}{character, value in the \code{taxa} column that indicates zero samples. If it is a vector of length 2, first element is used for taxa names, second for segment names to indicate zero samples.}
   \item{x, object}{an object of class 'stcs'.}
   \item{\dots}{further arguments passed to the function \code{stcs}.}
 }
 \details{
-If the data are in a long (database style) format, the \code{stcs} function prepares the ground for the \code{mefa} function to make the cross tabulation. But if only a crosstabulated matrix is needed, the \code{\link{table}} function can be applies as well (in this case be sure to set \code{expand = TRUE}). For subsetting, simply use extraction methods available for data frames (\code{\link{[.data.frame}}).
+If the data are in a long (database style) format, the \code{stcs} function prepares the ground for the \code{mefa} function to make the cross tabulation. But if only a crosstabulated matrix is needed, the \code{\link{table}} function can be applies as well (in this case be sure to set \code{expand = TRUE}, and this is only for integer data), or alternatively see the \code{\link{xtabs}} or \code{\link{mefaCrosstab}} functions (these accepts non-integer data). For subsetting, simply use extraction methods available for data frames (\code{\link{[.data.frame}}).
 
 The summary contains statistics calculated after coercing the object into the class 'mefa'.
 

@@ -20,6 +20,8 @@ raw.out = FALSE, drop.zero = FALSE, \dots)
   \item{\dots}{other arguments passed to the function \code{\link{stcs}}.}
 }
 \details{
+If the 'mefa' object contains only a data matrix without dimnames, rows and columns are numbered before melting.
+
 Besides the goal to convert from wide format to long format, this 'mefa' specific implementation is also useful, if a segment is not coded along with the long formatted database, but can be found in a linked table of samples or species. In this way, a 'mefa' object with new segments can be defined easily.
 
 If melting is done with a vector that is not part of the tables inside the 'mefa' object, it must have a class attribute to be recognised, use e.g. the \code{\link{as.factor}} function (see 'Examples').
@@ -56,6 +58,11 @@ melt(x, as.factor(rbinom(dim(x)[1], 1, 0.5)))
 melt(x, c("method", "microhab"))
 ## From taxa table
 melt(x, "familia", by.samp = FALSE)
+## Example for non-integer data
+y <- x$xtab
+y[y > 0] <-  y[y > 0] + 0.123
+z <- mefa(y)
+melt(z)
 }
 \keyword{ methods }
 \keyword{ manip }

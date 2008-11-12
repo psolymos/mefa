@@ -1,6 +1,10 @@
 `melt.mefa` <-
 function (x, segm.var=NULL, by.samp=TRUE, raw.out=FALSE, drop.zero=FALSE, ...)
 {
+if (is.null(dimnames(x$xtab)[[1]]))
+    rownames(x$xtab) <- 1:nrow(x$xtab)
+if (is.null(dimnames(x)[[2]]))
+    colnames(x$xtab) <- 1:ncol(x$xtab)
 # melt by samples
     if (by.samp) {
         if (is.null(x$samp) && !is.null(segm.var))

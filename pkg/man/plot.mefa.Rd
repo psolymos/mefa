@@ -12,13 +12,14 @@ Various methods for plotting objects of class 'mefa'.}
 \usage{
 \method{plot}{mefa}(x, stat = 1:4, type = c("bar", "rank"),
 trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{mefa}(x, stat = 1:4, ylab = NULL, xlab = NULL, show = TRUE, \dots)
+\method{boxplot}{mefa}(x, stat = 1:4, all = TRUE, ylab = NULL, xlab = NULL,
+show = TRUE, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
 xlab = NULL, show = TRUE, \dots)
 \method{plot}{stcs}(x, stat = 1:4, type = c("bar", "rank"),
 trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{stcs}(x, stat = 1:4, ylab = NULL, xlab = NULL, show = TRUE, \dots)
+\method{boxplot}{stcs}(x, stat = 1:4, all = TRUE, ylab = NULL, xlab = NULL, show = TRUE, \dots)
 \method{image}{stcs}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
 xlab = NULL, show = TRUE, \dots)
@@ -28,6 +29,7 @@ xlab = NULL, show = TRUE, \dots)
   \item{stat}{numeric, to determine which characteristic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
   \item{type}{character, \code{"bar"} produces barchart (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
   \item{trafo}{character, transformation of the plotted variable. \code{"none"}: no transformation (default), \code{"log"}: logarithmic transformation (base 10), \code{"ratio"}: normalizes values by the maximum and rescales to the [0, 1] interval (useful for plotting multiple rank abundance curves), \code{"bins"}: recodes the values according to quantiles based on \code{probs}, \code{"prab"}: presence absence transformation of count data.}
+  \item{all}{logical, if \code{TRUE} values of \code{stat} is plotted for all segments too on the boxplot.}
   \item{ylab, xlab}{character to overwrite default label for the y and x axes. If \code{NULL}, than default labels are returned on the plot.}
 \item{segm}{if \code{NULL} the \code{x$xtab} matrix is used for plotting. Otherways, this defines the segment (one element in \code{x$segm}) for plotting (can be numeric or character with the name of the segment).}
   \item{probs}{numeric vector of probabilities with values in [0, 1] (passed internally to \code{\link{qvector}}).}

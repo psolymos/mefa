@@ -18,10 +18,10 @@ if (!is.null(x$segm)) {
     } else cat("1 (all inclusive) segment,\n", sep="")
 
 prov <- if (is.null(x$samp)) "not provided,\n" else {
-    paste("provided (", ncol(x$samp), " variables),\n", sep="")}
+    paste("provided (", NCOL(x$samp), " variables),\n", sep="")}
 cat("$samp - table for samples ", prov, sep="")
 prov <- if (is.null(x$taxa)) "not provided." else {
-    paste("provided (", ncol(x$taxa), " variables).", sep="")}
+    paste("provided (", NCOL(x$taxa), " variables).", sep="")}
 cat("$taxa - table for taxa ", prov, sep="")
 cat("\n\n")
 invisible(x)}

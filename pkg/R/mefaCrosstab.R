@@ -3,9 +3,11 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
 {
     if (!is.stcs(x))
         stop("'x' must be of class 'stcs'")
-    ss <- stcs(x, expand = !attr(x, "expand"), drop.zero=drop.zero)
+#    ss <- stcs(x, expand = !attr(x, "expand"), drop.zero=drop.zero)
+    ss <- stcs(x, expand = FALSE, drop.zero=drop.zero)
     if (!segment) {
-        out <- as.matrix(table(ss$samp, ss$taxa))
+ #       out <- as.matrix(table(ss$samp, ss$taxa))
+        out <- as.matrix(xtabs(count ~ samp + taxa, ss))
         if (attr(ss, "zero.count") && !drop.zero)
             out <- out[, -which(colnames(out) %in% attr(ss, "zero.pseudo"))]}
     if (segment) {
@@ -17,7 +19,8 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
             } else {
             for (i in 1:nsegm) {
                 if (drop.zero || (levels(ss$segm)[i] != attr(ss, "zero.pseudo"))) {
-                    out[[i]] <- as.matrix(table(ss$samp, ss$tax, ss$segm)[,,i])
+#                    out[[i]] <- as.matrix(table(ss$samp, ss$tax, ss$segm)[,,i])
+                    out[[i]] <- as.matrix(xtabs(count ~ samp + taxa + segm, ss)[,,i])
                 if (attr(ss, "zero.count") && !drop.zero)
                     out[[i]] <- out[[i]][, -which(colnames(out[[i]]) %in% attr(ss, "zero.pseudo"))]
                 names(out)[i] <- levels(ss$segm)[i]}}
