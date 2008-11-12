@@ -1,8 +1,8 @@
-wait <- function(vign=NULL) {
-  if (!is.null(vign)) {
-    ANSWER <- readline("Do you want to open the vignette now? ")
+wait <- function(vign=FALSE) {
+  if (vign) {
+    ANSWER <- readline("Do you want to open the vignette now? (y/n) ")
     if (substr(tolower(ANSWER), 1, 1) == "y")
-      vignette(vign)
+      vignette("mefa", package = "mefa")
   } else {
     ANSWER <- readline("Please press ENTER to continue ... ")
   }
@@ -12,7 +12,7 @@ wait <- function(vign=NULL) {
 
 ## You can use the vignette for reference.
 
-wait("mefa")
+wait(TRUE)
 
 ## Load the package and the example data set
 
@@ -43,7 +43,7 @@ wait()
 
 x3 <- stcs(dol.count, drop.zero = TRUE)
 str(x3)
-unique(x2$count)
+unique(x3$count)
 
 wait()
 
@@ -51,6 +51,10 @@ wait()
 
 m1 <- mefa(x1)
 m1
+m1$xtab["LT1", ]
+
+wait()
+
 str(m1$xtab)
 str(m1$segm)
 
@@ -113,8 +117,9 @@ par(opar)
 
 wait()
 
-opar <- par(mfrow = c(1, 4))
-for (i in 1:4) boxplot(m2, i, main=LETTERS[i])
+opar <- par(mfrow = c(1, 2))
+boxplot(m2, 2, main = "A")
+boxplot(m2, 3, main = "B")
 par(opar)
 
 wait()
@@ -161,6 +166,8 @@ lapply(m4$segm, t)
 
 wait()
 
+## Writing reports
+
 #set.seed(1234)
 #m5 <- m2[ , sample(1:dim(m2)[2], 10)]
 #report(m5, "report.tex", tex = TRUE, 
@@ -173,7 +180,7 @@ wait()
 
 ## Data analysis
 
-mod.amin <- glm(m2$xtab[, "dper"] ~ .,
+mod.amin <- glm(m2$xtab[, "amin"] ~ .,
     data = m2$samp, family = poisson)
 summary(mod.amin)
 
@@ -201,6 +208,13 @@ wait()
 
 wait()
 
+# require ade4 package
+#library(ade4)
+#m2.cca <- ade4::cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
+#plot.pcaiv(m2.cca)
+
+wait()
+
 m.list <- list()
 n1 <- rep(c("time", "quadrat"), each = 2)
 n2 <- rep(c("fresh", "broken"), 2)
@@ -218,3 +232,6 @@ for (i in 1:4) {
     plot(tmp, main = LETTERS[i], sub = names(m.list)[i], xlab = "")
 }
 par(opar)
+
+## End of mefa demo
+
