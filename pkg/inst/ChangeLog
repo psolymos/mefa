@@ -18,10 +18,11 @@ Version 2.0-2 -- November 12, 2008 (closed - r241)
       full data set is available at: hdl:1902.1/12060.
     * extract.mefa: nested segment indexing convention
       introduced when extracted.
-    * mefaNestless: makes an object with non-nested
+    * mefaNestedless: makes an object with non-nested
       segments, bo be used in melt.
     * as.mefa: if class is mefa, the object can be
-      rebuilt with new arguments (e.g. drop.zero = TRUE).
+      rebuilt with new arguments (e.g. drop.zero,
+      nested, segment).
     * mefaCrosstab: xtabs function is now used for
       crosstabulation internally, instead of the
       inflate function. This implementation allows
