@@ -20,7 +20,7 @@ raw.out = FALSE, drop.zero = FALSE, \dots)
   \item{\dots}{other arguments passed to the function \code{\link{stcs}}.}
 }
 \details{
-If a 'mefa' objet has original segments, the function returns those. If the 'mefa' object contains only a data matrix without dimnames, rows and columns are numbered before melting.
+If a 'mefa' objet has original segments and \code{segm.var = NULL}, the function returns original segments. In this case, the \code{raw.out = TRUE} cannot be applied (because segments have different zero samples, so the option is meaningless). If the 'mefa' object contains only a data matrix without dimnames, rows and columns are numbered before melting.
 
 Besides the goal to convert from wide format to long format, this 'mefa' specific implementation is also useful, if a segment is not coded along with the long formatted database, but can be found in a linked table of samples or species. In this way, a 'mefa' object with new segments can be defined easily.
 
