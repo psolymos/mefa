@@ -15,10 +15,6 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 
     if (length(i) == 1 || length(j) == 1)
         stop("dimensions are too few to be extracted")
-# ordering of indices because order change is not allowed, can cause problems in names
-    i <- i[order(i)]
-    j <- j[order(j)]
-    k <- k[order(k)]
 
 # logical if there is a need to extract segments based on k values
     subsegm <- if (!is.null(x$segm))
@@ -50,7 +46,7 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 # correction of nested segment names
     if (subsegm && attr(x, "nested")) {
         nam1 <- names(x$segm)[1]
-        nam2 <- names(x$segm)[k[1]]
+        nam2 <- names(x$segm)[names(x$segm) %in% names(x$segm)[k]][1]
         newnam <- names(x$segm)[k]
         if (!identical(nam1, nam2)) {
             for (i in 1:(nchar(nam1)+1)) {
