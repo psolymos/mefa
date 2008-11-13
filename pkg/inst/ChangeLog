@@ -2,7 +2,7 @@ MEFA VERSIONS
 
 Version 2.1-0 -- November 12, 2008 (opened - r???)
 
-Version 2.0-2 -- November 12, 2008 (closed - r241)
+Version 2.0-2 -- November 12, 2008 (closed - r252)
 
     * intro text: mefa gives date info when loaded.
     * mefaCompare: compares 2 objects of class mefa,

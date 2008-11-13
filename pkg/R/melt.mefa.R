@@ -77,7 +77,7 @@ if (is.null(dimnames(x)[[2]]))
     if (any(summary(x)$t.abu == 0) && !raw.out)
         x <- x[,summary(x)$t.abu != 0]
     if (attr(x, "nested"))
-        x <- mefaNestless(x)
+        x <- mefaNestedless(x)
 
     if (dim(x)[3] > 1 && is.null(segm.var)) {
         if (raw.out)
