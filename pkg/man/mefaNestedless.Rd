@@ -3,7 +3,7 @@
 \alias{mefaNestedless}
 \title{Make Non-Nested 'mefa' Object}
 \description{
-The functions evaluates the internal structute of a 'mefa' object.
+The functions makes a non-nested 'mefa' object.
 }
 \usage{
 mefaNestedless(x)
@@ -22,7 +22,7 @@ Returns an object of class 'mefa', with non-nested segments. This function is in
 \author{
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{mefa}}, \code{\link{is.mefa}}}
+\seealso{\code{\link{mefa}}, \code{\link{is.mefa}}, \code{\link{melt.mefa}}}
 \examples{
 data(dol.count)
 x <- mefa(stcs(dol.count), nested = TRUE)
