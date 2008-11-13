@@ -1,4 +1,4 @@
-`mefaNestless` <-
+`mefaNestedless` <-
 function(x)
 {
     inherits(x, "mefa") || stop("'x' must be of class 'mefa'")
