@@ -8,13 +8,11 @@ wait <- function(vign=FALSE) {
   }
 }
 
-## Demo for the 'mefa' package
-
-## You can use the vignette for reference.
+cat("## Demo for the 'mefa' package")
 
 wait(TRUE)
 
-## Load the package and the example data set
+cat("## Load the package and the example data set")
 
 library(mefa)
 data(dol.count, dol.samp, dol.taxa)
@@ -24,9 +22,9 @@ str(dol.taxa)
 
 wait()
 
-## Object classes
+cat("## Object classes")
 
-## 'stcs'
+cat("## 'stcs'")
 
 x1 <- stcs(dol.count)
 str(x1)
@@ -47,7 +45,7 @@ unique(x3$count)
 
 wait()
 
-## 'mefa'
+cat("## 'mefa'")
 
 m1 <- mefa(x1)
 m1
@@ -93,7 +91,7 @@ mefalogo()
 
 wait()
 
-## S3 methods
+cat("## S3 methods")
 
 dim(m2)
 dimnames(m2)
@@ -166,7 +164,7 @@ lapply(m4$segm, t)
 
 wait()
 
-## Writing reports
+cat("## Writing reports")
 
 #set.seed(1234)
 #m5 <- m2[ , sample(1:dim(m2)[2], 10)]
@@ -174,11 +172,11 @@ wait()
 #    segment = TRUE, taxa.name = 1, author.name = 2,
 #    drop.redundant = 1)
 
-## see mefadocs("SampleReport") also
+cat("## see mefadocs(\"SampleReport\") also")
 
 wait()
 
-## Data analysis
+cat("## Data analysis")
 
 mod.amin <- glm(m2$xtab[, "amin"] ~ .,
     data = m2$samp, family = poisson)
@@ -234,5 +232,5 @@ for (i in 1:4) {
 }
 par(opar)
 
-## End of mefa demo
+cat("## End of mefa demo")
 
