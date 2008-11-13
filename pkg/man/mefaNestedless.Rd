@@ -1,12 +1,12 @@
 \encoding{UTF-8}
-\name{mefaNestless}
-\alias{mefaNestless}
+\name{mefaNestedless}
+\alias{mefaNestedless}
 \title{Make Non-Nested 'mefa' Object}
 \description{
 The functions evaluates the internal structute of a 'mefa' object.
 }
 \usage{
-mefaNestless(x)
+mefaNestedless(x)
 }
 \arguments{
   \item{x}{an objects of class 'mefa' with nested segments.}
@@ -27,7 +27,7 @@ Returns an object of class 'mefa', with non-nested segments. This function is in
 data(dol.count)
 x <- mefa(stcs(dol.count), nested = TRUE)
 x
-y <- mefaNestless(x)
+y <- mefaNestedless(x)
 y
 }
 \keyword{ manip }
