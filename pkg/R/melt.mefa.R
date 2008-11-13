@@ -54,7 +54,7 @@ if (is.null(dimnames(x)[[2]]))
         if (drop.zero){
             out <- out[out[ ,3] != 0, ]
             out[] <- lapply(out, function(x) x[drop = TRUE])}
-        return(list(rval=out, zpse="zero.pseudo"))
+        return(list(rval=out, zpse=rep("zero.pseudo", 2)))
 # result without zeros
     } else {
         cpart <- out[out[ ,3] != 0, ]
@@ -74,21 +74,38 @@ if (is.null(dimnames(x)[[2]]))
         rval <- stcs(out, drop.zero=drop.zero, zero.pseudo=c(zpse1, zpse2), ...)
         return(list(rval=rval, zpse=c(zpse1, zpse2)))}
 }
+    if (any(summary(x)$t.abu == 0) && !raw.out)
+        x <- x[,summary(x)$t.abu != 0]
 
     if (dim(x)[3] > 1 && is.null(segm.var)) {
-        out <- meltMefa(x[,,1], segm.var=NULL, by.samp=TRUE, raw.out, drop.zero, ...)
+
+        if (raw.out)
+            stop("object contains segments, 'raw.out = TRUE' is not allowed")
+
+        if (is.null(dimnames(x$xtab)[[1]]))
+            rownames(x$xtab) <- 1:nrow(x$xtab)
+        if (any(summary(x)$s.abu == 0)) {
+            zsamps <- rownames(x$xtab)[rowSums(x$xtab) == 0]
+            nzsamp <- length(zsamps)
+        } else nzsamp <- 0
+
+        out <- meltMefa(x[,,1], segm.var=NULL, by.samp=TRUE, drop.zero=TRUE, ...)
         zpse <- out$zpse
         out <- out$rval
         out$segm <- as.character(out$segm)
         out$segm[out$segm == "undefined"] <- dimnames(x)$segm[1]
-        for (i in 1:dim(x)[3]) {
-            tmp <- meltMefa(x[,,i], segm.var=NULL, by.samp=TRUE, raw.out, drop.zero, ...)$rval
+        for (i in 2:dim(x)[3]) {
+            tmp <- meltMefa(x[,,i], segm.var=NULL, by.samp=TRUE, drop.zero=TRUE, ...)$rval
             tmp$segm <- as.character(tmp$segm)
             tmp$segm[tmp$segm == "undefined"] <- dimnames(x)$segm[i]
             out <- merge(out, tmp, all = TRUE)
         }
-        if (!raw.out)
+        if (!drop.zero && nzsamp > 0) {
+            zpart <- data.frame(samp=zsamps, taxa=rep(zpse[1], nzsamp),
+                count=rep(0, nzsamp), segm=rep(zpse[2], nzsamp))
+            out <- merge(out, zpart, all = TRUE)
             out <- stcs(out, drop.zero=drop.zero, zero.pseudo=zpse, ...)
+        }
     } else {
         out <- meltMefa(x, segm.var, by.samp, raw.out, drop.zero, ...)$rval
     }

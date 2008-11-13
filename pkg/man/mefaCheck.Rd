@@ -11,7 +11,7 @@ mefaCheck(x)
 mefaCompare(x1, x2)
 }
 \arguments{
-  \item{x, x1, x2}{an objects of class 'mefa'.}
+  \item{x, x1, x2}{an object of class 'mefa'.}
 }
 \value{
 \code{mefaCheck} returns a list, first element is logical with \code{TRUE} indicating that all requirements are met. If this is \code{FALSE}, following elements of the list describe the encountered problems as characters.  \code{mefaCheck} is called by the \code{\link{is.mefa}} function.
