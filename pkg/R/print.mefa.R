@@ -9,7 +9,7 @@ cat("$segm - ", sep="")
 
 if (!is.null(x$segm)) {
     cat(length(x$segm), sep="")
-    if (attr(x, "nested")) cat(" nested segments:\n", sep="") else cat(" (non nested) segments:\n", sep="")
+    if (attr(x, "nested")) cat(" nested segments:\n", sep="") else cat(" (non-nested) segments:\n", sep="")
     dimn <- if (dim(x)[3] > nlist) {
         c(paste(dimnames(x)[[3]][1:nlist], rep(", ", nlist), sep=""), "...")
         } else {

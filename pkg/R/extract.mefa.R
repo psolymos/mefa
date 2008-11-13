@@ -15,6 +15,11 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 
     if (length(i) == 1 || length(j) == 1)
         stop("dimensions are too few to be extracted")
+# ordering of indices because order change is not allowed, can cause problems in names
+    i <- i[order(i)]
+    j <- j[order(j)]
+    k <- k[order(k)]
+
 # logical if there is a need to extract segments based on k values
     subsegm <- if (!is.null(x$segm))
         length(k) != length(x$segm) else FALSE
@@ -42,6 +47,20 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
                         xtab.out <- xtab.out + segm.out[[nn]] }
             }
         }
+# correction of nested segment names
+    if (subsegm && attr(x, "nested")) {
+        nam1 <- names(x$segm)[1]
+        nam2 <- names(x$segm)[k[1]]
+        newnam <- names(x$segm)[k]
+        if (!identical(nam1, nam2)) {
+            for (i in 1:(nchar(nam1)+1)) {
+                substr(nam2, 1, 1) <- ""
+                substr(newnam, 1, 1) <- ""
+            }
+        names(segm.out) <- if (length(k) == 1)
+            nam2 else c(nam2, paste(nam2, newnam[-1], sep = "-"))
+        }
+    }
 # put together the psrts
     x$segm <- segm.out
     x$xtab <- xtab.out
@@ -54,6 +73,8 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
         x$taxa <- NULL else {
         x$taxa <- x$taxa[j, ]
         if (drop) x$taxa[] <- lapply(x$taxa, function(x) x[drop = TRUE])}
+    if (subsegm && length(k) == 1)
+        attr(x, "nested") <- FALSE
     return(x)
 }
 

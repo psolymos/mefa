@@ -16,8 +16,9 @@ function(x, nlist, ...)
     seglist <- x$segment
     if (length(seglist) > nlist)
         seglist <- c(seglist[1:nlist], "[...]")
+    neststr <- if (x$nested) " (nested)" else " (non-nested)"
     if (length(seglist) == 1)
-        cat("\nSegment:\n", sep="") else cat("\nSegments:\n", sep="")
+        cat("\nSegment", neststr, ":\n", sep="") else cat("\nSegments", neststr, ":\n", sep="")
     cat(seglist, sep=", ")
     cat("\n\n")
     print(mstat, ...)

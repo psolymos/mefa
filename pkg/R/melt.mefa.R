@@ -76,12 +76,12 @@ if (is.null(dimnames(x)[[2]]))
 }
     if (any(summary(x)$t.abu == 0) && !raw.out)
         x <- x[,summary(x)$t.abu != 0]
+    if (attr(x, "nested"))
+        x <- mefaNestless(x)
 
     if (dim(x)[3] > 1 && is.null(segm.var)) {
-
         if (raw.out)
             stop("object contains segments, 'raw.out = TRUE' is not allowed")
-
         if (is.null(dimnames(x$xtab)[[1]]))
             rownames(x$xtab) <- 1:nrow(x$xtab)
         if (any(summary(x)$s.abu == 0)) {
