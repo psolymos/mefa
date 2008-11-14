@@ -45,6 +45,9 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
         }
 # correction of nested segment names
     if (subsegm && attr(x, "nested")) {
+        mn <- match(names(x$segm)[k], names(x$segm))
+        if (!identical(mn, mn[order(mn)]))
+            stop("nested segments cannot be reordered")
         nam1 <- names(x$segm)[1]
         nam2 <- names(x$segm)[names(x$segm) %in% names(x$segm)[k]][1]
         newnam <- names(x$segm)[k]

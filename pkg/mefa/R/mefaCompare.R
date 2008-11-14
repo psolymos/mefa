@@ -1,5 +1,5 @@
 `mefaCompare` <-
-function(x1, x2)
+function(x1, x2, strict = FALSE)
 {
     if (!inherits(x1, "mefa") || !inherits(x2, "mefa"))
         stop("both compared objects must be of class 'mefa'")
@@ -8,17 +8,27 @@ function(x1, x2)
 
     k <- dim(x1)[3]
     xt1 <- xt2 <- list()
-    xt1[[1]] <- x1$xtab[order(rownames(x1$xtab)), order(colnames(x1$xtab))]
-    xt2[[1]] <- x2$xtab[order(rownames(x2$xtab)), order(colnames(x2$xtab))]
+    if (!strict) {
+        xt1[[1]] <- x1$xtab[order(rownames(x1$xtab)), order(colnames(x1$xtab))]
+        xt2[[1]] <- x2$xtab[order(rownames(x2$xtab)), order(colnames(x2$xtab))]
+    } else {
+        xt1[[1]] <- x1$xtab
+        xt2[[1]] <- x2$xtab
+    }
     sego <- match(dimnames(x1)$segm, dimnames(x2)$segm)
     if (any(is.na(sego)))
         return(FALSE) else {
         if (k > 1)
             for (i in 1:k) {
+                if (!strict) {
                 xt1[[(i + 1)]] <- x1$segm[[i]][order(rownames(x1$segm[[i]])),
                     order(colnames(x1$segm[[i]]))]
                 xt2[[(i + 1)]] <- x2$segm[[sego[i]]][order(rownames(x2$segm[[sego[i]]])),
                     order(colnames(x2$segm[[sego[i]]]))]
+                } else {
+                xt1[[(i + 1)]] <- x1$segm[[i]]
+                xt2[[(i + 1)]] <- x2$segm[[sego[i]]]
+                }
             }
         j <- length(xt1)
         rv <- logical(3 * j + 1)

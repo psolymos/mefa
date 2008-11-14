@@ -8,10 +8,11 @@ The functions evaluates the internal structute of a 'mefa' object.
 }
 \usage{
 mefaCheck(x)
-mefaCompare(x1, x2)
+mefaCompare(x1, x2, strict = FALSE)
 }
 \arguments{
   \item{x, x1, x2}{an object of class 'mefa'.}
+  \item{strict}{logical, if \code{TRUE} the function checks if ordering of dimnames are the same, otherwise it compares only matching.}
 }
 \value{
 \code{mefaCheck} returns a list, first element is logical with \code{TRUE} indicating that all requirements are met. If this is \code{FALSE}, following elements of the list describe the encountered problems as characters.  \code{mefaCheck} is called by the \code{\link{is.mefa}} function.
@@ -35,5 +36,6 @@ data(dol.count)
 x1 <- mefa(stcs(dol.count))
 x2 <- mefa(melt(x1))
 mefaCompare(x1, x2)
+mefaCompare(x1, x2, strict = TRUE)
 }
 \keyword{ manip }
