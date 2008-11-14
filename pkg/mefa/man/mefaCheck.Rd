@@ -27,7 +27,7 @@ mefaCompare(x1, x2, strict = FALSE)
 \author{
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{mefa}}, \code{\link{is.mefa}}}
+\seealso{\code{\link{mefa}}, \code{\link{is.mefa}}, \code{\link{all.equal.list}}}
 \examples{
 x <- matrix(rpois(20,1), 5, 4)
 m <- mefa(x)
