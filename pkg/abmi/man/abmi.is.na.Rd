@@ -1,17 +1,17 @@
 \encoding{UTF-8}
-\name{is.na.abmi}
-\alias{is.na.abmi}
-\alias{convert.na.abmi}
-\alias{na.omit.abmi}
+\name{abmi.is.na}
+\alias{abmi.is.na}
+\alias{abmi.convert.na}
+\alias{abmi.na.omit}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~~function to do ... ~~ }
 \description{
   ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-is.na.abmi(x, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-convert.na.abmi(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-na.omit.abmi(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"), drop = FALSE)
+abmi.is.na(x, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.convert.na(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.na.omit(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"), drop = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -31,7 +31,7 @@ na.omit.abmi(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"), drop 
   ...
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~

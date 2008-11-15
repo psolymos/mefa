@@ -1,13 +1,13 @@
 \encoding{UTF-8}
-\name{merge.abmi}
-\alias{merge.abmi}
+\name{abmi.merge}
+\alias{abmi.merge}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~~function to do ... ~~ }
 \description{
   ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-merge.abmi(x, na.rm = FALSE)
+abmi.merge(x, na.rm = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,7 +25,7 @@ merge.abmi(x, na.rm = FALSE)
   ...
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{Pï¿½ter Sï¿½lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~
