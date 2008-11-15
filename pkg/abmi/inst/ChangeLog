@@ -1,0 +1,18 @@
+ABMI PACKAGE VERSIONS
+
+Version 0.0-1, November 12, 2008 (opened November 12, 2008)
+
+    * help files: their skeleton is added, needs much
+    improvements.
+
+    * bird data set added: *.csv and *.rda files in the
+    data folder. The csv is just a sample because of file size.
+    But can be used to demonstrate usage of read.abmi().
+
+    * utility functions: for handling NA-s and vectorized data.
+
+    * juliandaycount and hourcount: date/time conversion.
+
+    * lincovtest: linear relationship of between a 
+    binary response and continuous covariate can be
+    visually tested (plot method provided).
