@@ -10,8 +10,8 @@ function(x, y, i=1, na.rm=FALSE)
         stop("dimensions do not match")
     y <- factor(as.character(y))
     if (na.rm) {
-        y <- y[!is.na.abmi(x)]
-        x <- x[!is.na.abmi(x)]
+        y <- y[!abmi.is.na(x)]
+        x <- x[!abmi.is.na(x)]
     }
     if (length(i == 1)) {
         i <- rep(i, nlevels(y))

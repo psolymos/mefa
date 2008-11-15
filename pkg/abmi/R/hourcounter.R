@@ -11,7 +11,7 @@ function(x, with.min=TRUE, with.sec=FALSE, na.rm=FALSE)
     addchar <- if (with.min && with.sec)
         ":00:00" else ":00"
     hour <- as.character(hour)
-    naid <- is.na.abmi(hour)
+    naid <- abmi.is.na(hour)
     hour2 <- hour[!naid]
 
     if (!with.sec || !with.min)

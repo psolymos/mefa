@@ -5,7 +5,7 @@ function(x, format="%d-%b-%y", yr.start=8, yr.end=9, na.rm=FALSE)
     if (NCOL(x) != 1)
         stop("'x' must be vector")
     x <- as.character(x)
-    naid <- is.na.abmi(x)
+    naid <- abmi.is.na(x)
     fulldate <- x[!naid]
     if (any(nchar(fulldate) != 9))
         stop("not adequate date format")
