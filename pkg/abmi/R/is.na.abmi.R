@@ -1,5 +1,5 @@
 ## returns logical object with same dimensions, TRUE where na.char matched
-is.na.abmi <-
+abmi.is.na <-
 function(x, na.char=c("NA", "VNA", "DNC", "PNA", "SNI"))
 {
     if (NCOL(x) == 1) y <- x %in% na.char

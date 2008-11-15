@@ -1,6 +1,6 @@
 ## merges different columns from ABMI data sets
 ## x is a named list of vectors (or one column data frame)
-merge.abmi <-
+abmi.merge <-
 function(x, na.rm = FALSE)
 {
     inherits(x, "list") || stop("'x' must be a list")
