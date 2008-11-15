@@ -2,7 +2,7 @@
 \name{abmi.data}
 \alias{abmi.data}
 \docType{data}
-\title{ ~~ data name/kind ... ~~}
+\title{ABMI Bird Counts and Site Capabilities from 2007}
 \description{
   ~~ A concise (1-5 lines) description of the dataset. ~~
 }
