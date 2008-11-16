@@ -17,7 +17,7 @@ An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (c
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
 segment = TRUE, nested = FALSE, drop.zero = FALSE, drop.index = FALSE,
 xtab.fixed = TRUE)
-\method{as}{mefa}(x, \ldots)
+\method{as}{mefa}(x, samp, taxa, \ldots)
 \method{is}{mefa}(x)
 \method{print}{mefa}(x, nlist = 10, \ldots)
 \method{summary}{mefa}(object, nlist = 10, \ldots)
@@ -54,6 +54,8 @@ The print method returns basic information, instead of a long structural represe
 The summary contains statistics calculated from the 'mefa' object (species richness, number of individuals, occupancy, abundance, total sum, matrix fill, etc., see 'Value' section). The list can be recalled by e.g. \code{unclass(summary(x))}, elements of the list e.g. \code{summary(x)$s.rich}.
 
 Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples' and the vignette (\code{vignette("mefa")}).
+
+When the \code{as.mefa} function is used with a 'mefa' object as argumentum, samples and taxa tables are used when \code{samp} and \code{taxa} atguments are missing. If the aim is to redefine these tables, those also can be given.
 }
 \value{
 The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 elements:

@@ -1,11 +1,14 @@
 `as.mefa` <-
-function(x, ...)
+function(x, samp, taxa, ...)
 {
     if (inherits(x, "mefa")) {
-## unnested !!!
         ss <- if (dim(x)[3] > 1)
             melt.mefa(x) else x$xtab
-        y <- mefa(ss, x$samp, x$taxa, ...)
+        if (missing(samp))
+            samp <- x$samp
+        if (missing(taxa))
+            taxa <- x$taxa
+        y <- mefa(ss, samp, taxa, ...)
         y$call <- match.call()
         return(y) 
         } else return(mefa(x, ...))
