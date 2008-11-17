@@ -1,6 +1,22 @@
 MEFA VERSIONS
 
-Version 2.1-0 -- November 12, 2008 (opened - r???)
+Version 2.1-1 -- November 17, 2008 (opened - r268)
+
+    * mefaTable: xtab.fixed=TRUE behaved like FALSE
+      when names had exact match, fixed.
+    * demo: got a new ending, by a question for opening
+      mefa website.
+
+
+Version 2.1-0 -- November 17, 2008 (closed - r268)
+
+    * minor release: on CRAN containing additions of
+      from 2.0-2 and some polishing.
+    * basic object structures and methods: will not change
+      in future versions. mefa 2.1 is a yardstick in
+      package development. Sorry for any inconveniences
+      happened because of restructuring the package.
+
 
 Version 2.0-2 -- November 12, 2008 (closed - r252)
 

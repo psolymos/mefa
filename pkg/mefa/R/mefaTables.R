@@ -23,7 +23,9 @@ function(xtab, dframe, margin, index=NULL, drop.index=FALSE, xtab.fixed=TRUE)
         rownames(dframe) <- dframe[, index]
     dnam <- rownames(dframe)
 # xtab fixed
-    if (xtab.fixed && identical(xnam, dnam)) {
+    if (xtab.fixed) {
+        if (!identical(xnam, dnam))
+            stop("names do not match")
         dsub <- dframe[dnam %in% xnam, ]
         dsub <- dsub[order(rownames(dsub)), ]
         xsub <- xtab

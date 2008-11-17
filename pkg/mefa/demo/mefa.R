@@ -1,8 +1,13 @@
-wait <- function(vign=FALSE) {
-  if (vign) {
-    ANSWER <- readline("Do you want to open the vignette now? (y/n) ")
-    if (substr(tolower(ANSWER), 1, 1) == "y")
-      vignette("mefa", package = "mefa")
+wait <- function(vign=0) {
+  if (vign!=0) {
+    if (vign==1) {
+        ANSWER <- readline("Do you want to open the vignette? (y/n) ")
+        if (substr(tolower(ANSWER), 1, 1) == "y")
+        vignette("mefa", package = "mefa")}
+    if (vign==2) {
+        ANSWER <- readline("Do you want to check out mefa website? (y/n) ")
+        if (substr(tolower(ANSWER), 1, 1) == "y")
+        mefaweb()}
   } else {
     ANSWER <- readline("Please press ENTER to continue ... ")
   }
@@ -10,7 +15,7 @@ wait <- function(vign=FALSE) {
 
 cat("## Demo for the 'mefa' package")
 
-wait(TRUE)
+wait(1)
 
 cat("## Load the package and the example data set")
 
@@ -232,5 +237,7 @@ for (i in 1:4) {
 }
 par(opar)
 
-cat("## End of mefa demo")
+cat("## End of mefa demo\n")
+
+wait(2)
 
