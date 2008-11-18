@@ -3,6 +3,8 @@ function(xtab, samp=NULL, taxa=NULL, id.samp=NULL, id.taxa=NULL, segment=TRUE, n
 drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
 {
     x <- xtab
+    if (inherits(x, "mefa"))
+        stop("for 'mefa' objects use function 'as.mefa'")
     if (min(dim(as.matrix(x))) == 1)
         stop("'xtab' should have dimensions at leat 2*2")
     if (any(is.na(x)))
