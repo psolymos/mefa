@@ -4,6 +4,14 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 # check i,j,k values
     if (length(i) == 0 || length(j) == 0 || length(k) == 0)
         return(x)
+
+    if (is.character(i))
+        i <- match(i, dimnames(x)[[1]])
+    if (is.character(j))
+        j <- match(j, dimnames(x)[[2]])
+    if (is.character(k))
+        k <- match(k, dimnames(x)[[3]])
+
     if ((any(i < 0) & !all(i < 0)) || (any(j < 0) & !all(j < 0)) || (any(k < 0) & !all(k < 0)))
         stop("unresolvable indexing")
     if (all(i < 0))
