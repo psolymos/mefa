@@ -14,7 +14,7 @@ These methods are useful when extracting or aggregating 'mefa' objects. The coun
   \item{x}{an object of class 'mefa'.}
   \item{by.samp}{a vector with length as the number of samples and more than one unique values to use aggregating samples.}
   \item{by.taxa}{a vector with length as the number of taxa and more than one unique values to use aggregating taxa.}
-  \item{i, j, k}{index value or a vector of indices for samples, taxa and segments, respectively.}
+  \item{i, j, k}{index value or a vector of indices for samples, taxa and segments, respectively. Can be numeric or character. Negative numeric values indicate items to be excluded.}
   \item{drop}{logical, if \code{TRUE} the unused factor leves in the linked tables for samples and species will be dropped after extraction. If \code{FALSE} (default) unused factor levels are left intact.}
   \item{\ldots}{other arguments passed to the generic function.}
 }
