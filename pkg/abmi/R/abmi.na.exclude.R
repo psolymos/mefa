@@ -1,4 +1,4 @@
-abmi.na.omit <-
+abmi.na.exclude <-
 function(x, value = NA, na.char=c("NA", "VNA", "DNC", "PNA", "SNI"),
 drop = FALSE)
 {
@@ -11,6 +11,6 @@ drop = FALSE)
    }
    x <- x[i, drop = drop]
    attr(x, "na.action") <- j
-   class(attr(x, "na.action")) <- "omit"
+   class(attr(x, "na.action")) <- "exclude"
    return(x)
 }
