@@ -1,72 +1,53 @@
 \encoding{UTF-8}
 \name{abmi.merge}
 \alias{abmi.merge}
-\title{ ~~function to do ... ~~ }
+\title{Merge Items of a List}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+The function merge items of a list.
 }
 \usage{
 abmi.merge(x, na.rm = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{na.rm}{ ~~Describe \code{na.rm} here~~ }
+  \item{x}{a list with named vectors (or one column data frames) of its element. Vectors can be of different lengths.}
+  \item{na.rm}{logical, shoulr NAs removed from the result?}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+This function can be useful, when vecors are aimed to combined into the same data frame, but has different orderings and lengths. The function takes care to match names (using the union of all names found).
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+Result is coerced to data frame with colnames corresponding to names attribute of \code{x} and rownames corresponding to union of names of elements of \code{x}.
 }
 \references{\url{http://www.abmi.ca/}}
 \author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\seealso{\code{\link{abmi.is.na}}, \code{\link{ithcase}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(x, na.rm = FALSE)
-{
-    inherits(x, "list") || stop("'x' must be a list")
-    n <- length(x)
-    if (n < 2)
-        stop("length of 'x' should be at least 2")
-    nam <- names(x)
-    names(x) <- NULL
-    x <- lapply(x, as.data.frame)
-    f <- unlist(lapply(x, function(z) is.factor(z[,1])))
-    rnam <- rownames(x[[1]])
-    for (i in 1:n) {
-        rnam <- union(rnam, rownames(x[[i]]))
-        if (isTRUE(f[i]))
-            x[[i]][,1] <- as.character(x[[i]][,1])
-    }
-    out <- list()
-    for (i in 1:n) {
-        out[[i]] <- vector(mode = mode(x[[i]][,1]), length = length(rnam))
-        out[[i]][match(rownames(x[[i]]), rnam)] <- x[[i]][,1]
-        out[[i]][!(rnam \%in\% rownames(x[[i]]))] <- NA
-        names(out)[i] <- nam[i]
-    }
-    out <- as.data.frame(out)
-    rownames(out) <- rnam
-    if (na.rm) 
-        out <- out[apply(is.na(out), 1, sum) == 0,]
-    return(out)
-  }
+## A simple case to see how it works
+a <- 1:20
+a
+names(a) <- paste("x", 1:20, sep="")
+set.seed(123)
+## Create subsets and reorder it
+b <- a[order(sample(1:20,15))]
+c <- a[order(sample(1:20,10))]
+## A list with vectors to be merged
+li <- list(a = a, b = b, c = c)
+## Note the lengths
+sapply(li, length)
+abmi.merge(li)
+## Note NA removel effect
+abmi.merge(li, na.rm = TRUE)
+## ABMI example
+data(abmi.data)
+abmi.li <- list(
+nutr.moist = ithcase(abmi.data$sitecap[,9], abmi.data$sitecap$ABMI.Site),
+tree.modif = ithcase(abmi.data$sitecap[,10], abmi.data$sitecap$ABMI.Site),
+stru.stage = ithcase(abmi.data$sitecap[,11], abmi.data$sitecap$ABMI.Site))
+x1 <- abmi.merge(abmi.li)
+x1
+x2 <- abmi.merge(abmi.li, na.rm = TRUE)
+x2
+dim(x1)
+dim(x2)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }

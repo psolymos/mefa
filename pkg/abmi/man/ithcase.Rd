@@ -14,40 +14,17 @@ ithcase(x, y, i = 1, na.rm = FALSE)
   \item{i}{numeric, determines position of values taken from \code{x} within levels of \code{y}. Can be a single value or a vector. If it is vector, its length must be same as unique values in \code{y}.}
   \item{na.rm}{logical, shoulr NAs removed from the result? The removel of NAs takes place befor subtsracting.}
 }
+\details{
+\&ode{x} and \code{y} should be of the same lengths.
+}
 \value{
-A vector with length same as number of levels, or unique values in \code{y}. If \code{na.rm = TRUE}, it can be shorter, because the removal of NA values takes place prior to substracting.
+A vector with length same as number of levels, or unique values in \code{y}. If \code{na.rm = TRUE}, it can be shorter, because the removal of NA values takes place prior to substracting. Names of the result is same as levels of \code{y}.
 }
 \references{\url{http://www.abmi.ca/}}
 \author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
-\note{
-
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\seealso{\code{\link{abmi.is.na}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(x, y, i=1, na.rm=FALSE)
-{
-    if (length(x) != length(y))
-        stop("dimensions do not match")
-    y <- factor(as.character(y))
-    if (na.rm) {
-        y <- y[!is.na.abmi(x)]
-        x <- x[!is.na.abmi(x)]
-    }
-    if (length(i == 1)) {
-        i <- rep(i, nlevels(y))
-        names(i) <- levels(y)
-    }
-    out <- unlist(lapply(levels(y), function(z) x[y==z][i[z]]))
-    names(out) <- levels(y)
-    return(out)
-  }
+data(abmi.data)
+ithcase(abmi.data$sitecap[,9], abmi.data$sitecap$ABMI.Site)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }

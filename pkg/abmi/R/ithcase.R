@@ -8,7 +8,9 @@ function(x, y, i=1, na.rm=FALSE)
     y <- factor(as.character(y))
     if (na.rm) {
         y <- y[!abmi.is.na(x)]
+        y <- y[!is.na(x)]
         x <- x[!abmi.is.na(x)]
+        x <- x[!is.na(x)]
     }
     if (length(i == 1)) {
         i <- rep(i, nlevels(y))
