@@ -7,7 +7,7 @@ The function opens the website of the Alberta Biodiversity Monitoring Institute 
 Checkout for news and data stes.
 }
 \usage{
-mefaweb()
+abmiweb()
 }
 \references{
 \url{http://www.abmi.ca}

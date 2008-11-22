@@ -1,7 +1,6 @@
 \encoding{UTF-8}
 \name{abmi.merge}
 \alias{abmi.merge}
-%- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~~function to do ... ~~ }
 \description{
   ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -25,7 +24,7 @@ abmi.merge(x, na.rm = FALSE)
   ...
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{P�ter S�lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~

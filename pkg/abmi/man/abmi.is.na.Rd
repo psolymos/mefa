@@ -10,14 +10,13 @@ These function handle ABMI specific Na values.
 \usage{
 abmi.is.na(x, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
 abmi.convert.na(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-abmi.na.omit(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"), drop = FALSE)
-abmi.na.exclude(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"), drop = FALSE)
+abmi.na.omit(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.na.exclude(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
 }
 \arguments{
   \item{x}{an object (vector, matrix or data frame).}
   \item{na.char}{character vector defining strings treated as NA.}
   \item{value}{value to return instead of \code{na.char} values.}
-  \item{drop}{logical, should unused levels be dropped if \code{x} is factor, or data frame with factors.}
 }
 \details{
   ABMI has different types of NA values with different meaning:
@@ -73,7 +72,14 @@ both remove NA cases (rows). Follow the links to see the differences.
 \author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \seealso{\code{\link{na.omit}}, \code{\link{na.exclude}}, \code{\link{is.na}}}
 \examples{
-## give examples here
-
+data(abmi.data)
+abmi.is.na(abmi.data$sitecap[1:100,9])
+abmi.is.na(abmi.data$sitecap[101:120,9:10])
+abmi.convert.na(abmi.data$sitecap[1:100,9])
+abmi.convert.na(abmi.data$sitecap[101:120,9:10])
+abmi.na.omit(abmi.data$sitecap[1:100,9])
+abmi.na.omit(abmi.data$sitecap[101:120,9:10])
+abmi.na.exclude(abmi.data$sitecap[1:100,9])
+abmi.na.exclude(abmi.data$sitecap[101:120,9:10])
 }
 \keyword{ manip }

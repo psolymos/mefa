@@ -8,7 +8,7 @@ Raw breeding bird and site capability data (2007) from the Alberta Biodiversity 
 }
 \usage{data(abmi.data)}
 \format{
-  The format of raw breeding bird data is (dots are due to spaces and special characters in the original *.csv left unchanged):
+  The format of raw breeding bird (\code{abmi.data$birdcount}) data is (dots are due to spaces and special characters in the original *.csv left unchanged):
 
   \item{Rotation}{Reference describing when data was collected at a broad level (i.e. Prototype, Rotation 1).}
   \item{ABMI.Site}{Reference number given to each ABMI data collection site.}
@@ -46,7 +46,7 @@ Raw breeding bird and site capability data (2007) from the Alberta Biodiversity 
     within a 150 m radius of the point count station. This variable only
     applies to point count stations that fall within waterbodies.}
 
-  The format site capability data is (dots are due to spaces and special characters in the original *.csv left unchanged):
+  The format site capability (\code{abmi.data$sitecap}) data is (dots are due to spaces and special characters in the original *.csv left unchanged):
 
   \item{Rotation}{Reference describing when data was collected at a broad level (i.e. Prototype, Rotation 1).}
   \item{ABMI.Site}{Reference number given to each ABMI data collection site.}
@@ -93,6 +93,7 @@ References on methodology: \url{http://www.abmi.ca/}
 }
 \examples{
 data(abmi.data)
-str(abmi.data)
+str(abmi.data$birdcount)
+str(abmi.data$sitecap)
 }
 \keyword{datasets}
