@@ -24,7 +24,7 @@ LazyLoad: \tab yes\cr
 ~~ functions ~~
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \references{
 \url{http://www.abmi.ca/}
