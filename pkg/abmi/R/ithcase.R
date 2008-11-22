@@ -1,8 +1,5 @@
 ## substracts just the first cases of x along each level of factor y
 ## i is the index for ith element to choose, can be a vector
-## NA removal has no effect on levels of y, just on values of x to return
-## in this way, result will be NA if all the values
-## within a level are returned as TRUE by is.na.abmi
 ithcase <-
 function(x, y, i=1, na.rm=FALSE)
 {
