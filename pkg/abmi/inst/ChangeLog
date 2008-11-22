@@ -1,6 +1,10 @@
 ABMI PACKAGE VERSIONS
 
-Version 0.0-1, November 12, 2008 (opened November 12, 2008)
+Version 0.0-2, November 12, 2008 (opened November 21, 2008)
+
+    * is.na related functions: improvements and fixes.
+
+Version 0.0-1, November 12, 2008 (closed November 21, 2008)
 
     * help files: their skeleton is added, needs much
     improvements.
