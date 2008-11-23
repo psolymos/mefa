@@ -1,6 +1,6 @@
 ## creates numeric  day values from character ones
 juliandaycounter <-
-function(x, format="%d-%b-%y", yr.start=8, yr.end=9, na.rm=FALSE)
+function(x, format = "%d-%b-%y", yr.start = 8, yr.end = 9, na.rm = FALSE)
 {
     if (NCOL(x) != 1)
         stop("'x' must be vector")
