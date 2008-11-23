@@ -3,6 +3,7 @@
 \alias{abmi.is.na}
 \alias{abmi.convert.na}
 \alias{abmi.na.omit}
+\alias{abmi.na.exclude}
 \title{Not Available / 'Missing' Values}
 \description{
 These function handle ABMI specific Na values.

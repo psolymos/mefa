@@ -6,11 +6,12 @@
 The function merge items of a list.
 }
 \usage{
-abmi.merge(x, na.rm = FALSE)
+abmi.merge(x, na.rm = FALSE, drop=FALSE)
 }
 \arguments{
   \item{x}{a list with named vectors (or one column data frames) of its element. Vectors can be of different lengths.}
-  \item{na.rm}{logical, shoulr NAs removed from the result?}
+  \item{na.rm}{logical, should NAs removed from the result?}
+  \item{drop}{logical, should unused factor levels be dropped?}
 }
 \details{
 This function can be useful, when vecors are aimed to combined into the same data frame, but has different orderings and lengths. The function takes care to match names (using the union of all names found).

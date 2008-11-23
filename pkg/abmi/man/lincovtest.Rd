@@ -1,7 +1,7 @@
 \encoding{UTF-8}
 \name{lincovtest}
 \alias{lincovtest}
-alias{plot.lincovtest}
+\alias{plot.lincovtest}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{ ~~function to do ... ~~ }
 \description{
@@ -10,7 +10,6 @@ alias{plot.lincovtest}
 \usage{
 lincovtest(y, x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)
 \method{plot}{lincovtest}(x, type = "b", ylab = "Estimated coefficients", xlab = "Quantiles", ...)
-
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -43,4 +42,4 @@ lincovtest(y, x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)
 \examples{
 ##
 }
-\keyword{ models }
+\keyword{ regression }
