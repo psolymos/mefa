@@ -2,7 +2,7 @@ Package: abmi
 Type: Package
 Title: Data Processing and Analysis for the Alberta Biodiversity Monitoring Institute
 Version: 0.0-2
-Date: 2008-11-14
+Date: 2008-11-22
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: Data processing, biodiversity intactness calculations and simulations.
