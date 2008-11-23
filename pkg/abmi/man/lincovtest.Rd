@@ -34,32 +34,13 @@ lincovtest(y, x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)
   ...
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~
 }
 \seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(y, x, probs = seq(0, 1, 0.25), na.rm = FALSE, ...)
-{
-    require(mefa)
-    q <- qvector(x, probs = probs, na.rm = na.rm, ...)
-    z <- as.factor(q)
-    mm <- glm(y ~ z, family=binomial)
-#    m <- c(0, coef(mm)[-1])
-    m <- coef(mm)
-    names(m) <- levels(z)
-    class(m) <- c("lincovtest", class(m))
-    return(m)
-  }
+##
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ models }

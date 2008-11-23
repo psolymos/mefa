@@ -1,56 +1,38 @@
 \encoding{UTF-8}
 \name{separateint}
 \alias{separateint}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Seperates A Character Vector into Two Parts}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+This function separates two parts of a character vector. It intend to be 'reverse' of the function \code{\link{interaction}}.
 }
 \usage{
-separateint(x, step = 0, spacer = 1)
+separateint(x, step = 1, spacer = 1)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{ ~~Describe \code{x} here~~ }
-  \item{step}{ ~~Describe \code{step} here~~ }
-  \item{spacer}{ ~~Describe \code{spacer} here~~ }
+  \item{x}{a character vector or factor.}
+  \item{step}{number of character to separate (counted backwards).}
+  \item{spacer}{number of characters to be excluded, just before the second part determined by \code{step}.}
 }
 \details{
-  ~~ If necessary, more details than the description above ~~
+It operates backwards, so starts at the end of the strings.
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+A two-column matrix with characters. Column names refer to parts as \code{first} and \code{second}. Rownames are the same as the names for the original vector.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\author{\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\note{
+This is not a general purpose function, it was created to do the same trick as in the example.}
+\seealso{\code{\link{interaction}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(x, step = 0, spacer = 1)
-{
-x <- as.character(x)
-n <- nchar(x)
-first <- substr(x, 1, n-step-1-spacer)
-second <- substr(x, n-step, n)
-out <- cbind(first, second)
-colnames(out) <- c("first", "second")
-rownames(out) <- x
-return(out)
-  }
+data(abmi.data)
+int <- interaction(abmi.data$sitecap$ABMI.Site, abmi.data$sitecap$Point.Count.Station)
+## Random sample from the interaction vector
+set.seed(123)
+int <- int[sample(1:length(int), 20)]
+int
+## Strings are of different lengths
+nchar(as.character(int))
+separateint(int)
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }

@@ -1,58 +1,36 @@
 \encoding{UTF-8}
 \name{read.abmi}
 \alias{read.abmi}
-%- Also NEED an '\alias' for EACH other topic documented here.
-\title{ ~~function to do ... ~~ }
+\title{Read Text File}
 \description{
-  ~~ A concise (1-5 lines) description of what the function does. ~~
+A variant of the \code{\link{read.table}} function to handle some specifics of ABMI raw data formats.
 }
 \usage{
 read.abmi(filename, dir = getwd(), remove.empty = TRUE, header = TRUE, sep = ",", quote = "\"", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{filename}{ ~~Describe \code{filename} here~~ }
-  \item{dir}{ ~~Describe \code{dir} here~~ }
-  \item{remove.empty}{ ~~Describe \code{remove.empty} here~~ }
-  \item{header}{ ~~Describe \code{header} here~~ }
-  \item{sep}{ ~~Describe \code{sep} here~~ }
-  \item{quote}{ ~~Describe \code{quote} here~~ }
-  \item{\dots}{ ~~Describe \code{\dots} here~~ }
-}
-\details{
-  ~~ If necessary, more details than the description above ~~
+  \item{filename}{character, name of the file to read.}
+  \item{dir}{character, path of the directory where the file is located. By default, it is the current working directory. If specified othervise, it resets to the original value after the procedure.}
+  \item{remove.empty}{logical. Because lines end with comma, last column is empty. This can be removed by this argument.}
+  \item{header}{logical, if the forst row should be handled as header (for column names).}
+  \item{sep}{character, separator used in the comma separated text file to separate entries of the rows.}
+  \item{quote}{character, quotation marks that encapsulate values that should be treated as character. Note that the single quote is not used, because it occurrs in some species names.}
+  \item{\dots}{other arguments passed to the function \code{\link{read.table}}.}
 }
 \value{
-  ~Describe the value returned
-  If it is a LIST, use
-  \item{comp1 }{Description of 'comp1'}
-  \item{comp2 }{Description of 'comp2'}
-  ...
+A data frame.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
-\note{ ~~further notes~~ 
-
- ~Make other sections like Warning with \section{Warning }{....} ~
-}
-\seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
+\author{\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\seealso{\code{\link{read.table}}, \code{\link{read.csv}}}
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(filename, dir=getwd(), remove.empty=TRUE, header=TRUE, sep=",", quote="\"", ...)
-{
-    oldir <- getwd()
-    setwd(dir)
-    x <- read.table(filename, header=header, sep=sep, quote=quote, ...)
-    if (remove.empty) x <- x[ , -ncol(x)]
-    setwd(oldir)
-    return(x)
-  }
+\dontrun{
+## There is no 'real' ABMI data as an example
+## but any data set downloaded from the ABMI
+## site can be used (www.abmi.ca), e.g.:
+x <- read.abmi("RAW_T_BirdCounts63451.csv")
+x
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+}
+\keyword{ files }

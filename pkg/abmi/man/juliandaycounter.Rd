@@ -32,42 +32,13 @@ hourcounter(x, with.min = TRUE, with.sec = FALSE, na.rm = FALSE)
   ...
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{PÃ©ter SÃ³lymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{ ~~further notes~~ 
 
  ~Make other sections like Warning with \section{Warning }{....} ~
 }
 \seealso{ ~~objects to See Also as \code{\link{help}}, ~~~ }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
-
-## The function is currently defined as
-function(x, format="\%d-\%b-\%y", yr.start=8, yr.end=9, na.rm=FALSE)
-{
-    if (NCOL(x) != 1)
-        stop("'x' must be vector")
-    x <- as.character(x)
-    naid <- is.na.abmi(x)
-    fulldate <- x[!naid]
-    if (any(nchar(fulldate) != 9))
-        stop("not adequate date format")
-    year <- paste("20", substr(fulldate, yr.start, yr.end), sep="")
-    jan1 <- as.Date(unlist(lapply(year, function(x) paste(x,"-01-01", sep=""))))
-    fulldate <- as.Date(fulldate, format)
-    out <- as.numeric(fulldate) - as.numeric(jan1)
-    if (na.rm) {
-        return(out)
-        } else {
-            y <- numeric(length(x))
-            y[!naid] <- out
-            y[naid] <- NA
-            return(y)
-        }
-  }
+##
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ manip }
