@@ -10,3 +10,4 @@ Depends: mefa, chron
 License: GPL-2
 URL: http://www.abmi.ca, http://www.r-project.org
 LazyLoad: yes
+LazyData: true
