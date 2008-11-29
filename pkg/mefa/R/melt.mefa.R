@@ -73,7 +73,7 @@ if (is.null(dimnames(x)[[2]]))
         out <- merge(cpart, zpart, all = TRUE)
         rval <- stcs(out, drop.zero=drop.zero, zero.pseudo=c(zpse1, zpse2), ...)
         return(list(rval=rval, zpse=c(zpse1, zpse2)))}
-}
+} # end of internal fun
     if (any(summary(x)$t.abu == 0) && !raw.out)
         x <- x[,summary(x)$t.abu != 0]
     if (attr(x, "nested"))
@@ -99,6 +99,7 @@ if (is.null(dimnames(x)[[2]]))
             tmp$segm <- as.character(tmp$segm)
             tmp$segm[tmp$segm == "undefined"] <- dimnames(x)$segm[i]
             out <- merge(out, tmp, all = TRUE)
+            out <- as.stcs(out)
         }
         if (!drop.zero && nzsamp > 0) {
             zpart <- data.frame(samp=zsamps, taxa=rep(zpse[1], nzsamp),

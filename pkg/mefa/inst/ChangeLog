@@ -2,6 +2,8 @@ MEFA VERSIONS
 
 Version 2.1-1 -- November 17, 2008 (opened - r268)
 
+    * melt.mefa: did not return stcs class if segments
+      were present -- bug fixed.
     * mefaTable: xtab.fixed=TRUE behaved like FALSE
       when names had exact match, fixed.
     * demo: got a new ending, by a question for opening
