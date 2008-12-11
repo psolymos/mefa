@@ -1,1 +1,13 @@
-Nothing, at the moment.
+Related
+- JSS paper revison
+- vignette and demo revision based on JSS paper
+
+Code
+- add labels for image method
+- hide default plot arguments by using missing() inside
+- use %*% in aggregate and check speed increase
+- somehow fix inside/outside recognition in aggregate
+
+Not mefa
+- remove separateint from abmi
+- update permatsar in sedar/mefaspat
