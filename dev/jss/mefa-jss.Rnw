@@ -73,7 +73,7 @@ In this paper I outline the motivation and the general idea behind the package, 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Example dataset]{Example Dataset}
+\section[Example dataset]{Example dataset}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -116,7 +116,7 @@ Complications may arise, however, when we are dealing with three-way crosstabula
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Object classes]{Object Classes}
+\section[Object classes]{Object classes}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -235,12 +235,12 @@ mefalogo()
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[S3 method]{S3 Methods}
+\section[S3 method]{S3 methods}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%
-\subsection[Summary and graphical display]{Summary and Graphical Display}
+\subsection[Summary and graphical display]{Summary and graphical display}
 %%%%%%%%%%%%%
 
 
@@ -336,7 +336,7 @@ par(opar)
 Methods for objects of class `stcs' (\code{summary}, \code{plot}, \code{boxplot}, \code{image}) are also provided for convenience, but those are merely use the crostabulated results to do the same job as the respective method for the `mefa' objects. Other methods for `stcs' objects rely on methods for data frames (e.g.~\code{print}, \code{str}, \code{dim}, \code{dimnames}).
 
 %%%%%%%%%%%%%
-\subsection[Extraction and aggregation]{Extraction and Aggregation}
+\subsection[Extraction and aggregation]{Extraction and aggregation}
 %%%%%%%%%%%%%
 
 
@@ -373,7 +373,7 @@ From these results it is clear, that the proportion of size categories differ am
 The methods provided for the object classes in the \pkg{mefa} package are reviewed in Table~\ref{methtab}.
 
 %%%%%%%%%%%%%
-\subsection[Writing reports]{Writing Reports}
+\subsection[Writing reports]{Writing reports}
 %%%%%%%%%%%%%
 
 
@@ -406,12 +406,12 @@ The meaning of the arguments used is: use the \code{m5} `mefa' object to rwite a
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[Data analysis]{Data Analysis}
+\section[Data analysis]{Data analysis}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 %%%%%%%%%%%%%
-\subsection[Single taxon response modeling]{Single Taxon Response Modeling}
+\subsection[Single taxon response modeling]{Single taxon response modeling}
 %%%%%%%%%%%%%
 
 Here we use the data of the land snail species \emph{Aegopinella minor} (\code{"amin"}) and the samples data table to investigate the effect of microhabitat and sampling method on the abundance of this species. The response is the \code{"amin"} column of the \code{m2$xtab} matrix, for the data argument of the Poisson GLM, we simply provide the \code{m2$xamp} table:
@@ -424,7 +424,7 @@ summary(mod.amin)
 The model output indicates that the species was more frequent in dead wood and rock microhabitats than in live wood and litter, further, most of the individuals were collected by the quadrat method.
 
 %%%%%%%%%%%%%
-\subsection[Modeling the marginal sum as response]{Modeling the Marginal Sum as Response}
+\subsection[Modeling the marginal sum as response]{Modeling the marginal sum as response}
 %%%%%%%%%%%%%
 
 
@@ -451,11 +451,11 @@ It is clear that the proportion of fresh shells is not constant among microhabit
 
 
 %%%%%%%%%%%%%
-\subsection[Multivariate response modeling]{Multivariate Response Modeling}
+\subsection[Multivariate response modeling]{Multivariate response modeling}
 %%%%%%%%%%%%%
 
 
-We employ a nonparametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function (\cite{mcardle-01}, \cite{anderson-01}) of the \pkg{vegan} package (\cite{vegan-manual}). The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
+We employ a non-parametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function (\cite{mcardle-01}, \cite{anderson-01}) of the \pkg{vegan} package (\cite{vegan-manual}). The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
 
 <<results=hide>>=
 library(vegan)
@@ -492,7 +492,7 @@ The compound results in Figure~\ref{cca} show environmental variables loadings a
 
 
 %%%%%%%%%%%%%
-\subsection[Analyzing multiple subsets]{Analyzing Multiple Subsets}
+\subsection[Analyzing multiple subsets]{Analyzing multiple subsets}
 %%%%%%%%%%%%%
 
 The modular structure of the `mefa' objects enables easy processing of the data in a loop. Now we use hierarchical cluster analysis based on multiple subsets of the data to assess the effects of shell decay stages and sampling methods on the community composition. We first make a list with four subsets of the Dolina dataset, referring to combinations of timed search and quadrat method, and fresh and broken shells. We also aggregate the samples over microhabitats:
