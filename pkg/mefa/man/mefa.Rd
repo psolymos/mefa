@@ -68,19 +68,18 @@ The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 
 
 
 The \code{summary.mefa} function returns a list invisibly, with elements:
-
-  \item{s.rich}{vector with species richness values for the samples.}
-  \item{s.abu}{vector with number of individuals values for the samples.}
-  \item{t.occ}{number of sites occupied by each species.}
-  \item{t.abu}{abundances of each species.}
-  \item{ntot}{total number of individuals.}
-  \item{mfill}{matrix fill.}
-  \item{nsamp}{number of samples.}
-  \item{ntaxa}{number of taxa.}
-  \item{nsegm}{number of segments.}
-  \item{segment}{vector of segment names.}
-  \item{call}{the function call from the 'mefa' object.}
-  \item{nested, drop.zero, xtab.fixed}{attributes of the 'mefa' object.}
+  \code{s.rich}: vector with species richness values for the samples,
+  \code{s.abu}: vector with number of individuals values for the samples,
+  \code{t.occ}: number of sites occupied by each species,
+  \code{t.abu}: abundances of each species,
+  \code{ntot}: total number of individuals,
+  \code{mfill}: matrix fill,
+  \code{nsamp}: number of samples,
+  \code{ntaxa}: number of taxa,
+  \code{nsegm}: number of segments,
+  \code{segment}: vector of segment names,
+  \code{call}: the function call from the 'mefa' object,
+  \code{nested, drop.zero, xtab.fixed}: attributes of the 'mefa' object.
 
 The method \code{dim} returns a vector of length 3 with values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identical.to the matrix \code{x$xtab}, thus no need for a replicate).
 

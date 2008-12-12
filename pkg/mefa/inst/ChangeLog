@@ -2,10 +2,16 @@ MEFA VERSIONS
 
 Version 2.1-2 -- December 11, 2008 (opened - r268)
 
+    * as.data.frame: new mwthod to take advantage
+      in modeling. It returns a data frame containing
+      variables that are to be used in a model
+      i.e. glm. Four helper functions are made to
+      suppoert this function, but those can be used
+      on their own (mss, msr, mts, mtr).
     * plot methods: many tiny changes, image method
       now display names, but by default the axes are
       not labelled.
-    * citation entry: modified according to accepted
+    * citation entries: modified according to accepted
       JSS manuscript.
 
 
