@@ -1,7 +1,11 @@
 `plot.mefa` <-
 function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
-"ratio"), ylab=NULL, xlab=NULL, show=TRUE, ...)
+"ratio"), show=TRUE, ylab, xlab, ...)
 {
+    if (missing(ylab))
+        ylab <- NULL
+    if (missing(xlab))
+        xlab <- NULL
    if (!all(stat %in% 1:4))
        stop("'stat' must be in 1:4")
    if (!length(stat) == 1) stat <- 1
@@ -60,5 +64,5 @@ function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
            if (show)
                 plot(yvar, type="l", xlab=ylab2, ylab=xlab2, ...)}
     if (show)
-        invisible() else return(yvar)
+        invisible(yvar) else return(yvar)
 }

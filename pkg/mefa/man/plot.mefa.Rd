@@ -11,18 +11,17 @@
 Various methods for plotting objects of class 'mefa'.}
 \usage{
 \method{plot}{mefa}(x, stat = 1:4, type = c("bar", "rank"),
-trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{mefa}(x, stat = 1:4, all = TRUE, ylab = NULL, xlab = NULL,
-show = TRUE, \dots)
+trafo = c("none", "log", "ratio"), show = TRUE, ylab, xlab, \dots)
+\method{boxplot}{mefa}(x, stat = 1:4, all = TRUE, show = TRUE, ylab, xlab, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
-probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
-xlab = NULL, show = TRUE, \dots)
+probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, names = FALSE,
+show = TRUE, ylab, xlab, \dots)
 \method{plot}{stcs}(x, stat = 1:4, type = c("bar", "rank"),
-trafo = c("none", "log", "ratio"), ylab = NULL, xlab = NULL, show = TRUE, \dots)
-\method{boxplot}{stcs}(x, stat = 1:4, all = TRUE, ylab = NULL, xlab = NULL, show = TRUE, \dots)
+trafo = c("none", "log", "ratio"), show = TRUE, ylab, xlab, \dots)
+\method{boxplot}{stcs}(x, stat = 1:4, all = TRUE, show = TRUE, ylab, xlab, \dots)
 \method{image}{stcs}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
-probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, ylab = NULL, 
-xlab = NULL, show = TRUE, \dots)
+probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, names = FALSE,
+show = TRUE, ylab, xlab, \dots)
 }
 \arguments{
   \item{x}{an object of class 'mefa' or 'stcs'.}
@@ -35,6 +34,7 @@ xlab = NULL, show = TRUE, \dots)
   \item{probs}{numeric vector of probabilities with values in [0, 1] (passed internally to \code{\link{qvector}}).}
   \item{ordering}{logical, if \code{TRUE} (default) the samples-by-taxa matrix is ordered by row and columns sums, if \code{FALSE} row and columns are not rearranged.}
   \item{reverse}{logical, if the values to plot should be reversed (\code{TRUE}, default, original zero values are lightly, while higher values are strongly coloured) or not (\code{FALSE}). This is related to \code{col} argument of the generic function \code{\link{image}}. Currently, \code{\link{heat.colors}} is the default color scheme.}
+  \item{names}{logical, it labels samples and taxa in the plot using names in \code{x}. If it is a logical vector of length 2, sample and taxa names are returned accordingly.}
   \item{show}{logical, produce a plot (\code{TRUE}) or not (\code{FALSE}). \code{FALSE} can be useful, if the returned plotted values are reused (e.g. the matrix returned invisibly \code{image} can be used by \code{\link{filled.contour}}, or multiple values are used in one plot).}
   \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{boxplot}}.}
 }
@@ -58,38 +58,45 @@ All methods produce a plot if \code{show = TRUE}, and return the plotted values 
 \author{
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{image}}, \code{\link{plot}}, \code{\link{boxplot}}, \code{\link{filled.contour}}, \code{\link{par}}, \code{\link{heat.colors}}, \code{\link{heat.colors}}, \code{\link{topo.colors}}, \code{\link{terrain.colors}}, \code{\link{rainbow}}}
+\seealso{\code{\link{image}}, \code{\link{plot}}, \code{\link{boxplot}}, \code{\link{filled.contour}}, \code{\link{par}}, \code{\link{heat.colors}}, \code{\link{topo.colors}}, \code{\link{terrain.colors}}, \code{\link{rainbow}}}
 \examples{
 data(dol.count, dol.samp, dol.taxa)
 x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
-## Histograms
-par(mfrow=c(2,2))
+## Frequency distributions
+opar <- par(mfrow=c(2,2))
 plot(x, 1)
 plot(x, 2)
 plot(x, 3)
 plot(x, 4)
-par(mfrow=c(1,1))
+par(opar)
 ## Ranked curves
-par(mfrow=c(2,2))
+opar <- par(mfrow=c(2,2))
 plot(x, 1, type="rank")
 plot(x, 2, type="rank")
 plot(x, 3, type="rank")
 plot(x, 4, type="rank")
-par(mfrow=c(1,1))
+par(opar)
 ## Boxplot for segments
-par(mfrow=c(2,2))
+opar <- par(mfrow=c(2,2))
 boxplot(x, 1)
 boxplot(x, 2)
 boxplot(x, 3)
 boxplot(x, 4)
-par(mfrow=c(1,1))
+par(opar)
 ## Image (levelplot)
 ## comparing all and the segments
-par(mfrow=c(1,3))
+opar <- par(mfrow=c(1,3))
 image(x, trafo = "bins", main = "All segments")
 image(x, segm = 1, trafo = "bins", main = dimnames(x)$segm[1])
 image(x, segm = 2, trafo = "bins", main = dimnames(x)$segm[2])
-par(mfrow=c(1,1))
+par(opar)
+## For black and white, with names
+image(x, col = grey(seq(0, 1, 0.1)), names = TRUE)
+## For nice colors other than default
+opar <- par(mfrow=c(1,2))
+image(x, col = topo.colors(10))
+image(x, col = terrain.colors(10))
+par(opar)
 }
 \keyword{ hplot }
 \keyword{ methods }

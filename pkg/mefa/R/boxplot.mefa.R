@@ -1,5 +1,5 @@
 `boxplot.mefa` <-
-function(x, stat=1:4, all = TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
+function(x, stat=1:4, all = TRUE, show=TRUE, ylab, xlab, ...)
 {
     if (is.null(x$segm) || dim(x)[3] == 1)
         stop("at least 2 segments needed")
@@ -20,15 +20,15 @@ function(x, stat=1:4, all = TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
     levs <- tolower(c("all", levs))
     } else levs <- tolower(dimnames(x)$segm)
     xval <- as.factor(rep(levs, each=length(summary(x)[[stat]])))
-    if (is.null(ylab))
+    if (missing(ylab))
         ylab <- c("Frequency of taxa", "Frequency of individuals",
         "Frequency of occurrence", "Abundance")[stat]
-    if (is.null(xlab))
+    if (missing(xlab))
         xlab <- "Segments"
     if (show)
         boxplot(yval ~ xval, xlab=xlab, ylab=ylab, ...)
     if (show)
 # invisibly returns plotted walues
-        invisible() else return(cbind(x=xval, y=yval))
+        invisible(cbind(x=xval, y=yval)) else return(cbind(x=xval, y=yval))
 }
 

@@ -1,6 +1,6 @@
 `boxplot.stcs` <-
-function(x, stat=1:4, all = TRUE, ylab=NULL, xlab=NULL, show=TRUE, ...)
+function(x, stat=1:4, all = TRUE, show=TRUE, ylab, xlab, ...)
 {
-boxplot.mefa(mefa(x), stat, all, ylab, xlab, show, ...)
+boxplot.mefa(mefa(x), stat, all, show, ylab, xlab, ...)
 }
 

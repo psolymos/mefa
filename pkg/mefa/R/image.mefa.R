@@ -1,7 +1,7 @@
 `image.mefa` <-
 function(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
-probs = seq(0, 1, 0.05), ordering=TRUE, reverse=TRUE, 
-ylab=NULL, xlab=NULL, show=TRUE, ...)
+probs = seq(0, 1, 0.05), ordering=TRUE, reverse=TRUE, names = FALSE,
+show=TRUE, ylab, xlab, ...)
 {
 if (!is.mefa(x))
     stop("object is not of class 'mefa'")
@@ -23,11 +23,23 @@ if (trafo == "prab")
 if (reverse)
     mm <- max(mm) - mm
 
-if (is.null(ylab)) ylab <- "Samples"
-if (is.null(xlab)) xlab <- "Taxa"
+if (missing(ylab)) ylab <- "Samples"
+if (missing(xlab)) xlab <- "Taxa"
 
+if (show) {
+    image(1:ncol(m), 1:nrow(m), mm, ylab=ylab, xlab=xlab, axes = FALSE, ...)
+    box()
+    if (length(names) == 1)
+        names <- rep(names, 2)
+    if (names[1]) {
+        axis(2, at = 1:ncol(mm), labels = colnames(mm),
+            las = 2, ...)
+    }
+    if (names[2]) {
+        axis(1, at = 1:nrow(mm), labels = rownames(mm),
+            las = 2, ...)
+    }
+}
 if (show)
-    image(1:ncol(m), 1:nrow(m), mm, ylab=ylab, xlab=xlab, ...)
-if (show)
-    invisible() else return(mm)
+    invisible(mm) else return(mm)
 }
