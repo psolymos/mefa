@@ -135,8 +135,8 @@ mod <- glm(summary(x4)$s.abu ~ .^2,
     data = x4$samp, family = quasipoisson)
 summary(mod)
 ## See the demo and vignette for more examples
-#demo(mefa)
-#vignette("mefa")
+# demo(mefa)
+# vignette("mefa")
 ## Cluster analysis of community matrix
 x5 <- aggregate(x4, c("method", "microhab"))
 h <- hclust(dist(x5$xtab))
