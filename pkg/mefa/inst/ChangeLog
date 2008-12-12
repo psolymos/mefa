@@ -1,6 +1,15 @@
 MEFA VERSIONS
 
-Version 2.1-1 -- November 17, 2008 (opened - r268)
+Version 2.1-2 -- December 11, 2008 (opened - r268)
+
+    * plot methods: many tiny changes, image method
+      now display names, but by default the axes are
+      not labelled.
+    * citation entry: modified according to accepted
+      JSS manuscript.
+
+
+Version 2.1-1 -- December 11, 2008 (closed - r268)
 
     * melt.mefa: did not return stcs class if segments
       were present -- bug fixed.
