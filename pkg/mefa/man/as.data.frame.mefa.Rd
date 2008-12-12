@@ -10,31 +10,32 @@
 The function converts parts of a 'mefa' obect into a data frame.
 }
 \usage{
-\method{as.data.frame}{mefa}(x, arrange, name, make.unique = FALSE)
-mss(x, name, make.unique = FALSE)
-msr(x, name, make.unique = FALSE)
-mts(x, name, make.unique = FALSE)
-mtr(x, name, make.unique = FALSE)
+\method{as.data.frame}{mefa}(x, \ldots, fun, name, make.unique = FALSE)
+mss(x, name, make.unique = FALSE, \ldots)
+msr(x, name, make.unique = FALSE, \ldots)
+mts(x, name, make.unique = FALSE, \ldots)
+mtr(x, name, make.unique = FALSE, \ldots)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
-  \item{arrange}{a function to determine whet to return, see details. It has no default, because the choice is not trivial.}
+  \item{fun}{a function to determine what to return, see details. It has no default, because the choice is not trivial.}
   \item{name}{optional character vector, names to return if not all possible elements are needed, see details.}
   \item{make.unique}{logical, useful to use \code{make.unique = TRUE} if names to returne are non-unique, dee details.}
+  \item{\ldots}{other arguments passed to the generic function \code{\link{as.data.frame}}.}
 }
 \details{
-Four kinds of data frames can be returned, depending on the function used as the \code{arrange} argument:
+Four kinds of data frames can be returned, depending on the function used as the \code{fun} argument:
 
-  \item{ss}{returns summary statistics for samples (richness and abundence) and \code{x$samp}.}
-  \item{sr}{returns raw data (\code{x$xtab}) and \code{x$samp}.}
-  \item{ts}{returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa}.}
-  \item{tr}{returns raw data (\code{t(x$xtab)}) and \code{x$taxa}.}
+  \item{mss}{returns summary statistics for samples (richness and abundence) and \code{x$samp}.}
+  \item{msr}{returns raw data (\code{x$xtab}) and \code{x$samp}.}
+  \item{mts}{returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa}.}
+  \item{mtr}{returns raw data (\code{t(x$xtab)}) and \code{x$taxa}.}
 
 The \code{name} can be used if only a subset of the summary statistics, or raw data should be returned. The character vector should contain names of elements to return (see examples).
 
 It might (rarely) occur, that names of the summary statistics, or the raw data and the column names of the sample/taxa table overlap (contains names that are common in the two set). In this case, the \code{make.unique = TRUE} can be used to resolve non-uniqueness and avoid the error message produced otherwise.
 
-The functions supplied as the \code{arrange} argument can be used separately.
+The functions supplied as the \code{fun} argument can be used separately. Although the usage of the \code{as.data.frame} method is more transparent.
 }
 \value{
 A data frame.
@@ -47,19 +48,19 @@ A data frame.
 \author{
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{as.data.frame}}}
+\seealso{\code{\link{as.data.frame}}, \code{\link{mefa}}}
 \examples{
 data(dol.count, dol.samp, dol.taxa)
 x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
 ## These two are equivalent
-as.data.frame(x, mss)
+as.data.frame(x, fun = mss)
 mss(x)
 ## Return only two species
-as.data.frame(x, msr, c("iiso", "ppyg"))
+as.data.frame(x, fun = msr, c("iiso", "ppyg"))
 ## Taxa table and summary
-as.data.frame(x, mts)
+as.data.frame(x, fun = mts)
 ## Taxa table and raw data transpose
-as.data.frame(x, mtr)
+as.data.frame(x, fun = mtr)
 ## Why is it useful?
 ## Instead of
 glm(x$xtab[,"amin"] ~ microhab + method, data = x$samp, family = poisson)

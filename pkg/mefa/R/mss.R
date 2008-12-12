@@ -1,6 +1,6 @@
 ## samples/summary
 mss <-
-function(x, name, make.unique = FALSE) {
+function(x, name, make.unique = FALSE, ...) {
     if (is.null(x$samp))
         stop("'x$samp' must not be 'NULL'")
     if (missing(name))
@@ -9,8 +9,7 @@ function(x, name, make.unique = FALSE) {
     rval <- data.frame(data.frame(
         "s.rich" = summ$s.rich,
         "s.abu" = summ$s.abu)[, name],
-        x$samp)
-    rownames(rval) <- dimnames(x)$samp
+        x$samp, ...)
     if (make.unique && name %in% colnames(x$samp)) {
         colnames(rval) <- c(name,
             paste("s.", colnames(x$samp), sep = ""))

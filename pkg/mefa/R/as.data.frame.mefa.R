@@ -1,11 +1,11 @@
 as.data.frame.mefa <-
-function(x, arrange, name, make.unique = FALSE)
+function(x, ..., fun, name, make.unique = FALSE)
 {
     if (!inherits(x, "mefa"))
         stop("'x' must be of class mefa")
-    if (missing(arrange))
-        stop("'arrange' argument is missing")
-    if (!is.function(arrange))
-        stop("'arrange' argument must be a function")
-    arrange(x, name)
+    if (missing(fun))
+        stop("'fun' argument is missing")
+    if (!is.function(fun))
+        stop("'fun' argument must be a function")
+    fun(x, name, make.unique, ...)
 }
