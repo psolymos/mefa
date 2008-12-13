@@ -57,7 +57,7 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
             segm[[i]] <- segm[[i]][row.sub, col.sub]}}
 # put parts together
     out <- list(call = match.call(), xtab = xtab2, segm = segm, samp = samp2, taxa = taxa2)
-    class(out) <- c("mefa")
+    class(out) <- c("mefa", "list")
     attr(out, "nested") <- nested
     attr(out, "drop.zero") <- drop.zero
     attr(out, "xtab.fixed") <- xtab.fixed

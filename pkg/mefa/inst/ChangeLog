@@ -2,6 +2,12 @@ MEFA VERSIONS
 
 Version 2.1-2 -- December 11, 2008 (opened - r268)
 
+    * label: assign and return a label stured as
+      a deparsed attribute. Can be used to store
+      relevant information on the current data
+      set. Note: inheritance is not implemented,
+      so by any transformation of the object
+      into another one, it is lost.
     * vignette and demo updated: based on changes
       made in the JSS paper due to second revision.
     * as.data.frame: new method to take advantage

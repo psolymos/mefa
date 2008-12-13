@@ -203,7 +203,7 @@ summary(mod.fr)
 
 wait()
 
-if (require((vegan)) {
+if (require(vegan)) {
 m6 <- m2[summary(m2)$s.abu != 0, , ]
 m6.ado <- adonis(m6$xtab ~ .^2,
     data = m6$samp, permutations = 100)
@@ -212,7 +212,7 @@ m6.ado
 
 wait()
 
-if (require((ade4)) {
+if (require(ade4)) {
 m2.cca <- ade4::cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
 plot.pcaiv(m2.cca)
 }

@@ -59,7 +59,7 @@ options("prompt" = "R> ", "continue" = "+ ", "useFancyQuotes" = FALSE)
 
 Fortunately, many packages are available for the analysis of ecological data in \proglang{R} \citep{rcore-manual}, e.g.~the \pkg{ade4} \citep{ade4-jss-07}, \pkg{labdsv} \citep{labdsv-manual} and \pkg{vegan} \citep{vegan-manual} packages among other more standard statistical packages e.g.~\pkg{MASS} \citep{mass-book-02} and \pkg{stats} \citep{rcore-manual}. These, however, often require the multivariate data in the form of a matrix or data frame.
 
-Extensive ecological data sets (with observations of multiple taxa at multiple locations) are not stored in cross tabulated format because most biodiversity data sets are sparse with matrix fill often lower than 30 percent. The conversion between data formats of biodiversity databases and ecological packages might require substantial work. Of course there are many possibilities for general data manupulation in \proglang{R} \citep{spector-manip-08}. The \pkg{Hmisc} \citep{hmisc-manual}, \pkg{reshape} \citep{reshape-manual}, \pkg{simba} \citep{simba-manual} and \pkg{labdsv} \citep{labdsv-manual} packages contain functions for converting ecological data in database formats into crosstabulated data matrices, and vice versa.
+Extensive ecological data sets (with observations of multiple taxa at multiple locations) are not stored in crosstabulated format because most biodiversity data sets are sparse with matrix fill often lower than 30 percent. The conversion between data formats of biodiversity databases and ecological packages might require substantial work. Of course there are many possibilities for general data manupulation in \proglang{R} \citep{spector-manip-08}. The \pkg{Hmisc} \citep{hmisc-manual}, \pkg{reshape} \citep{reshape-manual}, \pkg{simba} \citep{simba-manual} and \pkg{labdsv} \citep{labdsv-manual} packages contain functions for converting ecological data in database formats into crosstabulated data matrices, and vice versa.
 
 When the problems are more complex (e.g.~a survey spanning across multiple spatial or temporal scales), results are stored in several related data tables. Most multivariate methods require a matrix, whereas response modeling usually require data frame as input. The simultaneous manipulation and checking of the community data matrix and related data frames can be time consuming with the standard tools.
 
@@ -83,7 +83,7 @@ We collected invertebrates from four different microhabitats (\textbf{L}itter, l
 
 Here I will use the data of land snails from the first dolina only, that is provided with the package (dataset \code{dol.count}). Samples are named after the microhabitat, the applied method and a number for replication. Snails were identified to species and categorized according to extent of shell decay. Four letter short names were used to refer to species. Live animals and fresh shells constituted the \code{"fresh"} group. Whitened, decayed and broken shells constituted the \code{"broken"} group. Shell decay stages formed the segments in the data set for further analyses.
 
-A data frame containing microsite characteristics of the samples and the applied methods is provided in the dataset \code{dol.samp}. Characteristics (nomenclature, taxonomy, adult shell dimension) of the snail species are in the dataset \code{dol.taxa} and is based on \citep{kcj-83}. The full dataset along with the code how it was extracted from the full dataset is available on the Dataverse Network \citep{dolina-method-dataset}.
+A data frame containing microsite characteristics of the samples and the applied methods is provided in the dataset \code{dol.samp}. Characteristics (nomenclature, taxonomy, adult shell dimension) of the snail species are in the dataset \code{dol.taxa} and are based on \citep{kcj-83}. The full dataset along with the code showing how it was extracted from the full dataset is available on the Dataverse Network \citep{dolina-method-dataset}.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,7 +126,7 @@ str(x1)
 unique(x1$count)
 @
 
-The object inherits from the data frame class, thus methods available for data frames apply for `stcs' objects as well. But there are four additional attributes. The \code{call} attribute is the function call. The \code{expand} attribute refers to the count column. If the maximum of count values is one, then each row represent one individual, and the \code{expand} attribute is \code{TRUE}. We can achieve this by the \code{expand} argument in the function call:
+The object inherits from the data frame class, thus methods available for data frames apply for `stcs' objects as well. But there are four additional attributes. The \code{call} attribute is the function call. The \code{expand} attribute refers to the count column. If the count values are all ones (except for empty samples), then each row represent one individual, and the \code{expand} attribute is \code{TRUE}. We can achieve this by the \code{expand} argument in the function call:
 
 <<>>=
 x2 <- stcs(dol.count, expand = TRUE)
@@ -159,7 +159,7 @@ m1
 m1$xtab["LT1", ]
 @
 
-The \code{mefa} function returns an object of class `mefa'. The print method for the `mefa' objects returns basic information on the dimensions of the data. The \code{$xtab} list element contains the cross tabulated data. The pseudo species has been removed, thus the row for sample \code{LT1} is empty. Row and column ordering follows the original internal coding of factors in the `stcs' object. The \code{$segm} is a list with length equal to the number of segments, and contains the matrices for each segment, with dimensions and names being the same as for \code{$xtab}:
+The \code{mefa} function returns an object of class `mefa'. The print method for the `mefa' objects returns basic information on the dimensions of the data. The \code{$xtab} list element contains the crosstabulated data. The pseudo species has been removed, thus the row for sample \code{LT1} is empty. Row and column ordering follows the original internal coding of factors in the `stcs' object. The \code{$segm} is a list with length equal to the number of segments, and contains the matrices for each segment, with dimensions and names being the same as for \code{$xtab}:
 
 <<>>=
 str(m1$xtab)
@@ -180,14 +180,14 @@ mefa(x1, segment = FALSE)
 
 If the input object for the \code{mefa} function is a matrix or data frame, segments cannot be specified directly. Segments can, however, be defined indirectly through a `mefa'$\rightarrow$`stcs'$\rightarrow$`mefa' loop by the \code{melt} method (discussed in the examples later).
 
-Besides the count data, we also have a data frame for the samples. Here are the covariates for the 24 samples (microhabitat type and sampling method):
+Besides the crosstabulated data, we also have a data frame for the samples. Here are the covariates for the 24 samples (microhabitat type and sampling method):
 
 <<>>=
 data(dol.samp)
 str(dol.samp)
 @
 
-And we also have a table containing variables related to the species (three factors, one numeric, note that \code{size} is based on average adult shell dimension taken from the literature):
+And we also have a table containing variables related to the species (three factors, one numeric, note that \code{size} is based on average adult shell dimension and taken from the literature):
 
 <<>>=
 data(dol.taxa)
@@ -220,7 +220,7 @@ str(m2.sub$taxa)
 
 As we see, the count data matrix is also subsetted, according to the related tables of samples and taxa.
 
-An object of class `mefa' is a list of length five. The first element is the function call (\code{$call}), second is a matrix with the cross tabulated data (\code{$xtab}). These two are always present, the remaining three depend on the availability of data and the aims of the study. The third element contains a list of matrices for segments (\code{$segm}), the fourth and fifth contain data frames with data for samples (\code{$samp}) and taxa (\code{$taxa}), respectively. Elements, except for the count data matrix, can be missing. The general structure of an object of class `mefa' follows a relational data model, where dimnames attributes of the main count data matrix, the segment data matrices and the samples/taxa data tables for the rows and columns are identical. The print method for the `mefa' objects shows the names of these elements to help memorizing the notation. Figure~\ref{mefastr} depicting the object structure can be called as:
+An object of class `mefa' is a list of length five. The first element is the function call (\code{$call}), second is a matrix with the cross tabulated data (\code{$xtab}). These two are always present, the remaining three depend on the availability of data and the aims of the study. The third element contains a list of matrices for segments (\code{$segm}), the fourth and fifth contain data frames with data for samples (\code{$samp}) and taxa (\code{$taxa}), respectively. The general structure of an object of class `mefa' follows a relational data model, where dimnames attributes of the main count data matrix, the segment data matrices and the samples/taxa data tables for the rows and columns are identical. The print method for the `mefa' objects shows the names of these elements to help memorizing the notation. Figure~\ref{mefastr} depicting the object structure can be called as:
 
 <<mefastr, fig=TRUE, include=FALSE>>=
 mefalogo()
@@ -244,7 +244,7 @@ mefalogo()
 %%%%%%%%%%%%%
 
 
-Dimension and dimension names can be retrieved by the \code{dim} and \code{dimnames} methods:
+Dimensions and dimension names can be retrieved by the \code{dim} and \code{dimnames} methods:
 
 <<>>=
 dim(m2)
