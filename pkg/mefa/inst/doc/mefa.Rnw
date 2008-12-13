@@ -464,7 +464,7 @@ The model output indicates that the species was more frequent in dead wood and r
 %%%%%%%%%%%%%
 
 
-The distribution of the number of snails in the samples is skewed and likely overdispersed, thus we use a negative binomial GLM to analyze the relationship between land snail abundances and sample covariates. The negative binomial model is implemented in the \pkg{MASS} package \citep{mass-book-02}. As part of the maximum likelihood fit, a shape parameter (\code{theta}) is also estimated in order to model the data as gamma mixture of Poisson distributions. We use the \code{summary} method to get the vector of the number of individuals, and the samples table again for covariates using their interaction as well:
+The distribution of the number of snails in the samples is skewed and likely overdispersed, thus we use a negative binomial model to analyze the relationship between land snail abundances and sample covariates. The GLM for the negative binomial is implemented in the \pkg{MASS} package \citep{mass-book-02}. As part of the maximum likelihood fit, a shape parameter (\code{theta}) is also estimated in order to model the data as gamma mixture of Poisson distributions. We use the \code{summary} method to get the vector of the number of individuals, and the samples table again for covariates using their interaction as well:
 
 <<>>=
 library(MASS)
