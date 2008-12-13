@@ -228,7 +228,7 @@ mefalogo()
 
 \begin{figure}[!htb]
     \begin{center}
-        \includegraphics[width=0.6\textwidth]{mefa-jss-mefastr}
+        \includegraphics[width=0.9\textwidth]{mefa-jss-mefastr}
     \end{center}
     \caption{Representation of the relational data model in an object of class `mefa'.\label{mefastr}}
 \end{figure}
@@ -371,6 +371,37 @@ lapply(m4$segm, t)
 From these results it is clear, that the proportion of size categories differs among sampling methods and microhabitats. We will further analyze this in the next chapters.
 
 The methods provided for the object classes in the \pkg{mefa} package are reviewed in Table~\ref{methtab}.
+
+\begin{table}[!htb]
+\begin{center}
+\begin{tabular}{llp{10cm}}
+\hline
+Class & Method & Description \\ 
+\hline
+\texttt{stcs} & \texttt{is.stcs}   & evaluates if an object is of class `stcs'. \\ 
+            & \texttt{as.stcs}   & coerces to class `stcs'. \\ 
+            & \texttt{summary}   & does the same as \texttt{summary.mefa}, just for convenience. \\ 
+            & \texttt{plot}      & does the same as \texttt{plot.mefa}, just for convenience. \\ 
+            & \texttt{boxplot}   & does the same as \texttt{boxplot.mefa}, just for convenience. \\ 
+            & \texttt{image}     & does the same as \texttt{image.mefa}, just for convenience. \\ 
+\texttt{mefa} & \texttt{is.mefa}   & evaluates if an object is of class `mefa'. \\ 
+            & \texttt{as.mefa}   & coerces to class `mefa'. \\ 
+            & \texttt{print}     & print basic characteristics of the object. \\ 
+            & \texttt{summary}   & print basic summaries on the data. \\ 
+            & \texttt{plot}      & graphical display of basic summaries of the data based on the main data matrix. \\ 
+            & \texttt{boxplot}   & graphical display of basic summaries of the data based on data matrices for segments. \\ 
+            & \texttt{image}     & graphical display of the values in the main data matrix or data matrix for a segment. \\ 
+            & \texttt{aggregate} & aggregate (sum) the values in the matrices (main data and segments). \\ 
+            & \texttt{[}         & extract an object (data matrices and relational data frames) based on indexing for rows (samples) columns (taxa) and segments.\\ 
+            & \texttt{melt}      & convert an object of class `mefa' into an object of class `stcs'. \\ 
+            & \texttt{report}    & writes data from an object of class `mefa' into a file. \\ 
+            & \texttt{dim}       & return dimension of the `mefa' object. \\ 
+            & \texttt{dimnames}  & return names for rows (samples) columns (taxa) and segments in the `mefa' object. \\
+\hline
+\end{tabular}
+\end{center}
+  \caption{Description of methods provided for the object classes.\label{methtab}}
+\end{table}
 
 %%%%%%%%%%%%%
 \subsection[Writing reports]{Writing reports}
@@ -544,38 +575,6 @@ Initial development of the \pkg{mefa} package was motivated by complex sampling 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{mefa-jss}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-/home/psolymos/Projects/mefa/jss
-
-\begin{table}[p]
-\begin{center}
-\begin{tabular}[!htb]{llp{10cm}}
-\hline
-Class & Method & Description \\ 
-\hline
-\texttt{stcs} & \texttt{is.stcs}   & evaluates if an object is of class `stcs'. \\ 
-            & \texttt{as.stcs}   & coerces to class `stcs'. \\ 
-            & \texttt{summary}   & does the same as \texttt{summary.mefa}, just for convenience. \\ 
-            & \texttt{plot}      & does the same as \texttt{plot.mefa}, just for convenience. \\ 
-            & \texttt{boxplot}   & does the same as \texttt{boxplot.mefa}, just for convenience. \\ 
-            & \texttt{image}     & does the same as \texttt{image.mefa}, just for convenience. \\ 
-\texttt{mefa} & \texttt{is.mefa}   & evaluates if an object is of class `mefa'. \\ 
-            & \texttt{as.mefa}   & coerces to class `mefa'. \\ 
-            & \texttt{print}     & print basic characteristics of the object. \\ 
-            & \texttt{summary}   & print basic summaries on the data. \\ 
-            & \texttt{plot}      & graphical display of basic summaries of the data based on the main data matrix. \\ 
-            & \texttt{boxplot}   & graphical display of basic summaries of the data based on data matrices for segments. \\ 
-            & \texttt{image}     & graphical display of the values in the main data matrix or data matrix for a segment. \\ 
-            & \texttt{aggregate} & aggregate (sum) the values in the matrices (main data and segments). \\ 
-            & \texttt{[}         & extract an object (data matrices and relational data frames) based on indexing for rows (samples) columns (taxa) and segments.\\ 
-            & \texttt{melt}      & convert an object of class `mefa' into an object of class `stcs'. \\ 
-            & \texttt{report}    & writes data from an object of class `mefa' into a file. \\ 
-            & \texttt{dim}       & return dimension of the `mefa' object. \\ 
-            & \texttt{dimnames}  & return names for rows (samples) columns (taxa) and segments in the `mefa' object. \\
-\hline
-\end{tabular}
-\end{center}
-  \caption{Description of methods provided for the object classes.\label{methtab}}
-\end{table}
 
 
 \end{document}
