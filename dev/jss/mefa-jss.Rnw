@@ -438,7 +438,7 @@ summary(mod.abu)
 
 The abundance of snails in the samples was positively associated with dead wood and rock microhabitats. The interaction of sampling method and microhabitat has proved to be significant, indicating that the collecting efficiency of snails varied among microhabitats. The number of snails collected by the quadrat method was higher for the litter and live wood microhabitats, while in the dead wood microhabitat, the timed search resulted in more snails.
 
-We can take advantage of the segments in the analysis as well. We now investigate, whether the proportion of fresh shells (including living animals) differ among microhabitats and sampling methods. First, we make a two-column matrix with the number of fresh shells per samples and the total number of shells (fresh and broken) collected per samples. Then, assuming that decay status (fresh or broken) of a single shell follows a Bernoulli process, we use this matrix in a binomial GLM (logistic regression) with the number of trials equal to the total number of species per sample:
+We can take advantage of the segments in the analysis as well. We now investigate, whether the proportion of fresh shells (including living animals) differ among microhabitats and sampling methods. First, we make a two-column matrix with the number of fresh shells per samples and the total number of shells (fresh and broken) collected per samples. Then, assuming that decay status (fresh or broken) of a single shell follows a Bernoulli process, we use this matrix in a binomial GLM (logistic regression) with the number of trials equal to the total number of individuals per sample:
 
 <<>>=
 prop.fr <- cbind(summary(m2[ , , "fresh"])$s.abu, summary(m2)$s.abu)
@@ -493,7 +493,7 @@ The compound results in Figure~\ref{cca} show environmental variables loadings a
 \subsection[Analyzing multiple subsets]{Analyzing multiple subsets}
 %%%%%%%%%%%%%
 
-The modular structure of the `mefa' objects enables easy processing of the data in a loop. Now we use hierarchical cluster analysis based on multiple subsets of the data to assess the effects of shell decay stages and sampling methods on the community composition. We first make a list with four subsets of the Dolina dataset, referring to combinations of timed search and quadrat method, and fresh and broken shells. We also aggregate the samples over microhabitats:
+The modular structure of the `mefa' objects enables easy processing of the data in loops. Now we use hierarchical cluster analysis based on multiple subsets of the data to assess the effects of shell decay stages and sampling methods on the community composition. We first make a list with four subsets of the Dolina dataset, referring to combinations of timed search and quadrat method, and fresh and broken shells. We also aggregate the samples over microhabitats:
 
 <<>>=
 m.list <- list()
@@ -522,7 +522,7 @@ par(opar)
     \caption{Hierarchical cluster analysis of multiple subsets of the Dolina dataset. Subsets are extracted to represent combinations of shell decay stages (A, C: fresh; B, D: broken) and sampling methods (A--B: timed search; C--D: quadrat method).\label{clust}}
 \end{figure}
 
-Figure~\ref{clust} shows that the dendrograms for the fresh and broken segments of the quadrat method are congruent, while that for the timed search are not. For the fresh shells, the dead wood communities resembled the rock community. While for the broken shells only, dead wood communities were more similar to live wood and litter communities than to the rock.
+Figure~\ref{clust} shows that the dendrograms for the fresh and broken segments of the quadrat method are congruent, while that for the timed search are not. For the fresh shells, the dead wood communities resembled the rock community. While for the broken shells, dead wood communities were more similar to live wood and litter communities than to the rock.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -530,7 +530,7 @@ Figure~\ref{clust} shows that the dendrograms for the fresh and broken segments 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-The \pkg{mefa} package provides standardized environment and a and convenient tool for ecologists and biogeographers working on biodiversity data sets in \proglang{R}. The object classes (`stcs' and `mefa') and \proglang{S}3 methods provide a coherent framework for data preprocessing of structured data sets. Based on `mefa' objects, reports can be generated in plain text or \LaTeX~format. It is presented how the objects can be directly used in further analyses for a variety of ecological problems.
+The \pkg{mefa} package provides standardized environment and a and convenient tool for ecologists and biogeographers working on biodiversity data sets in \proglang{R}. The object classes (`stcs' and `mefa') and \proglang{S}3 methods provide a coherent framework for data preprocessing of structured data sets. Based on `mefa' objects, reports can be generated in plain text or \LaTeX~format. It was presented how the objects can be directly used in further analyses for a variety of ecological problems.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -538,13 +538,13 @@ The \pkg{mefa} package provides standardized environment and a and convenient to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-Initial development of the \pkg{mefa} package was motivated by complex spatial sampling designs for landscape scale invertebrate surveys, especially in the ``Dolina 2007'' experiment. I would like to thank to Zita Kemencei, Ferenc Vilisics, Elisabeth Hornung, Roland Farkas, Zolt\'an Elek and Zolt\'an Feh\'er for discussions and feedback, and providing their data to test and improve the package. The helpful reviews of two anonymous referees and comments of the associate editor considerably improved the earlier version of the manuscript and the package itself. The work of the author was supported by a postdoctoral fellowship from the NSERC and the Alberta Biodiversity Monitoring Institute.
+Initial development of the \pkg{mefa} package was motivated by complex sampling designs of landscape scale invertebrate surveys, especially the ``Dolina 2007'' experiment. The author would like to thank to Zita Kemencei, Ferenc Vilisics, Elisabeth Hornung, Roland Farkas, Zolt\'an Elek and Zolt\'an Feh\'er for discussions and feedback, and providing data to test and improve the package. The helpful reviews of two anonymous referees and comments of the associate editor considerably improved the earlier version of the manuscript and the package itself. The work of the author was supported by a postdoctoral fellowship from the NSERC and the Alberta Biodiversity Monitoring Institute.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bibliography{mefa-jss}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+/home/psolymos/Projects/mefa/jss
 
 \begin{table}[p]
 \begin{center}

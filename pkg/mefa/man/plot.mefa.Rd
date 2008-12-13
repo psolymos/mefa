@@ -45,10 +45,10 @@ show = TRUE, ylab, xlab, \dots)
 
 \code{image} creates a grid of colored rectangles with colors corresponding to the values in the segment defined by the argument \code{segm}. If \code{ordering = TRUE}, the ordering of the segment will be based on the \code{x$xtab} matrix and not on the matrix for the segment itself. This is due to better comparison among segments.
 
-All graphical display methods for objects of class 'stcs' are based on the conversion of the object into 'mefa', and than the respective plotting method is applied.
+All graphical display methods for objects of class 'stcs' are based on the conversion of the object into 'mefa', and than the respective plotting method is applied. The conversion is made based on the default \code{mefa} settings (e.g. with segments). If more control is needed over the object structure, use the \code{mefa} function to coerce to a more appropriate class for this.
 }
 \value{
-All methods produce a plot if \code{show = TRUE}, and return the plotted values if \code{show = FALSE} without plotting them.
+All methods produce a plot if \code{show = TRUE}, and return the plotted values invisibly, or visibly if \code{show = FALSE}.
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
@@ -94,8 +94,10 @@ par(opar)
 image(x, col = grey(seq(0, 1, 0.1)), names = TRUE)
 ## For nice colors other than default
 opar <- par(mfrow=c(1,2))
-image(x, col = topo.colors(10))
-image(x, col = terrain.colors(10))
+image(x[,,"fresh"], col = topo.colors(10),
+main = "Fresh")
+image(x[,,"broken"], col = terrain.colors(10),
+main = "Broken")
 par(opar)
 }
 \keyword{ hplot }

@@ -11,8 +11,8 @@ label(x)
 label(x) <- value
 }
 \arguments{
-  \item{x}{any object.}
   \item{value}{any expression.}
+  \item{x}{any object.}
 }
 \details{
 The label can be any expression assigned to any object. It is stored as a character attribute. Inheritance is not implemented, so by any transformation of the object into another one, the label is lost.
