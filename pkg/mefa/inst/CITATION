@@ -24,19 +24,4 @@ citEntry(entry="Manual",
                "URL http://mefa.r-forge.r-project.org/.")
          )
 
-citEntry(entry="Article",
-         title = "Processing Ecological Data in {R} with the {mefa} Package",
-         author = person(last = "S\\'{o}lymos", first = "P\\'{e}ter", email = "solymos@ualberta.ca"),
-         journal      = "Journal of Statistical Software",
-         year         = "2008",
-         volume       = "XX",
-         number       = "XX",
-         url          = "http://www.jstatsoft.org/XXX",
-         
-         textVersion = 
-         paste("Solymos, Peter (2008).", 
-               "Processing Ecological Data in R with the mefa Package.",
-               "Journal of Statistical Software XX(XX).",
-               "URL http://www.jstatsoft.org/XXX.")
-        )
 
