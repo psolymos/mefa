@@ -226,7 +226,7 @@ An object of class `mefa' is a list of length five. The first element is the fun
 mefalogo()
 @
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-mefastr}
     \caption{Representation of the relational data model in an object of class `mefa'.\label{mefastr}}
 \end{figure}
@@ -279,7 +279,7 @@ plot(m2, 4, type = "rank", trafo = "log", main = "B")
 par(opar)
 @
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-plot}
     \caption{Plotting an object of class `mefa': barcharts for species richness (A), and ranked log abundances for species (B).\label{plot}}
 \end{figure}
@@ -294,7 +294,7 @@ boxplot(m2, 3, main = "B")
 par(opar)
 @
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-boxplot}
     \caption{Boxplots to depict differences among segments in abundances for samples (A), frequency of occurrences for taxa (B).\label{boxplot}}
 \end{figure}
@@ -326,7 +326,7 @@ for (i in 1:2)
 par(opar)
 @
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-image}
     \caption{Levelplot representation of an object of class `mefa'. Intensity of red coloring refers to increasing log abundances in the cells of the main data matrix (A) and the segments for the time restricted search (B), and the quadrat (C) methods.\label{image}}
 \end{figure}
@@ -389,10 +389,10 @@ report(m5, "report.tex", tex = TRUE,
 
 The meaning of the arguments used is: use the \code{m5} `mefa' object to write a report into the file \code{"report.tex"} by using \LaTeX~formatting. Use segments. Taxa names are in the first, author names are in the second column of the taxa table. We also want that implicitly all columns in the sample table should be used in the same order as before, to generate sample information (this can be specified by the \code{samp.var} argument not used here). Redundant levels of these sample information are dropped here (see help page \code{?report.mefa} for further details). The result is shown in Figure~\ref{minipg} with appropriate \LaTeX~formatting. The formatting rules can be modified via the \code{tex.control} argument.
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \begin{center}
         \fbox{
-            \begin{minipage}[tb]{0.9\textwidth}
+            \begin{minipage}{0.9\textwidth}
                 \begin{small}
                 \input{report.tex}
                 \end{small}
@@ -479,7 +479,7 @@ m2.cca <- ade4::cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
 plot.pcaiv(m2.cca)
 @
 
-\begin{figure}[tb]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-cca}
     \caption{Compound results of the constrained correspondence analysis based on a `mefa' object.\label{cca}}
 \end{figure}
@@ -515,7 +515,7 @@ for (i in 1:4) {
 par(opar)
 @
 
-\begin{figure}[!h]
+\begin{figure}[!htb]
     \includegraphics[width=1\textwidth]{mefa-jss-clust}
     \caption{Hierarchical cluster analysis of multiple subsets of the Dolina dataset. Subsets are extracted to represent combinations of shell decay stages (A, C: fresh; B, D: broken) and sampling methods (A--B: timed search; C--D: quadrat method).\label{clust}}
 \end{figure}
@@ -546,7 +546,7 @@ Initial development of the \pkg{mefa} package was motivated by complex spatial s
 
 \begin{table}[p]
 \begin{center}
-\begin{tabular}[tb]{llp{10cm}}
+\begin{tabular}[!htb]{llp{10cm}}
 \hline
 Class & Method & Description \\ 
 \hline
