@@ -74,7 +74,8 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     x$segm <- as.factor(x$segm)
 # drop unused levels
     x[] <- lapply(x, function(x) x[drop = TRUE])
-    if (max(x$count) == 1) expand <- TRUE
+    if (all(x$count %in% c(0, 1)))
+        expand <- TRUE
     class(x) <- c("stcs", "data.frame")
     attr(x, "call") <- match.call()
     attr(x, "expand") <- expand
