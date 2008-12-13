@@ -2,7 +2,7 @@ MEFA VERSIONS
 
 Version 2.1-2 -- December 11, 2008 (opened - r268)
 
-    * label: assign and return a label stured as
+    * label: assigns and returns a label stored as
       a deparsed attribute. Can be used to store
       relevant information on the current data
       set. Note: inheritance is not implemented,
