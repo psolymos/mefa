@@ -1,4 +1,4 @@
-\documentclass[article,shortnames]{jss}
+\documentclass[article]{jss}
 \usepackage{thumbpdf}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -10,7 +10,7 @@
 
 \Plainauthor{P\'eter S\'olymos}
 \Plaintitle{Processing Ecological Data in R With the mefa Package}
-\Shorttitle{Processing Ecological Data}
+\Shorttitle{\pkg{mefa}: Processing Ecological Data in \proglang{R}}
 
 \Abstract{
 \pkg{mefa} is an \proglang{R} package for multivariate data handling in ecology and biogeography. It provides object classes to represent the data coded by samples, taxa and segments (i.e.~subpopulations, repeated measures). It supports easy processing of the data along with relational data tables for samples and taxa. An object of class `mefa' is a project specific compendium of the dataset and can be easily used in further analyses. Methods are provided for extraction, aggregation, conversion, plotting, summary and reporting of `mefa' objects. Reports can be generated in plain text or \LaTeX~format. This paper presents worked examples on a variety of ecological analyses.
@@ -67,7 +67,7 @@ The aim of the \pkg{mefa} \proglang{R} package is to provide standardized comput
 
 The package name \pkg{mefa} is a short for \emph{metafaunistics} indicating that data processing is a critical step prior to data analysis. The \emph{faunistics} part refers to the study of the fauna of some territory or area, while the \emph{meta} part refers to the procedures (data processing and analysis) beyond the data collection part of the scientific endeavor. Of course, the package intends to be more general than covering only faunistics. It can be useful when dealing with almost all kinds of organisms that can be counted, including microorganisms, fungi and plants as well.
 
-Compared to previous versions (< 2.0, \citep{mefa-comecol-08}), the package has been extensively rewritten to enhance efficiency and speed, and with a focus on methods, but the data model remained the same. A stable version of the package is available via the Comprehensive \proglang{R} Archive Network (CRAN, \url{http://cran.r-project.org}), developmental version is available at the \proglang{R}-Forge (\url{http://r-forge.r-project.org/}).
+Compared to previous versions (< 2.0, \citep{mefa-comecol-08}), the package has been extensively rewritten to enhance efficiency and speed, and with a focus on methods, but the data model remained the same. A stable version of the package is available under the terms of the General Public License from the Comprehensive \proglang{R} Archive Network (CRAN, \url{http://cran.r-project.org/package=mefa}), developmental version is available at the \proglang{R}-Forge (\url{http://mefa.r-forge.r-project.org/}).
 
 In this paper I outline the motivation and the general idea behind the package, and I describe the structure of the object classes. A real-world data set is used to demonstrate the methods in the package and the use of objects in further data analysis.
 
@@ -227,13 +227,15 @@ mefalogo()
 @
 
 \begin{figure}[!htb]
-    \includegraphics[width=1\textwidth]{mefa-jss-mefastr}
+    \begin{center}
+        \includegraphics[width=0.6\textwidth]{mefa-jss-mefastr}
+    \end{center}
     \caption{Representation of the relational data model in an object of class `mefa'.\label{mefastr}}
 \end{figure}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section[S3 method]{S3 methods}
+\section[S3 method]{\proglang{S}3 methods}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -285,7 +287,7 @@ par(opar)
 \end{figure}
 
 
-The \code{boxplot} method is provided to retreive these statistics for each segment (Fig. \ref{boxplot}). Again, only two cases are shown (when the second argument is \code{2} and \code{3} to complement the previous figure):
+The \code{boxplot} method is provided to retreive these statistics for each segment (Figure \ref{boxplot}). Again, only two cases are shown (when the second argument is \code{2} and \code{3} to complement the previous figure):
 
 <<boxplot, fig=TRUE, include=FALSE, width=10, height=5>>=
 opar <- par(mfrow = c(1, 2))
@@ -453,7 +455,7 @@ It is clear that the proportion of fresh shells is not constant among microhabit
 %%%%%%%%%%%%%
 
 
-We employ a non-parametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function \citep{mcardle-01, anderson-01} of the \pkg{vegan} package (\citep{vegan-manual}). The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
+We employ a non-parametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function \citep{mcardle-01, anderson-01} of the \pkg{vegan} package \citep{vegan-manual}. The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
 
 <<results=hide>>=
 library(vegan)
@@ -528,7 +530,7 @@ Figure~\ref{clust} shows that the dendrograms for the fresh and broken segments 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-The \pkg{mefa} package provides standardized environment and a and convenient tool for ecologists and biogeographers working on biodiversity data sets in \proglang{R}. The object classes (`stcs' and `mefa') and S3 methods provide a coherent framework for data preprocessing of structured data sets. Based on `mefa' objects, reports can be generated in plain text or \LaTeX~format. It is presented how the objects can be directly used in further analyses for a variety of ecological problems.
+The \pkg{mefa} package provides standardized environment and a and convenient tool for ecologists and biogeographers working on biodiversity data sets in \proglang{R}. The object classes (`stcs' and `mefa') and \proglang{S}3 methods provide a coherent framework for data preprocessing of structured data sets. Based on `mefa' objects, reports can be generated in plain text or \LaTeX~format. It is presented how the objects can be directly used in further analyses for a variety of ecological problems.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -536,7 +538,7 @@ The \pkg{mefa} package provides standardized environment and a and convenient to
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-Initial development of the \pkg{mefa} package was motivated by complex spatial sampling designs for landscape scale invertebrate surveys, especially in the ``Dolina 2007'' experiment. I would like to thank to Zita Kemencei, Ferenc Vilisics, Elisabeth Hornung, Roland Farkas, Zolt\'an Elek and Zolt\'an Feh\'er for discussions and feedback, and providing their data to test and improve the package. The helpful reviews of two anonymous referees and comments of the associate editor considerably improved the earlier version of the manuscript and the package itself. During the preparation of this manuscript, I was supported by a postdoctoral fellowship from the NSERC and the Alberta Biodiversity Monitoring Institute.
+Initial development of the \pkg{mefa} package was motivated by complex spatial sampling designs for landscape scale invertebrate surveys, especially in the ``Dolina 2007'' experiment. I would like to thank to Zita Kemencei, Ferenc Vilisics, Elisabeth Hornung, Roland Farkas, Zolt\'an Elek and Zolt\'an Feh\'er for discussions and feedback, and providing their data to test and improve the package. The helpful reviews of two anonymous referees and comments of the associate editor considerably improved the earlier version of the manuscript and the package itself. The work of the author was supported by a postdoctoral fellowship from the NSERC and the Alberta Biodiversity Monitoring Institute.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

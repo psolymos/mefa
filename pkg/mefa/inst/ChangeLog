@@ -2,15 +2,17 @@ MEFA VERSIONS
 
 Version 2.1-2 -- December 11, 2008 (opened - r268)
 
-    * as.data.frame: new mwthod to take advantage
+    * vignette and demo updated: based on changes
+      made in the JSS paper due to second revision.
+    * as.data.frame: new method to take advantage
       in modeling. It returns a data frame containing
       variables that are to be used in a model
       i.e. glm. Four helper functions are made to
-      suppoert this function, but those can be used
-      on their own (mss, msr, mts, mtr).
+      support this function, but those can be used
+      on their own as well (mss, msr, mts, mtr).
     * plot methods: many tiny changes, image method
       now display names, but by default the axes are
-      not labelled.
+      hided and just a box is drawn.
     * citation entries: modified according to accepted
       JSS manuscript.
 
@@ -37,7 +39,7 @@ Version 2.1-0 -- November 17, 2008 (closed - r268)
 
 Version 2.0-2 -- November 12, 2008 (closed - r252)
 
-    * intro text: mefa gives date info when loaded.
+    * onload text: mefa gives date info when loaded.
     * mefaCompare: compares 2 objects of class mefa,
       based on dimnames and numeric values. Sample
       and taxa tables are not compared.
@@ -52,7 +54,7 @@ Version 2.0-2 -- November 12, 2008 (closed - r252)
     * extract.mefa: nested segment indexing convention
       introduced when extracted.
     * mefaNestedless: makes an object with non-nested
-      segments, bo be used in melt.
+      segments, to be used in melt.
     * as.mefa: if class is mefa, the object can be
       rebuilt with new arguments (e.g. drop.zero,
       nested, segment).
