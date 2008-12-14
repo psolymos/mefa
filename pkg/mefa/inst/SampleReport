@@ -1,5 +1,7 @@
-%% Run Sweave on the .Rnw file,
-%% than LaTeX on the .TeX file.
+%% Run Sweave on the *.Rnw file:
+%% R CMD Sweave SampleReport.Rnw
+%% then run LaTeX on the *.tex file:
+%% R CMD texi2dvi -- pdf --clean report.tex
 \documentclass[a4paper,11pt]{article}
 
 \author{Your Name}
@@ -22,15 +24,15 @@
 
 \section{Results}
 
-    %% put here your Sweave chunk containing e.g.
+    %% put here your Sweave chunk containing e.g.:
     <<>>=
     library(mefa)
     data(DOLINAcounts, DOLINAsamples, DOLINAtaxa)
     x <- mefa(stcs(DOLINAcounts), DOLINAsamples, DOLINAtaxa)
-    report(x, "report.tex", tex=TRUE)
+    report(x, "report.tex", tex = TRUE)
     @
 
-    \input{report.tex}
+    \input{report}
 
     %% You might also want to cite the package, see:
     %% citation("mefa")
