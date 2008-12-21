@@ -2,6 +2,9 @@ MEFA VERSIONS
 
 Version 2.1-2 -- December 11, 2008 (opened - r268)
 
+    * suggests and vignette dependencies: ade4 and
+      vegan added, due to error reported by Kurt
+      Hornik after CRAN submission.
     * label: assigns and returns a label stored as
       a deparsed attribute. Can be used to store
       relevant information on the current data

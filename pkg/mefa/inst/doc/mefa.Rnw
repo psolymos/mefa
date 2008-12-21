@@ -3,6 +3,7 @@
 
 %\VignetteIndexEntry{Processing Ecological Data in R With the mefa Package}
 %\VignettePackage{mefa}
+%\VignetteDepends{ade4, vegan}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

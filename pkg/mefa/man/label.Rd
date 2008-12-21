@@ -2,9 +2,9 @@
 \name{label}
 \alias{label}
 \alias{label<-}
-\title{Assign Label to an Objects and Return It}
+\title{Assign Label to an Object and Return It}
 \description{
-This function assigns a label to any kind of objects. The label later can be retrieved and reused.
+This function assigns a label to any kind of object. The label later can be retrieved and reused.
 }
 \usage{
 label(x)
