@@ -25,13 +25,10 @@ mtr(x, name, make.unique = FALSE, \ldots)
 }
 \details{
 Four kinds of data frames can be returned, depending on the function used as the \code{fun} argument:
-
-\describe{
-  \item{mss}{returns summary statistics for samples (richness and abundence) and \code{x$samp}.}
-  \item{msr}{returns raw data (\code{x$xtab}) and \code{x$samp}.}
-  \item{mts}{returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa}.}
-  \item{mtr}{returns raw data (\code{t(x$xtab)}) and \code{x$taxa}.}
-}
+\code{mss} returns summary statistics for samples (richness and abundence) and \code{x$samp};
+\code{msr} returns raw data (\code{x$xtab}) and \code{x$samp};
+\code{mts} returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa};
+\code{mtr} returns raw data (\code{t(x$xtab)}) and \code{x$taxa}.
 
 The \code{name} can be used if only a subset of the summary statistics, or raw data should be returned. The character vector should contain names of elements to return (see examples).
 
