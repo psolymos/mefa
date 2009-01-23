@@ -10,7 +10,7 @@ inflate(x, by)
 }
 \arguments{
   \item{x}{a matrix or data frame, but can be a vector.}
-  \item{by}{a vector containing positive (non zero) real numbers.}
+  \item{by}{a vector containing positive (non zero) integers.}
 }
 \details{
 Each rows of the data frame \code{x} will be repeated as many times as the corresponding value in the vector \code{by}. This function is called internally by the function \code{\link{stcs}}.
