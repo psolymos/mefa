@@ -1,7 +1,7 @@
 citHeader("To cite mefa in publications use:")
 
 citEntry(entry = "Article",
-  title        = "Processing Ecological Data in {R} With the {mefa} Package",
+  title        = "Processing Ecological Data in {R} with the {mefa} Package",
   author       = personList(as.person("P\\'eter S\\'olymos")),
   journal      = "Journal of Statistical Software",
   year         = "2009",
@@ -12,7 +12,7 @@ citEntry(entry = "Article",
 
   textVersion  =
   paste("Peter Solymos (2009).",
-        "Processing Ecological Data in R With the mefa Package.",
+        "Processing Ecological Data in R with the mefa Package.",
         "Journal of Statistical Software 29(8), 1-28.",
         "URL http://www.jstatsoft.org/v29/i08/.")
 )

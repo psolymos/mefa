@@ -6,7 +6,7 @@
 
 \newcommand{\class}[1]{`\code{#1}'}
 
-%\VignetteIndexEntry{Processing Ecological Data in R With the mefa Package}
+%\VignetteIndexEntry{Processing Ecological Data in R with the mefa Package}
 %\VignettePackage{mefa}
 %\VignetteDepends{MASS, ade4, vegan}
 %\VignetteKeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
@@ -14,7 +14,7 @@
 \author{P\'eter S\'olymos\\University of Alberta}
 \Plainauthor{P\'eter S\'olymos}
 
-\title{Processing Ecological Data in \proglang{R} With the \pkg{mefa} Package}
+\title{Processing Ecological Data in \proglang{R} with the \pkg{mefa} Package}
 \Plaintitle{Processing Ecological Data in R with the mefa Package}
 \Shorttitle{\pkg{mefa}: Processing Ecological Data in \proglang{R}}
 
