@@ -1,6 +1,15 @@
 MEFA VERSIONS
 
-Version 2.1-3 -- January 6, 2009 (opened - r315)
+Version 3.0-0 -- February 17, 2009 (opened - r319)
+
+    * Version update: to indicate that this is the
+      published version.
+    * CITATION: points to JSS paper.
+    * vignette: changes made by Achim Zeileis to
+      conform to the final version of the JSS paper.
+
+
+Version 2.1-3 -- February 17, 2009 (closed - r319)
 
     * documentation fixes: due to stricter R CMD
       check of R devel.
