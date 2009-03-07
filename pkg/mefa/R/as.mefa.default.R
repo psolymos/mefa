@@ -1,4 +1,4 @@
-`as.mefa` <-
+`as.mefa.default` <-
 function(x, samp, taxa, ...)
 {
     if (inherits(x, "mefa")) {

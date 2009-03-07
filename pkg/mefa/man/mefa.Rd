@@ -4,6 +4,7 @@
 \alias{mefa}
 \alias{is.mefa}
 \alias{as.mefa}
+\alias{as.mefa.default}
 \alias{print.mefa}
 \alias{summary.mefa}
 \alias{print.summary.mefa}
@@ -17,7 +18,8 @@ An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (c
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
 segment = TRUE, nested = FALSE, drop.zero = FALSE, drop.index = FALSE,
 xtab.fixed = TRUE)
-\method{as}{mefa}(x, samp, taxa, \ldots)
+as.mefa(x, \dots)
+\method{as.mefa}{default}(x, samp, taxa, \ldots)
 \method{is}{mefa}(x)
 \method{print}{mefa}(x, nlist = 10, \ldots)
 \method{summary}{mefa}(object, nlist = 10, \ldots)

@@ -1,3 +1,3 @@
-`as.stcs` <-
+`as.stcs.default` <-
 function(x, ...) stcs(x, ...)
 

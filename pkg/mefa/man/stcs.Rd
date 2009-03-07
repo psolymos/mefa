@@ -3,6 +3,7 @@
 \alias{stcs}
 \alias{is.stcs}
 \alias{as.stcs}
+\alias{as.stcs.default}
 \alias{summary.stcs}
 \title{Create an Object of Class 'stcs'}
 \description{
@@ -11,7 +12,8 @@ This function creates object of class 'stcs' from a data frame. This is the prim
 \usage{
 stcs(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo = "zero.pseudo")
 \method{is}{stcs}(x)
-\method{as}{stcs}(x, \dots)
+as.stcs(x, \dots)
+\method{as.stcs}{default}(x, \dots)
 \method{summary}{stcs}(object, \ldots)
 }
 \arguments{
