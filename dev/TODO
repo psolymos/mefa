@@ -1,3 +1,21 @@
+- list of matrices as mefa segments -> mefa object
+
+methods:
+
+matrix, data.frame, list, array, mefa, stcs
+
+as.mefa.list
+as.mefa.array
+as.mefa.matrix
+as.mefa.data.frame
+
+as.stcs.list
+as.stcs.array
+as.stcs.matrix
+as.stcs.data.frame
+
+as.matrix.mefa et al ???
+
 Related
 done - JSS paper revison
 dole - vignette and demo revision based on JSS paper
