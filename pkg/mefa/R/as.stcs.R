@@ -1,3 +1,6 @@
 `as.stcs` <-
-function(x, ...) stcs(x, ...)
+function (x, ...)
+{
+    UseMethod("as.stcs")
+}
 
