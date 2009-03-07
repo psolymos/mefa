@@ -28,6 +28,10 @@
   for extraction, aggregation, conversion, plotting, summary and reporting of \class{mefa}
   objects. Reports can be generated in plain text or \LaTeX~format. This paper
   presents worked examples on a variety of ecological analyses.
+
+  This vignette is based on the manuscript: P\'eter S\'olymos, 2009, Processing Ecological Data in R With the mefa
+  Package. \emph{Journal of Statistical Software} 29(8), 1--28. \url{http://www.jstatsoft.org/v29/i08/};
+  processed with \pkg{mefa} \Sexpr{packageDescription("mefa", field="Version")} in \Sexpr{R.version.string} on \today.
 }
 
 \Keywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, \proglang{R}}

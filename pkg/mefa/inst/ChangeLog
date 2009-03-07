@@ -1,6 +1,12 @@
 MEFA VERSIONS
 
-Version 3.0-0 -- February 17, 2009 (opened - r320)
+Version 3.0-1 -- March 7, 2009 (opened - r320)
+
+    * as.mefa/as.stcs: redefined as method, together
+      with 'default' class.
+
+
+Version 3.0-0 -- March 7, 2009 (closed - r320)
 
     * Version update: to indicate that this is the
       published version.
