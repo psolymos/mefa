@@ -25,11 +25,11 @@ as.stcs(x, \dots)
 as.mefa(x, \dots)
 \method{as.mefa}{default}(x, samp, taxa, \ldots)
 \method{as.mefa}{array}(x, nested = FALSE, ...)
-\method{as.mefa}{array}(x, nested = FALSE, ...)
-\method{as.data.frame}{stcs}(x, ...)
+\method{as.mefa}{list}(x, nested = FALSE, ...)
 \method{as.matrix}{mefa}(x, ...)
 \method{as.array}{mefa}(x, ...)
 \method{as.list}{mefa}(x, ...)
+\method{as.data.frame}{stcs}(x, ...)
 \method{as.data.frame}{mefa}(x, \ldots, fun, name, make.unique = FALSE)
 mss(x, name, make.unique = FALSE, \ldots)
 msr(x, name, make.unique = FALSE, \ldots)
@@ -47,7 +47,11 @@ mtr(x, name, make.unique = FALSE, \ldots)
   \item{\ldots}{other arguments passed to the generic function \code{\link{as.data.frame}}.}
 }
 \details{
-Four kinds of data frames can be returned, depending on the function used as the \code{fun} argument:
+The usage of most of these coercion methods is trivial. Arrays and lists can be coerced into 'mefa' objects as if those were the \code{segm} element of it (either nested, or non nested). The reverse is true, when coercing an object of class 'mefa' into list or array, the \code{segm} element is used.
+
+Coercing among object classes 'matrix' and 'mefa' is done via using the \code{xtab} element.
+
+By \code{as.data.frame.mefa}, four kinds of data frames can be returned, depending on the function used as the \code{fun} argument:
 \code{mss} returns summary statistics for samples (richness and abundence) and \code{x$samp};
 \code{msr} returns raw data (\code{x$xtab}) and \code{x$samp};
 \code{mts} returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa};
@@ -60,17 +64,19 @@ It might (rarely) occur, that names of the summary statistics, or the raw data a
 The functions supplied as the \code{fun} argument can be used separately. Although the usage of the \code{as.data.frame} method is more transparent.
 }
 \value{
-A data frame.
+An object of class 'stcs', 'mefa', 'matrix', 'array', 'list' or 'data.frame', depending on the method used.
 }
 \references{
 \enc{Sólymos}{Solymos} P. 2008. mefa: an R package for handling and reporting count data. \emph{Community Ecology} 9, 125--127.
+
+\enc{Sólymos}{Solymos} Processing Ecological Data in R with the mefa Package. \emph{Journal of Statistical Software} 29(8), 1--28. \url{http://www.jstatsoft.org/v29/i08/}
 
 \url{http://mefa.r-forge.r-project.org/}
 }
 \author{
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{\code{\link{as.data.frame}}, \code{\link{mefa}}}
+\seealso{\code{\link{mefa}}, \code{\link{stcs}}, \code{\link{as.matrix}}, \code{\link{as.list}}, \code{\link{as.array}}, \code{\link{as.data.frame}}}
 \examples{
 data(dol.count, dol.samp, dol.taxa)
 x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
