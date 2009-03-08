@@ -3,8 +3,6 @@
 \alias{mefa-package}
 \alias{mefa}
 \alias{is.mefa}
-\alias{as.mefa}
-\alias{as.mefa.default}
 \alias{print.mefa}
 \alias{summary.mefa}
 \alias{print.summary.mefa}
@@ -18,8 +16,6 @@ An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (c
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
 segment = TRUE, nested = FALSE, drop.zero = FALSE, drop.index = FALSE,
 xtab.fixed = TRUE)
-as.mefa(x, \dots)
-\method{as.mefa}{default}(x, samp, taxa, \ldots)
 \method{is}{mefa}(x)
 \method{print}{mefa}(x, nlist = 10, \ldots)
 \method{summary}{mefa}(object, nlist = 10, \ldots)
@@ -100,6 +96,8 @@ The \code{mefa} function alone can be used instead of the combination of object 
 }
 \seealso{
 Further methods are discussed on seperate help pages: see \code{\link{[.mefa}} and \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} \code{\link{boxplot.mefa}} and \code{\link{image.mefa}} for graphical display.
+
+See \code{\link{as.mefa}} for coercion methods.
 
 The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \strong{reshape} package of Hadley Wickham, by the \code{\link[simba]{mama}} function in the \strong{simba} package by  Gerald Jurasinski, and by the function \code{\link[labdsv]{matrify}} in the \strong{labdsv} package of David W. Roberts. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} and \code{\link{xtabs}} functions), or linking data tables for sample and taxa with the count data.
 }

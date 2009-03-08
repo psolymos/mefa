@@ -1,15 +1,30 @@
 \encoding{UTF-8}
-\name{as.data.frame.mefa}
+\name{as.mefa}
+\alias{as.mefa}
+\alias{as.mefa.default}
+\alias{as.mefa.array}
+\alias{as.mefa.list}
+\alias{as.stcs}
+\alias{as.stcs.default}
+\alias{as.data.frame.stcs}
+\alias{as.array.mefa}
+\alias{as.list.mefa}
+\alias{as.matrix.mefa}
 \alias{as.data.frame.mefa}
 \alias{mss}
 \alias{msr}
 \alias{mts}
 \alias{mtr}
-\title{Convert an Object of Class 'mefa' Into 'data.frame'}
+\title{Convertsion Among Various Object Classes}
 \description{
-The function converts parts of a 'mefa' obect into a data frame.
+These functions coerce into class 'mefa' or 'stcs'; or converts 'mefa' or 'stcs' obects into a 'data.frame', 'matrix', 'array', 'list'.
 }
 \usage{
+as.mefa(x, \dots)
+\method{as.mefa}{default}(x, samp, taxa, \ldots)
+as.stcs(x, \dots)
+\method{as.stcs}{default}(x, \dots)
+
 \method{as.data.frame}{mefa}(x, \ldots, fun, name, make.unique = FALSE)
 mss(x, name, make.unique = FALSE, \ldots)
 msr(x, name, make.unique = FALSE, \ldots)
