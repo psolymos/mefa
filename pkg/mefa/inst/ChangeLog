@@ -2,6 +2,7 @@ MEFA VERSIONS
 
 Version 3.0-1 -- March 7, 2009 (opened - r320)
 
+    * citation info: updated in the Rd files.
     * class attribute of mefa objects: the 'list'
       element has been removed in order to leave
       as.mefa.default work properly.

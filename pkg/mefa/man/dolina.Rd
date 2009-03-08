@@ -42,6 +42,8 @@ The data sets are results of the 'DOLINA 2007' expedition (Vilisics et al. 2008)
 \source{
 \enc{Sólymos}{Solymos}, P. &  Kemencei, Z. 2008. Methodological study data set of land snails from the Dolina 2007 project. Available at the Dataverse Network: \url{hdl:1902.1/12060}.
 
+\enc{Sólymos}{Solymos}, P., Kemencei, Z., \enc{Páll}{Pall}-Gergely, B., Farkas, R., Vilisics, F. & Hornung, E. 2009. Does shell accumulation matter in micro scale land snail surveys? \emph{Malacologia}, in press.
+
 Vilisics, F., Nagy, A., \enc{Sólymos}{Solymos}, P., Farkas, R., Kemencei, Z., \enc{Páll}{Pall}-Gergely, B., Kisfali, M. & Hornung, E., 2008. Data on the terrestrial isopoda fauna of the \enc{Alsó}{Also}-hegy, Aggtelek National Park, Hungary. \emph{Folia Faunistica Slovaca} 13, 9--12. \url{http://zoology.fns.uniba.sk/ffs/interface/00053-Vilisics-et-al-2008.pdf}.
 
 Kerney, M. P., Cameron, R. A. D. & Jungbluth, J. H., 1983. \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
