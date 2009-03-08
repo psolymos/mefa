@@ -20,11 +20,16 @@
 These functions coerce into class 'mefa' or 'stcs'; or converts 'mefa' or 'stcs' obects into a 'data.frame', 'matrix', 'array', 'list'.
 }
 \usage{
-as.mefa(x, \dots)
-\method{as.mefa}{default}(x, samp, taxa, \ldots)
 as.stcs(x, \dots)
 \method{as.stcs}{default}(x, \dots)
-
+as.mefa(x, \dots)
+\method{as.mefa}{default}(x, samp, taxa, \ldots)
+\method{as.mefa}{array}(x, nested = FALSE, ...)
+\method{as.mefa}{array}(x, nested = FALSE, ...)
+\method{as.data.frame}{stcs}(x, ...)
+\method{as.matrix}{mefa}(x, ...)
+\method{as.array}{mefa}(x, ...)
+\method{as.list}{mefa}(x, ...)
 \method{as.data.frame}{mefa}(x, \ldots, fun, name, make.unique = FALSE)
 mss(x, name, make.unique = FALSE, \ldots)
 msr(x, name, make.unique = FALSE, \ldots)
@@ -33,6 +38,7 @@ mtr(x, name, make.unique = FALSE, \ldots)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
+  \item{nested}{logical, whether segments should be nested within each other from the first to the last (\code{TRUE}) or not (\code{FALSE}, default).}
   \item{fun}{a function to determine what to return, see details. It has no default, because the choice is not trivial.}
   \item{name}{optional character vector, names to return if not all possible elements are needed, see details.}
   \item{make.unique}{logical, useful to use \code{make.unique = TRUE} if names to returne are non-unique, dee details.}
