@@ -2,6 +2,9 @@ MEFA VERSIONS
 
 Version 3.0-1 -- March 7, 2009 (opened - r320)
 
+    * class attribute of mefa objects: the 'list'
+      element has been removed in order to leave
+      as.mefa.default work properly.
     * as.mefa/as.stcs: redefined as method, together
       with 'default' class, and a bunch of coercion
       methods added (matrix, list, array, data.frame).
