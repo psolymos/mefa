@@ -3,7 +3,8 @@ MEFA VERSIONS
 Version 3.0-1 -- March 7, 2009 (opened - r320)
 
     * as.mefa/as.stcs: redefined as method, together
-      with 'default' class.
+      with 'default' class, and a bunch of coercion
+      methods added (matrix, list, array, data.frame).
 
 
 Version 3.0-0 -- March 7, 2009 (closed - r320)
