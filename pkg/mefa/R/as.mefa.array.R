@@ -1,5 +1,5 @@
 `as.mefa.array` <-
-function(x, nested = FALSE, ...)
+function(x, ...)
 {
     if (length(dim(x)) == 2)
         return(as.mefa.default(x[[1]]))
@@ -10,13 +10,9 @@ function(x, nested = FALSE, ...)
         tmp[[i]] <- tmp[[(i-1)]] + x[,,i]
     }
     m <- mefa(tmp[[n]])
-    if (nested) {
-        m$segm <- x
-        attr(m, "nested") <- TRUE
-    } else {
-        names(tmp) <- dimnames(x)[[3]]
-        m$segm <- tmp
-    }
+    names(tmp) <- dimnames(x)[[3]]
+    m$segm <- tmp
+    m <- as.mefa.default(m, ...)
+    m$call <- match.call()
     m
 }
-

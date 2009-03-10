@@ -1,5 +1,5 @@
 `as.mefa.list` <-
-function(x, nested = FALSE, ...)
+function(x, ...)
 {
     n <- length(x)
     if (n == 1 && is.matrix(x[[1]]))
@@ -9,12 +9,8 @@ function(x, nested = FALSE, ...)
         tmp[[i]] <- tmp[[(i-1)]] + x[[i]]
     }
     m <- mefa(tmp[[n]])
-    if (nested) {
-        m$segm <- x
-        attr(m, "nested") <- TRUE
-    } else {
-        m$segm <- tmp
-    }
+    m$segm <- tmp
+    m <- as.mefa.default(m, ...)
+    m$call <- match.call()
     m
 }
-

@@ -24,8 +24,8 @@ as.stcs(x, \dots)
 \method{as.stcs}{default}(x, \dots)
 as.mefa(x, \dots)
 \method{as.mefa}{default}(x, samp, taxa, \ldots)
-\method{as.mefa}{array}(x, nested = FALSE, ...)
-\method{as.mefa}{list}(x, nested = FALSE, ...)
+\method{as.mefa}{array}(x, ...)
+\method{as.mefa}{list}(x, ...)
 \method{as.matrix}{mefa}(x, ...)
 \method{as.array}{mefa}(x, ...)
 \method{as.list}{mefa}(x, ...)
@@ -40,7 +40,6 @@ mtr(x, name, make.unique = FALSE, \ldots)
   \item{x}{an object of class 'mefa'.}
   \item{samp}{a data frame containing rows for samples, or \code{NULL}. See argument \code{xtab.fixed} and details for sample matching options.}
   \item{taxa}{a data frame containing rows for taxa, or \code{NULL}. See argument \code{xtab.fixed} and details for taxa matching options.}
-  \item{nested}{logical, whether segments should be nested within each other from the first to the last (\code{TRUE}) or not (\code{FALSE}, default).}
   \item{fun}{a function to determine what to return, see details. It has no default, because the choice is not trivial.}
   \item{name}{optional character vector, names to return if not all possible elements are needed, see details.}
   \item{make.unique}{logical, useful to use \code{make.unique = TRUE} if names to returne are non-unique, dee details.}
