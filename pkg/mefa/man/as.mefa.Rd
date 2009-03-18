@@ -15,7 +15,7 @@
 \alias{msr}
 \alias{mts}
 \alias{mtr}
-\title{Convertsion Among Various Object Classes}
+\title{Conversion Among Various Object Classes}
 \description{
 These functions coerce into class 'mefa' or 'stcs'; or converts 'mefa' or 'stcs' obects into a 'data.frame', 'matrix', 'array', 'list'.
 }
