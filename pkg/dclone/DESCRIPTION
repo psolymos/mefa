@@ -5,7 +5,7 @@ Version: 0.1-0
 Date: 2009-04-23
 Author: Peter Solymos and Subhash Lele
 Maintainer: Peter Solymos <solymos@ualberta.ca>
-Description: Convenient functions to help implementing 
+Description: Convenient functions to help implementing
     estimating procedures for maximum likelihood
     estimation for complex models using data cloning
     and Bayesian Markov chain Monte Carlo methods.
