@@ -1,6 +1,7 @@
 report.mcmc.list <-
 function(x, FUN, ...)
 {
+    FUN <- match.fun(FUN)
     nc <- nchain(x)
     nv <- nvar(x)
     ni <- nrow(x[[1]])
