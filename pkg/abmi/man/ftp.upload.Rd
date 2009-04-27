@@ -5,11 +5,14 @@
 Upload File via FTP Protocol
 }
 \usage{
-ftp.upload(dumplist, ftp, file = "results", ext = if (binary) "Rdata" else "txt", binary = FALSE, dir = getwd())
+ftp.upload(dumplist, ..., ftp, file = "results", ext = if (binary) "Rdata" else "txt", binary = FALSE, dir = getwd())
 }
 \arguments{
   \item{dumplist}{
 A list with R objects or a character string naming an R object to write.
+}
+  \item{\dots}{
+Names of the objects to be saved other than \code{dumplist}.
 }
   \item{ftp}{
 FTP address to be used, e.g. \code{"ftp://user:pass@ftp.org/"}.
@@ -42,7 +45,7 @@ The function is built on the \code{\link[RCurl]{ftpUpload}} of the \pkg{RCurl} p
 \examples{
 \dontrun{
 x <- "Helo World!"
-ftp.upload(x, "ftp://user:pass@ftp.org/")
+ftp.upload(x, ftp = "ftp://user:pass@ftp.org/")
 }
 }
 \keyword{ IO }

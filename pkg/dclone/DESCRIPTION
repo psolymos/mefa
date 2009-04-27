@@ -7,7 +7,7 @@ Author: Peter Solymos and Subhash Lele
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: Convenient functions to help implementing
     estimating procedures for composite-likelihood
-    estimation for complex models using data cloning
+    estimation of complex models using data cloning
     and Bayesian Markov chain Monte Carlo methods.
 Depends: R2WinBUGS, rjags, coda, mefa
 URL: http://mefa.r-forge.r-project.org/

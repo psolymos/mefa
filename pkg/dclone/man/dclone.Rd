@@ -33,5 +33,19 @@ ecological models using Bayesian Markov chain Monte Carlo  methods.
 \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
+## scalar
+dclone(4, 2)
+## vector
+(x <- 1:6)
+dclone(x, 2)
+## matrix
+(m <- matrix(x, 2, 3))
+dclone(m, 2)
+## data frame
+(dfr <- as.data.frame(t(m)))
+dclone(dfr, 2)
+## list
+(l <- as.list(dfr))
+dclone(l, 2)
 }
 \keyword{ manip }

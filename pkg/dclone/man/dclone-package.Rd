@@ -9,8 +9,8 @@ Data Cloning
 }
 \description{
 Convenient functions to help implementing 
-estimating procedures for maximum likelihood
-estimation for complex models using data cloning
+estimating procedures for composite-likelihood
+estimation of complex models using data cloning
 and Bayesian Markov chain Monte Carlo methods.
 }
 \author{
