@@ -1,5 +1,5 @@
 ftp.upload <-
-function(dumplist, ..., ftp, file="results",
+function(dumplist, ftp, file="results",
 ext=if (binary) "Rdata" else "txt", binary=FALSE, dir=getwd())
 {
     olddir <- getwd()
@@ -7,9 +7,6 @@ ext=if (binary) "Rdata" else "txt", binary=FALSE, dir=getwd())
     extension <- if (binary)
         "Rdata" else "txt"
     file <- paste(file, ext, sep=".")
-    if (length(list(...)))
-         dumplist <- list(dumplist, ...)
-
     if (binary) {
         if (is.character(dumplist))
             save(list=dumplist, file=file)
