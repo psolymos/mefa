@@ -3,6 +3,9 @@
 \alias{write.jags.model}
 \alias{clean.jags.model}
 \title{
+Remove JAGS model from hard drive
+}
+\description{
 Removes a (JAGS model) file from the hard drive.
 }
 \usage{
@@ -26,25 +29,25 @@ if \code{filename} already exists.
 }
 }
 \details{
-\code {write.jags.model} is built upon the function 
-\code{\link{write.model}} of the \pkg{R2WinBUGS} package.
+\code{write.jags.model} is built upon the function 
+\code{\link[R2WinBUGS]{write.model}} of the \pkg{R2WinBUGS} package.
 
-\code {clean.jags.model} is built upon the function 
+\code{clean.jags.model} is built upon the function 
 \code{\link{file.remove}}, and 
 intended to be used internally to clean the JAGS 
 model file up after estimating sessions, 
 ideally via the \code{\link{on.exit}} function.
 }
 \value{
-\code {write.jags.model} invisibly returns the name of the file
+\code{write.jags.model} invisibly returns the name of the file
 that was written eventually (possibly including random string).
 
-\code {clean.jags.model} invisibly returns the result of 
+\code{clean.jags.model} invisibly returns the result of 
 \code{\link{file.remove}} (logical).
 Original working directory is then restored.
 }
 \author{
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link[R2WinBUGS]{write.model}}, \code{\link{file.remove}}

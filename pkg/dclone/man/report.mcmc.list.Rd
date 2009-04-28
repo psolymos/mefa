@@ -4,7 +4,10 @@
 \alias{combine}
 \alias{combine.mcmc.list}
 \title{
-Conveniently calculating statistics for \code{mcmc.list} objects, or combining them.
+Calculations on mcmc.list objects
+}
+\description{
+Conveniently calculates statistics for mcmc.list objects, or combining them.
 }
 \usage{
 \method{report}{mcmc.list}(x, FUN, ...)
@@ -31,7 +34,7 @@ Other arguments passed to \code{FUN}.
 \code{combine} returns an \code{mcmc.list} object with values according to \code{FUN} (applied to each values separately).
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \examples{
 data(regmod)

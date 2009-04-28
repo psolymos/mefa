@@ -2,6 +2,9 @@
 \Rdversion{1.1}
 \alias{mat2list}
 \title{
+Converts a Matrix to a List.
+}
+\description{
 Converts a matrix to a list.
 }
 \usage{
@@ -20,7 +23,7 @@ A list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
 Elements are rows/columns of \code{x}. Dimnames are retained as names.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \examples{
 x <- matrix(1:12, 3, 4)

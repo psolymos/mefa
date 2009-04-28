@@ -1,7 +1,6 @@
 \name{dclone-package}
 \Rdversion{1.1}
 \alias{dclone-package}
-\alias{dclone}
 \docType{package}
 \title{
 What the package does (short line)

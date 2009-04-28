@@ -9,6 +9,7 @@ Description: Convenient functions to help implementing
     estimating procedures for composite-likelihood
     estimation of complex models using data cloning
     and Bayesian Markov chain Monte Carlo methods.
+License: GPL-2
 Depends: R2WinBUGS, rjags, coda, mefa
 URL: http://mefa.r-forge.r-project.org/
 LazyLoad: yes

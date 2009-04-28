@@ -4,6 +4,9 @@
 \title{
 Convenient function to fit JAGS models.
 }
+\description{
+Function to fit a JAGS model in just one line.
+}
 \usage{
 jags.fit(data, params, model, n.chains = 3, n.update = 0, n.iter = 5000, thin = 1, n.adapt = 1000, ...)
 }
@@ -40,7 +43,7 @@ Further arguments passed to \code{\link[rjags]{jags.model}}.
 An \code{mcmc} or \code{mcmc.list} object.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link[rjags]{jags.model}}, \code{\link[coda]{coda.samples}}

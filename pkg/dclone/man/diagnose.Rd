@@ -19,7 +19,7 @@ Further arguments.
 }
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+Peter Solymos, \email{solymos@ualberta.ca}
 }
 \keyword{ methods }
 

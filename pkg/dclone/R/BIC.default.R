@@ -10,5 +10,5 @@ function(object, ...) {
         Call <- match.call()
         rownames(rval) <- as.character(Call[-1])
         rval
-    } else AIC(object, ..., k=log(nobservations(fit)))
+    } else AIC(object, ..., k=log(nobservations(object)))
 }
