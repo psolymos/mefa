@@ -7,7 +7,7 @@ ext=if (binary) "Rdata" else "txt", binary=FALSE, dir=getwd())
     extension <- if (binary)
         "Rdata" else "txt"
     file <- paste(file, ext, sep=".")
-    if (length(list(...))) {
+    if (length(list(...)))
          dumplist <- list(dumplist, ...)
 
     if (binary) {
