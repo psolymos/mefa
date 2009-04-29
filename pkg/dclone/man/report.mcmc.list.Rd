@@ -32,6 +32,8 @@ Other arguments passed to \code{FUN}.
 \code{report} returns statistic value based on \code{FUN}.
 
 \code{combine} returns an \code{mcmc.list} object with values according to \code{FUN} (applied to each values separately).
+This function might not be sensible, thus it can be removed in the future (since values in different chains are not
+conditional on each others, even in the case of identical random seed values).
 }
 \author{
 Peter Solymos, \email{solymos@ualberta.ca}
