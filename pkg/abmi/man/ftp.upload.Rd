@@ -4,6 +4,9 @@
 \title{
 Upload File via FTP Protocol
 }
+\description{
+Convenient function for uploading files via FTP.
+}
 \usage{
 ftp.upload(dumplist, ftp, file = "results", ext = if (binary) "Rdata" else "txt", binary = FALSE, dir = getwd())
 }
