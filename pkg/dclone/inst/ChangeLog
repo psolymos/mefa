@@ -1,7 +1,13 @@
 dclone package versions
 
+Version 0.1-2, April 30, 2009
+
 Version 0.1-1, April 23, 2009
 
+    * combine method removed (turned out
+      to be nonsense)
+    * New parser warnings fixed,
+      utf-8 encoding used throughout.
     * Initial documentation done.
 
 Version 0.1-0, April 23, 2009
