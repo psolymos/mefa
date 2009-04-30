@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{dclone-package}
 \Rdversion{1.1}
 \alias{dclone-package}
@@ -13,9 +14,9 @@ estimation of complex models using data cloning
 and Bayesian Markov chain Monte Carlo methods.
 }
 \author{
-Authors: Peter Solymos and Subhash Lele
+Authors: \enc{Péter Sólymos}{Peter Solymos}
 
-Maintainer: Peter Solymos <solymos@ualberta.ca>
+Maintainer: \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \references{
 Lele, S.R., B. Dennis and F. Lutscher, 2007.

@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{diagnose}
 \Rdversion{1.1}
 \alias{diagnose}
@@ -19,7 +20,7 @@ Further arguments.
 }
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \keyword{ methods }
 

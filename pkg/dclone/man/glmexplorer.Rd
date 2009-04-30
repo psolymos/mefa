@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{glmexplorer}
 \Rdversion{1.1}
 \alias{glmexplorer}
@@ -48,7 +49,7 @@ and replaces values to \code{NA} where the respective \eqn{p} value
 is higher than or equel to \code{crit}.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link{glm.fit}}

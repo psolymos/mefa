@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{mat2list}
 \Rdversion{1.1}
 \alias{mat2list}
@@ -23,7 +24,7 @@ A list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
 Elements are rows/columns of \code{x}. Dimnames are retained as names.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
 x <- matrix(1:12, 3, 4)

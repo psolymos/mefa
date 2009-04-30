@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{regmod}
 \Rdversion{1.1}
 \alias{regmod}

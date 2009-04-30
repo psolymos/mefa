@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{clean.jags.model}
 \Rdversion{1.1}
 \alias{write.jags.model}
@@ -47,7 +48,7 @@ that was written eventually (possibly including random string).
 Original working directory is then restored.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link[R2WinBUGS]{write.model}}, \code{\link{file.remove}}

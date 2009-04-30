@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{report.mcmc.list}
 \Rdversion{1.1}
 \alias{report.mcmc.list}
@@ -36,7 +37,7 @@ This function might not be sensible, thus it can be removed in the future (since
 conditional on each others, even in the case of identical random seed values).
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
 data(regmod)

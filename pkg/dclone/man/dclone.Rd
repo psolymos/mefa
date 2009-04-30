@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{dclone}
 \Rdversion{1.1}
 \alias{dclone}
@@ -30,7 +31,7 @@ ecological models using Bayesian Markov chain Monte Carlo  methods.
 \emph{Ecology Letters} \strong{10}, 551--563.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
 ## scalar

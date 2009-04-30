@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{BIC}
 \Rdversion{1.1}
 \alias{nobservations}
@@ -19,7 +20,7 @@ Fitted model objects.
 Returns the number of observations.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link{AIC}}

@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{jags.fit}
 \Rdversion{1.1}
 \alias{jags.fit}
@@ -43,7 +44,7 @@ Further arguments passed to \code{\link[rjags]{jags.model}}.
 An \code{mcmc} or \code{mcmc.list} object.
 }
 \author{
-Peter Solymos, \email{solymos@ualberta.ca}
+\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link[rjags]{jags.model}}, \code{\link[coda]{coda.samples}}
