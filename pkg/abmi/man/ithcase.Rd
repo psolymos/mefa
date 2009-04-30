@@ -15,7 +15,7 @@ ithcase(x, y, i = 1, na.rm = FALSE)
   \item{na.rm}{logical, shoulr NAs removed from the result? The removel of NAs takes place befor subtsracting.}
 }
 \details{
-\&ode{x} and \code{y} should be of the same lengths.
+\code{x} and \code{y} should be of the same lengths.
 }
 \value{
 A vector with length same as number of levels, or unique values in \code{y}. If \code{na.rm = TRUE}, it can be shorter, because the removal of NA values takes place prior to substracting. Names of the result is same as levels of \code{y}.
