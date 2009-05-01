@@ -1,6 +1,9 @@
 MEFA VERSIONS
 
-Version 3.0-1 -- March 7, 2009 (opened - r320)
+Version 3.0-2 -- May 1, 2009 (opened - r363)
+
+
+Version 3.0-1 -- May 1, 2009 (closed - r363)
 
     * citation info: updated in the Rd files.
     * class attribute of mefa objects: the 'list'
