@@ -48,7 +48,7 @@ that was written eventually (possibly including random string).
 Original working directory is then restored.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link[R2WinBUGS]{write.model}}, \code{\link{file.remove}}

@@ -26,7 +26,7 @@ Other arguments passed to \code{FUN}.
 Returns statistic value based on \code{FUN}, using all values in all chains of the MCMC object.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
 data(regmod)

@@ -14,9 +14,9 @@ estimation of complex models using data cloning
 and Bayesian Markov chain Monte Carlo methods.
 }
 \author{
-Authors: \enc{Péter Sólymos}{Peter Solymos}
+Authors: \enc{P\'eter S\'olymos}{Peter Solymos}
 
-Maintainer: \enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+Maintainer: \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \references{
 Lele, S.R., B. Dennis and F. Lutscher, 2007.

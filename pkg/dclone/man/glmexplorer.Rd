@@ -49,7 +49,7 @@ and replaces values to \code{NA} where the respective \eqn{p} value
 is higher than or equel to \code{crit}.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link{glm.fit}}

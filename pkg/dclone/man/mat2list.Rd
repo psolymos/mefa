@@ -24,7 +24,7 @@ A list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
 Elements are rows/columns of \code{x}. Dimnames are retained as names.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \examples{
 x <- matrix(1:12, 3, 4)

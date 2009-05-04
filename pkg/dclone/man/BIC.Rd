@@ -38,7 +38,7 @@ Statistic value similar to what returned by \code{\link{AIC}}.
 Schwarz, G. E. 1978. Estimating the dimension of a model. \emph{Annals of Statistics}, 6: 461--464.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 \code{\link{AIC}}
