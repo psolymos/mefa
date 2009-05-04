@@ -2,6 +2,7 @@ ABMI PACKAGE VERSIONS
 
 Version 0.0-3, April 23, 2009
 
+    * lincovtest: migrated to dclone package.
     * Documantation: reformatted at some points for
       new Rd farser compatibility.
     * ftp.upload: function to upload results via FTP.

@@ -7,8 +7,10 @@
 Conversion of character vectors numeric values for Julian day and hour.
 }
 \usage{
-juliandaycounter(x, format = "\%d-\%b-\%y", yr.start = 8, yr.end = 9, na.rm = FALSE)
-hourcounter(x, with.min = TRUE, with.sec = FALSE, na.rm = FALSE)
+juliandaycounter(x, format = "\%d-\%b-\%y",
+yr.start = 8, yr.end = 9, na.rm = FALSE)
+hourcounter(x, with.min = TRUE,
+with.sec = FALSE, na.rm = FALSE)
 }
 \arguments{
   \item{x}{a character vector.}

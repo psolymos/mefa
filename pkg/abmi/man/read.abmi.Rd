@@ -6,7 +6,8 @@
 A variant of the \code{\link{read.table}} function to handle some specifics of ABMI raw data formats.
 }
 \usage{
-read.abmi(filename, dir = getwd(), remove.empty = TRUE, header = TRUE, sep = ",", quote = "\"", ...)
+read.abmi(filename, dir = getwd(), remove.empty = TRUE,
+header = TRUE, sep = ",", quote = "\"", ...)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

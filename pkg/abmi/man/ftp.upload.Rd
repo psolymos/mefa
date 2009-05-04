@@ -8,7 +8,9 @@ Upload File via FTP Protocol
 Convenient function for uploading files via FTP.
 }
 \usage{
-ftp.upload(dumplist, ftp, file = "results", ext = if (binary) "Rdata" else "txt", binary = FALSE, dir = getwd())
+ftp.upload(dumplist, ftp, file = "results",
+ext = if (binary) "Rdata" else "txt",
+binary = FALSE, dir = getwd())
 }
 \arguments{
   \item{dumplist}{
@@ -37,7 +39,7 @@ Writes a binary or dumped text representation of R objects via FTP protocol. As 
 \url{http://www.abmi.ca}
 }
 \author{
-\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
 The function is built on the \code{\link[RCurl]{ftpUpload}} of the \pkg{RCurl} package.

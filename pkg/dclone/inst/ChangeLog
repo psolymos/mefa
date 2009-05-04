@@ -2,6 +2,8 @@ dclone package versions
 
 Version 0.1-2, April 30, 2009
 
+    * lincovtest: moved from abmi package.
+
 Version 0.1-1, April 23, 2009
 
     * combine method removed (turned out

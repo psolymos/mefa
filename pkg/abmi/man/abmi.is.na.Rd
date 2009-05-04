@@ -9,10 +9,14 @@
 These function handle ABMI specific Na values.
 }
 \usage{
-abmi.is.na(x, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-abmi.convert.na(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-abmi.na.omit(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
-abmi.na.exclude(x, value = NA, na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.is.na(x,
+na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.convert.na(x, value = NA,
+na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.na.omit(x, value = NA,
+na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
+abmi.na.exclude(x, value = NA,
+na.char = c("NA", "VNA", "DNC", "PNA", "SNI"))
 }
 \arguments{
   \item{x}{an object (vector, matrix or data frame).}
