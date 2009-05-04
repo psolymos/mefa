@@ -22,7 +22,7 @@ read.abmi(filename, dir = getwd(), remove.empty = TRUE, header = TRUE, sep = ","
 A data frame.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \seealso{\code{\link{read.table}}, \code{\link{read.csv}}}
 \examples{
 \dontrun{

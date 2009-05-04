@@ -21,7 +21,7 @@ ithcase(x, y, i = 1, na.rm = FALSE)
 A vector with length same as number of levels, or unique values in \code{y}. If \code{na.rm = TRUE}, it can be shorter, because the removal of NA values takes place prior to substracting. Names of the result is same as levels of \code{y}.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \seealso{\code{\link{abmi.is.na}}}
 \examples{
 data(abmi.data)

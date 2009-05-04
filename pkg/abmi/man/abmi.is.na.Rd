@@ -73,7 +73,7 @@ both remove NA cases (rows). Follow the links to see the differences.
   Deleted cases are registered into the \code{"na.action"} attribute.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \seealso{\code{\link{na.omit}}, \code{\link{na.exclude}}, \code{\link{is.na}}}
 \examples{
 data(abmi.data)

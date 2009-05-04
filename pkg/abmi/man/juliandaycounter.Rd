@@ -28,7 +28,7 @@ Time format for \code{hourcounter} is \code{"hh:mm"} (or \code{"h:mm"} if hour i
 A numeric vector in both cases. \code{juliandaycounter} returns number of Julian day since January 1 of the same year. \code{hourcounter} returns real values for hour of the day (fractions if not 0 minutes).
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{
 This is not a general solution for data and time conversions. Pre 2000 year are not handled, because data collection of ABMI started later.
 }

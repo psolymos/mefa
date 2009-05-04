@@ -13,7 +13,7 @@ Data processing, biodiversity intactness calculations and simulations.
 To be continued.
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \references{
 \url{http://www.abmi.ca/}

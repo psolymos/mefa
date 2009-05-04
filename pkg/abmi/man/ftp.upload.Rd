@@ -37,7 +37,7 @@ Writes a binary or dumped text representation of R objects via FTP protocol. As 
 \url{http://www.abmi.ca}
 }
 \author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 }
 \seealso{
 The function is built on the \code{\link[RCurl]{ftpUpload}} of the \pkg{RCurl} package.

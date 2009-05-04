@@ -12,10 +12,7 @@ abmiweb()
 \references{
 \url{http://www.abmi.ca}
 }
-\author{
-\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}
-}
-\examples{
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}\examples{
 \dontrun{
 abmiweb()
 }

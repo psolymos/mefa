@@ -27,7 +27,7 @@ A named vector of class 'lincovtest'. It contains estimated coefficients for the
 Plotting method makes a graph as a side effect.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \note{
 This is not a really exact test, it just provides guide to judge linearity.
 }

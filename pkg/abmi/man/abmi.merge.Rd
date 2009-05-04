@@ -20,7 +20,7 @@ This function can be useful, when vecors are aimed to combined into the same dat
 Result is coerced to data frame with colnames corresponding to names attribute of \code{x} and rownames corresponding to union of names of elements of \code{x}.
 }
 \references{\url{http://www.abmi.ca/}}
-\author{\enc{Péter Sólymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
+\author{\enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}}
 \seealso{\code{\link{abmi.is.na}}, \code{\link{ithcase}}}
 \examples{
 ## A simple case to see how it works
