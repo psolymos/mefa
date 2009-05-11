@@ -2,6 +2,9 @@ MEFA VERSIONS
 
 Version 3.0-2 -- May 1, 2009 (opened - r363)
 
+    * mat2list: new function converting a matrix
+      into list (row or columnwise).
+
 
 Version 3.0-1 -- May 1, 2009 (closed - r363)
 
