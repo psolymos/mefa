@@ -2,6 +2,7 @@
 \name{dclone}
 \Rdversion{1.1}
 \alias{dclone}
+\alias{print.dclone}
 \title{
 Clone R Objects
 }

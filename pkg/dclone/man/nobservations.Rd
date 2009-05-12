@@ -2,6 +2,7 @@
 \name{BIC}
 \Rdversion{1.1}
 \alias{nobservations}
+\alias{nclones}
 \title{
 Number of Observations, Number of Clones
 }
