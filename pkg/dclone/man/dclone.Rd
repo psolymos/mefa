@@ -11,18 +11,24 @@ leaving the original structure of the object intact.
 }
 \usage{
 dclone(x, n.clones = 1)
+\method{print}{dclone}(x, ...)
 }
 \arguments{
   \item{x}{
-An R object to be cloned.
+An R object to be cloned, or a cloned object to print.
 }
   \item{n.clones}{
 Number of clones.
+}
+  \item{\dots}{
+Other arguments passed to \code{print}.
 }
 }
 \value{
 An object with class attributes \code{"dclone"} plus the original one(s).
 Dimensions of the original object might change according to \code{n.clones}.
+The function tries to take care of names, sometimes replacing those with the
+combination of the original names and an integer for number of clones.
 }
 \references{
 Lele, S.R., B. Dennis and F. Lutscher, 2007.

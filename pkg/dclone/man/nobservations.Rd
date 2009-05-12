@@ -3,21 +3,28 @@
 \Rdversion{1.1}
 \alias{nobservations}
 \title{
-Number of Observations
+Number of Observations, Number of Clones
 }
 \description{
 Retrieves the number of observations from a fitted model object.
 }
 \usage{
 nobservations(fit, where=NULL)
+nclones(x)
 }
 \arguments{
   \item{fit}{
 Fitted model objects.
 }
+  \item{fit}{
+Fitted model objects.
+}
+  \item{x}{
+An object of class 'dclone' (having an \code{n.clones} attribute).
+}
 }
 \value{
-Returns the number of observations.
+Returns the number of observations, or the number of clones.
 }
 \author{
 \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
@@ -33,5 +40,8 @@ outcome <- gl(3,1,9)
 treatment <- gl(3,3)
 glm.D93 <- glm(counts ~ outcome + treatment, family=poisson())
 nobservations(glm.D93)
+## dclone and nclones
+x <- dclone(1:10, 10)
+nclones(x)
 }
 \keyword{ manip }

@@ -2,6 +2,10 @@ dclone package versions
 
 Version 0.1-2, April 30, 2009
 
+    * dclone: handles names and got a
+      print method.
+    * nclones: new function.
+    * mat2list: moved to mefa package.
     * lincovtest: moved from abmi package.
 
 Version 0.1-1, April 23, 2009
