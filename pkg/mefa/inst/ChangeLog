@@ -2,6 +2,9 @@ MEFA VERSIONS
 
 Version 3.0-2 -- May 1, 2009 (opened - r363)
 
+    * mfill, rdrop, cdrop: new functions to
+      calculate matrix fill and drop rows/columns
+      from matrices (similar to na.exclude).
     * documentation encoding problems fixed.
     * mat2list: new function converting a matrix
       into list (row or columnwise).

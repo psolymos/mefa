@@ -2,14 +2,20 @@
 \name{mat2list}
 \Rdversion{1.1}
 \alias{mat2list}
+\alias{mfill}
+\alias{rdrop}
+\alias{cdrop}
 \title{
-Converts a Matrix to a List.
+Matrix Manipulation Tools
 }
 \description{
-Converts a matrix to a list.
+Converts a matrix to a list, calculates matrix fill, or exclude rows/columns with certain rox/column sums.
 }
 \usage{
 mat2list(x, MARGIN = 1)
+mfill(x)
+rdrop(x, cutoff = 0)
+cdrop(x, cutoff = 0)
 }
 \arguments{
   \item{x}{
@@ -18,10 +24,18 @@ A matrix to be converted.
   \item{MARGIN}{
 Margin in \code{c(1, 2)}, indicating respectively rows or colums to be listed.
 }
+  \item{cutoff}{
+Numeric, exclude rows/columns with sums <= \code{cutoff}.
+}
 }
 \value{
-A list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
+\code{mat2list} returns a list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
 Elements are rows/columns of \code{x}. Dimnames are retained as names.
+
+\code{mfill} returns a single number with the matrix fill value.
+
+\code{rdrop} and \code{cdrop} return the original matrix but excluding rows (\code{rdrop}), or columns (\code{cdrop})
+that has sum <= \code{cutoff}. Excluded row/colum numbers and specifications are stored in the \code{"exclude"} attribute.
 }
 \references{
 \enc{S\'olymos}{Solymos} P. (2008) mefa: an R package for handling and reporting count data. \emph{Community Ecology} \bold{9}, 125--127.
