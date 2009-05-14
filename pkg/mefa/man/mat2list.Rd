@@ -53,6 +53,14 @@ rownames(x) <- letters[1:3]
 colnames(x) <- LETTERS[1:4]
 mat2list(x, 1)
 mat2list(x, 2)
+x[2, ] <- 0
+x[, 2] <- 0
+mfill(x)
+mfill(x) == sum(x > 0) / prod(dim(x))
+rdrop(x)
+cdrop(x)
+cdrop(x, cutoff = 5)
+cdrop(x, cutoff = 22) # be careful
 }
 \keyword{ manip }
 
