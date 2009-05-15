@@ -74,10 +74,14 @@ function (x, i=1:dim(x)[1], j=1:dim(x)[2], k=1:dim(x)[3], drop=FALSE)
 # extract samp and taxa tables and apply drop argument
     if (is.null(x$samp))
         x$samp <- NULL else {
+        if (!is.data.frame(x$samp))
+            stop("'x$samp' is not a data frame")
         x$samp <- x$samp[i, ]
         if (drop) x$samp[] <- lapply(x$samp, function(x) x[drop = TRUE])}
     if (is.null(x$taxa))
         x$taxa <- NULL else {
+        if (!is.data.frame(x$taxa))
+            stop("'x$samp' is not a data frame")
         x$taxa <- x$taxa[j, ]
         if (drop) x$taxa[] <- lapply(x$taxa, function(x) x[drop = TRUE])}
     if (subsegm && length(k) == 1)
