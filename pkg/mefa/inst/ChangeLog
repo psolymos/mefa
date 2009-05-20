@@ -1,7 +1,10 @@
 MEFA VERSIONS
 
-Version 3.0-2 -- May 1, 2009 (opened - r363)
+Version 3.0-3 -- May 20, 2009 (opened - r381)
 
+Version 3.0-2 -- May 20, 2009 (closed - r381)
+
+    * vec2dist: function to convert a vector to dist.
     * mfill, rdrop, cdrop: new functions to
       calculate matrix fill and drop rows/columns
       from matrices (similar to na.exclude).
