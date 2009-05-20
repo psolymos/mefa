@@ -5,7 +5,7 @@ function (fit, where=NULL) {
             length(fit$residuals)
         } else {
             if (!is.null(fit$y)) {
-                NCOL(fit$y)
+                NROW(fit$y)
             } else {
                 fit$n
             }
