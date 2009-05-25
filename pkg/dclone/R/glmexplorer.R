@@ -6,12 +6,8 @@ function(formula, data, family=poisson(), ...)
         data <- parent.frame()
     Y <- as.matrix(eval(lhs, data))
     formula[[2]] <- NULL
-    if (!identical(formula[[2]], 1)) {
-        rhs <- model.frame(formula, data, drop.unused.levels = TRUE)
-        X <- model.matrix(terms(formula), rhs)
-    } else {
-        X <- matrix(1, nrow(Y), 1)
-    }
+    rhs <- model.frame(formula, data, drop.unused.levels = TRUE)
+    X <- model.matrix(attr(rhs,"terms"), rhs)
     if (nrow(Y) != nrow(X))
         stop("number of rows in Y and X must conform")
     if (is.na(Y) || is.na(X))
