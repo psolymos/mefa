@@ -5,11 +5,10 @@ function (x, filename, segment = FALSE, n = NULL, by.taxa = TRUE,
     grouping = FALSE, tex = FALSE, binary = FALSE,
     tex.control = list(ital.taxa = TRUE, noindent = TRUE, 
     bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
-    sep = c(",", ":", "(", ":", ",", ")", ";"), outdir=NULL, ...)
+    sep = c(",", ":", "(", ":", ",", ")", ";"), dir = getwd(), ...)
 {
-if (!is.null(outdir)) {
-    current.dir <- getwd()
-    setwd(outdir)}
+current.dir <- getwd()
+setwd(dir)
 mf <- x[drop = TRUE]
 if (is.null(taxa.name)) {
     taxa.name <- 1
@@ -257,10 +256,9 @@ if (grouping) cat("\n\n", file = zz, sep = "")
         close(zz)
     } #END of species ordering
 
-if (!by.taxa) stop("sorry, not implemented yet\n")
+if (!by.taxa) stop("'by.taxa = FALSE' is not yet implemented\n")
 
-if (!is.null(outdir))
-    setwd(current.dir)
+setwd(current.dir)
 invisible()
 } # end of function
 

@@ -2,6 +2,10 @@ MEFA VERSIONS
 
 Version 3.0-3 -- May 20, 2009 (opened - r381)
 
+    * report.mefa: dir argument became more transparent
+      by using getwd().
+
+
 Version 3.0-2 -- May 20, 2009 (closed - r381)
 
     * vec2dist: function to convert a vector to dist.
