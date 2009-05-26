@@ -11,7 +11,7 @@ Fits GLMs for multiple responses to quickly assess the results.
 Only for preliminary analyses.
 }
 \usage{
-glmexplorer(formula, data, family = poisson(), ...)
+glmexplorer(formula, data, family=poisson(), select=FALSE, ...)
 \method{summary}{glmexplorer}(object, crit = 0.05, ...)
 }
 \arguments{
@@ -24,6 +24,9 @@ Data frame where to look up terms of the formula.
 }
   \item{family}{
 Family argument passed to GLM.
+}
+  \item{select}{
+Logical, if \code{TRUE} the best model is picked up based on \code{\link{step}} and AIC values.
 }
   \item{object}{
 A fitted \code{glmexplorer} object.

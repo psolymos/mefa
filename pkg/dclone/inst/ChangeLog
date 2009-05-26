@@ -2,6 +2,7 @@ dclone package versions
 
 Version 0.1-2, April 30, 2009
 
+    * glmexplorer: knows step by select arg.
     * dclone: handles names and got a
       print method.
     * nclones: new function.
