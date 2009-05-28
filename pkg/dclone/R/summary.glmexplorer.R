@@ -2,12 +2,16 @@ summary.glmexplorer <-
 function(object, crit=0.05, ...)
 {
     if (attr(object, "select")) {
-        est <- lapply(object, function(z) z[,1])
-        nam <- unique(unlist(lapply(object, rownames)))
+        est <- lapply(object, function(z) {
+            tmp <- z[,1]
+            names(tmp) <- rownames(z)
+            tmp})
+        nam <- colnames(attr(object, "model"))
         rval <- matrix(NA, length(nam), length(est),
             dimnames=list(nam, names(est)))
         for (i in 1:length(est)) {
-            rval[rownames(object[[i]]),i] <- est[[i]]
+            id <- match(rownames(object[[i]]), nam)
+            rval[id,i] <- est[[i]]
         }
     } else {
         rval <- as.data.frame(lapply(object, function(z) z[,1]))
