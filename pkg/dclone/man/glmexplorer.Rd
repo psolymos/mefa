@@ -3,6 +3,7 @@
 \Rdversion{1.1}
 \alias{glmexplorer}
 \alias{summary.glmexplorer}
+\alias{print.glmexplorer}
 \title{
 Performs GLM for multiple responses.
 }
@@ -12,6 +13,7 @@ Only for preliminary analyses.
 }
 \usage{
 glmexplorer(formula, data, family=poisson(), select=FALSE, ...)
+\method{print}{glmexplorer}(x, ...)
 \method{summary}{glmexplorer}(object, crit = 0.05, ...)
 }
 \arguments{
@@ -28,7 +30,7 @@ Family argument passed to GLM.
   \item{select}{
 Logical, if \code{TRUE} the best model is picked up based on \code{\link{step}} and AIC values.
 }
-  \item{object}{
+  \item{x, object}{
 A fitted \code{glmexplorer} object.
 }
   \item{crit}{

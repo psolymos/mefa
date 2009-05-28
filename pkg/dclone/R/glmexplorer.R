@@ -28,5 +28,7 @@ function(formula, data, family=poisson(), select=FALSE, ...)
     class(rval) <- "glmexplorer"
     attr(rval, "family") <- family$family
     attr(rval, "select") <- select
+    attr(rval, "y") <- Y
+    attr(rval, "model") <- X
     rval
 }
