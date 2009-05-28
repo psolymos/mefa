@@ -4,6 +4,7 @@
 \alias{glmexplorer}
 \alias{summary.glmexplorer}
 \alias{print.glmexplorer}
+\alias{print.summary.glmexplorer}
 \title{
 Performs GLM for multiple responses.
 }
@@ -15,6 +16,7 @@ Only for preliminary analyses.
 glmexplorer(formula, data, family=poisson(), select=FALSE, ...)
 \method{print}{glmexplorer}(x, ...)
 \method{summary}{glmexplorer}(object, crit = 0.05, ...)
+\method{print}{summary.glmexplorer}(x, ...)
 }
 \arguments{
   \item{formula}{

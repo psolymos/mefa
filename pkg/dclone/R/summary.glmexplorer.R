@@ -23,5 +23,10 @@ function(object, crit=0.05, ...)
             pval[1,] <- 0
         rval[pval >= crit] <- NA
     }
+    id <- lapply(1:ncol(rval), function(z) {
+        row(rval)[,z][!is.na(rval[,z])]})
+    names(id) <- colnames(rval)
+    class(rval) <- c("summary.glmexplorer", "matrix")
+    attr(rval, "id") <- id
     rval
 }
