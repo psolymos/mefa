@@ -1,10 +1,12 @@
 jags.fit <-
-function(data, params, model, n.chains=3, n.update=0, n.iter=5000, thin=1, n.adapt=1000, ...)
+function(data, params, model, n.chains=3, n.adapt=1000, n.update=0, thin=1, n.iter=5000, progress.bar="text", ...)
 {
+    n.clones <- lapply(data, nclones)
+    n.clones <- n.clones[!sapply(n.clones, is.null)]
     m <- jags.model(model, data, n.chain=n.chains, n.adapt=n.adapt, ...)
-    if (n.update > 0)
-        update(m, n.update)
-    res <- coda.samples(m, params, n.iter=n.iter, thin=thin)
+    if (n.update > 0) {
+        update(m, n.update, progress.bar=progress.bar)
+    }
+    res <- coda.samples(m, params, n.iter=n.iter, thin=thin, progress.bar=progress.bar)
     res
 }
-

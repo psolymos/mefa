@@ -1,27 +1,26 @@
 \encoding{UTF-8}
 \name{BIC}
 \Rdversion{1.1}
-\alias{nobservations}
 \alias{nclones}
+\alias{nclones.list}
+\alias{nclones.default}
 \title{
-Number of Observations, Number of Clones
+Number of Clones
 }
 \description{
-Retrieves the number of observations from a fitted model object.
+Retrieves the number of clones from an object.
 }
 \usage{
-nobservations(fit, where=NULL)
-nclones(x)
+nclones(x, ...)
+\method{nclones}{default}(x, ...)
+\method{nclones}{list}(x, ...)
 }
 \arguments{
-  \item{fit}{
-Fitted model objects.
-}
-  \item{fit}{
-Fitted model objects.
-}
   \item{x}{
-An object of class 'dclone' (having an \code{n.clones} attribute).
+An object of class 'dclone' (or an object having an \code{n.clones} attribute).
+}
+  \item{\dots}{
+Fitted model objects.
 }
 }
 \value{

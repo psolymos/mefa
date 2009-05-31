@@ -1,5 +1,5 @@
 nclones <-
 function(x, ...)
 {
-    UseMethod("nclones")
+    attr(x, "n.clones")
 }

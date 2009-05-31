@@ -9,7 +9,9 @@ Convenient function to fit JAGS models.
 Function to fit a JAGS model in just one line.
 }
 \usage{
-jags.fit(data, params, model, n.chains = 3, n.update = 0, n.iter = 5000, thin = 1, n.adapt = 1000, ...)
+%%jags.fit(data, params, model, n.chains = 3, n.update = 0, n.iter = 5000, thin = 1, n.adapt = 1000, ...)
+jags.fit(data, params, model, n.chains = 3, n.adapt = 1000,
+n.update = 0, thin = 1, n.iter = 5000, progress.bar = "text", ...)
 }
 \arguments{
   \item{data}{
@@ -24,20 +26,24 @@ Character string, name of the model file.
   \item{n.chains}{
 Number of chains to generate.
 }
+  \item{n.adapt}{
+Number of steps for adaptation.
+}
   \item{n.update}{
 Number of updates before iterations.
-}
-  \item{n.iter}{
-Number of iterations.
 }
   \item{thin}{
 Thinning value.
 }
-  \item{n.adapt}{
-Number of steps for adaptation.
+  \item{n.iter}{
+Number of iterations.
+}
+  \item{progress.bar}{
+Type of progress bar (see \code{\link[rjags]{update.jags}}).
 }
   \item{\dots}{
-Further arguments passed to \code{\link[rjags]{jags.model}}.
+Further arguments passed to \code{\link[rjags]{jags.model}}, 
+e.g. the \code{inits} argument.
 }
 }
 \value{
