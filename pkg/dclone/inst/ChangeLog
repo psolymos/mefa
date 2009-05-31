@@ -2,6 +2,8 @@ dclone package versions
 
 Version 0.1-3, May 28, 2009
 
+    * mcmc object got n.clones attribute
+      if data contained it.
     * nclones.list: returns values for
       objects in a list (for data arg of
       jags.fit).
