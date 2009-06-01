@@ -6,7 +6,7 @@ function(x, ...)
     } else {
         nc <- unique(unlist(lapply(x, nclones.default)))
         if (length(nc) > 1)
-            stop("more than one value found")
+            stop("non unique value")
         return(nc)
     }
 }
