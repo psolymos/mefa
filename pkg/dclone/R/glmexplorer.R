@@ -1,6 +1,7 @@
 glmexplorer <-
 function(formula, data, family=poisson(), select=FALSE, ...)
 {
+    .formula <- formula
     lhs <- formula[[2]]
     if (missing(data))
         data <- parent.frame()
@@ -27,6 +28,7 @@ function(formula, data, family=poisson(), select=FALSE, ...)
     names(rval) <- colnames(Y)
     class(rval) <- "glmexplorer"
     attr(rval, "family") <- family$family
+    attr(rval, "formula") <- .formula
     attr(rval, "select") <- select
     attr(rval, "y") <- Y
     attr(rval, "model") <- X
