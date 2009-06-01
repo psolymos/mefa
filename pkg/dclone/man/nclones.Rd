@@ -2,18 +2,22 @@
 \name{BIC}
 \Rdversion{1.1}
 \alias{nclones}
+\alias{nobservations}
+\alias{nobservations.default}
 \alias{nclones.list}
 \alias{nclones.default}
 \title{
-Number of Clones
+Number of Clones and Number of Observations
 }
 \description{
-Retrieves the number of clones from an object.
+Retrieves the number of clones or number of observations from an object.
 }
 \usage{
 nclones(x, ...)
 \method{nclones}{default}(x, ...)
 \method{nclones}{list}(x, ...)
+nobservations(x, ...)
+\method{nobservations}{default}(x, ...)
 }
 \arguments{
   \item{x}{
