@@ -3,7 +3,7 @@
 \Rdversion{1.1}
 \alias{distsample}
 \title{
-Sample Spatial Point Satterns
+Sample Spatial Point Patterns
 }
 \description{
 Takes a random sample of point pairs.
