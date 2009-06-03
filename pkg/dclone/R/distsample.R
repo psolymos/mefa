@@ -1,16 +1,17 @@
 distsample <-
 function(xy, probs = seq(0, 1, 0.2), size = round(nrow(xy) / 10))
 {
+#    require(mefa)
     n <- nrow(xy)
     d <- dist(xy)
     attributes(d) <- NULL
     library(mefa)
-    qd <- mefa::qvector(d, probs = probs)
+    qd <- qvector(d, probs = probs)
     id <- numeric(length(d))
     for (i in 1:length(unique(qd))) {
         id[sample((1:length(d))[qd == unique(qd)[i]], size = size)] <- 1
     }
-    did <- mefa::vec2dist(id, n)
+    did <- mefavec2dist(id, n)
     didm <- as.matrix(did)
     didm[upper.tri(didm)] <- 0
     diag(didm) <- 0
