@@ -33,7 +33,9 @@ Row names for the resulting data frame.
   \item{optional}{
 Argument not yet used.
 }
-
+  \item{\dots}{
+Other arguments passed to functions.
+}
 }
 \value{
 \code{vec2dist} returns an object of class \code{dist}.
