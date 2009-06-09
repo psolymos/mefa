@@ -2,6 +2,8 @@ MEFA VERSIONS
 
 Version 3.0-3 -- May 20, 2009 (opened - r381)
 
+    * distance matrix manipulation tools added (is.dist,
+      dist2vec, as.data.frame.dist)
     * report.mefa: dir argument became more transparent
       by using getwd().
 

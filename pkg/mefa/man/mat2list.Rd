@@ -5,7 +5,6 @@
 \alias{mfill}
 \alias{rdrop}
 \alias{cdrop}
-\alias{vec2dist}
 \title{
 Matrix Manipulation Tools
 }
@@ -17,7 +16,6 @@ mat2list(x, MARGIN = 1)
 mfill(x)
 rdrop(x, cutoff = 0)
 cdrop(x, cutoff = 0)
-vec2dist(x, size, labels = NULL, diag = FALSE, upper = FALSE, call = FALSE, method = NULL)
 }
 \arguments{
   \item{x}{
@@ -29,12 +27,6 @@ Margin in \code{c(1, 2)}, indicating respectively rows or colums to be listed.
   \item{cutoff}{
 Numeric, exclude rows/columns with sums <= \code{cutoff}.
 }
-  \item{size}{
-Integer, the number of observations in the dataset (see \code{\link{dist}}).
-}
-  \item{labels, diag, upper, call, method}{
-Logical, setting attributes of the distance object (see \code{\link{dist}}).
-}
 }
 \value{
 \code{mat2list} returns a list of length \code{nrow(x)} or \code{ncol(x)} depending on \code{MARGIN}.
@@ -44,8 +36,6 @@ Elements are rows/columns of \code{x}. Dimnames are retained as names.
 
 \code{rdrop} and \code{cdrop} return the original matrix but excluding rows (\code{rdrop}), or columns (\code{cdrop})
 that has sum <= \code{cutoff}. Excluded row/colum numbers and specifications are stored in the \code{"exclude"} attribute.
-
-\code{vec2dist} returns an object of class \code{dist}.
 }
 \references{
 \enc{S\'olymos}{Solymos} P. (2008) mefa: an R package for handling and reporting count data. \emph{Community Ecology} \bold{9}, 125--127.
@@ -71,10 +61,6 @@ rdrop(x)
 cdrop(x)
 cdrop(x, cutoff = 5)
 cdrop(x, cutoff = 22) # be careful
-vec2dist(1:3, 3)
-vec2dist(1:3, 3, diag = TRUE)
-vec2dist(1:3, 3, diag = TRUE, upper = TRUE)
-vec2dist(1:3, 3, labels=letters[1:3])
 }
 \keyword{ manip }
 
