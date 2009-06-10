@@ -28,3 +28,4 @@ function(xy, probs = seq(0, 1, 0.2), size = round(nrow(xy) / 10))
     attr(out, "size") <- size
     as.data.frame(out)
 }
+
