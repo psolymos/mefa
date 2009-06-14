@@ -1,6 +1,10 @@
 MEFA VERSIONS
 
-Version 3.0-3 -- May 20, 2009 (opened - r381)
+Version 3.1-0 -- June 14, 2009 (opened - r406)
+
+    * CRAN major release.
+
+Version 3.0-3 -- June 14, 2009 (closed - r406)
 
     * distance matrix manipulation tools added (is.dist,
       dist2vec, as.data.frame.dist)
