@@ -10,7 +10,8 @@ Description: Convenient functions to help implementing
     estimation of complex models using data cloning
     and Bayesian Markov chain Monte Carlo methods.
 License: GPL-2
-Depends: R2WinBUGS, rjags, coda, mefa
+Depends: R (>= 2.7.0), rjags, coda (>= 0.13), R2WinBUGS, coda, mefa (>= 2.0)
+SystemRequirements: jags (== 1.0.3)
 URL: http://mefa.r-forge.r-project.org/
 LazyLoad: yes
 LazyData: true
