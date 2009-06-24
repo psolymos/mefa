@@ -17,7 +17,12 @@ function(formula, data, family=poisson(), select=FALSE, ...)
     J <- NCOL(Y)
     if (select) {
         glmfit <- lapply(1:J, function(z) try(glm(Y[, z] ~ ., rhs, family=family)))
-        glmfit <- lapply(glmfit, function(z) try(step(z, direction="backward", trace=0)))
+        glmsel <- lapply(glmfit, function(z) try(step(z, direction="backward", trace=0)))
+        if (!inherits(glmsel, "try-error")) {
+            glmfit <- glmsel
+        } else {
+            attr(glmfit, "try-error") <- glmsel
+        }
         rval <- lapply(glmfit, function(z) try(summary(z)$coef))
     } else {
         glmfit <- lapply(1:J, function(z) try(glm.fit(X, Y[, z], family=family)))
