@@ -18,10 +18,12 @@ function(formula, data, family=poisson(), select=FALSE, ...)
     if (select) {
         glmfit <- lapply(1:J, function(z) try(glm(Y[, z] ~ ., rhs, family=family)))
         glmsel <- lapply(glmfit, function(z) try(step(z, direction="backward", trace=0)))
-        if (!inherits(glmsel, "try-error")) {
-            glmfit <- glmsel
-        } else {
-            attr(glmfit, "try-error") <- glmsel
+        for (i in 1:length(glmsel)) {
+            if (!inherits(glmsel[[i]], "try-error")) {
+                glmfit[[i]] <- glmsel[[i]]
+            } else {
+                attr(glmfit[[i]], "try-error") <- glmsel[[i]]
+            }
         }
         rval <- lapply(glmfit, function(z) try(summary(z)$coef))
     } else {
