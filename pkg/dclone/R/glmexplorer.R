@@ -16,14 +16,14 @@ function(formula, data, family=poisson(), select=FALSE, ...)
     n <- NROW(Y)
     J <- NCOL(Y)
     if (select) {
-        glmfit <- lapply(1:J, function(z) glm(Y[, z] ~ ., rhs, family=family))
-        glmsel <- lapply(glmfit, function(z) step(z, direction="backward", trace=0))
-        rval <- lapply(glmsel, function(z) summary(z)$coef)
+        glmfit <- lapply(1:J, function(z) try(glm(Y[, z] ~ ., rhs, family=family)))
+        glmfit <- lapply(glmfit, function(z) try(step(z, direction="backward", trace=0)))
+        rval <- lapply(glmfit, function(z) try(summary(z)$coef))
     } else {
-        glmfit <- lapply(1:J, function(z) glm.fit(X, Y[, z], family=family))
+        glmfit <- lapply(1:J, function(z) try(glm.fit(X, Y[, z], family=family)))
         rval <- lapply(glmfit, function(z) {
             class(z) <- "glm"
-            summary(z)$coef})
+            try(summary(z)$coef)})
     }
     names(rval) <- colnames(Y)
     class(rval) <- "glmexplorer"
