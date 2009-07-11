@@ -2,6 +2,7 @@
 \name{dclone}
 \Rdversion{1.1}
 \alias{dclone}
+\alias{dclone.default}
 \alias{print.dclone}
 \title{
 Clone R Objects
@@ -11,7 +12,8 @@ It makes clones of R objects, that is values in the object are repeated \eqn{n} 
 leaving the original structure of the object intact.
 }
 \usage{
-dclone(x, n.clones = 1)
+dclone(x, ...)
+\method{dclone}{default}(x, n.clones = 1, ...)
 \method{print}{dclone}(x, ...)
 }
 \arguments{
@@ -22,7 +24,7 @@ An R object to be cloned, or a cloned object to print.
 Number of clones.
 }
   \item{\dots}{
-Other arguments passed to \code{print}.
+Other arguments passed to function.
 }
 }
 \value{
