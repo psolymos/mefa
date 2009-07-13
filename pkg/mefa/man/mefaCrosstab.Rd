@@ -30,7 +30,7 @@ It returs a matrix if \code{segment = FALSE} or a list with matrices for the seg
 \author{
 \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{ \code{\link{stcs}}, \code{\link{mefa}}, \code{\link{inflate}} }
+\seealso{ \code{\link{stcs}}, \code{\link{mefa}}, \code{\link{rep.data.frame}} }
 \examples{
 x <- data.frame(sample = LETTERS[c(1,1,2,2,3,4)],
     species = c(letters[c(5,5,5,6,7)], "zero.pseudo"),
