@@ -21,7 +21,7 @@ A list containing the data.
 Character vector of parameters to be samples.
 }
   \item{model}{
-Character string, name of the model file.
+Character string (name of the model file) or a function containing the model (see Examples).
 }
   \item{n.chains}{
 Number of chains to generate.
@@ -82,12 +82,8 @@ Y <- rnorm(N, mean = linpred, sd = sigma)
 jdata <- list(N = N, Y = Y, x = x)
 ## what to monitor
 jpara <- c("alpha", "beta", "sigma")
-## write model onto hard drive
-jmodnam <- write.jags.model(jfun)
 ## fit the model
-regmod <- jags.fit(jdata, jpara, jmodnam, n.chains = 3)
-## cleanup
-clean.jags.model(jmodnam)
+regmod <- jags.fit(jdata, jpara, jfun, n.chains = 3)
 ## model summary
 summary(regmod)
 }
