@@ -10,7 +10,7 @@ fill.na(x)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{a matrix or data frame.}
+  \item{x}{a vector, a matrix or a data frame.}
 }
 \details{
 This function is useful when converting a 'notebook style' data into an 'stcs' object. The 'notebook style' data means that observations are registered in a non-redundant way, e.g. when typing in a spreadsheet.
@@ -38,5 +38,6 @@ x <- data.frame(
     segm = c("male","female","male","female","male","male"))
 x
 fill.na(x)
+fill.na(c(1:4, NA))
 }
 \keyword{ manip }

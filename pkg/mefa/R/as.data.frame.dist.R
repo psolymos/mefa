@@ -1,7 +1,7 @@
 as.data.frame.dist <-
-function (x, row.names = NULL, optional = FALSE, ...)
+function (x, row.names = NULL, optional = FALSE, dim.names = FALSE, ...)
 {
-    if (!missing(optional)) 
+    if (optional)
         .NotYetUsed("optional", error = FALSE)
     id <- as.matrix(x)
     id[lower.tri(id)] <- 1
@@ -14,5 +14,11 @@ function (x, row.names = NULL, optional = FALSE, ...)
     out <- data.frame(row=rm, col=cm, dist=dist2vec(x))
     if (!is.null(row.names))
         rownames(out) <- row.names
+    if (dim.names) {
+        out$row <- as.factor(out$row)
+        out$col <- as.factor(out$col)
+        levels(out$row) <- rownames(id)
+        levels(out$col) <- colnames(id)
+    }
     out
 }

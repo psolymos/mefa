@@ -1,7 +1,9 @@
 `fill.na` <-
 function (x)
 {
-# not vectorized
+    x <- as.matrix(x)
+    if (any(is.na(x[1,])))
+        stop("cannot replace 'NA's in first place")
     out <- x
     for (cols in 1:ncol(x)) {
         for (rows in 1:nrow(x)) {
