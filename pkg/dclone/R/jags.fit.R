@@ -3,7 +3,7 @@ function(data, params, model, n.chains=3, n.adapt=1000, n.update=0, thin=1, n.it
 {
     n.clones <- nclones.list(data)
     if (is.function(model)) {
-        model <- write.jags.model(jfun)
+        model <- write.jags.model(model)
         on.exit(clean.jags.model(model))
     }
     m <- jags.model(model, data, n.chain=n.chains, n.adapt=n.adapt, ...)
