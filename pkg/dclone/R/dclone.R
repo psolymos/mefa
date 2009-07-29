@@ -1,3 +1,3 @@
 dclone <-
-function(x, ...)
+function(x, n.clones=1, ...)
 UseMethod("dclone")

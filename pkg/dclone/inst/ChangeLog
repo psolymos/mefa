@@ -2,6 +2,10 @@ dclone package versions
 
 Version 0.2-1, July 10, 2009
 
+    * Behaviour of dclone.default is modified, and
+      dclone.list is added for more convenience in
+      creating BUGS/JAGS data objects (with arguments
+      multiply, unchanged and attrib).
     * jags.fit: model argument can be a function,
       thus no need to call functions to write the
       model file and clean up (as suggested by

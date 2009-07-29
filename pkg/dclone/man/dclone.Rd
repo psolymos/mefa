@@ -3,7 +3,6 @@
 \Rdversion{1.1}
 \alias{dclone}
 \alias{dclone.default}
-\alias{print.dclone}
 \title{
 Clone R Objects
 }
@@ -12,9 +11,10 @@ It makes clones of R objects, that is values in the object are repeated \eqn{n} 
 leaving the original structure of the object intact.
 }
 \usage{
-dclone(x, ...)
-\method{dclone}{default}(x, n.clones = 1, ...)
-\method{print}{dclone}(x, ...)
+dclone(x, n.clones=1, ...)
+\method{dclone}{default}(x, n.clones = 1, attrib=TRUE, ...)
+\method{dclone}{list}(x, n.clones = 1, 
+multiply = NULL, unchanged = NULL, attrib=TRUE, ...)
 }
 \arguments{
   \item{x}{
@@ -22,6 +22,16 @@ An R object to be cloned, or a cloned object to print.
 }
   \item{n.clones}{
 Number of clones.
+}
+  \item{multiply}{
+Numeric or character index for list element(s) to multiply by \code{n.clones}
+instead of repetitions (as done by \code{dclone.default}).
+}
+  \item{unchanged}{
+Numeric or character index for list element(s) to leave unchanged.
+}
+  \item{attrib}{
+Logical, \code{TRUE} if attributes are to be attached.
 }
   \item{\dots}{
 Other arguments passed to function.
@@ -55,7 +65,9 @@ dclone(m, 2)
 (dfr <- as.data.frame(t(m)))
 dclone(dfr, 2)
 ## list
-(l <- as.list(dfr))
+(l <- list(n = 10, y = 1:10, x = 1:10, p = 1))
 dclone(l, 2)
+dclone(l, 2, attrib = FALSE)
+dclone(l, 2, multiply = "n", unchanged = "p")
 }
 \keyword{ manip }
