@@ -3,6 +3,7 @@
 \Rdversion{1.1}
 \alias{dclone}
 \alias{dclone.default}
+\alias{dclone.list}
 \title{
 Clone R Objects
 }
@@ -24,11 +25,11 @@ An R object to be cloned, or a cloned object to print.
 Number of clones.
 }
   \item{multiply}{
-Numeric or character index for list element(s) to multiply by \code{n.clones}
+Numeric or character index for list element(s) to be multiplied by \code{n.clones}
 instead of repetitions (as done by \code{dclone.default}).
 }
   \item{unchanged}{
-Numeric or character index for list element(s) to leave unchanged.
+Numeric or character index for list element(s) to be left unchanged.
 }
   \item{attrib}{
 Logical, \code{TRUE} if attributes are to be attached.

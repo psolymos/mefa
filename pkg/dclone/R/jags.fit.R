@@ -12,6 +12,9 @@ function(data, params, model, n.chains=3, n.adapt=1000, n.update=0, thin=1, n.it
         update(m, n.update, progress.bar=progress.bar)
     }
     res <- coda.samples(m, params, n.iter=n.iter, thin=thin, progress.bar=progress.bar)
-    attr(res, "n.clones") <- n.clones
+    if (!is.null(n.clones)) {
+        attr(res, "n.clones") <- n.clones
+        class(res) <- c(paste(class(res), "dc", sep="."), class(res))
+    }
     res
 }
