@@ -1,4 +1,4 @@
-\name{lambdamax.diag}
+\name{mshapiro.diag}
 \Rdversion{1.1}
 \alias{mshapiro.diag}
 \title{
