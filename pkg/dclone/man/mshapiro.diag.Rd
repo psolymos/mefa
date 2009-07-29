@@ -43,6 +43,9 @@ Lele, S.R., B. Dennis and F. Lutscher, 2007.
 Data cloning: easy maximum likelihood estimation for complex 
 ecological models using Bayesian Markov chain Monte Carlo  methods.
 \emph{Ecology Letters} \strong{10}, 551--563.
+
+See references for the test and the algoritmn in the help page of
+\code{\link[mvnormtest]{mshapiro.test}}
 }
 \author{
 Khurram Nadeem, \email{knadeem@math.ualberta.ca}
