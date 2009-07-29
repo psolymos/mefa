@@ -45,8 +45,9 @@ ecological models using Bayesian Markov chain Monte Carlo  methods.
 \emph{Ecology Letters} \strong{10}, 551--563.
 }
 \author{
+Khurram Nadeem, \email{knadeem@math.ualberta.ca}
+
 \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
-Khurram Nadeem \email{knadeem@math.ualberta.ca}
 }
 \seealso{
 The test used in this function: \code{\link[mvnormtest]{mshapiro.test}}
