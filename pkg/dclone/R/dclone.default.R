@@ -1,6 +1,8 @@
 dclone.default <-
 function(x, n.clones=1, ...)
 {
+    if (is.list(x) && !is.data.frame(x))
+        dclone.list(x, n.clones=n.clones, ...)
     if (n.clones==1) {
         rval <- x
     } else {
@@ -25,8 +27,18 @@ function(x, n.clones=1, ...)
                 names(rval) <- paste(NAMES, rep(1:n.clones, each=length(NAMES)), sep="_")
         }
     }
-    class(rval) <- c("dclone", class(x))
     attr(rval, "n.clones") <- n.clones
     rval
 }
 
+dclone.list <- function(x, n.clones=1, 
+multiply=NULL, unchanged=NULL, ...)
+{
+    out <- lapply(x, dclone, n.clones=n.clones, ...)
+    if (!is.null(multiply))
+        out[multiply] <- lapply(x, "*", n.clones)[multiply]
+    if (!is.null(unchanged))
+        out[unchanged] <- x[unchanged]
+    attr(out, "n.clones") <- n.clones
+    out
+}
