@@ -51,7 +51,7 @@ Khurram Nadeem \email{knadeem@math.ualberta.ca}
 \seealso{
 The test used in this function: \code{\link[mvnormtest]{mshapiro.test}}
 
-This diagnostic test is used in the function \code{\link{step.dclone}}
+This diagnostic test is used in the function \code{\link{jags.fit.dclone}}
 }
 \examples{
 data(regmod)

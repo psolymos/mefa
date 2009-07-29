@@ -42,7 +42,7 @@ Khurram Nadeem \email{knadeem@math.ualberta.ca}
 \seealso{
 Eigen decomposition: \code{\link{eigen}}
 
-This test is used in the function \code{\link{step.dclone}}
+This test is used in the function \code{\link{jags.fit.dclone}}
 }
 \examples{
 data(regmod)

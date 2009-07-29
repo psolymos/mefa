@@ -4,7 +4,7 @@ Version 0.2-2, July 29, 2009
 
 Version 0.2-1, July 10, 2009
 
-    * DC diagnostics and step.dclone functions
+    * DC diagnostics and jags.fit.dclone functions
       added to test for DC convergence.
     * Modified summary for DC mcmc objects added.
     * Behaviour of dclone.default is modified, and
