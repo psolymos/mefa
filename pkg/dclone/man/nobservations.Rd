@@ -1,5 +1,5 @@
 \encoding{UTF-8}
-\name{BIC}
+\name{nobservations}
 \Rdversion{1.1}
 \alias{nobservations}
 \alias{nobservations.default}

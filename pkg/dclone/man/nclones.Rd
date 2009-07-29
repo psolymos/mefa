@@ -1,5 +1,5 @@
 \encoding{UTF-8}
-\name{BIC}
+\name{nclones}
 \Rdversion{1.1}
 \alias{nclones}
 \alias{nclones.list}
