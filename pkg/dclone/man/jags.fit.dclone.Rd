@@ -112,8 +112,8 @@ jfun <- function() {
 ## data
 jdata <- list(n = n, Y = Y, X = X, p = NCOL(X))
 ## iteartive fitting
-jmod <- jags.fit.dclone(jdata, c("beta", "sigma"), jfun, k=2:4, 
-    multiply="n", unchanged="p")
+jmod <- jags.fit.dclone(jdata, c("beta", "sigma"), jfun, 
+    n.clones = 2:4, multiply = "n", unchanged = "p")
 ## summary with DC SE and R hat
 ## it is also noted if convergence is reached
 summary(jmod)
