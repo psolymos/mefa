@@ -53,9 +53,9 @@ eigenvalue of the posterior unscaled variance-covariance matrix
 (\code{\link{lambdamax.diag}}) and the p-value of the Shapiro-Wilk multivariate 
 normality test (\code{\link{mshapiro.diag}}).
 
-Critical values for these two diagnostics are arbitrarily set by 0.1
+Critical values for these two diagnostics are arbitrarily set by 0.05
 (\code{getOption("dclone.crit")}). Values can be changed to e.g. to
-as \code{options("dclone.crit" = c(0.05,0.1))} for more strict criteria.
+as \code{options("dclone.crit" = c(0.01,0.1))} for stricter criteria.
 }
 \value{
 }
