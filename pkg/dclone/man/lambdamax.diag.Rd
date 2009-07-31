@@ -22,6 +22,9 @@ a degenerate multivariate normal distribution. As the distribution
 is getting more degenerate, the maximal eigenvalue (\eqn{\lambda_{max}})
 of the unscaled covariance matrix is decreasing.
 
+If only one parameter is dealt with, the unscaled posterior standard
+error is given.
+
 There is no critical value under which \eqn{\lambda_{max}} is good enough.
 By default, 0.1 is used (see \code{getOption("dclone.crit")}).
 }

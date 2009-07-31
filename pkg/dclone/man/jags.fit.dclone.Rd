@@ -51,7 +51,7 @@ the arguments \code{multiply} and \code{unchanged}.
 After each model fit, data cloning convergence is tested based on the maximal
 eigenvalue of the posterior unscaled variance-covariance matrix
 (\code{\link{lambdamax.diag}}) and the p-value of the Shapiro-Wilk multivariate 
-normality test (\code{\link{mshapiro.diag}}).
+normality test (\code{\link{shapiro.diag}}).
 
 Critical values for these two diagnostics are arbitrarily set by 0.05
 (\code{getOption("dclone.crit")}). Values can be changed to e.g. to
@@ -77,7 +77,7 @@ Data cloning: \code{\link{dclone}}
 
 Model fitting: \code{\link{jags.fit}}
 
-Diagnostics: \code{\link{lambdamax.diag}}, \code{\link{mshapiro.diag}}, 
+Diagnostics: \code{\link{lambdamax.diag}}, \code{\link{shapiro.diag}}, 
 for critical values see \code{getOption("dclone.crit")}.
 }
 \examples{

@@ -1,5 +1,11 @@
 lambdamax.diag <-
 function(x)
 {
-    max(eigen(var(report(x, array)), symmetric=TRUE, only.values=TRUE)$val)
+    y <- report(x, array)
+    rval <- if (nvar(x) == 1) {
+        sd(y)
+    } else {
+        max(eigen(var(y), symmetric=TRUE, only.values=TRUE)$val)
+    }
+    rval
 }

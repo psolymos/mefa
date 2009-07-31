@@ -5,6 +5,9 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
         stop("provide values > 1 for 'n.clones'")
     k <- n.clones[order(n.clones)]
     times <- length(k)
+    dctable <- matrix(0, times, 3)
+    colnames(dctable) <- c("n.clones", "lambda.max", "p.shapiro")
+    dctable[,1] <- k
     crit <- getOption("dclone.crit")
     converged <- FALSE
     for (i in 1:times) {
@@ -13,14 +16,16 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
         jdat <- dclone(data, k[i], multiply=multiply, unchanged=unchanged)
         mod <- jags.fit(jdat, params, model, ...)
         lmax <- lambdamax.diag(mod)
-        mstp <- mshapiro.diag(mod)$p.value
+        dctable[i,2] <- lmax
+        pshw <- shapiro.diag(mod)$p.value
+        dctable[i,3] <- pshw
         if (trace) {
             tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
-            tmp2 <- paste(ifelse(mstp > crit[2], ">", "<="), "critical", crit[2])
-            cat("\nlambda.max", round(lmax, 4), tmp1)
-            cat("\nmshapiro p-value", round(mstp, 4), tmp2, "\n")
+            tmp2 <- paste(ifelse(pshw > crit[2], ">", "<="), "critical", crit[2])
+            cat("\nlambda.max", format(lmax), tmp1)
+            cat("\nShapiro-Wilk p-value", format(pshw), tmp2, "\n")
         }
-        if (lmax < crit[1] && mstp > crit[2]) {
+        if (lmax < crit[1] && pshw > crit[2]) {
             converged <- TRUE
             if (trace)
                 cat("\nConvergence reached with", k[i], "clones\n\n")
@@ -29,5 +34,6 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
             break
     }
     attr(mod, "converged") <- converged
+    attr(mod, "dctable") <- dctable
     mod
 }

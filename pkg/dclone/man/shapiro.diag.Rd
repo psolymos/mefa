@@ -1,6 +1,6 @@
-\name{mshapiro.diag}
+\name{shapiro.diag}
 \Rdversion{1.1}
-\alias{mshapiro.diag}
+\alias{shapiro.diag}
 \title{
 Shapiro-Wilk Multivariate Normality Test for MCMC Objects
 }
@@ -8,7 +8,7 @@ Shapiro-Wilk Multivariate Normality Test for MCMC Objects
 Calculates Shapiro-Wilk Multivariate Normality Test for MCMC Objects.
 }
 \usage{
-mshapiro.diag(x)
+shapiro.diag(x)
 }
 \arguments{
   \item{x}{
@@ -30,7 +30,8 @@ This test is also useful for testing identifyability problems.
 If parameters are non-identifyable, multivariate normality
 will not occur even for high number of clones.
 
-The underlying function (\code{\link[mvnormtest]{mshapiro.test}})
+The underlying function (\code{\link[mvnormtest]{mshapiro.test}},
+and \code{\link{shapiro.test}})
 can handle only 5000 observations, thus in most of the cases
 (when number of chains and iterations exceed 5000) only the last 
 iterations of the MCMC objects are used.
@@ -45,7 +46,7 @@ ecological models using Bayesian Markov chain Monte Carlo  methods.
 \emph{Ecology Letters} \strong{10}, 551--563.
 
 See references for the test and the algoritmn in the help page of
-\code{\link[mvnormtest]{mshapiro.test}}
+\code{\link{shapiro.test}} and \code{\link[mvnormtest]{mshapiro.test}}
 }
 \author{
 Khurram Nadeem, \email{knadeem@math.ualberta.ca}
@@ -59,6 +60,6 @@ This diagnostic test is used in the function \code{\link{jags.fit.dclone}}
 }
 \examples{
 data(regmod)
-mshapiro.diag(regmod)
+shapiro.diag(regmod)
 }
 \keyword{ htest }
