@@ -9,6 +9,7 @@
 ##
 ## * 1 param case: shapiro.test, unscaled SD
 ##   (plus rename mshapiro and mstp) -- done
+## * remove default =1 in dclone ???
 ## * rename report???
 ## * rename jags.fit.dclone to dcjags or jags.dclone
 ##   (similarly dcbugs/bugs.dclone in future)
