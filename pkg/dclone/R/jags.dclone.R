@@ -1,4 +1,4 @@
-jags.fit.dclone <- 
+jags.dclone <- 
 function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, 
 quantiles=c(0.025, 0.25, 0.5, 0.75, 0.975), trace=1, ...)
 {

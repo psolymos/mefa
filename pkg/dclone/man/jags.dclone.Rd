@@ -1,6 +1,6 @@
-\name{jags.fit.dclone}
+\name{jags.dclone}
 \Rdversion{1.1}
-\alias{jags.fit.dclone}
+\alias{jags.dclone}
 \alias{dctable}
 \alias{dctable.default}
 \title{
@@ -12,7 +12,7 @@ increasing the number of clones used until data cloning convergence
 is reached.
 }
 \usage{
-jags.fit.dclone(data, params, model, n.clones, 
+jags.dclone(data, params, model, n.clones, 
 multiply = NULL, unchanged = NULL,
 quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975), trace = 1, ...)
 dctable(x, ...)
@@ -130,7 +130,7 @@ jfun <- function() {
 ## data
 jdata <- list(n = n, Y = Y, X = X, p = NCOL(X))
 ## iteartive fitting
-jmod <- jags.fit.dclone(jdata, c("beta", "sigma"), jfun, 
+jmod <- jags.dclone(jdata, c("beta", "sigma"), jfun, 
     n.clones = 2:4, multiply = "n", unchanged = "p")
 ## summary with DC SE and R hat
 ## it is also noted if convergence is reached
@@ -139,7 +139,7 @@ summary(jmod)
 data(coralheads)
 chx <- model.matrix(~log(A), coralheads)
 chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), p = 2)
-chm <- jags.fit.dclone(chd, c("beta", "sigma"), jfun, 
+chm <- jags.dclone(chd, c("beta", "sigma"), jfun, 
     n.clones = 2:8, multiply = "n", unchanged = "p")
 dctable(chm)
 }
