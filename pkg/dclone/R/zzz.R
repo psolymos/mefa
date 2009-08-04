@@ -7,16 +7,15 @@
 }
 ## todo
 ##
-## * 1 param case: shapiro.test, unscaled SD
+## + 1 param case: shapiro.test, unscaled SD
 ##   (plus rename mshapiro and mstp) -- done
-## * remove default =1 in dclone ???
-## * rename report???
-## * rename jags.fit.dclone to dcjags or jags.dclone
+## + dctable: $convergence & $statistics
+##   within $statistics list by parameters
+##   (k * stats matrix) -- done## * remove default =1 in dclone ???
+## + rename jags.fit.dclone to dcjags or jags.dclone
 ##   (similarly dcbugs/bugs.dclone in future)
+## * rename report???
 ## * develop spts class for space-time series
 ##   and dclone.spts, dclone.ts (??? mspts, mts)
 ## * inits function
 ## * data$priors and priors function
-## * dctable: $convergence & $statistics
-##   within $statistics list by parameters
-##   (k * stats matrix)

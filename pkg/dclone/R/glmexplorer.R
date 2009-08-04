@@ -36,7 +36,8 @@ function(formula, data, family=poisson(), select=FALSE, ...)
         for (i in 1:length(rval))
             attr(rval[[i]], "converged") <- glmfit[[i]]$converged
     }
-    names(rval) <- colnames(Y)
+    if (!is.null(colnames(Y)))
+        names(rval) <- colnames(Y)
     class(rval) <- "glmexplorer"
     attr(rval, "family") <- family$family
     attr(rval, "formula") <- .formula

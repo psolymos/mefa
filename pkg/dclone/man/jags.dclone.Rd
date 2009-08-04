@@ -1,6 +1,8 @@
 \name{jags.fit.dclone}
 \Rdversion{1.1}
 \alias{jags.fit.dclone}
+\alias{dctable}
+\alias{dctable.default}
 \title{
 Iterative Algorithm for Testing Data Cloning Convergence
 }
@@ -11,7 +13,10 @@ is reached.
 }
 \usage{
 jags.fit.dclone(data, params, model, n.clones, 
-multiply = NULL, unchanged = NULL, trace = 1, ...)
+multiply = NULL, unchanged = NULL,
+quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975), trace = 1, ...)
+dctable(x, ...)
+\method{method}{default}(x, ...)
 }
 \arguments{
   \item{data}{
@@ -34,8 +39,15 @@ to be multiplied by the number of clones instead of repetitions.
 Numeric or character index for list element(s) in the \code{data} argument
 to be left unchanged.
 }
+  \item{quantiles}{
+  Quantiles of the posterior distribution to save for each monitored parameters
+  to be calculate in each step.
+}
   \item{trace}{
   If positive, information is printed during the running of the iterations.
+}
+  \item{x}{
+  An MCMC object.
 }
   \item{\dots}{
   Other values supplied to \code{\link{jags.fit}}, e.g.
@@ -56,6 +68,12 @@ normality test (\code{\link{shapiro.diag}}).
 Critical values for these two diagnostics are arbitrarily set by 0.05
 (\code{getOption("dclone.crit")}). Values can be changed to e.g. to
 as \code{options("dclone.crit" = c(0.01,0.1))} for stricter criteria.
+
+\code{dctable} returns the \code{"dctable"} attribute of an MCMC object.
+This attribute is created during the iterative data cloning process,
+to store convergence diagnostics and statistics for the sampled parameters,
+because only the last MCMC object is kept. This way, there is a track of
+changes in the estimates.
 }
 \value{
 }
@@ -117,6 +135,13 @@ jmod <- jags.fit.dclone(jdata, c("beta", "sigma"), jfun,
 ## summary with DC SE and R hat
 ## it is also noted if convergence is reached
 summary(jmod)
+## coralheads example
+data(coralheads)
+chx <- model.matrix(~log(A), coralheads)
+chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), p = 2)
+chm <- jags.fit.dclone(chd, c("beta", "sigma"), jfun, 
+    n.clones = 2:8, multiply = "n", unchanged = "p")
+dctable(chm)
 }
 }
 \keyword{ models }

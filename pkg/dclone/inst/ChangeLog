@@ -2,13 +2,16 @@ dclone package versions
 
 Version 0.2-2, July 29, 2009
 
+    * dctable generic and default method added to
+      retrieve dctable attribute from an iteratively
+      fitted MCMC object.
     * One parameter cases added to diagnostic functions
       lambdamax.diag and shapiro.diag.
     * Critical values changed.
 
 Version 0.2-1, July 10, 2009
 
-    * DC diagnostics and jags.fit.dclone functions
+    * DC diagnostics and jags.dclone functions
       added to test for DC convergence.
     * Modified summary for DC mcmc objects added.
     * Behaviour of dclone.default is modified, and
