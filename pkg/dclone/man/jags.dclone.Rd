@@ -16,7 +16,7 @@ jags.dclone(data, params, model, n.clones,
 multiply = NULL, unchanged = NULL,
 quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975), trace = 1, ...)
 dctable(x, ...)
-\method{method}{default}(x, ...)
+\method{dctable}{default}(x, ...)
 }
 \arguments{
   \item{data}{
