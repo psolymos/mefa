@@ -19,3 +19,5 @@
 ##   and dclone.spts, dclone.ts (??? mspts, mts)
 ## * inits function
 ## * data$priors and priors function
+## * shapiro.diag: 5000 to decrease until memory is o.k.
+##   with try()
