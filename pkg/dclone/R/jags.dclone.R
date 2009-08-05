@@ -1,5 +1,6 @@
 jags.dclone <- 
-function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, ...)
+function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
+stop.if.converged=TRUE, ...)
 {
     if (any(n.clones < 2))
         stop("provide values > 1 for 'n.clones'")
@@ -41,7 +42,7 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
         }
         lmax <- lambdamax.diag(mod)
         dctc[i,2] <- lmax
-        pshw <- shapiro.diag(mod)$p.value
+        pshw <- shapiro.diag(mod, standardize=TRUE)$p.value
         dctc[i,3] <- pshw
         if (trace > 1) {
             tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
@@ -54,7 +55,7 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
             if (trace)
                 cat("\nConvergence reached with", k[i], "clones\n\n")
         } else cat("\nNo convergence reached with", k[i], "clones\n\n")
-        if (converged)
+        if (converged && stop.if.converged)
             break
     }
     dcts <- lapply(dcts, function(z) as.data.frame(z[1:i,]))

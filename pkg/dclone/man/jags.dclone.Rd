@@ -14,7 +14,7 @@ is reached.
 }
 \usage{
 jags.dclone(data, params, model, n.clones, 
-multiply = NULL, unchanged = NULL, trace = 1, ...)
+multiply = NULL, unchanged = NULL, trace = 1, stop.if.converged = TRUE, ...)
 dctable(x, ...)
 \method{dctable}{default}(x, ...)
 \method{plot}{dctable}(x, type = "convergence", 
@@ -43,6 +43,11 @@ to be left unchanged.
 }
   \item{trace}{
   If positive, information is printed during the running of the iterations.
+}
+  \item{stop.if.converged}{
+  Logical, if \code{FALSE} the iteration goes through the values in \code{n.clones}
+  even if convergence has been reached. If \code{TRUE} it returns the model 
+  once converged, and ignores the rest in \code{n.clones}.
 }
   \item{x}{
   An MCMC or a 'dctable' object.
