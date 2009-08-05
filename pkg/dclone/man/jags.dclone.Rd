@@ -3,6 +3,7 @@
 \alias{jags.dclone}
 \alias{dctable}
 \alias{dctable.default}
+\alias{plot.dctable}
 \title{
 Iterative Algorithm for Testing Data Cloning Convergence
 }
@@ -13,10 +14,11 @@ is reached.
 }
 \usage{
 jags.dclone(data, params, model, n.clones, 
-multiply = NULL, unchanged = NULL,
-quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975), trace = 1, ...)
+multiply = NULL, unchanged = NULL, trace = 1, ...)
 dctable(x, ...)
 \method{dctable}{default}(x, ...)
+\method{plot}{dctable}(x, type = "convergence", 
+position="topleft", box.cex = 1, ...)
 }
 \arguments{
   \item{data}{
@@ -39,15 +41,22 @@ to be multiplied by the number of clones instead of repetitions.
 Numeric or character index for list element(s) in the \code{data} argument
 to be left unchanged.
 }
-  \item{quantiles}{
-  Quantiles of the posterior distribution to save for each monitored parameters
-  to be calculate in each step.
-}
   \item{trace}{
   If positive, information is printed during the running of the iterations.
 }
   \item{x}{
-  An MCMC object.
+  An MCMC or a 'dctable' object.
+}
+  \item{type}{
+  What to plot. Besides the default \code{"convergence"} (plot convergence
+  diagnostics), character names or integer indices of the estimated parameters
+  can be given.
+}
+  \item{position}{
+  Position for the legend, as for \code{\link{legend}}.
+}
+  \item{box.cex}{
+  Scaling factor for the interquartile boxes.
 }
   \item{\dots}{
   Other values supplied to \code{\link{jags.fit}}, e.g.
@@ -141,7 +150,13 @@ chx <- model.matrix(~log(A), coralheads)
 chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), p = 2)
 chm <- jags.dclone(chd, c("beta", "sigma"), jfun, 
     n.clones = 2:8, multiply = "n", unchanged = "p")
-dctable(chm)
+dc <- dctable(chm)
+opar <- par(mfrow=c(2, 2))
+plot(dc)
+plot(dc, 1)
+plot(dc, 2)
+plot(dc, 3)
+par(opar)
 }
 }
 \keyword{ models }

@@ -1,6 +1,5 @@
 jags.dclone <- 
-function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, 
-quantiles=c(0.025, 0.25, 0.5, 0.75, 0.975), trace=1, ...)
+function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, ...)
 {
     if (any(n.clones < 2))
         stop("provide values > 1 for 'n.clones'")
@@ -13,6 +12,7 @@ quantiles=c(0.025, 0.25, 0.5, 0.75, 0.975), trace=1, ...)
     colnames(dctc) <- c("n.clones", "lambda.max", "p.shapiro")
     dctc[,1] <- k
     dcts <- list()
+    quantiles <- c(0.025, 0.25, 0.5, 0.75, 0.975)
     dcts0 <- matrix(0, times, 3 + length(quantiles))
     dcts0[,1] <- k
     colnames(dcts0) <- c("n.clones", "mean", "sd", names(quantile(0, probs=quantiles)))
@@ -57,7 +57,8 @@ quantiles=c(0.025, 0.25, 0.5, 0.75, 0.975), trace=1, ...)
         if (converged)
             break
     }
-    dctable <- list(convergence = as.data.frame(dctc), statistics = lapply(dcts, as.data.frame))
+    dcts <- lapply(dcts, function(z) as.data.frame(z[1:i,]))
+    dctable <- list(convergence = as.data.frame(dctc[1:i,]), statistics = dcts)
     class(dctable) <- "dctable"
     attr(mod, "converged") <- converged
     attr(mod, "dctable") <- dctable
