@@ -59,10 +59,14 @@ stop.if.converged=TRUE, ...)
         dctc[i,3] <- pshw
 
         if (trace > 1) {
-            tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
-            tmp2 <- paste(ifelse(pshw > crit[2], ">", "<="), "critical", crit[2])
-            cat("\nlambda.max", format(lmax), tmp1)
-            cat("\nShapiro-Wilk p-value", format(pshw), tmp2, "\n")
+#            tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
+#            tmp2 <- paste(ifelse(pshw > crit[2], ">", "<="), "critical", crit[2])
+#            cat("\nlambda.max", format(lmax), tmp1)
+#            cat("\nShapiro-Wilk p-value =", format(pshw), tmp2, "\n")
+            cat("\nlambda.max", format(lmax))
+            cat("\nShapiro-Wilk p-value =", format(pshw), "\n")
+            if (nch > 1)
+                cat("R.hat =", format(dctmp[,"r.hat"]), "\n")
         }
         if (lmax < crit[1] && pshw > crit[2]) {
             converged <- TRUE
@@ -72,6 +76,8 @@ stop.if.converged=TRUE, ...)
         if (converged && stop.if.converged)
             break
     }
+    if (nch > 1 && any(dctmp[,"r.hat"] >= crit[3]))
+        warning("chains convergence problem, see R.hat values")
     dcts <- lapply(dcts, function(z) as.data.frame(z[1:i,]))
     dctable <- list(convergence = as.data.frame(dctc[1:i,]), statistics = dcts)
     class(dctable) <- "dctable"
