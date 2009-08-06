@@ -2,7 +2,7 @@
 \name{nobservations}
 \Rdversion{1.1}
 \alias{nobservations}
-\alias{nobservations.default}
+\alias{nobservations.lm}
 \title{
 Number of Observations
 }
