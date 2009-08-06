@@ -14,7 +14,9 @@ is reached.
 }
 \usage{
 jags.dclone(data, params, model, n.clones, 
-multiply = NULL, unchanged = NULL, trace = 1, stop.if.converged = TRUE, ...)
+multiply = NULL, unchanged = NULL, 
+update = NULL, updatefun = NULL,
+trace = 1, stop.if.converged = TRUE, ...)
 dctable(x, ...)
 \method{dctable}{default}(x, ...)
 \method{plot}{dctable}(x, type = "convergence", 
@@ -40,6 +42,15 @@ to be multiplied by the number of clones instead of repetitions.
   \item{unchanged}{
 Numeric or character index for list element(s) in the \code{data} argument
 to be left unchanged.
+}
+  \item{update}{
+Numeric or character index for list element(s) in the \code{data} argument
+that has to be updated by \code{updatefun} in each iterations. This usually
+is for making priors more informative, and anhancing convergence.
+See Details and Examples.
+}
+  \item{updatefun}{
+A function to use for updating \code{data[[update]]}. See Details and Examples.
 }
   \item{trace}{
   If positive, information is printed during the running of the iterations.
@@ -88,6 +99,8 @@ This attribute is created during the iterative data cloning process,
 to store convergence diagnostics and statistics for the sampled parameters,
 because only the last MCMC object is kept. This way, there is a track of
 changes in the estimates.
+
+Fixme !!! Add UPDATE details !!! 
 }
 \value{
 }
@@ -162,6 +175,7 @@ plot(dc, 1)
 plot(dc, 2)
 plot(dc, 3)
 par(opar)
+## Fixme! add UPDATE example
 }
 }
 \keyword{ models }

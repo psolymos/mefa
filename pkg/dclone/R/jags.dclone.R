@@ -1,9 +1,12 @@
 jags.dclone <- 
-function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, trace=1, 
-stop.if.converged=TRUE, ...)
+function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, 
+update=NULL, updatefun=NULL,
+trace=1, stop.if.converged=TRUE, ...)
 {
     if (any(n.clones < 2))
         stop("provide values > 1 for 'n.clones'")
+    if (!is.null(update) && !is.null(updatefun))
+        stop("both 'update' and 'updatefun' must be provided")
     k <- n.clones[order(n.clones)]
     times <- length(k)
     crit <- getOption("dclone.crit")
@@ -28,6 +31,11 @@ stop.if.converged=TRUE, ...)
         }
         t(rval)
     }
+    ## evaluate updating
+    if (!is.null(update)) {
+        unchanged <- c(unchanged, update)
+        updatefun <- match.fun(updatefun)
+    }
     for (i in 1:times) {
         if (trace)
             cat("\nFitting model with", k[i], "clones\n\n")
@@ -48,6 +56,9 @@ stop.if.converged=TRUE, ...)
                 c(colntmp, "r.hat") else colntmp
             for (j in 1:length(vn))
                 dcts[[vn[j]]] <- dcts0
+        } else {
+            if (!is.null(update))
+                jdat[[update]] <- updatefun(mod)
         }
         dctmp <- dctsfun(mod)
         for (j in 1:length(vn)) {
