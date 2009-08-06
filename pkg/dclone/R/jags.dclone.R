@@ -12,17 +12,20 @@ stop.if.converged=TRUE, ...)
     dctc <- matrix(0, times, 3)
     colnames(dctc) <- c("n.clones", "lambda.max", "p.shapiro")
     dctc[,1] <- k
-    dcts <- list()
-    quantiles <- c(0.025, 0.25, 0.5, 0.75, 0.975)
-    dcts0 <- matrix(0, times, 3 + length(quantiles))
-    dcts0[,1] <- k
-    colnames(dcts0) <- c("n.clones", "mean", "sd", names(quantile(0, probs=quantiles)))
     ## internal function to calculate statistics
     dctsfun <- function(x) {
         y <- report(x, array)
-        rval <- rbind(mean = apply(y, 2, mean),
-            sd = apply(y, 2, sd),
-            apply(y, 2, quantile, probs=quantiles))
+        if (nch > 1) {
+            rhat <- gelman.diag(x)$psrf[,1]
+            rval <- rbind(mean = apply(y, 2, mean),
+                sd = apply(y, 2, sd),
+                apply(y, 2, quantile, probs=quantiles),
+                r.hat=rhat)
+        } else {
+            rval <- rbind(mean = apply(y, 2, mean),
+                sd = apply(y, 2, sd),
+                apply(y, 2, quantile, probs=quantiles))
+        }
         t(rval)
     }
     for (i in 1:times) {
@@ -33,6 +36,16 @@ stop.if.converged=TRUE, ...)
         ## dctable evaluation
         if (i == 1) {
             vn <- varnames(mod)
+            nch <- nchain(mod)
+            dcts <- list()
+            quantiles <- c(0.025, 0.25, 0.5, 0.75, 0.975)
+            extracol <- if (nch > 1)
+                4 else 3
+            dcts0 <- matrix(0, times, extracol + length(quantiles))
+            dcts0[,1] <- k
+            colntmp <- c("n.clones", "mean", "sd", names(quantile(0, probs=quantiles)))
+            colnames(dcts0) <- if (nch > 1)
+                c(colntmp, "r.hat") else colntmp
             for (j in 1:length(vn))
                 dcts[[vn[j]]] <- dcts0
         }
@@ -44,6 +57,7 @@ stop.if.converged=TRUE, ...)
         dctc[i,2] <- lmax
         pshw <- shapiro.diag(mod)$p.value
         dctc[i,3] <- pshw
+
         if (trace > 1) {
             tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
             tmp2 <- paste(ifelse(pshw > crit[2], ">", "<="), "critical", crit[2])

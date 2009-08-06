@@ -19,9 +19,19 @@ function(x, type = "convergence", position="topleft", box.cex = 1, ...)
         w <- min(diff(y$n.clones)) * 0.25 * box.cex
         xlim <- range(y$n.clones - w/2, y$n.clones + w/2)
         ylim <- range(y[,"2.5%"], y[,"97.5%"], y$mean - y$sd, y$mean + y$sd)
-        plot(y$n.clones, y$mean, ylim=ylim, xlim=xlim, pch=21, type = "b", lty=2,
+        pch <- rep(21, nrow(y))
+        if (!is.null(y$r.hat)) {
+            crit <- getOption("dclone.crit")[3]
+            pch[y$r.hat < crit] <- 19
+        }
+        plot(y$n.clones, y$mean, ylim=ylim, xlim=xlim, pch=pch, type = "b", lty=2,
             xlab = "Number of clones", ylab="Estimate",
             main = nam, ...)
+        if (!is.null(y$r.hat) && any(y$r.hat < crit)) {
+            legend(position, pch=c(21, 19),
+                legend=c(paste("R.hat >= ", round(crit, 1), sep=""),
+                paste("R.hat < ", round(crit, 1), sep="")))
+        }
         errlines(y$n.clones, cbind(y$mean - y$sd, y$mean + y$sd))
         errlines(y$n.clones, cbind(y[,"25%"], y[,"50%"]), width=w, code=3, type="b")
         errlines(y$n.clones, cbind(y[,"50%"], y[,"75%"]), width=w, code=3, type="b")

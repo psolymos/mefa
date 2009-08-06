@@ -2,7 +2,7 @@
     cat("This is dclone ", utils::packageDescription("dclone", field="Version"),
     " (", utils::packageDescription("dclone", field="Date"), ")\n", sep="")
     if (is.null(getOption("dclone.crit"))) {
-        options("dclone.crit"=c(lmax=0.05, pshw=0.05))
+        options("dclone.crit"=c(lmax=0.05, pshw=0.05, rhat=1.1))
     }
 }
 ## todo
