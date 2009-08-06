@@ -28,7 +28,11 @@ Returns the number of observations.
 \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
 \seealso{
-\code{\link{BIC}}
+\code{\link{BIC}} uses (based on) this function
+
+The \code{\link[gdata]{nobs}} is equivalent function, gut has a
+default method, which can be misleading in BIC calculations.
+It is thus advisable to write class specific methods only.
 }
 \examples{
 ## example(glm)
