@@ -11,7 +11,7 @@ Retrieves the number of observations from a fitted model object.
 }
 \usage{
 nobservations(x, ...)
-\method{nobservations}{default}(x, ...)
+\method{nobservations}{lm}(x, ...)
 }
 \arguments{
   \item{x}{

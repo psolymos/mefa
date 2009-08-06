@@ -2,11 +2,11 @@ dclone package versions
 
 Version 0.2-2, July 29, 2009
 
+    * nobservation.default: can be misleading, thus
+      removed.
     * print.mcmc.list: removes attribues before
       printing.
-    * shapiro.diag: posterior distribution is 
-      now standardized before testing.
-    * plot.cdtable: plotting method based on errlines.
+    * plot.dctable: plotting method based on errlines.
     * errlines: draws error bars to existing plot.
     * dctable generic and default method added to
       retrieve dctable attribute from an iteratively
