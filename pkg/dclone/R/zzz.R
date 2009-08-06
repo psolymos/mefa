@@ -21,3 +21,4 @@
 ## * data$priors and priors function
 ## * shapiro.diag: 5000 to decrease until memory is o.k.
 ##   with try()
+## * store MCMC results in jags.dclone???
