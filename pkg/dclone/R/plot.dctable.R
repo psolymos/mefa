@@ -16,7 +16,8 @@ function(x, type = "convergence", position="topleft", box.cex = 1, ...)
     } else {
         nam <- names(x$statistics)[type]
         y <- x$statistics[[type]]
-        w <- min(diff(y$n.clones)) * 0.25 * box.cex
+        w <- if (length(y$n.clones) > 1)
+            min(diff(y$n.clones)) * 0.25 * box.cex else box.cex
         xlim <- range(y$n.clones - w/2, y$n.clones + w/2)
         ylim <- range(y[,"2.5%"], y[,"97.5%"], y$mean - y$sd, y$mean + y$sd)
         pch <- rep(21, nrow(y))

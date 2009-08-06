@@ -3,9 +3,9 @@ function(data, params, model, n.clones, multiply=NULL, unchanged=NULL,
 update=NULL, updatefun=NULL,
 trace=1, stop.if.converged=TRUE, ...)
 {
-    if (any(n.clones < 2))
-        stop("provide values > 1 for 'n.clones'")
-    if (!is.null(update) && !is.null(updatefun))
+    if (identical(n.clones, 1))
+        stop("'n.clones = 1' gives the Bayesian answer, no need for DC")
+    if (!is.null(update) != !is.null(updatefun))
         stop("both 'update' and 'updatefun' must be provided")
     k <- n.clones[order(n.clones)]
     times <- length(k)
@@ -89,8 +89,14 @@ trace=1, stop.if.converged=TRUE, ...)
     }
     if (nch > 1 && any(dctmp[,"r.hat"] >= crit[3]))
         warning("chains convergence problem, see R.hat values")
-    dcts <- lapply(dcts, function(z) as.data.frame(z[1:i,]))
-    dctable <- list(convergence = as.data.frame(dctc[1:i,]), statistics = dcts)
+    if (times > 1) {
+        dctc <- as.data.frame(dctc[1:i,])
+        dcts <- lapply(dcts, function(z) as.data.frame(z[1:i,]))
+    } else {
+        dctc <- as.data.frame(dctc)
+        dcts <- lapply(dcts, function(z) as.data.frame(z))
+    }
+    dctable <- list(convergence = dctc, statistics = dcts)
     class(dctable) <- "dctable"
     attr(mod, "converged") <- converged
     attr(mod, "dctable") <- dctable

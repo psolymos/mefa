@@ -100,6 +100,9 @@ to store convergence diagnostics and statistics for the sampled parameters,
 because only the last MCMC object is kept. This way, there is a track of
 changes in the estimates.
 
+Identifyability issues can also be tracked by statistics in the \code{dctable}
+attribute, see Examples how to retrieve these information, and for plotting.
+
 Fixme !!! Add UPDATE details !!! 
 }
 \value{
@@ -139,35 +142,35 @@ X <- model.matrix(~x)
 linpred <- X %*% beta + alpha
 Y <- rpois(n, exp(linpred))
 ## JAGS model as a function
-jfun <- function() {
+jfun1 <- function() {
     for (i in 1:n) {
         Y[i] ~ dpois(lambda[i])
         log(lambda[i]) <- alpha[i] + inprod(X[i,], betas[i,])
-        for (j in 1:p) {
+        for (j in 1:np) {
             betas[i,j] <- beta[j]
         }
         alpha[i] ~ dnorm(0, tau)
     }
-    for (j in 1:p) {
+    for (j in 1:np) {
         beta[j] ~ dnorm(0, 0.001)
     }
     tau ~ dgamma(1.0E-3, 1.0E-3)
     sigma <- 1.0/sqrt(tau)
 }
 ## data
-jdata <- list(n = n, Y = Y, X = X, p = NCOL(X))
+jdata <- list(n = n, Y = Y, X = X, np = NCOL(X))
 ## iteartive fitting
-jmod <- jags.dclone(jdata, c("beta", "sigma"), jfun, 
-    n.clones = 2:4, multiply = "n", unchanged = "p")
+jmod <- jags.dclone(jdata, c("beta", "sigma"), jfun1, 
+    n.clones = 2:4, multiply = "n", unchanged = "np")
 ## summary with DC SE and R hat
 ## it is also noted if convergence is reached
 summary(jmod)
 ## coralheads example
 data(coralheads)
 chx <- model.matrix(~log(A), coralheads)
-chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), p = 2)
-chm <- jags.dclone(chd, c("beta", "sigma"), jfun, 
-    n.clones = 2:8, multiply = "n", unchanged = "p")
+chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), np = 2)
+chm <- jags.dclone(chd, c("beta", "sigma"), jfun1, 
+    n.clones = 2:4, multiply = "n", unchanged = "np")
 dc <- dctable(chm)
 opar <- par(mfrow=c(2, 2))
 plot(dc)
@@ -176,6 +179,67 @@ plot(dc, 2)
 plot(dc, 3)
 par(opar)
 ## Fixme! add UPDATE example
+## Binomial GLMM and non-identifyability
+jfun2 <- function() {
+    for (i in 1:n) {
+        Y[i] ~ dbin(p[i], k)
+        logit(p[i]) <- alpha[i] + inprod(X[i,], betas[i,])
+        for (j in 1:np) {
+            betas[i,j] <- beta[j]
+        }
+        alpha[i] ~ dnorm(0, tau)
+    }
+    for (j in 1:np) {
+        beta[j] ~ dnorm(0, 0.001)
+    }
+    tau ~ dgamma(1.0E-3, 1.0E-3)
+    sigma <- 1.0/sqrt(tau)
+}
+Y2 <- rbinom(n, 1, exp(linpred) / (1 + exp(linpred)))
+jdata2 <- list(n = n, Y = Y2, X = X, np = NCOL(X), k = 1)
+## iteartive fitting
+## note: Binomial model requires only multiplication
+## and not repetition for DC
+jmod2 <- jags.dclone(jdata2, c("beta", "sigma"), jfun2, 
+    n.clones = 2:4, multiply = c("Y", "k"), unchanged = c("n", "X", "np"))
+## inspect unscaled SD values for beta[1] and sigma
+## if SD is not decreasing with the number of clones
+## then parameters are likely non-identifyable
+dc2 <- dctable(jmod2)
+dc2$convergence
+lapply(dc2$statistics, function(z) z$sd)
+## How to use estimates to make priors more informative?
+jfun1v <- function() {
+    for (i in 1:n) {
+        Y[i] ~ dpois(lambda[i])
+        log(lambda[i]) <- alpha[i] + inprod(X[i,], betas[i,])
+        for (j in 1:np) {
+            betas[i,j] <- beta[j]
+        }
+        alpha[i] ~ dnorm(0, tau)
+    }
+    for (j in 1:np) {
+        beta[j] ~ dnorm(priors[j,1], priors[j,2])
+    }
+    tau ~ dgamma(priors[(np+1),2], priors[(np+1),1])
+    sigma <- 1.0/sqrt(tau)
+}
+## function for updating, x is an MCMC object
+updfun <- function(x) {
+    if (missing(x)) {
+        par <- coef(glm(S ~ log(A), coralheads, family=poisson))
+        return(cbind(c(par, 0.001), rep(0.01, length(par) + 1)))
+    } else {
+        par <- report(x, mean)
+        return(cbind(par, rep(0.1, length(par))))
+    }
+}
+chdv <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), np = 2,
+    priors = updfun())
+chmv <- jags.dclone(chdv, c("beta", "sigma"), jfun1v, 
+    n.clones = 2:4, multiply = "n", unchanged = "np",
+    update = "priors", updatefun = updfun)
+summary(chmv)
 }
 }
 \keyword{ models }
