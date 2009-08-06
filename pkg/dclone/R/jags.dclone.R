@@ -42,7 +42,7 @@ stop.if.converged=TRUE, ...)
         }
         lmax <- lambdamax.diag(mod)
         dctc[i,2] <- lmax
-        pshw <- shapiro.diag(mod, standardize=TRUE)$p.value
+        pshw <- shapiro.diag(mod)$p.value
         dctc[i,3] <- pshw
         if (trace > 1) {
             tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])

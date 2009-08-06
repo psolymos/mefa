@@ -8,16 +8,11 @@ Shapiro-Wilk Multivariate Normality Test for MCMC Objects
 Calculates Shapiro-Wilk Multivariate Normality Test for MCMC Objects.
 }
 \usage{
-shapiro.diag(x, standardize = TRUE)
+shapiro.diag(x)
 }
 \arguments{
   \item{x}{
   An object of class \code{mcmc} or \code{mcmc.list}.
-}
-  \item{standardize}{
-  Logical. If \code{TRUE} (recommended), the posterior distribution is
-  standardized, thus enabling a meaningful Shapiro-Wilk test even for
-  large number of clones, when the distribution becomes degenerate.
 }
 }
 \details{
@@ -34,10 +29,6 @@ is default set as 0.1 (see \code{getOption("dclone.crit")}).
 This test is also useful for testing identifyability problems.
 If parameters are non-identifyable, multivariate normality
 will not occur even for high number of clones.
-
-Standardization means that the inverse square root of the posterior
-variance-covariance matrix is multplied by the centered (transposed)
-posterior MCMC results.
 
 The underlying function (\code{\link[mvnormtest]{mshapiro.test}},
 and \code{\link{shapiro.test}})
