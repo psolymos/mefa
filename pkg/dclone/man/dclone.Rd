@@ -4,6 +4,7 @@
 \alias{dclone}
 \alias{dclone.default}
 \alias{dclone.list}
+\alias{dclone.ts}
 \title{
 Clone R Objects
 }
@@ -14,6 +15,7 @@ leaving the original structure of the object intact.
 \usage{
 dclone(x, n.clones=1, ...)
 \method{dclone}{default}(x, n.clones = 1, attrib=TRUE, ...)
+\method{dclone}{ts}(x, n.clones = 1, attrib=TRUE, ...)
 \method{dclone}{list}(x, n.clones = 1, 
 multiply = NULL, unchanged = NULL, attrib=TRUE, ...)
 }
@@ -70,5 +72,8 @@ dclone(dfr, 2)
 dclone(l, 2)
 dclone(l, 2, attrib = FALSE)
 dclone(l, 2, multiply = "n", unchanged = "p")
+## time series
+z <- as.ts(rnorm(10))
+dclone(z, 2)
 }
 \keyword{ manip }
