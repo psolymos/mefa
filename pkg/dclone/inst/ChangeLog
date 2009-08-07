@@ -4,6 +4,7 @@ Version 0.2-3, August 6, 2009
 
 Version 0.2-2, July 29, 2009
 
+    * dclone.ts: for time series.
     * jags.dclone: update and updatefun added,
       with documantation (still experimental).
     * nobservation.default: can be misleading, thus
