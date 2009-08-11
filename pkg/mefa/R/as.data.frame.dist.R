@@ -1,7 +1,7 @@
 as.data.frame.dist <-
 function (x, row.names = NULL, optional = FALSE, dim.names = FALSE, ...)
 {
-    if (optional)
+    if (!missing(optional))
         .NotYetUsed("optional", error = FALSE)
     id <- as.matrix(x)
     id[lower.tri(id)] <- 1
