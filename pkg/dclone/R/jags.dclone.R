@@ -1,6 +1,6 @@
 jags.dclone <- 
 function(data, params, model, n.clones, multiply=NULL, unchanged=NULL, 
-update=NULL, updatefun=NULL,
+update=NULL, updatefun=NULL, initsfun=NULL,
 trace=1, stop.if.converged=TRUE, ...)
 {
     if (identical(n.clones, 1))
@@ -11,10 +11,6 @@ trace=1, stop.if.converged=TRUE, ...)
     times <- length(k)
     crit <- getOption("dclone.crit")
     converged <- FALSE
-    ## dctable template
-    dctc <- matrix(0, times, 3)
-    colnames(dctc) <- c("n.clones", "lambda.max", "p.shapiro")
-    dctc[,1] <- k
     ## internal function to calculate statistics
     dctsfun <- function(x) {
         y <- report(x, array)
@@ -36,15 +32,31 @@ trace=1, stop.if.converged=TRUE, ...)
         unchanged <- c(unchanged, update)
         updatefun <- match.fun(updatefun)
     }
+    ## evaluate inits
+    if (!is.null(initsfun))
+        initsfun <- match.fun(initsfun)
+    ## iteration starts here
     for (i in 1:times) {
         if (trace)
             cat("\nFitting model with", k[i], "clones\n\n")
         jdat <- dclone(data, k[i], multiply=multiply, unchanged=unchanged)
-        mod <- jags.fit(jdat, params, model, ...)
+        mod <- if (is.null(initsfun)) {
+            jags.fit(jdat, params, model, ...)
+        } else {
+            jags.fit(jdat, params, model, inits = inits, ...)
+        }
         ## dctable evaluation
         if (i == 1) {
             vn <- varnames(mod)
             nch <- nchain(mod)
+            ## dctable template
+            dctc <- matrix(0, times, 3 + as.numeric(nch > 1))
+            colnames(dctc) <- if (nch == 1) {
+                c("n.clones", "lambda.max", "p.shapiro")
+            } else {
+                c("n.clones", "lambda.max", "p.shapiro", "multivariate.r.hat")
+            }
+            dctc[,1] <- k
             dcts <- list()
             quantiles <- c(0.025, 0.25, 0.5, 0.75, 0.975)
             extracol <- if (nch > 1)
@@ -59,27 +71,21 @@ trace=1, stop.if.converged=TRUE, ...)
         } else {
             if (!is.null(update))
                 jdat[[update]] <- updatefun(mod)
+            if (!is.null(initsfun))
+                inits <- initsfun(mod)
         }
         dctmp <- dctsfun(mod)
         for (j in 1:length(vn)) {
             dcts[[j]][i,-1] <- dctmp[j,]
         }
-        lmax <- lambdamax.diag(mod)
-        dctc[i,2] <- lmax
-        pshw <- shapiro.diag(mod)$p.value
-        dctc[i,3] <- pshw
+        dctc[i,2] <- lambdamax.diag(mod)
+        dctc[i,3] <- shapiro.diag(mod)$p.value
+        if (nch > 1)
+            dctc[i,4] <- gelman.diag(mod)$mpsrf
 
-        if (trace > 1) {
-#            tmp1 <- paste(ifelse(lmax < crit[1], "<", ">="), "critical", crit[1])
-#            tmp2 <- paste(ifelse(pshw > crit[2], ">", "<="), "critical", crit[2])
-#            cat("\nlambda.max", format(lmax), tmp1)
-#            cat("\nShapiro-Wilk p-value =", format(pshw), tmp2, "\n")
-            cat("\nlambda.max", format(lmax))
-            cat("\nShapiro-Wilk p-value =", format(pshw), "\n")
-            if (nch > 1)
-                cat("R.hat =", format(dctmp[,"r.hat"]), "\n")
-        }
-        if (lmax < crit[1] && pshw > crit[2]) {
+        if (trace > 1)
+            print(dctc[i,-1])
+        if (dctc[i,2] < crit[1] && dctc[i,3] > crit[2]) {
             converged <- TRUE
             if (trace)
                 cat("\nConvergence reached with", k[i], "clones\n\n")

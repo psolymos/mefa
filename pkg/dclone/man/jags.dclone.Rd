@@ -130,6 +130,7 @@ for critical values see \code{getOption("dclone.crit")}.
 }
 \examples{
 \dontrun{
+## THIS MAY TAKE LONG TIME
 ## simulation
 ## Poisson GLMM
 set.seed(1234)
@@ -159,11 +160,15 @@ jfun1 <- function() {
 }
 ## data
 jdata <- list(n = n, Y = Y, X = X, np = NCOL(X))
-## number of clones to be used
-ncl <- c(1, 5, 10)
+## number of clones to be used, etc.
+ncl <- c(1, seq(10, 100, len=10))
+n.adapt <- 2000
+n.update <- 3000
+n.iter <- 5000
 ## iteartive fitting
 jmod <- jags.dclone(jdata, c("beta", "sigma"), jfun1, 
-    n.clones = ncl, multiply = "n", unchanged = "np")
+    n.clones = ncl, multiply = "n", unchanged = "np",
+    n.adapt = n.adapt, n.update = n.update, n.iter = n.iter)
 ## summary with DC SE and R hat
 ## it is also noted if convergence is reached
 summary(jmod)
@@ -172,7 +177,8 @@ data(coralheads)
 chx <- model.matrix(~log(A), coralheads)
 chd <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), np = 2)
 chm <- jags.dclone(chd, c("beta", "sigma"), jfun1, 
-    n.clones = ncl, multiply = "n", unchanged = "np")
+    n.clones = ncl, multiply = "n", unchanged = "np",
+    n.adapt = n.adapt, n.update = n.update, n.iter = n.iter)
 dc <- dctable(chm)
 opar <- par(mfrow=c(2, 2))
 plot(dc)
@@ -203,7 +209,8 @@ jdata2 <- list(n = n, Y = Y2, X = X, np = NCOL(X), k = 1)
 ## note: Binomial model requires only multiplication
 ## and not repetition for DC
 jmod2 <- jags.dclone(jdata2, c("beta", "sigma"), jfun2, 
-    n.clones = ncl, multiply = c("Y", "k"), unchanged = c("n", "X", "np"))
+    n.clones = ncl, multiply = c("Y", "k"), unchanged = c("n", "X", "np"),
+    n.adapt = n.adapt, n.update = n.update, n.iter = n.iter)
 ## inspect unscaled SD values for beta[1] and sigma
 ## if SD is not decreasing with the number of clones
 ## then parameters are likely non-identifyable
@@ -240,7 +247,8 @@ chdv <- list(Y = coralheads$S, X = chx, n = nrow(coralheads), np = 2,
     priors = updfun())
 chmv <- jags.dclone(chdv, c("beta", "sigma"), jfun1v, 
     n.clones = ncl, multiply = "n", unchanged = "np",
-    update = "priors", updatefun = updfun)
+    update = "priors", updatefun = updfun,
+    n.adapt = n.adapt, n.update = n.update, n.iter = n.iter)
 summary(chmv)
 }
 }

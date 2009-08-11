@@ -9,9 +9,9 @@ function(object, quantiles = c(0.025, 0.25, 0.5, 0.75, 0.975), ...)
     nch <- nchain(object)
     n <- niter(object)
     allch <- report(object, array)
-    SE <- sqrt(k) * apply(allch, 2, sd) / sqrt(nch * n)
+    SD <- sqrt(k) * apply(allch, 2, sd)
     out$statistics <- cbind(out$statistics[,1:2],
-        "DC SE"=SE, out$statistics[,3:4])
+        "DC SD"=SD, out$statistics[,3:4])
     if (nch > 1) {
         rhat <- gelman.diag(object)$psrf[,1]
         out$statistics <- cbind(out$statistics, "R hat" = rhat)
