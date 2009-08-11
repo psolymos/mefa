@@ -1,6 +1,8 @@
 errlines.default <-
 function(x, y, type = "l", code = 0, width = 0, ...)
 {
+    if (length(y == 2))
+        y <- matrix(y, 1, 2)
     if (NCOL(y) != 2)
         stop("'y' must have 2 columns")
     type <- match.arg(substr(type, 1, 1), c("l", "b"))
