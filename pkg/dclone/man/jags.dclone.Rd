@@ -15,7 +15,7 @@ is reached.
 \usage{
 jags.dclone(data, params, model, n.clones, 
 multiply = NULL, unchanged = NULL, 
-update = NULL, updatefun = NULL,
+update = NULL, updatefun = NULL, initsfun=NULL,
 trace = 1, stop.if.converged = TRUE, ...)
 dctable(x, ...)
 \method{dctable}{default}(x, ...)
@@ -52,8 +52,13 @@ See Details and Examples.
   \item{updatefun}{
 A function to use for updating \code{data[[update]]}. See Details and Examples.
 }
+  \item{initsfun}{
+A function to use for generating initial values, \code{inits} are updated by the object
+returned by this function from the second iteration. See Examples.
+}
   \item{trace}{
   If positive, information is printed during the running of the iterations.
+  Higher number indicate more information.
 }
   \item{stop.if.converged}{
   Logical, if \code{FALSE} the iteration goes through the values in \code{n.clones}
@@ -250,6 +255,7 @@ chmv <- jags.dclone(chdv, c("beta", "sigma"), jfun1v,
     update = "priors", updatefun = updfun,
     n.adapt = n.adapt, n.update = n.update, n.iter = n.iter)
 summary(chmv)
+## FIXME: initsfun example
 }
 }
 \keyword{ models }
