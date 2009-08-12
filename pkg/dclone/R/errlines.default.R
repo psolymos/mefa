@@ -1,7 +1,7 @@
 errlines.default <-
 function(x, y, type = "l", code = 0, width = 0, ...)
 {
-    if (length(y == 2))
+    if (NCOL(y) == 1 && length(y == 2) && length(x) == 1)
         y <- matrix(y, 1, 2)
     if (NCOL(y) != 2)
         stop("'y' must have 2 columns")
