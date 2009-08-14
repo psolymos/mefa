@@ -5,11 +5,12 @@
 \alias{dclone.default}
 \alias{dclone.list}
 \alias{dclone.ts}
+\alias{dcsd}
 \title{
 Clone R Objects
 }
 \description{
-It makes clones of R objects, that is values in the object are repeated \eqn{n} times, 
+Makes clones of R objects, that is values in the object are repeated \eqn{n} times, 
 leaving the original structure of the object intact.
 }
 \usage{
@@ -18,6 +19,7 @@ dclone(x, n.clones=1, ...)
 \method{dclone}{ts}(x, n.clones = 1, attrib=TRUE, ...)
 \method{dclone}{list}(x, n.clones = 1, 
 multiply = NULL, unchanged = NULL, attrib=TRUE, ...)
+dcsd(x, na.rm = FALSE)
 }
 \arguments{
   \item{x}{
@@ -36,6 +38,9 @@ Numeric or character index for list element(s) to be left unchanged.
   \item{attrib}{
 Logical, \code{TRUE} if attributes are to be attached.
 }
+  \item{na.rm}{
+Logical, if \code{NA}s should be removed.
+}
   \item{\dots}{
 Other arguments passed to function.
 }
@@ -45,6 +50,9 @@ An object with class attributes \code{"dclone"} plus the original one(s).
 Dimensions of the original object might change according to \code{n.clones}.
 The function tries to take care of names, sometimes replacing those with the
 combination of the original names and an integer for number of clones.
+
+\code{dcsd} returns the data cloning standard errors of a posterior MCMC chain
+calculated as standard deviation times the square root of the number of clones.
 }
 \references{
 Lele, S.R., B. Dennis and F. Lutscher, 2007.

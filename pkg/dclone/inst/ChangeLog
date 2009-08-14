@@ -2,6 +2,9 @@ dclone package versions
 
 Version 0.2-3, August 6, 2009
 
+    * jags.dclone: initsfun argument added.
+    * dcsd: for DC SE calculations.
+
 Version 0.2-2, July 29, 2009
 
     * dclone.ts: for time series.
