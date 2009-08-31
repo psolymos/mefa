@@ -1,8 +1,7 @@
 \encoding{UTF-8}
-\name{dist2vec}
+\name{as.data.frame.dist}
 \Rdversion{1.1}
 \alias{vec2dist}
-\alias{dist2vec}
 \alias{is.dist}
 \alias{as.data.frame.dist}
 \title{
@@ -14,7 +13,6 @@ Converts a 'dist' object into vector and vice versa.
 \usage{
 vec2dist(x, size, labels = NULL, diag = FALSE, upper = FALSE, 
 call = FALSE, method = NULL)
-dist2vec(x)
 is.dist(x)
 \method{as.data.frame}{dist}(x, row.names = NULL, 
 optional = FALSE, dim.names = FALSE, ...)
@@ -46,8 +44,6 @@ Other arguments passed to functions.
 \value{
 \code{vec2dist} returns an object of class \code{dist}.
 
-\code{dist2vec} returns a vector.
-
 \code{is.dist} returns a logical statement about the class of the object.
 
 \code{as.data.frame.dist} returns a data frame with comuns \code{row} for row id's, \code{col} for column
@@ -72,7 +68,6 @@ x <- dist(1:5)
 attr(x, "Labels") <- LETTERS[1:5]
 x
 is.dist(x)
-dist2vec(x)
 as.data.frame(x)
 as.data.frame(x, dim.names = TRUE)
 }

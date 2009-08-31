@@ -11,7 +11,7 @@ function (x, row.names = NULL, optional = FALSE, dim.names = FALSE, ...)
     cm <- col(id)
     rm <- array(rm)[array(id) == 1]
     cm <- array(cm)[array(id) == 1]
-    out <- data.frame(row=rm, col=cm, dist=dist2vec(x))
+    out <- data.frame(row=rm, col=cm, dist=as.vector(x))
     if (!is.null(row.names))
         rownames(out) <- row.names
     if (dim.names) {
