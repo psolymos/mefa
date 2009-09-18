@@ -1,6 +1,11 @@
 MEFA VERSIONS
 
-Version 3.1-1 -- July 10, 2009 (opened - r407)
+Version 3.1-2 -- September 17, 2009 (opened - r407)
+
+    *
+
+
+Version 3.1-1 -- July 10, 2009 (closed - r476)
 
     * dist2vec: deleted (use as.vector instead)
     * fill.na: accepts 1 dimensional vectors.
