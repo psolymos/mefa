@@ -101,7 +101,7 @@ Further methods are discussed on seperate help pages: see \code{\link{[.mefa}} a
 
 See \code{\link{as.mefa}} for coercion methods.
 
-The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{reshape}} in the \strong{reshape} package of Hadley Wickham, by the \code{\link[simba]{mama}} function in the \strong{simba} package by  Gerald Jurasinski, and by the function \code{\link[labdsv]{matrify}} in the \strong{labdsv} package of David W. Roberts. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} and \code{\link{xtabs}} functions), or linking data tables for sample and taxa with the count data.
+The simple 2 dimensional wide arrangement of long formatted data can be done by the function \code{\link[reshape]{cast}} in the \strong{reshape} package of Hadley Wickham, by the \code{\link[simba]{mama}} function in the \strong{simba} package by  Gerald Jurasinski, and by the function \code{\link[labdsv]{matrify}} in the \strong{labdsv} package of David W. Roberts. These are, however, not useful either for 3 dimensional (segmented) crosstabulation (see \code{\link{table}} and \code{\link{xtabs}} functions), or linking data tables for sample and taxa with the count data.
 }
 \examples{
 data(dol.count, dol.samp, dol.taxa)
