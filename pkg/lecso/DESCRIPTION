@@ -5,7 +5,9 @@ Version: 0.2-4
 Date: 2009-07-10
 Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
-Description: The package collects functions that 
+Description: 'lecso' is a simple Hungarian food
+    similar to salsa, or ratatuille.
+    The package collects functions that 
     may migrate into other projects by time.
     All functions here are temporary.
 License: GPL-2
