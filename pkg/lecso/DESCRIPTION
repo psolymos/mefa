@@ -1,0 +1,14 @@
+Package: lecso
+Type: Package
+Title: Miscellaneous Collection of Functions
+Version: 0.2-4
+Date: 2009-07-10
+Author: Peter Solymos
+Maintainer: Peter Solymos <solymos@ualberta.ca>
+Description: The package collects functions that 
+    may migrate into other projects by time.
+    All functions here are temporary.
+License: GPL-2
+URL: https://r-forge.r-project.org/projects/mefa/
+LazyLoad: yes
+LazyData: true
