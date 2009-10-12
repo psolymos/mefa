@@ -2,7 +2,10 @@ MEFA VERSIONS
 
 Version 3.1-2 -- September 22, 2009 (opened - r478)
 
-    *
+    * mefa got namespace.
+    * reshape function in reshape is no longer
+      available, citations now pointing to cast
+      instead (in manual and vignette).
 
 
 Version 3.1-1 -- July 10, 2009 (closed - r477)
