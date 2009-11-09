@@ -10,7 +10,7 @@
     invisible(NULL)
 }
 
-.onUnload <- function(){
+.onUnload <- function(libpath){
     invisible(NULL)
 }
 
