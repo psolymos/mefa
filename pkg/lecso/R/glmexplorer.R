@@ -26,15 +26,15 @@ function(formula, data, family=poisson(), select=FALSE, ...)
             }
         }
         rval <- lapply(glmfit, function(z) try(summary(z)$coef))
-        for (i in 1:length(rval))
-            attr(rval[[i]], "converged") <- glmfit[[i]]$converged
     } else {
         glmfit <- lapply(1:J, function(z) try(glm.fit(X, Y[, z], family=family)))
         rval <- lapply(glmfit, function(z) {
             class(z) <- "glm"
             try(summary(z)$coef)})
-        for (i in 1:length(rval))
-            attr(rval[[i]], "converged") <- glmfit[[i]]$converged
+    }
+    for (i in 1:length(rval)) {
+        attr(rval[[i]], "converged") <- glmfit[[i]]$converged
+        attr(rval[[i]], "logLik") <- -glmfit[[i]]$deviance/2
     }
     if (!is.null(colnames(Y)))
         names(rval) <- colnames(Y)
