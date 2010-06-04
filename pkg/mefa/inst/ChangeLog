@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.1-5 -- June 4, 2010
+
+    * as.mefa.default now return call correctly
+
 Version 3.1-4 -- November 10, 2009 (closed - r486)
 
     * .onUnload problem fixed (reported by B D Ripley)

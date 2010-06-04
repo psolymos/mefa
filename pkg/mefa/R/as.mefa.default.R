@@ -10,7 +10,10 @@ function(x, samp, taxa, ...)
             taxa <- x$taxa
         y <- mefa(ss, samp, taxa, ...)
         y$call <- match.call()
-        return(y) 
-        } else return(mefa(x, ...))
+        } else {
+            y <- mefa(x, ...)
+            y$call <- match.call()
+        }
+    return(y)
 }
 
