@@ -10,13 +10,13 @@
 \description{
 Various methods for plotting objects of class 'mefa'.}
 \usage{
-\method{plot}{mefa}(x, stat = 1:4, type = c("bar", "rank"),
+\method{plot}{mefa}(x, stat = 1:4, type = c("hist", "rank"),
 trafo = c("none", "log", "ratio"), show = TRUE, ylab, xlab, \dots)
 \method{boxplot}{mefa}(x, stat = 1:4, all = TRUE, show = TRUE, ylab, xlab, \dots)
 \method{image}{mefa}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
 probs = seq(0, 1, 0.05), ordering = TRUE, reverse = TRUE, names = FALSE,
 show = TRUE, ylab, xlab, \dots)
-\method{plot}{stcs}(x, stat = 1:4, type = c("bar", "rank"),
+\method{plot}{stcs}(x, stat = 1:4, type = c("hist", "rank"),
 trafo = c("none", "log", "ratio"), show = TRUE, ylab, xlab, \dots)
 \method{boxplot}{stcs}(x, stat = 1:4, all = TRUE, show = TRUE, ylab, xlab, \dots)
 \method{image}{stcs}(x, segm=NULL, trafo=c("none", "log", "bins", "prab"), 
@@ -26,7 +26,7 @@ show = TRUE, ylab, xlab, \dots)
 \arguments{
   \item{x}{an object of class 'mefa' or 'stcs'.}
   \item{stat}{numeric, to determine which characteristic to plot. \code{1}: number of species in samples (default), \code{2}: total number of indiwiduals in samples, \code{3}: number of occurrences per taxa, \code{4} number of individuals per taxa.}
-  \item{type}{character, \code{"bar"} produces barchart (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
+  \item{type}{character, \code{"hist"} produces barchart for discrete values and histogram for continuous values (default), \code{"rank"} ranked curves based on the characteristic defined by \code{stat}.}
   \item{trafo}{character, transformation of the plotted variable. \code{"none"}: no transformation (default), \code{"log"}: logarithmic transformation (base 10), \code{"ratio"}: normalizes values by the maximum and rescales to the [0, 1] interval (useful for plotting multiple rank abundance curves), \code{"bins"}: recodes the values according to quantiles based on \code{probs}, \code{"prab"}: presence absence transformation of count data.}
   \item{all}{logical, if \code{TRUE} values of \code{stat} is plotted for all segments too on the boxplot.}
   \item{ylab, xlab}{character to overwrite default label for the y and x axes. If \code{NULL}, than default labels are returned on the plot.}
@@ -39,7 +39,7 @@ show = TRUE, ylab, xlab, \dots)
   \item{\dots}{further arguments to pass to plotting functions. See especially \code{zlim} and \code{col} arguments of the generic function \code{\link{image}}, and arguments for the generic function \code{\link{boxplot}}.}
 }
 \details{
-\code{plot} returns barchart, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
+\code{plot} returns barchart/histogram, or ranked curve of summary statistics (number of species, individuals in samples, number of occurrences or abundence of taxa) based on the \code{x$xtab} matrix of the 'mefa' objects. These walues are basically returned by \code{\link{summary.mefa}}.
 
 \code{boxplot} returns box-and-whiskers plots for the summary statistics based on matrices for each segments in \code{x$segm}.
 

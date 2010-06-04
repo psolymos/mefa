@@ -1,5 +1,5 @@
 `plot.mefa` <-
-function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
+function(x, stat=1:4, type=c("hist", "rank"), trafo=c("none", "log",
 "ratio"), show=TRUE, ylab, xlab, ...)
 {
     if (missing(ylab))
@@ -11,8 +11,11 @@ function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
    if (!length(stat) == 1) stat <- 1
    if (!length(type) == 1) type <- type[1]
    if (!length(trafo) == 1) trafo <- trafo[1]
-   type <- match.arg(type, c("bar", "rank"))
    trafo <- match.arg(trafo, c("none", "log", "ratio"))
+   ## maintaining back compatibility
+   type <- match.arg(type, c("hist", "rank", "bar"))
+   if (type == "hist")
+       type <- "bar"
 
    if (!is.null(ylab))
        ylab2 <- ylab
@@ -56,9 +59,14 @@ function(x, stat=1:4, type=c("bar", "rank"), trafo=c("none", "log",
 
 
        if (type=="bar") {
-           yvar <- table(yvar)
-           if (show)
-                plot(yvar, xlab=xlab2, ylab=ylab2, ...)}
+           if (all(as.integer(yvar) == as.numeric(yvar))) {
+               yvar <- table(yvar)
+               if (show)
+                    plot(yvar, xlab=xlab2, ylab=ylab2, ...)
+               } else {
+                    hist(yvar, xlab=xlab2, ylab=ylab2, ...)
+               }
+       }
        if (type=="rank") {
            yvar <- yvar[order(yvar, decreasing=TRUE)]
            if (show)

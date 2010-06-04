@@ -3,6 +3,8 @@ MEFA VERSIONS
 Version 3.1-5 -- June 4, 2010
 
     * as.mefa.default now return call correctly
+    * plot returns histogram if data is continuous
+      and barplot if data is discrete
 
 Version 3.1-4 -- November 10, 2009 (closed - r486)
 
