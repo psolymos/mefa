@@ -2,6 +2,7 @@ MEFA VERSIONS
 
 Version 3.1-5 -- June 4, 2010
 
+    * as.data.frame.dist renamed to stack.dist
     * as.mefa.default now return call correctly
     * plot returns histogram if data is continuous
       and barplot if data is discrete

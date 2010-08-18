@@ -1,8 +1,6 @@
-as.data.frame.dist <-
-function (x, row.names = NULL, optional = FALSE, dim.names = FALSE, ...)
+stack.dist <-
+function (x, dim.names = FALSE, ...)
 {
-    if (!missing(optional))
-        .NotYetUsed("optional", error = FALSE)
     id <- as.matrix(x)
     id[lower.tri(id)] <- 1
     id[upper.tri(id)] <- 0
@@ -11,9 +9,10 @@ function (x, row.names = NULL, optional = FALSE, dim.names = FALSE, ...)
     cm <- col(id)
     rm <- array(rm)[array(id) == 1]
     cm <- array(cm)[array(id) == 1]
-    out <- data.frame(row=rm, col=cm, dist=as.vector(x))
-    if (!is.null(row.names))
-        rownames(out) <- row.names
+    d <- as.vector(x)
+    attr(d, "call") <- attr(x, "call")
+    attr(d, "method") <- attr(x, "method")
+    out <- data.frame(row=rm, col=cm, dist=d)
     if (dim.names) {
         out$row <- as.factor(out$row)
         out$col <- as.factor(out$col)

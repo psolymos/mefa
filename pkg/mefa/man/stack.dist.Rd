@@ -3,7 +3,7 @@
 \Rdversion{1.1}
 \alias{vec2dist}
 \alias{is.dist}
-\alias{as.data.frame.dist}
+\alias{stack.dist}
 \title{
 Manipulation Tools for Class 'dist'
 }
@@ -14,8 +14,7 @@ Converts a 'dist' object into vector and vice versa.
 vec2dist(x, size, labels = NULL, diag = FALSE, upper = FALSE, 
 call = FALSE, method = NULL)
 is.dist(x)
-\method{as.data.frame}{dist}(x, row.names = NULL, 
-optional = FALSE, dim.names = FALSE, ...)
+\method{stack}{dist}(x, dim.names = FALSE, ...)
 }
 \arguments{
   \item{x}{
@@ -26,12 +25,6 @@ Integer, the number of observations in the dataset (see \code{\link{dist}}).
 }
   \item{labels, diag, upper, call, method}{
 Logical, setting attributes of the distance object (see \code{\link{dist}}).
-}
-  \item{row.names}{
-Row names for the resulting data frame.
-}
-  \item{optional}{
-Argument not yet used.
 }
   \item{dim.names}{
 Logical, if \code{TRUE}, names stored in the \code{Labels} attribute of the 
@@ -46,7 +39,7 @@ Other arguments passed to functions.
 
 \code{is.dist} returns a logical statement about the class of the object.
 
-\code{as.data.frame.dist} returns a data frame with comuns \code{row} for row id's, \code{col} for column
+\code{stack.dist} returns a data frame with comuns \code{row} for row id's, \code{col} for column
 id's and \code{dist} for the distance values.
 }
 \references{
@@ -68,8 +61,8 @@ x <- dist(1:5)
 attr(x, "Labels") <- LETTERS[1:5]
 x
 is.dist(x)
-as.data.frame(x)
-as.data.frame(x, dim.names = TRUE)
+stack(x)
+stack(x, dim.names = TRUE)
 }
 \keyword{ manip }
 

@@ -1,3 +1,4 @@
+importFrom(utils, stack)
 importFrom(stats, aggregate)
 importFrom(graphics, boxplot, image)
 
@@ -35,7 +36,6 @@ export(as.mefa,
 S3method("[", mefa)
 S3method(aggregate, mefa)
 S3method(as.array, mefa)
-S3method(as.data.frame, dist)
 S3method(as.data.frame, mefa)
 S3method(as.data.frame, stcs)
 S3method(as.list, mefa)
@@ -59,4 +59,5 @@ S3method(rep, data.frame)
 S3method(report, mefa)
 S3method(summary, mefa)
 S3method(summary, stcs)
+S3method(stack, dist)
 
