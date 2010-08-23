@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.1-6 -- August 23, 2010
+    * New extractor methods added for mefa objects:
+      xtab, samp, taxa, segm
+
 Version 3.1-5 -- June 4, 2010
 
     * as.data.frame.dist renamed to stack.dist

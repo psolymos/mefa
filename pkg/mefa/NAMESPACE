@@ -31,7 +31,11 @@ export(as.mefa,
     rdrop,
     report,
     stcs,
-    vec2dist)
+    vec2dist,
+    xtab,
+    samp,
+    taxa,
+    segm)
 
 S3method("[", mefa)
 S3method(aggregate, mefa)
@@ -60,4 +64,8 @@ S3method(report, mefa)
 S3method(summary, mefa)
 S3method(summary, stcs)
 S3method(stack, dist)
+S3method(xtab, mefa)
+S3method(samp, mefa)
+S3method(taxa, mefa)
+S3method(segm, mefa)
 
