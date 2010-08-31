@@ -7,7 +7,7 @@ Image Plot of a 'dist' Object
 Image plot of a 'dist' object.
 }
 \usage{
-image.dist(x, grad, labels = FALSE, ...)
+\method{image}{dist}(x, grad, lab = TRUE, ...)
 }
 \arguments{
   \item{x}{
@@ -15,6 +15,9 @@ An object of class 'dist', not a similarity matrix.
 }
   \item{grad}{
 Gradient to use for ordering the observations in \code{x}.
+}
+  \item{lab}{
+Labels to use at the left axis, can be a character vector.
 }
   \item{\dots}{
 Other graphical parameters passed to \code{\link{image}}.

@@ -2,7 +2,6 @@ MEFA VERSIONS
 
 Version 3.1-6 -- August 23, 2010
     * image plot for 'dist' objects
-      (still needs tweaking: labels, similarity check)
     * aoplot method added for abundance-occupancy
       plots as in Digby and Kempton 1987 p. 40.
     * New extractor methods added for mefa objects:

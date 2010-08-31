@@ -2,6 +2,10 @@
 \name{aggregate.mefa}
 \alias{aggregate.mefa}
 \alias{[.mefa}
+\alias{xtab}
+\alias{samp}
+\alias{taxa}
+\alias{segm}
 \title{Extract and Aggregate Objects of Class 'mefa'}
 \description{
 These methods are useful when extracting or aggregating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa are extracted or aggrgated at the same time.
@@ -9,6 +13,10 @@ These methods are useful when extracting or aggregating 'mefa' objects. The coun
 \usage{
 \method{aggregate}{mefa}(x, by.samp = NULL, by.taxa = NULL, \ldots)
 \method{[}{mefa}(x, i = 1:dim(x)[1], j = 1:dim(x)[2], k = 1:dim(x)[3], drop = FALSE)
+xtab(x, ...)
+samp(x, ...)
+taxa(x, ...)
+segm(x, ...)
 }
 \arguments{
   \item{x}{an object of class 'mefa'.}
@@ -26,6 +34,8 @@ The ordering of dimensions follow the ordering of the indices in the extraction 
 If the aggregation is done over a vector that is not part of the tables inside the 'mefa' object, it must have a class attribute to be recognised, use e.g. the \code{\link{as.factor}} function (see 'Examples').
 
 The resulting 'mefa' object must contain at least 2 samples and 2 taxa.
+
+Extractor functions \code{xtab}, \code{samp}, \code{taxa}, and \code{segm} extract the corresponding element from the 'mefa' object.
 }
 \value{
 An object of class 'mefa'.
