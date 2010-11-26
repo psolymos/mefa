@@ -1,7 +1,10 @@
 ladderplot.default <-
-function(x, col=1, pch=19, lty=1, xlim=c(0.5, ncol(x)+0.5), ylim=range(x), vertical = TRUE, ordered=FALSE, ...)
+function(x, scale=FALSE, col=1, pch=19, lty=1, xlim=c(0.5, ncol(x)+0.5), ylim=range(x), vertical = TRUE, ordered=FALSE, ...)
 {
     x <- as.data.frame(x)
+    if (scale)
+        x <- apply(x, 2, function(x) (x - min(x, na.rm = TRUE))/(max(x, 
+            na.rm = TRUE) - min(x, na.rm = TRUE)))
     if (NCOL(x) < 2)
         stop("'x' must have at least 2 columns")
     nr <- nrow(x)
@@ -11,7 +14,6 @@ function(x, col=1, pch=19, lty=1, xlim=c(0.5, ncol(x)+0.5), ylim=range(x), verti
         pch <- rep(pch, nr)[1:nr]
     if (length(lty) < nr)
         lty <- rep(lty, nr)[1:nr]
-#    y <- stack(x)
     if (ordered)
         x <- x[,order(colnames(x))]
     y <- data.frame(values=array(unlist(x)), 
