@@ -1,37 +1,3 @@
-compile.abmi <- function(file, dir) {
-    opb <- pboptions(type="tk")
-    fnam <- file
-    dir.in <- paste(dir, "/", "data", sep="")
-    dir.out <- paste(dir, "/", "out", sep="")
-    odir <- getwd()
-    setwd(dir)
-    unzip(fnam, exdir="data")
-    dir.create(dir.out)
-    ## get input file list
-    files <- list.files(dir.in)
-    files <- files[substr(files, nchar(files)-2, nchar(files)) == "csv"]
-    Names <- sapply(strsplit(files, "_"), function(z) paste(z[-length(z)], collapse="_"))
-    ##
-    check <- c(" - OK\n", " - ERROR\n")
-    ## use options
-    options("abmi"=list(dir=dir, dir.in=dir.in, dir.out=dir.out, check=check,
-        files=files, names=Names))
-
-    ## start birds
-    if("RAW_T26BreedingBirds" %in% Names)
-        ## tris needs to be changed into system files...
-        source("abmi-proto-birds.R")
-#source(system.file(package = "abmi", "abmi-proto-birds.R"))
-
-    ## how to keep track of what has been done?? high level log?
-    ## also: keep track of things on screen with flush screen?
-
-    ## what to return nere? what was looked for and what was done, etc
-    setwd(odir)
-    pboptions(opb)
-#    options("abmi"=NULL)
-    invisible(NULL)
-}
 na.abmi <- function(x) {
     if (is.numeric(x))
         return(x)
@@ -59,20 +25,23 @@ na.abmi <- function(x) {
         attr(x, "na.abmi") <- att
     x
 }
-read.abmi <- function(file, convert.na=TRUE, ...) {
-    x <- read.csv(file, ...)
+read.abmi <- function(file, convert.na=c("pre","post","none"), ...) {
+    convert.na <- match.arg(convert.na)
+    x <- if (convert.na == "pre") {
+        read.csv(file, na.strings=c("VNA","DNC","PNA","SNI"), ...)
+    } else read.csv(file, ...)
     cn <- colnames(x)
     cn <- sub("..", ".", cn, fixed = TRUE)
     id <- substr(cn, nchar(cn), nchar(cn)) != "."
     n <- ifelse(id, nchar(cn), nchar(cn)-1)
     cn <- substr(cn, 1, n)
     colnames(x) <- cn
-    if (convert.na)
+    if (convert.na == "post")
         x <- as.data.frame(lapply(x, na.abmi))
     x
 }
 ## this is slow -- avoid
-aggregate.abmi <- function(x, by, FUN, ...) {
+aggregate.abmi <- function(x, by, FUN, sort=NULL, ...) {
     if (is.numeric(x)) {
         z <- aggregate(x, list(by), FUN, ..., simplify=FALSE)
         out <- as.numeric(z[,2])
@@ -92,6 +61,8 @@ aggregate.abmi <- function(x, by, FUN, ...) {
         }
         names(out) <- v
     }
+    if (!is.null(sort))
+        out <- out[match(sort, names(out))]
     out
 }
 keepfirst <- function(x, id) {
