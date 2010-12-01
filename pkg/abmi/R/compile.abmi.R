@@ -17,25 +17,49 @@ compile.abmi <- function(file, dir) {
     options("abmi"=list(dir=dir, dir.in=dir.in, dir.out=dir.out, check=check,
         files=files, names=Names))
 
+    ## collecting results
+    res <- list()
+    rescounter <- 1
+    cat("*** ABMI Data Compilation Start ***")
+
     ## birds
     if("RAW_T26BreedingBirds" %in% Names) {
+        cat("\n\n+++ T26BreedingBirds +++\n\n")
         Path <- file.path(system.file(package = "abmi"), "scripts", "SCR_T26BreedingBirds.R")
         source(Path)
+        res[[rescounter]] <- "T26BreedingBirds"
+        rescounter <- rescounter + 1
     }
 
     ## mammals
     if("RAW_T27BWinterSnowtrackingSpecies" %in% Names) {
+        cat("\n\n+++ T27BWinterSnowtrackingSpecies +++\n\n")
         Path <- file.path(system.file(package = "abmi"), "scripts", "SCR_T27BWinterSnowtrackingSpecies.R")
         source(Path)
+        res[[rescounter]] <- "T27BWinterSnowtrackingSpecies"
+        rescounter <- rescounter + 1
     }
-
-
-    ## how to keep track of what has been done?? high level log?
-    ## also: keep track of things on screen with flush screen?
+    ## mammal disturbance
+    if("RAW_T27CWinterSnowTrackingSiteDisturbance" %in% Names) {
+        cat("\n\n+++ T27CWinterSnowTrackingSiteDisturbance +++\n\n")
+        Path <- file.path(system.file(package = "abmi"), "scripts", "SCR_T27CWinterSnowTrackingSiteDisturbance.R")
+        source(Path)
+        res[[rescounter]] <- "T27CWinterSnowTrackingSiteDisturbance"
+        rescounter <- rescounter + 1
+    }
+    ## mammal snow
+    if("RAW_T27AWinterSnowTrackingSiteSnowCover" %in% Names) {
+        cat("\n\n+++ T27AWinterSnowTrackingSiteSnowCover +++\n\n")
+        Path <- file.path(system.file(package = "abmi"), "scripts", "SCR_T27AWinterSnowTrackingSiteSnowCover.R")
+        source(Path)
+        res[[rescounter]] <- "T27AWinterSnowTrackingSiteSnowCover"
+        rescounter <- rescounter + 1
+    }
 
     ## what to return nere? what was looked for and what was done, etc
     setwd(odir)
     pboptions(opb)
     options("abmi"=NULL)
-    invisible(NULL)
+    cat("\n\n*** ABMI Data Compilation End ***\n\n")
+    data.frame(precessed=unlist(res))
 }
