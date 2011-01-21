@@ -2,6 +2,7 @@ MEFA VERSIONS
 
 Version 3.1-7 -- January 21, 2011
     * zero sample handling bug fixed in stcs
+    * coercion methods for S4 classes Xtab and Mefa added
 
 
 Version 3.1-6 -- August 23, 2010

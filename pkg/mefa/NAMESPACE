@@ -37,6 +37,8 @@ export(as.mefa,
     taxa,
     segm,
     aoplot)
+#    as.Xtab,
+#    as.Mefa)
 
 S3method("[", mefa)
 S3method(aggregate, mefa)
@@ -71,3 +73,14 @@ S3method(taxa, mefa)
 S3method(segm, mefa)
 S3method(aoplot, default)
 S3method(image, dist)
+
+S3method(as.mefa, Xtab)
+S3method(as.stcs, Xtab)
+S3method(melt, Xtab)
+S3method(as.mefa, Mefa)
+S3method(as.stcs, Mefa)
+S3method(melt, Mefa)
+S3method(as.Xtab, mefa)
+S3method(as.Xtab, stcs)
+S3method(as.Mefa, mefa)
+S3method(as.Mefa, stcs)
