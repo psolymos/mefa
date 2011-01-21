@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.1-7 -- January 21, 2011
+    * zero sample handling bug fixed in stcs
+
+
 Version 3.1-6 -- August 23, 2010
     * image plot for 'dist' objects
     * aoplot method added for abundance-occupancy

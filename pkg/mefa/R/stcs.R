@@ -36,7 +36,7 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 # expand argument
     if (expand) {
 #        tmp <- data.frame(inflate(x[, c(1:2,4)], x[, 3])) ## inflate is obsolete
-        tmp <- rep.data.frame(x[, c(1:2,4)], x[, 3])
+        tmp <- mefa:::rep.data.frame(x[, c(1:2,4)], x[, 3])
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
 # check match with predefined characters
     if (!is.null(zpart)){
@@ -55,7 +55,7 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
         if (identical(zero.pseudo[1], zero.pseudo[2]))
             zero.pseudo <- zero.pseudo[1]
 # gives warning for mismatch of zero.pseudo and count=0 cases
-        joint <- which(unique(zpart[,1]) %in% unique(x[,1]))
+        joint <- which(zpart[,1] %in% x[,1])
         if (length(joint) != 0) {
             zpart <- zpart[-joint,]
             if (nrow(zpart) == 0)
@@ -84,4 +84,3 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
     attr(x, "zero.pseudo") <- zero.pseudo
     return(x)
 }
-
