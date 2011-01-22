@@ -1,5 +1,8 @@
 \encoding{UTF-8}
 \name{as.mefa}
+\alias{as.array}
+\alias{as.Mefa}
+\alias{as.Xtab}
 \alias{as.mefa}
 \alias{as.mefa.default}
 \alias{as.mefa.array}
@@ -23,6 +26,9 @@ These functions coerce into class 'mefa' or 'stcs'; or converts 'mefa' or 'stcs'
 as.stcs(x, \dots)
 \method{as.stcs}{default}(x, \dots)
 as.mefa(x, \dots)
+as.array(x, \dots)
+as.Mefa(x, \dots)
+as.Xtab(x, \dots)
 \method{as.mefa}{default}(x, samp, taxa, \ldots)
 \method{as.mefa}{array}(x, \ldots)
 \method{as.mefa}{list}(x, \ldots)

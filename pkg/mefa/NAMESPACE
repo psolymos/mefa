@@ -36,9 +36,10 @@ export(as.mefa,
     samp,
     taxa,
     segm,
-    aoplot)
-#    as.Xtab,
-#    as.Mefa)
+    aoplot,
+    as.Xtab,
+    as.Mefa,
+    as.array)
 
 S3method("[", mefa)
 S3method(aggregate, mefa)
