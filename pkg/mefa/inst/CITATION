@@ -14,8 +14,6 @@ citEntry(entry = "Article",
   paste("Peter Solymos (2009).",
         "Processing Ecological Data in R with the mefa Package.",
         "Journal of Statistical Software 29(8), 1-28.",
-        "URL http://www.jstatsoft.org/v29/i08/.",
-        "R package version:",
-        read.dcf(file=system.file("DESCRIPTION", package="mefa"), fields="Version"))
+        "URL http://www.jstatsoft.org/v29/i08/.")
 )
 
