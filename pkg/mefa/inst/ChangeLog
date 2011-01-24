@@ -3,6 +3,14 @@ MEFA VERSIONS
 Version 3.1-7 -- January 21, 2011
     * zero sample handling bug fixed in stcs
     * coercion methods for S4 classes Xtab and Mefa added
+    * if mefa is loaded after mefa4, as.array gives a warning
+      because of Matrix overloads base as.matrix and as.array,
+      so mefa should be called before mefa4
+    * accessors work irrespective of loading sequence
+      of mefa and mefa4 (still masked out but it has no
+      effect on functionality.
+    * segm() returned NULL instead of $xtab when segm was NULL,
+      this is fixed.
 
 
 Version 3.1-6 -- August 23, 2010

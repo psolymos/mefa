@@ -38,8 +38,10 @@ export(as.mefa,
     segm,
     aoplot,
     as.Xtab,
-    as.Mefa,
-    as.array)
+    as.Mefa)
+#    as.array) ## Matrix clash
+
+#importMethodsFrom(mefa4, xtab, samp, taxa)
 
 S3method("[", mefa)
 S3method(aggregate, mefa)
@@ -68,10 +70,10 @@ S3method(report, mefa)
 S3method(summary, mefa)
 S3method(summary, stcs)
 S3method(stack, dist)
-S3method(xtab, mefa)
-S3method(samp, mefa)
-S3method(taxa, mefa)
-S3method(segm, mefa)
+S3method(xtab, default)
+S3method(samp, default)
+S3method(taxa, default)
+S3method(segm, default)
 S3method(aoplot, default)
 S3method(image, dist)
 
