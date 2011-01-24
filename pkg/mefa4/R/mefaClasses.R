@@ -3,36 +3,42 @@
 #setClass("MefaCall", representation(call = "language"))
 #setClass("Xtab", contains = c("MefaCall","dgCMatrix"))
 setClass("Xtab", contains = "dgCMatrix")
-setClassUnion("XtabMatrix", c("matrix","Xtab","dgCMatrix"))
+## class unions
+setClassUnion("MefaMatrix", c("matrix","Xtab","dgCMatrix"))
+setClassUnion("MefaDataFrame", c("data.frame","NULL"))
+## virtual classes to old mefa classes
+setClass("stcs", representation("VIRTUAL"))
+setClass("mefa", representation("VIRTUAL"))
+## main Mefa class
 setClass("Mefa", 
     representation(
 #        call = "language",
-        xtab = "XtabMatrix",
-        samp = "data.frame",
-        taxa = "data.frame",
+        xtab = "MefaMatrix",
+        samp = "MefaDataFrame",
+        taxa = "MefaDataFrame",
         join = "character"),
     prototype = list(
         xtab = as(matrix(0,0,0), "dgCMatrix"),
-        samp = data.frame(),
-        taxa = data.frame(),
+        samp = NULL,
+        taxa = NULL,
         join = "left"),
     validity = function(object) {
         if (is.null(dim(object@xtab)))
             return("'xtab' must have a 'dim' attribute")
         if (length(dim(object@xtab)) != 2)
             return("'xtab' dimension must be 2")
-        if (identical(object@samp, data.frame()) &&
-            identical(rownames(object@xtab), rownames(object@samp)))
+        if (!is.null(object@samp) &&
+            !identical(rownames(object@xtab), rownames(object@samp)))
             return("Inconsistent 'xtab' and 'samp' dimnames")
-        if (identical(object@taxa, data.frame()) &&
-            identical(colnames(object@xtab), rownames(object@taxa)))
+        if (!is.null(object@taxa) &&
+            !identical(colnames(object@xtab), rownames(object@taxa)))
             return("Inconsistent 'xtab' and 'xtab' dimnames")
         if (!(object@join %in% c("left", "inner")))
             return("'join' must be in c(\"left\", \"inner\")")
-        if (identical(object@samp, data.frame()) &&
-            identical(object@taxa, data.frame()) &&
-            object@join != "inner")
-            return("'join' must be \"inner\" if both 'samp' and 'taxa' slots are empty")
+        if (is.null(object@samp) &&
+            is.null(object@taxa) &&
+            object@join != "left")
+            return("'join' must be \"left\" if both 'samp' and 'taxa' slots are 'NULL'")
         TRUE
     })
 
@@ -85,6 +91,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     cl <- levels(cols)
     if (is.null(y)) 
         y <- rep.int(1, length(rows))
+    ## this is how it is constructed, then converted into dgCMatrix
     out <- as(new("dgTMatrix", i = as.integer(rows) - 1L, j = as.integer(cols) - 
         1L, x = as.double(y), Dim = c(length(rl), length(cl)), 
         Dimnames = list(rl, cl)), "CsparseMatrix")
@@ -124,11 +131,13 @@ join = c("left", "inner"), drop = FALSE) {
     if (missing(xtab))
         stop("'xtab' must be supplied")
     if (missing(samp)) {
-        samp <- data.frame()
+#        samp <- data.frame()
+        samp <- NULL
         sid <- rownames(xtab)
     } else sid <- rownames(samp)
     if (missing(taxa)) {
-        taxa <- data.frame()
+#        taxa <- data.frame()
+        taxa <- NULL
         tid <- colnames(xtab)
     } else tid <- rownames(taxa)
     xrid <- rownames(xtab)
@@ -139,14 +148,20 @@ join = c("left", "inner"), drop = FALSE) {
         ckeep <- xcid
     }
     if (join == "inner") {
-        rkeep <- intersect(xrid, sid)
-        ckeep <- intersect(xcid, tid)
+        rkeep <- if (!is.null(samp))
+            intersect(xrid, sid) else xrid
+        ckeep <- if (!is.null(taxa))
+            intersect(xcid, tid) else xcid
     }
     xtab <- xtab[rkeep, ckeep]
-    samp <- samp[rkeep,]
-    taxa <- taxa[ckeep,]
-    rownames(samp) <- rkeep
-    rownames(taxa) <- ckeep
+    if (!is.null(samp)) {
+        samp <- samp[rkeep,]
+        rownames(samp) <- rkeep
+    }
+    if (!is.null(taxa)) {
+        taxa <- taxa[ckeep,]
+        rownames(taxa) <- ckeep
+    }
     if (drop) {
         samp[] <- lapply(samp, function(z) z[drop = TRUE])
         taxa[] <- lapply(taxa, function(z) z[drop = TRUE])
@@ -166,8 +181,11 @@ setGeneric("taxa", function(x) standardGeneric("taxa"))
 setMethod("xtab", "Mefa", function(x) x@xtab)
 setMethod("samp", "Mefa", function(x) x@samp)
 setMethod("taxa", "Mefa", function(x) x@taxa)
-setMethod("dim", "Mefa", function(x) dim(x@xtab))
-setMethod("dimnames", "Mefa", function(x) dimnames(x@xtab))
+## old mefa classes
+setMethod("xtab", "mefa", function(x) x$xtab)
+setMethod("samp", "mefa", function(x) x$samp)
+setMethod("taxa", "mefa", function(x) x$taxa)
+
 
 ## setters
 
@@ -180,44 +198,64 @@ setReplaceMethod("xtab", "Mefa", function(x, value) {
         rkeep <- rownames(value)
         ckeep <- colnames(value)
         x@xtab <- value
-        x@samp <- x@samp[rkeep,]
-        x@taxa <- x@taxa[ckeep,]
+        if (!is.null(x@samp))
+            x@samp <- x@samp[rkeep,]
+        if (!is.null(x@taxa))
+            x@taxa <- x@taxa[ckeep,]
     }
     if (x@join == "inner") {
-        rkeep <- intersect(rownames(value), rownames(x@samp))
-        ckeep <- intersect(colnames(value), rownames(x@taxa))
+        rkeep <- if (!is.null(x@samp)) {
+            intersect(rownames(value), rownames(x@samp))
+        } else {
+            rownames(value)
+        }
+        ckeep <- if (!is.null(x@taxa)) {
+            intersect(colnames(value), rownames(x@taxa))
+        } else {
+            colnames(value)
+        }
         x@xtab <- value[rkeep, ckeep]
-        x@samp <- x@samp[rkeep,]
-        x@taxa <- x@taxa[ckeep,]
+        if (!is.null(x@samp))
+            x@samp <- x@samp[rkeep,]
+        if (!is.null(x@taxa))
+            x@taxa <- x@taxa[ckeep,]
     }
-    rownames(x@samp) <- rkeep
-    rownames(x@taxa) <- ckeep
+    if (!is.null(x@samp))
+        rownames(x@samp) <- rkeep
+    if (!is.null(x@taxa))
+        rownames(x@taxa) <- ckeep
     x
 })
 setReplaceMethod("samp", "Mefa", function(x, value) {
     if (x@join == "left") {
         rkeep <- rownames(x@xtab)
-        x@samp <- x@samp[rkeep,]
+        if (!is.null(x@samp))
+            x@samp <- x@samp[rkeep,]
     }
     if (x@join == "inner") {
         rkeep <- intersect(rownames(x@xtab), rownames(value))
         x@xtab <- value[rkeep,]
-        x@samp <- x@samp[rkeep,]
+        if (!is.null(x@samp))
+            x@samp <- x@samp[rkeep,]
     }
-    rownames(x@samp) <- rkeep
+    if (!is.null(x@samp))
+        rownames(x@samp) <- rkeep
     x
 })
 setReplaceMethod("taxa", "Mefa", function(x, value) {
     if (x@join == "left") {
         ckeep <- colnames(x@xtab)
-        x@taxa <- x@taxa[ckeep,]
+        if (!is.null(x@taxa))
+            x@taxa <- x@taxa[ckeep,]
     }
     if (x@join == "inner") {
         ckeep <- intersect(colnames(x@xtab), rownames(value))
         x@xtab <- value[,ckeep]
-        x@taxa <- x@taxa[ckeep,]
+        if (!is.null(x@taxa))
+            x@taxa <- x@taxa[ckeep,]
     }
-    rownames(x@taxa) <- ckeep
+    if (!is.null(x@taxa))
+        rownames(x@taxa) <- ckeep
     x
 })
 setMethod("[", "Mefa", 
@@ -230,8 +268,10 @@ setMethod("[", "Mefa",
         if (missing(drop))
             drop <- FALSE
         x@xtab <- x@xtab[i,j]
-        x@samp <- x@samp[i,,drop=drop]
-        x@taxa <- x@taxa[j,,drop=drop]
+        if (!is.null(x@samp))
+            x@samp <- x@samp[i,,drop=drop]
+        if (!is.null(x@taxa))
+            x@taxa <- x@taxa[j,,drop=drop]
         x
 })
 
@@ -240,4 +280,129 @@ setMethod("[", "Mefa",
 setMethod("as.matrix", "Mefa", function(x) as.matrix(x@xtab))
 #setMethod("as.array", "Mefa", function(x) as.array(x@xtab))
 setAs(from = "Xtab", to = "Mefa", def = function(from) Mefa(from))
-setAs(from = "Mefa", to = "Xtab", def = function(from) from@xtab)
+setAs(from = "Mefa", to = "Xtab", def = function(from) as(from@xtab,"Xtab"))
+setAs(from = "matrix", to = "Xtab", def = function(from) as(as(from,"sparseMatrix"),"Xtab"))
+setAs(from = "matrix", to = "Mefa", def = function(from) Mefa(from))
+
+## general methods
+
+setMethod("dim", "Mefa", function(x) dim(x@xtab))
+setMethod("dimnames", "Mefa", function(x) dimnames(x@xtab))
+setMethod("dimnames<-", "Mefa", function(x, value) {
+    dimnames(x@xtab) <- value
+    if (!is.null(x@samp))
+        rownames(x@samp) <- value[[1]]
+    if (!is.null(x@taxa))
+        rownames(x@taxa) <- value[[2]]
+    x
+})
+## transpose, why not?
+setMethod("t", "Mefa", function(x) {
+    new("Mefa", xtab = t(x@xtab),
+        samp = x@taxa, taxa = x@samp,
+        join = x@join)
+})
+
+setMethod("show", "Mefa", function(object) {
+    d <- dim(object)
+    cat("Object of class \"Mefa\"\n")
+    cat("  ..@ xtab:", d[1], "x", d[2], "sparse Matrix\n")
+    if (!is.null(object@samp)) {
+        cat("  ..@ samp: a data frame with", ncol(object@samp), "variables\n")
+    } else {
+        cat("  ..@ samp: NULL\n")
+    }
+    if (!is.null(object@taxa)) {
+        cat("  ..@ taxa: a data frame with", ncol(object@taxa), "variables\n")
+    } else {
+        cat("  ..@ taxa: NULL\n")
+    }
+    cat("  ..@ join:", object@join, "\n")
+    invisible(object)
+})
+
+## groupSums and groupMeans
+
+setGeneric("groupSums", function(object, ...) standardGeneric("groupSums"))
+## MARGIN ndicates what to group (1: group rows, 2: group cols)
+setMethod("groupSums", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
+    if (any(is.na(by)))
+        stop("'NA' not allowed in 'by'")
+    if (any(is.na(object)) && !na.rm)
+        stop("'NA' found in 'object'")
+    if (!(MARGIN %in% 1:2))
+        stop("'MARGIN' must be in 1:2")
+    if (length(MARGIN) != 1)
+        stop("MARGIN = 1:2 not yet implemented")
+    if (length(by) != dim(object)[(2:1)[MARGIN]])
+        stop("Non conforming 'object', 'MARGIN' and 'by'")
+    mm <- as(factor(by, levels=unique(by)), "sparseMatrix")
+    rownames(mm) <- unique(by)
+    object <- as(object, "sparseMatrix")
+    if (na.rm)
+        object[is.na(object)] <- 0
+    if (MARGIN == 2) {
+        out <- t(mm %*% t(object))
+    } else {
+        out <- mm %*% object
+    }
+    as.matrix(out)
+})
+setMethod("groupSums", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) {
+    if (any(is.na(by)))
+        stop("'NA' not allowed in 'by'")
+    if (any(is.na(object)) && !na.rm)
+        stop("'NA' found in 'object'")
+    if (!(MARGIN %in% 1:2))
+        stop("'MARGIN' must be in 1:2")
+    if (length(MARGIN) != 1)
+        stop("MARGIN = 1:2 not yet implemented")
+    if (length(by) != dim(object)[(2:1)[MARGIN]])
+        stop("Non conforming 'object', 'MARGIN' and 'by'")
+    mm <- as(factor(by, levels=unique(by)), "sparseMatrix")
+    rownames(mm) <- unique(by)
+    if (na.rm)
+        object[is.na(object)] <- 0
+    if (MARGIN == 2) {
+        out <- t(mm %*% t(object))
+    } else {
+        out <- mm %*% object
+    }
+    new("Xtab", out)
+})
+## replace is a replacement object for the affected non xtab slot (samp, taxa)
+setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FALSE, ...) {
+    x <- new("Xtab", groupSums(new("Xtab", object@xtab), MARGIN, by, na.rm, ...))
+    if (missing(replace))
+        replace <- NULL
+    if (MARGIN == 2) {
+        new("Mefa", xtab = x, samp = object@samp,
+            taxa = replace, join = object@join)
+    } else {
+        new("Mefa", xtab = x, samp = replace,
+            taxa = object@taxa, join = object@join)
+    }
+})
+
+setGeneric("groupMeans", function(object, ...) standardGeneric("groupMeans"))
+setMethod("groupMeans", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) {
+    x <- groupSums(object, MARGIN, by, na.rm, ...)
+    n <- table(by)
+    new("Xtab", sweep(x, MARGIN, n, "/", check.margin = FALSE))
+})
+setMethod("groupMeans", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
+    as.matrix(groupMeans(as(object, "Xtab"), MARGIN, by, na.rm, ...))
+})
+setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FALSE, ...) {
+    x <- groupMeans(as(object, "Xtab"), MARGIN, by, na.rm, ...)
+    if (missing(replace))
+        replace <- NULL
+    if (MARGIN == 2) {
+        new("Mefa", xtab = x, samp = object@samp,
+            taxa = replace, join = object@join)
+    } else {
+        new("Mefa", xtab = x, samp = replace,
+            taxa = object@taxa, join = object@join)
+    }
+})
+

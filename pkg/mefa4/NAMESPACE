@@ -1,10 +1,13 @@
 export(Xtab, Mefa)
-exportClasses(Xtab, Mefa)
-exportMethods(as.matrix,
-    xtab, samp, taxa, dim, dimnames,
-    "xtab<-", "samp<-", "taxa<-", "[")
+exportClasses(Xtab, Mefa, stcs, mefa, MefaMatrix, MefaDataFrame)
+exportMethods(xtab, samp, taxa, dim, dimnames,
+    "xtab<-", "samp<-", "taxa<-", "[",
+    groupSums, groupMeans,
+    show)
 importFrom(Matrix)
 importClassesFrom(Matrix, dgCMatrix, CsparseMatrix,
     dsparseMatrix, generalMatrix, dMatrix,
     sparseMatrix, compMatrix, Matrix)
-importMethodsFrom(Matrix)
+importMethodsFrom(Matrix, colSums, rowSums, 
+    colMeans, rowMeans, t,
+    dim, dimnames, "dimnames<-")
