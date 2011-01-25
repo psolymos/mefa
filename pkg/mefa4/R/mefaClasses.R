@@ -178,13 +178,15 @@ join = c("left", "inner"), drop = FALSE) {
 setGeneric("xtab", function(x) standardGeneric("xtab"))
 setGeneric("samp", function(x) standardGeneric("samp"))
 setGeneric("taxa", function(x) standardGeneric("taxa"))
-setMethod("xtab", "Mefa", function(x) x@xtab)
-setMethod("samp", "Mefa", function(x) x@samp)
-setMethod("taxa", "Mefa", function(x) x@taxa)
+setMethod("xtab", signature(x = "Mefa"), function(x) x@xtab)
+setMethod("samp", signature(x = "Mefa"), function(x) x@samp)
+setMethod("taxa", signature(x = "Mefa"), function(x) x@taxa)
+## this is required for subsetters
+#setMethod("length", signature(x = "Mefa"), function(x) length(x@xtab))
 ## old mefa classes
-setMethod("xtab", "mefa", function(x) x$xtab)
-setMethod("samp", "mefa", function(x) x$samp)
-setMethod("taxa", "mefa", function(x) x$taxa)
+setMethod("xtab", signature(x = "mefa"), function(x) x$xtab)
+setMethod("samp", signature(x = "mefa"), function(x) x$samp)
+setMethod("taxa", signature(x = "mefa"), function(x) x$taxa)
 
 
 ## setters
@@ -192,86 +194,98 @@ setMethod("taxa", "mefa", function(x) x$taxa)
 setGeneric("xtab<-", function(x, value) standardGeneric("xtab<-"))
 setGeneric("samp<-", function(x, value) standardGeneric("samp<-"))
 setGeneric("taxa<-", function(x, value) standardGeneric("taxa<-"))
-setReplaceMethod("xtab", "Mefa", function(x, value) {
-    value <- as(value, "dgCMatrix")
-    if (x@join == "left") {
-        rkeep <- rownames(value)
-        ckeep <- colnames(value)
-        x@xtab <- value
-        if (!is.null(x@samp))
-            x@samp <- x@samp[rkeep,]
-        if (!is.null(x@taxa))
-            x@taxa <- x@taxa[ckeep,]
-    }
-    if (x@join == "inner") {
-        rkeep <- if (!is.null(x@samp)) {
-            intersect(rownames(value), rownames(x@samp))
-        } else {
-            rownames(value)
+setReplaceMethod("xtab", signature(x = "Mefa", value = "MefaMatrix"),
+    function(x, value) {
+        value <- as(value, "dgCMatrix")
+        if (x@join == "left") {
+            rkeep <- rownames(value)
+            ckeep <- colnames(value)
+            x@xtab <- value
+            if (!is.null(x@samp))
+                x@samp <- x@samp[rkeep,]
+            if (!is.null(x@taxa))
+                x@taxa <- x@taxa[ckeep,]
         }
-        ckeep <- if (!is.null(x@taxa)) {
-            intersect(colnames(value), rownames(x@taxa))
-        } else {
-            colnames(value)
+        if (x@join == "inner") {
+            rkeep <- if (!is.null(x@samp)) {
+                intersect(rownames(value), rownames(x@samp))
+            } else {
+                rownames(value)
+            }
+            ckeep <- if (!is.null(x@taxa)) {
+                intersect(colnames(value), rownames(x@taxa))
+            } else {
+                colnames(value)
+            }
+            x@xtab <- value[rkeep, ckeep]
+            if (!is.null(x@samp))
+                x@samp <- x@samp[rkeep,]
+            if (!is.null(x@taxa))
+                x@taxa <- x@taxa[ckeep,]
         }
-        x@xtab <- value[rkeep, ckeep]
         if (!is.null(x@samp))
-            x@samp <- x@samp[rkeep,]
+            rownames(x@samp) <- rkeep
         if (!is.null(x@taxa))
-            x@taxa <- x@taxa[ckeep,]
-    }
-    if (!is.null(x@samp))
-        rownames(x@samp) <- rkeep
-    if (!is.null(x@taxa))
-        rownames(x@taxa) <- ckeep
-    x
+            rownames(x@taxa) <- ckeep
+        x
 })
-setReplaceMethod("samp", "Mefa", function(x, value) {
-    if (x@join == "left") {
-        rkeep <- rownames(x@xtab)
-        if (!is.null(x@samp))
-            x@samp <- x@samp[rkeep,]
-    }
-    if (x@join == "inner") {
-        rkeep <- intersect(rownames(x@xtab), rownames(value))
-        x@xtab <- value[rkeep,]
-        if (!is.null(x@samp))
-            x@samp <- x@samp[rkeep,]
-    }
-    if (!is.null(x@samp))
-        rownames(x@samp) <- rkeep
-    x
+setReplaceMethod("samp", signature(x = "Mefa", value = "MefaDataFrame"), 
+    function(x, value) {
+        if (!is.null(value)) {
+            if (x@join == "left") {
+                rkeep <- rownames(x@xtab)
+                x@samp <- value[rkeep,]
+            }
+            if (x@join == "inner") {
+                rkeep <- intersect(rownames(x@xtab), rownames(value))
+                x@xtab <- x@xtab[rkeep,]
+                x@samp <- value[rkeep,]
+            }
+            rownames(x@samp) <- rkeep
+        } else x@samp <- NULL
+        x
 })
-setReplaceMethod("taxa", "Mefa", function(x, value) {
-    if (x@join == "left") {
-        ckeep <- colnames(x@xtab)
-        if (!is.null(x@taxa))
-            x@taxa <- x@taxa[ckeep,]
-    }
-    if (x@join == "inner") {
-        ckeep <- intersect(colnames(x@xtab), rownames(value))
-        x@xtab <- value[,ckeep]
-        if (!is.null(x@taxa))
-            x@taxa <- x@taxa[ckeep,]
-    }
-    if (!is.null(x@taxa))
-        rownames(x@taxa) <- ckeep
-    x
+setReplaceMethod("taxa", signature(x = "Mefa", value = "MefaDataFrame"), 
+    function(x, value) {
+        if (!is.null(value)) {
+            if (x@join == "left") {
+                ckeep <- colnames(x@xtab)
+                x@taxa <- value[ckeep,]
+            }
+            if (x@join == "inner") {
+                ckeep <- intersect(colnames(x@xtab), rownames(value))
+                x@xtab <- x@xtab[,ckeep]
+                x@taxa <- value[ckeep,]
+            }
+            rownames(x@taxa) <- ckeep
+        } else x@taxa <- NULL
+        x
 })
-setMethod("[", "Mefa", 
-    function(x, i, j, ..., drop){
-        d <- dim(x)
+
+setMethod("[", signature(x = "Mefa", i = "ANY", 
+        j = "ANY", drop = "ANY"),
+    function(x, i, j, ..., drop) {
         if (missing(i))
-            i <- 1:d[1]
+            i <- 1:dim(x)[1]
         if (missing(j))
-            j <- 1:d[2]
+            j <- 1:dim(x)[2]
         if (missing(drop))
             drop <- FALSE
+        if (any(is.na(i)))
+            stop("index contains 'NA'")
+        if (any(is.na(j)))
+            stop("index contains 'NA'")
         x@xtab <- x@xtab[i,j]
-        if (!is.null(x@samp))
-            x@samp <- x@samp[i,,drop=drop]
-        if (!is.null(x@taxa))
-            x@taxa <- x@taxa[j,,drop=drop]
+        if (!is.null(x@samp)) {
+            x@samp <- x@samp[i,]
+            if (drop)
+                x@samp <- lapply(x@samp, function(z) z[drop=TRUE])
+        }
+        if (!is.null(x@taxa)) {
+            x@taxa <- x@taxa[j,]
+            if (drop)
+                x@taxa <- lapply(x@taxa, function(z) z[drop=TRUE])
+        }
         x
 })
 
@@ -288,13 +302,15 @@ setAs(from = "matrix", to = "Mefa", def = function(from) Mefa(from))
 
 setMethod("dim", "Mefa", function(x) dim(x@xtab))
 setMethod("dimnames", "Mefa", function(x) dimnames(x@xtab))
-setMethod("dimnames<-", "Mefa", function(x, value) {
-    dimnames(x@xtab) <- value
-    if (!is.null(x@samp))
-        rownames(x@samp) <- value[[1]]
-    if (!is.null(x@taxa))
-        rownames(x@taxa) <- value[[2]]
-    x
+setMethod("dimnames<-", signature(x = "Mefa", value = "list"), 
+    function(x, value) {
+        dimnames(x@xtab) <- value
+#        x@xtab@Dimnames <- value
+        if (!is.null(x@samp))
+            rownames(x@samp) <- value[[1]]
+        if (!is.null(x@taxa))
+            rownames(x@taxa) <- value[[2]]
+        x
 })
 ## transpose, why not?
 setMethod("t", "Mefa", function(x) {
@@ -308,12 +324,12 @@ setMethod("show", "Mefa", function(object) {
     cat("Object of class \"Mefa\"\n")
     cat("  ..@ xtab:", d[1], "x", d[2], "sparse Matrix\n")
     if (!is.null(object@samp)) {
-        cat("  ..@ samp: a data frame with", ncol(object@samp), "variables\n")
+        cat("  ..@ samp: data frame with", ncol(object@samp), "variables\n")
     } else {
         cat("  ..@ samp: NULL\n")
     }
     if (!is.null(object@taxa)) {
-        cat("  ..@ taxa: a data frame with", ncol(object@taxa), "variables\n")
+        cat("  ..@ taxa: data frame with", ncol(object@taxa), "variables\n")
     } else {
         cat("  ..@ taxa: NULL\n")
     }
@@ -334,7 +350,7 @@ setMethod("groupSums", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...
         stop("'MARGIN' must be in 1:2")
     if (length(MARGIN) != 1)
         stop("MARGIN = 1:2 not yet implemented")
-    if (length(by) != dim(object)[(2:1)[MARGIN]])
+    if (length(by) != dim(object)[MARGIN])
         stop("Non conforming 'object', 'MARGIN' and 'by'")
     mm <- as(factor(by, levels=unique(by)), "sparseMatrix")
     rownames(mm) <- unique(by)
@@ -357,7 +373,7 @@ setMethod("groupSums", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) 
         stop("'MARGIN' must be in 1:2")
     if (length(MARGIN) != 1)
         stop("MARGIN = 1:2 not yet implemented")
-    if (length(by) != dim(object)[(2:1)[MARGIN]])
+    if (length(by) != dim(object)[MARGIN])
         stop("Non conforming 'object', 'MARGIN' and 'by'")
     mm <- as(factor(by, levels=unique(by)), "sparseMatrix")
     rownames(mm) <- unique(by)
@@ -387,8 +403,8 @@ setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FAL
 setGeneric("groupMeans", function(object, ...) standardGeneric("groupMeans"))
 setMethod("groupMeans", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) {
     x <- groupSums(object, MARGIN, by, na.rm, ...)
-    n <- table(by)
-    new("Xtab", sweep(x, MARGIN, n, "/", check.margin = FALSE))
+    out <- sweep(x, MARGIN, table(by), "/", check.margin = FALSE)
+    new("Xtab", as(out, "dgCMatrix"))
 })
 setMethod("groupMeans", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
     as.matrix(groupMeans(as(object, "Xtab"), MARGIN, by, na.rm, ...))
