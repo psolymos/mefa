@@ -39,15 +39,13 @@
 
 \Address{
   P\'eter S\'olymos\\
-  Department of Mathematical and Statistical Sciences\\
+  Alberta Biodiversity Monitoring Institute\\
+  and Boreal Avian Modelling project\\
+  Department of Biological Sciences\\
+  CW 405, Biological Sciences Bldg\\
   University of Alberta\\
-  Edmonton, Alberta, T6G 2G1, Canada\\
-  E-mail: \email{solymos@ualberta.ca}\\
-  and\\
-  Department of Ecology\\
-  Faculty of Veterinary Science, Szent Istv\'an University\\
-  Rottenbiller Str. 50\\
-  1077 Budapest, Hungary
+  Edmonton, Alberta, T6G 2E9, Canada\\
+  E-mail: \email{solymos@ualberta.ca}
 }
 
 
