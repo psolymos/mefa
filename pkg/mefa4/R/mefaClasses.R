@@ -262,6 +262,9 @@ setReplaceMethod("taxa", signature(x = "Mefa", value = "MefaDataFrame"),
         x
 })
 
+## subsetting [ and [<- for Xtab??? it returns dgCMatrix
+## vary different signatures???
+
 setMethod("[", signature(x = "Mefa", i = "ANY", 
         j = "ANY", drop = "ANY"),
     function(x, i, j, ..., drop) {

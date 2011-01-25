@@ -13,7 +13,7 @@ x
 samp <- data.frame(samples=levels(x$sample), var1=1:2)
 taxa <- data.frame(specnames=levels(x$species), var2=c("b","a"))
 rownames(samp) <- samp$samples
-rownames(taxa) <- taxa$taxa
+rownames(taxa) <- taxa$specnames
 samp
 taxa
 ## Xtab class, counts by repetitions in RHS
@@ -100,7 +100,7 @@ groupMeans(x5, 1, c(1,1,2))
 groupMeans(x5, 2, c(1,1,2,2))
 
 ## back and foth
-as.stcs(x1)
+as.stcs(as(x1,"Xtab")) # !!! fixme: subset and assign with Xtab
 as.mefa(x1)
 as.stcs(x3)
 a <- as.mefa(x3)
