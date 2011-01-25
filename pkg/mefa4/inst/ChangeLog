@@ -2,9 +2,12 @@ MEFA4 VERSIONS
 
 Version 0.1-1 -- January 25, 2011
     * S4 classes working properly.
-    * /tests dir added to pkg tree
+    * /tests dir added to pkg tree.
     * Xtab class is redundant, 
-      use dgCMatrix class instead
+      use dgCMatrix class instead.
+    * A vignette with design decisions
+      added, it also has the performance
+      comparison.
 
 Version 0.1-0 -- January 20, 2011
     * Start development for S4 classes.

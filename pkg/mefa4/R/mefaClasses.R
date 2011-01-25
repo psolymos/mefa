@@ -2,9 +2,9 @@
 
 #setClass("MefaCall", representation(call = "language"))
 #setClass("Xtab", contains = c("MefaCall","dgCMatrix"))
-setClass("Xtab", contains = "dgCMatrix")
+#setClass("Xtab", contains = "dgCMatrix")
 ## class unions
-setClassUnion("MefaMatrix", c("matrix","Xtab","dgCMatrix"))
+setClassUnion("MefaMatrix", c("matrix","dgCMatrix"))
 setClassUnion("MefaDataFrame", c("data.frame","NULL"))
 ## virtual classes to old mefa classes
 setClass("stcs", representation("VIRTUAL"))
@@ -119,7 +119,8 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     }
     out <- out[rkeep, ckeep]
     out <- drop0(out)
-    new("Xtab", out)
+    as(out, "dgCMatrix")
+#    new("Xtab", out)
 #    Call <- new("MefaCall", call = match.call())
 #    new("Xtab", Call, out)
 #    new("Xtab", match.call(), out)
@@ -296,10 +297,12 @@ setMethod("[", signature(x = "Mefa", i = "ANY",
 
 setMethod("as.matrix", "Mefa", function(x) as.matrix(x@xtab))
 #setMethod("as.array", "Mefa", function(x) as.array(x@xtab))
-setAs(from = "Xtab", to = "Mefa", def = function(from) Mefa(from))
-setAs(from = "Mefa", to = "Xtab", def = function(from) as(from@xtab,"Xtab"))
-setAs(from = "matrix", to = "Xtab", def = function(from) as(as(from,"sparseMatrix"),"Xtab"))
 setAs(from = "matrix", to = "Mefa", def = function(from) Mefa(from))
+#setAs(from = "Mefa", to = "Xtab", def = function(from) as(from@xtab,"Xtab"))
+#setAs(from = "matrix", to = "Xtab", def = function(from) as(as(from,"sparseMatrix"),"Xtab"))
+setAs(from = "Mefa", to = "sparseMatrix", def = function(from) from@xtab)
+#setAs(from = "Xtab", to = "Mefa", def = function(from) Mefa(from))
+setAs(from = "sparseMatrix", to = "Mefa", def = function(from) Mefa(from))
 
 ## general methods
 
@@ -367,7 +370,7 @@ setMethod("groupSums", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...
     }
     as.matrix(out)
 })
-setMethod("groupSums", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) {
+setMethod("groupSums", "sparseMatrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
     if (any(is.na(by)))
         stop("'NA' not allowed in 'by'")
     if (any(is.na(object)) && !na.rm)
@@ -387,11 +390,11 @@ setMethod("groupSums", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) 
     } else {
         out <- mm %*% object
     }
-    new("Xtab", out)
+    out
 })
 ## replace is a replacement object for the affected non xtab slot (samp, taxa)
 setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FALSE, ...) {
-    x <- new("Xtab", groupSums(new("Xtab", object@xtab), MARGIN, by, na.rm, ...))
+    x <- groupSums(object@xtab, MARGIN, by, na.rm, ...)
     if (missing(replace))
         replace <- NULL
     if (MARGIN == 2) {
@@ -404,16 +407,16 @@ setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FAL
 })
 
 setGeneric("groupMeans", function(object, ...) standardGeneric("groupMeans"))
-setMethod("groupMeans", "Xtab", function(object, MARGIN, by, na.rm = FALSE, ...) {
+setMethod("groupMeans", "sparseMatrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
     x <- groupSums(object, MARGIN, by, na.rm, ...)
     out <- sweep(x, MARGIN, table(by), "/", check.margin = FALSE)
-    new("Xtab", as(out, "dgCMatrix"))
+    as(out, "sparseMatrix")
 })
 setMethod("groupMeans", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
-    as.matrix(groupMeans(as(object, "Xtab"), MARGIN, by, na.rm, ...))
+    as.matrix(groupMeans(as(object, "sparseMatrix"), MARGIN, by, na.rm, ...))
 })
 setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FALSE, ...) {
-    x <- groupMeans(as(object, "Xtab"), MARGIN, by, na.rm, ...)
+    x <- groupMeans(as(object, "sparseMatrix"), MARGIN, by, na.rm, ...)
     if (missing(replace))
         replace <- NULL
     if (MARGIN == 2) {

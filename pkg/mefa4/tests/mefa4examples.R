@@ -100,10 +100,10 @@ groupMeans(x5, 1, c(1,1,2))
 groupMeans(x5, 2, c(1,1,2,2))
 
 ## back and foth
-as.stcs(as(x1,"Xtab")) # !!! fixme: subset and assign with Xtab
+as.stcs(x1)
 as.mefa(x1)
 as.stcs(x3)
-a <- as.mefa(x3)
+(a <- as.mefa(x3))
 xtab(a)
 samp(a)
 taxa(a)
@@ -114,4 +114,6 @@ as.Xtab(a)
 (s <- melt(a))
 as.Xtab(s)
 as.Mefa(s)
+melt(x1)
+melt(x3)
 
