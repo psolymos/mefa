@@ -8,6 +8,8 @@ Version 0.1-1 -- January 25, 2011
     * A vignette with design decisions
       added, it also has the performance
       comparison.
+    * mbind method for binding matrices
+      added with a 'left join' implementation.
 
 Version 0.1-0 -- January 20, 2011
     * Start development for S4 classes.

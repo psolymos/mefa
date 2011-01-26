@@ -117,3 +117,22 @@ as.Mefa(s)
 melt(x1)
 melt(x3)
 
+## mbind
+x=matrix(1:4,2,2)
+rownames(x) <- c("a","b")
+colnames(x) <- c("A","B")
+y=matrix(11:14,2,2)
+rownames(y) <- c("b","c")
+colnames(y) <- c("B","C")
+
+sampx <- data.frame(x1=1:2, x2=2:1)
+rownames(sampx) <- rownames(x)
+sampy <- data.frame(x1=3:4, x3=10:11)
+rownames(sampy) <- rownames(y)
+taxay <- data.frame(x1=1:2, x2=2:1)
+rownames(taxay) <- colnames(y)
+taxax <- NULL
+
+mbind(x,y)
+mbind(as(x,"sparseMatrix"),as(y,"sparseMatrix"))
+mbind(Mefa(x,sampx),Mefa(y,sampy,taxay))

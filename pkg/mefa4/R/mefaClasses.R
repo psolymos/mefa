@@ -131,6 +131,10 @@ function(xtab, samp, taxa,
 join = c("left", "inner"), drop = FALSE) {
     if (missing(xtab))
         stop("'xtab' must be supplied")
+    if (is.null(dimnames(xtab))) {
+        dimnames(xtab) <- list(1:nrow(xtab), 1:ncol(xtab))
+        warnings("dimnames for 'xtab' added, it was NULL")
+    }
     if (missing(samp)) {
 #        samp <- data.frame()
         samp <- NULL
@@ -426,5 +430,180 @@ setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FA
         new("Mefa", xtab = x, samp = replace,
             taxa = object@taxa, join = object@join)
     }
+})
+
+## joining 2 Mefa objects
+## x, y
+## x as left (intersect from y is ignored)
+## y only is added
+## call it merge ??? Mefa can take drop=FALSE
+setGeneric("mbind", function(x, y, fill, ...) standardGeneric("mbind"))
+setMethod("mbind", signature(x="matrix", y="matrix", fill="ANY"), 
+    function(x, y, fill, ...) {
+        if (missing(fill))
+            fill <- NA
+        if (length(x) == 0)
+            stop("length of 'x' must not be 0")
+        if (length(y) == 0)
+            stop("length of 'y' must not be 0")
+        if (is.null(dimnames(x)))
+            stop("dimnames of 'x' must not be NULL")
+        if (is.null(dimnames(y)))
+            stop("dimnames of 'y' must not be NULL")
+        r1 <- rownames(x)
+        c1 <- colnames(x)
+        r2 <- rownames(y)
+        c2 <- colnames(y)
+        if (setequal(r1, r2) && setequal(c1, c2))
+            return(x)
+        rx <- setdiff(r1, r2)
+        rxy <- intersect(r1, r2)
+        ry <- setdiff(r2, r1)
+        cx <- setdiff(c1, c2)
+        cxy <- intersect(c1, c2)
+        cy <- setdiff(c2, c1)
+        xx <- x[c(rx, rxy), c(cx, cxy)]
+        z1 <- matrix(fill, length(ry), length(cx))
+        z2 <- matrix(fill, length(rx), length(cy))
+        yx1 <- y[ry, cxy]
+        yx2 <- y[rxy, cy]
+        yy <- y[ry, cy]
+        if (length(ry) > 0) {
+            part1 <- cbind(z1, yx1)
+            part2 <- rbind(xx, part1)
+        } else part2 <- xx
+        if (length(cy) > 0) {
+            part3 <- rbind(z2, yx2)
+            part4 <- rbind(part3, yy)
+            part5 <- cbind(part2, part4)
+        } else part5 <- part2
+        rownames(part5) <- c(rx, rxy, ry)
+        colnames(part5) <- c(cx, cxy, cy)
+        part5
+})
+setMethod("mbind", signature(x="sparseMatrix", y="sparseMatrix", fill="ANY"), 
+    function(x, y, fill, ...) {
+        if (missing(fill))
+            fill <- NA
+        if (length(x) == 0)
+            stop("length of 'x' must not be 0")
+        if (length(y) == 0)
+            stop("length of 'y' must not be 0")
+        if (is.null(dimnames(x)))
+            stop("dimnames of 'x' must not be NULL")
+        if (is.null(dimnames(y)))
+            stop("dimnames of 'y' must not be NULL")
+        r1 <- rownames(x)
+        c1 <- colnames(x)
+        r2 <- rownames(y)
+        c2 <- colnames(y)
+        if (setequal(r1, r2) && setequal(c1, c2))
+            return(x)
+        rx <- setdiff(r1, r2)
+        rxy <- intersect(r1, r2)
+        ry <- setdiff(r2, r1)
+        cx <- setdiff(c1, c2)
+        cxy <- intersect(c1, c2)
+        cy <- setdiff(c2, c1)
+        xx <- x[c(rx, rxy), c(cx, cxy)]
+        z1 <- as(matrix(fill, length(ry), length(cx)), "sparseMatrix")
+        z2 <- as(matrix(fill, length(rx), length(cy)), "sparseMatrix")
+        yx1 <- y[ry, cxy]
+        yx2 <- y[rxy, cy]
+        yy <- y[ry, cy]
+        if (length(ry) > 0) {
+            part1 <- cBind(z1, yx1)
+            part2 <- rBind(xx, part1)
+        } else part2 <- xx
+        if (length(cy) > 0) {
+            part3 <- rBind(z2, yx2)
+            part4 <- rBind(part3, yy)
+            part5 <- cBind(part2, part4)
+        } else part5 <- part2
+        rownames(part5) <- c(rx, rxy, ry)
+        colnames(part5) <- c(cx, cxy, cy)
+        part5
+})
+
+setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"), 
+    function(x, y, fill, drop, ...) {
+        if (missing(drop))
+            drop <- FALSE
+        if (missing(fill))
+            fill <- NA
+        ## xtab
+        xtabx <- x@xtab
+        xtaby <- y@xtab
+        r1 <- rownames(xtabx)
+        c1 <- colnames(xtabx)
+        r2 <- rownames(xtaby)
+        c2 <- colnames(xtaby)
+        if (setequal(r1, r2) && setequal(c1, c2))
+            return(x)
+        rx <- setdiff(r1, r2)
+        rxy <- intersect(r1, r2)
+        ry <- setdiff(r2, r1)
+        cx <- setdiff(c1, c2)
+        cxy <- intersect(c1, c2)
+        cy <- setdiff(c2, c1)
+        xx <- xtabx[c(rx, rxy), c(cx, cxy)]
+        z1 <- as(matrix(fill, length(ry), length(cx)), "sparseMatrix")
+        z2 <- as(matrix(fill, length(rx), length(cy)), "sparseMatrix")
+        yx1 <- xtaby[ry, cxy]
+        yx2 <- xtaby[rxy, cy]
+        yy <- xtaby[ry, cy]
+        if (length(ry) > 0) {
+            part1 <- cBind(z1, yx1)
+            part2 <- rBind(xx, part1)
+        } else part2 <- xx
+        if (length(cy) > 0) {
+            part3 <- rBind(z2, yx2)
+            part4 <- rBind(part3, yy)
+            part5 <- cBind(part2, part4)
+        } else part5 <- part2
+        rownames(part5) <- c(rx, rxy, ry)
+        colnames(part5) <- c(cx, cxy, cy)
+        ## samp
+        sampx <- x@samp
+        sampy <- y@samp
+        if (is.null(sampx) && is.null(sampy))
+            sm2 <- NULL
+        if (!is.null(sampx) && !is.null(sampy)) {
+            sampx2 <- data.frame(ROWNAMES=rownames(sampx), SAMPPART=1, sampx)
+            sampy2 <- data.frame(ROWNAMES=rownames(sampy), SAMPPART=2, sampy)
+            sm <- merge(sampx2, sampy2, all=TRUE)
+            sid1 <- which(sm$SAMPPART==1 & sm$ROWNAMES %in% r1)
+            sid2 <- which(sm$SAMPPART==2 & sm$ROWNAMES %in% ry)
+            sm2 <- sm[c(sid1, sid2),]
+            rownames(sm2) <- sm2$ROWNAMES
+            sm2$ROWNAMES <- sm2$SAMPPART <- NULL
+        }
+        if (!is.null(sampx) && is.null(sampy))
+            sm2 <- sampx
+        if (is.null(sampx) && !is.null(sampy))
+            sm2 <- sampy[ry,]
+        ## taxa
+        taxax <- x@taxa
+        taxay <- y@taxa
+        if (is.null(taxax) && is.null(taxay))
+            tm2 <- NULL
+        if (!is.null(taxax) && !is.null(taxay)) {
+            taxax2 <- data.frame(ROWNAMES=rownames(taxax), TAXAPART=1, taxax)
+            taxay2 <- data.frame(ROWNAMES=rownames(taxay), TAXAPART=2, taxay)
+            tm <- merge(taxax2, taxay2, all=TRUE)
+            tid1 <- which(sm$TAXAPART==1 & sm$ROWNAMES %in% c1)
+            tid2 <- which(sm$TAXAPART==2 & sm$ROWNAMES %in% cy)
+            tm2 <- tm[c(tid1, tid2),]
+            rownames(tm2) <- tm2$ROWNAMES
+            tm2$ROWNAMES <- tm2$taxaPART <- NULL
+        }
+        if (!is.null(taxax) && is.null(taxay))
+            tm2 <- taxax
+        if (is.null(taxax) && !is.null(taxay))
+            tm2 <- taxay[cy,]
+        ## assembling
+#        samp <- NULL
+#        taxa <- NULL
+        Mefa(part5, sm2, tm2, join="left", drop)
 })
 
