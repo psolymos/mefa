@@ -99,7 +99,7 @@ groupMeans(x2, 2, c(1,1,2,2))
 groupMeans(x5, 1, c(1,1,2))
 groupMeans(x5, 2, c(1,1,2,2))
 
-## back and foth
+## back and foth -- this is important to keep in the vignette
 as.stcs(x1)
 as.mefa(x1)
 as.stcs(x3)
