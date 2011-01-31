@@ -1,4 +1,5 @@
-export(Xtab, Mefa)
+export(Xtab, Mefa,
+    nonDuplicated)
 exportClasses(Mefa, stcs, mefa, MefaMatrix, MefaDataFrame)
 exportMethods(xtab, samp, taxa, dim, dimnames, "dimnames<-",
     "xtab<-", "samp<-", "taxa<-", "[",

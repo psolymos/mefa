@@ -80,7 +80,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
         u[, drop = drop.unused.levels]
     })
     if (length(by) != 2)
-        stop("'sparse = TRUE' applies only to two-way tables")
+        stop("function applies only to two-way tables")
     rows <- by[[1]]
     cols <- by[[2]]
     rl <- levels(rows)

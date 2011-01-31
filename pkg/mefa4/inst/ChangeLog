@@ -1,7 +1,7 @@
 MEFA4 VERSIONS
 
 Version 0.1-2 -- January 26, 2011
-    *
+    * nonDuplicated function added.
 
 Version 0.1-1 -- January 25, 2011
     * S4 classes working properly.

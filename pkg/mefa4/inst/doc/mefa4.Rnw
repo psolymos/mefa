@@ -6,17 +6,17 @@
 
 \newcommand{\class}[1]{`\code{#1}'}
 
-%\VignetteIndexEntry{mefa4 Design Decisions}
+%\VignetteIndexEntry{mefa4 Design Decisions and Performance}
 %\VignettePackage{mefa4}
 %\VignetteDepends{}
 %\VignetteKeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
 
-\author{P\'eter S\'olymos\\University of Alberta}
+\author{P\'eter S\'olymos\\\href{mailto:solymos@ualberta.ca}{solymos@ualberta.ca}}
 \Plainauthor{P\'eter S\'olymos}
 
-\title{\pkg{mefa4} Design Decisions}
-\Plaintitle{mefa4 Design Decisions}
-\Shorttitle{\pkg{mefa4} Design Decisions}
+\title{\pkg{mefa4} Design Decisions and Performance}
+\Plaintitle{mefa4 Design Decisions and Performance}
+\Shorttitle{\pkg{mefa4} Design Decisions and Performance}
 
 \Abstract{
   \pkg{mefa4} is a reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
@@ -26,7 +26,8 @@
   and reduces object sizes considerably. This vignette introduces the main functions,
   classes and methods of the package \pkg{mefa4}.
 
-  Processed with \pkg{mefa4} \Sexpr{packageDescription("mefa4", field="Version")} in \Sexpr{R.version.string} on \today.
+  Processed with \pkg{mefa4} \Sexpr{packageDescription("mefa4", field="Version")}
+  and \pkg{mefa} \Sexpr{packageDescription("mefa", field="Version")} in \Sexpr{R.version.string} on \today.
 }
 
 \Keywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, \proglang{R}, sparse matrices}
@@ -54,14 +55,14 @@ options(prompt = "R> ", continue = "+   ", useFancyQuotes = FALSE, width = 76)
 \section{Introduction}
 
 The aim of the \pkg{mefa} and \pkg{mefa4} packages are to help in storing cross tabulated
-ecological data tables (community) data together with attributes for rows (samples) and columns
+ecological data tables (community data) together with attributes for rows (samples) and columns
 (species, taxa). This allows that one can easily subset the relational data object without
 seperately manipulating 2--3 \proglang{R} objects. By doing so, the chances of errors are reduced.
 
 As ecological data sets are increasing in size, it is necessary to find more efficient ways of
 data storage and manipulation. To this end, it was in the air for some time to redesign
 the \pkg{mefa} package and take advantages of sparse matrices from the \pkg{Matrix} package.
-This is done at the costs of some old functionalities not being available for S4 classes.
+This is done at the costs of some old functionalities not being available for S4 classes at the time being.
 Here I give an overview so the user can decide how to use the parallel availability
 of old S3 and newer S4 classes.
 
@@ -94,9 +95,9 @@ m$xtab
 @
 
 The \code{stcs} step is almost redundant, and inefficient relative to the \code{Matrix:::xtabs}
-function with \code{sparse = TRUE}. This function is adapted to some extant, so it can subset
-the crosstabulated results befor returning the value (\code{rdrop} and \code{cdrop} arguments,
-that is available as the \code{Xtab} function in the \pkg{mefa4} package. This takes a formula,
+function with \code{sparse = TRUE}. This function is adapted to some extent, so it can subset
+the crosstabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
+that is available as the \code{Xtab} function in the \pkg{mefa4} package). This takes a formula,
 and can be applied directly on a data frame. The formula can have a left-hand side, or the left-hand side can be 
 missing:
 <<>>=
@@ -115,7 +116,7 @@ Xtab(count ~ sample + species, x, cdrop="zero.pseudo")
 The results here are sparse matrices in compact mode, meaning that
 redundant indices are only kept once, so it is more compact than
 a long formatted database representation stored in an \code{stcs}
-object or in the original data frame. See vignettes in the 
+object or in the original data frame, or a triplet representation of a sparse matrix. See vignettes in the 
 \pkg{Matrix} package for more details on S4 sparse matrix classes.
 
 The S4 class \code{"Mefa"} is defined in the \pkg{mefa4} package.
@@ -135,7 +136,7 @@ to find matching names is not available in the new implementation.
 Rownames of the data frames has to match dimnames of \code{xtab}.
 The \code{joint} slot can be \code{"left"} (all rows/columns in the
 \code{xtab} are kept, matching attributes are selected, non matching
-attributes are excluded, and missing attributes are filled up with \codeNA})
+attributes are excluded, and missing attributes are filled up with \code{NA})
 or \code{"inner"} (only the intersection of corresponding dimnames are used to
 form the return value).
 
@@ -160,8 +161,8 @@ A \code{"Mefa"} object with only \code{xtab} can also be defined:
 The structure of the S3 and S4 classes are very similar, and even the
 accessor methods (\code{xtab()}, \code{samp()}, \code{taxa()}, \code{segm()})
 work properly on both types. The S4 class does not have a slot for
-a call, and there is no \code{segm} elemnt/slot as well. This means that
-a \code{"Mefa"} object cannot have 3 dimanss, only 2. This might not be
+a call, and there is no \code{segm} element/slot either. This means that
+a \code{"Mefa"} object cannot have 3 dimensions, only 2. This might not be
 a nice feature, and 3 dimensional S4 classes might be added in future releases.
 Currently it is however, not a priority, as the gain in efficiency was the main
 reason. For those who require 3D representation, the S3 classes should be
@@ -322,7 +323,7 @@ t34 <- system.time(m32 <- mefa(y30, x3, z3))
 m32
 @
 
-This is the processing with \pkg{mefa4}:
+The equivalent processing with \pkg{mefa4}:
 <<>>=
 b4 <- abmibirds
 b4$Label <- with(b4, paste(ABMI.Site, Year, 
@@ -390,7 +391,7 @@ setdiff(colnames(y30), colnames(y40))
 setdiff(colnames(y40), colnames(y30))
 @
 
-The aggregation also improved quite a bit:
+The aggregation has also improved quite a bit:
 <<>>=
 system.time(xx3 <- aggregate(m31, "ABMI.Site"))
 system.time(xx4 <- groupSums(m41, 1, m41@samp$ABMI.Site))
@@ -398,10 +399,16 @@ as.Mefa(xx3)
 xx4
 @
 
-\section{Conclusions and outlook}
+\section{Conclusions}
 
-The redesign of the old S3 classes resulted in large savings in computing time
+The redesign of the old S3 classes onto S4 ones resulted in large savings in computing time
 and object sizes. Old features are still available due to the free conversion
 between the two implementations.
+
+\section{Session Info}
+
+<<echo=false,results=tex>>=
+toLatex(sessionInfo(), locale=FALSE)
+@
 
 \end{document}
