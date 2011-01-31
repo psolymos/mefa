@@ -19,7 +19,7 @@
 \Shorttitle{\pkg{mefa4} Design Decisions}
 
 \Abstract{
-  \pkg{mefa4} is an reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
+  \pkg{mefa4} is a reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
   The new S4 class \code{"Mefa"} has all the consistency checks that S3 classes
   cannot have, and most importantly, it stores the crosstabuted results as a compact
   sparse matrix (\code{"dgCMatrix"}). The use of sparse matrices speed up computations,

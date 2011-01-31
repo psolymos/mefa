@@ -1,8 +1,5 @@
 ## class definitions
 
-#setClass("MefaCall", representation(call = "language"))
-#setClass("Xtab", contains = c("MefaCall","dgCMatrix"))
-#setClass("Xtab", contains = "dgCMatrix")
 ## class unions
 setClassUnion("MefaMatrix", c("matrix","dgCMatrix"))
 setClassUnion("MefaDataFrame", c("data.frame","NULL"))
@@ -12,7 +9,6 @@ setClass("mefa", representation("VIRTUAL"))
 ## main Mefa class
 setClass("Mefa", 
     representation(
-#        call = "language",
         xtab = "MefaMatrix",
         samp = "MefaDataFrame",
         taxa = "MefaDataFrame",
@@ -120,10 +116,6 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     out <- out[rkeep, ckeep]
     out <- drop0(out)
     as(out, "dgCMatrix")
-#    new("Xtab", out)
-#    Call <- new("MefaCall", call = match.call())
-#    new("Xtab", Call, out)
-#    new("Xtab", match.call(), out)
 }
 
 Mefa <-
@@ -136,12 +128,10 @@ join = c("left", "inner"), drop = FALSE) {
         warnings("dimnames for 'xtab' added, it was NULL")
     }
     if (missing(samp)) {
-#        samp <- data.frame()
         samp <- NULL
         sid <- rownames(xtab)
     } else sid <- rownames(samp)
     if (missing(taxa)) {
-#        taxa <- data.frame()
         taxa <- NULL
         tid <- colnames(xtab)
     } else tid <- rownames(taxa)
@@ -172,7 +162,6 @@ join = c("left", "inner"), drop = FALSE) {
         taxa[] <- lapply(taxa, function(z) z[drop = TRUE])
     }
     new("Mefa", 
-#        call = match.call(),
         xtab = as(xtab, "dgCMatrix"), 
         samp = samp, taxa = taxa,
         join = join)
@@ -186,19 +175,17 @@ setGeneric("taxa", function(x) standardGeneric("taxa"))
 setMethod("xtab", signature(x = "Mefa"), function(x) x@xtab)
 setMethod("samp", signature(x = "Mefa"), function(x) x@samp)
 setMethod("taxa", signature(x = "Mefa"), function(x) x@taxa)
-## this is required for subsetters
-#setMethod("length", signature(x = "Mefa"), function(x) length(x@xtab))
-## old mefa classes
+## for old mefa classes
 setMethod("xtab", signature(x = "mefa"), function(x) x$xtab)
 setMethod("samp", signature(x = "mefa"), function(x) x$samp)
 setMethod("taxa", signature(x = "mefa"), function(x) x$taxa)
-
 
 ## setters
 
 setGeneric("xtab<-", function(x, value) standardGeneric("xtab<-"))
 setGeneric("samp<-", function(x, value) standardGeneric("samp<-"))
 setGeneric("taxa<-", function(x, value) standardGeneric("taxa<-"))
+
 setReplaceMethod("xtab", signature(x = "Mefa", value = "MefaMatrix"),
     function(x, value) {
         value <- as(value, "dgCMatrix")
@@ -267,7 +254,7 @@ setReplaceMethod("taxa", signature(x = "Mefa", value = "MefaDataFrame"),
         x
 })
 
-## subsetting [ and [<- for Xtab??? it returns dgCMatrix
+## subsetting [
 ## vary different signatures???
 
 setMethod("[", signature(x = "Mefa", i = "ANY", 
@@ -300,34 +287,33 @@ setMethod("[", signature(x = "Mefa", i = "ANY",
 ## coercion
 
 setMethod("as.matrix", "Mefa", function(x) as.matrix(x@xtab))
-#setMethod("as.array", "Mefa", function(x) as.array(x@xtab))
 setAs(from = "matrix", to = "Mefa", def = function(from) Mefa(from))
-#setAs(from = "Mefa", to = "Xtab", def = function(from) as(from@xtab,"Xtab"))
-#setAs(from = "matrix", to = "Xtab", def = function(from) as(as(from,"sparseMatrix"),"Xtab"))
 setAs(from = "Mefa", to = "sparseMatrix", def = function(from) from@xtab)
-#setAs(from = "Xtab", to = "Mefa", def = function(from) Mefa(from))
 setAs(from = "sparseMatrix", to = "Mefa", def = function(from) Mefa(from))
 
 ## general methods
 
 setMethod("dim", "Mefa", function(x) dim(x@xtab))
 setMethod("dimnames", "Mefa", function(x) dimnames(x@xtab))
+
 setMethod("dimnames<-", signature(x = "Mefa", value = "list"), 
     function(x, value) {
         dimnames(x@xtab) <- value
-#        x@xtab@Dimnames <- value
         if (!is.null(x@samp))
             rownames(x@samp) <- value[[1]]
         if (!is.null(x@taxa))
             rownames(x@taxa) <- value[[2]]
         x
 })
+
 ## transpose, why not?
 setMethod("t", "Mefa", function(x) {
     new("Mefa", xtab = t(x@xtab),
         samp = x@taxa, taxa = x@samp,
         join = x@join)
 })
+
+## show for Mefa
 
 setMethod("show", "Mefa", function(object) {
     d <- dim(object)
@@ -350,7 +336,8 @@ setMethod("show", "Mefa", function(object) {
 ## groupSums and groupMeans
 
 setGeneric("groupSums", function(object, ...) standardGeneric("groupSums"))
-## MARGIN ndicates what to group (1: group rows, 2: group cols)
+
+## MARGIN indicates what to group (1: group rows, 2: group cols)
 setMethod("groupSums", "matrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
     if (any(is.na(by)))
         stop("'NA' not allowed in 'by'")
@@ -411,6 +398,7 @@ setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FAL
 })
 
 setGeneric("groupMeans", function(object, ...) standardGeneric("groupMeans"))
+
 setMethod("groupMeans", "sparseMatrix", function(object, MARGIN, by, na.rm = FALSE, ...) {
     x <- groupSums(object, MARGIN, by, na.rm, ...)
     out <- sweep(x, MARGIN, table(by), "/", check.margin = FALSE)
@@ -432,12 +420,13 @@ setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FA
     }
 })
 
-## joining 2 Mefa objects
+## mbind: joining 2 Mefa objects
 ## x, y
 ## x as left (intersect from y is ignored)
 ## y only is added
-## call it merge ??? Mefa can take drop=FALSE
+
 setGeneric("mbind", function(x, y, fill, ...) standardGeneric("mbind"))
+
 setMethod("mbind", signature(x="matrix", y="matrix", fill="ANY"), 
     function(x, y, fill, ...) {
         if (missing(fill))
@@ -524,7 +513,6 @@ setMethod("mbind", signature(x="sparseMatrix", y="sparseMatrix", fill="ANY"),
         colnames(part5) <- c(cx, cxy, cy)
         part5
 })
-
 setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"), 
     function(x, y, fill, drop, ...) {
         if (missing(drop))
@@ -602,8 +590,6 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         if (is.null(taxax) && !is.null(taxay))
             tm2 <- taxay[cy,]
         ## assembling
-#        samp <- NULL
-#        taxa <- NULL
         Mefa(part5, sm2, tm2, join="left", drop)
 })
 
