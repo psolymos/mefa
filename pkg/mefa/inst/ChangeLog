@@ -11,6 +11,7 @@ Version 3.1-7 -- January 21, 2011
       effect on functionality.
     * segm() returned NULL instead of $xtab when segm was NULL,
       this is fixed.
+    * rdrop/cdrop can take mefa orMefa object as argument.
 
 
 Version 3.1-6 -- August 23, 2010

@@ -14,18 +14,21 @@ Converts a matrix to a list, calculates matrix fill, or exclude rows/columns wit
 \usage{
 mat2list(x, MARGIN = 1)
 mfill(x)
-rdrop(x, cutoff = 0)
-cdrop(x, cutoff = 0)
+rdrop(x, cutoff = 0, attrib = FALSE)
+cdrop(x, cutoff = 0, attrib = FALSE)
 }
 \arguments{
   \item{x}{
-A vector or matrix to be converted.
+A vector or matrix to be converted. \code{cdrop} and \code{rdrop} can take mefa objects as argument.
 }
   \item{MARGIN}{
 Margin in \code{c(1, 2)}, indicating respectively rows or colums to be listed.
 }
   \item{cutoff}{
 Numeric, exclude rows/columns with sums <= \code{cutoff}.
+}
+  \item{attrib}{
+Logical, if a vector of excluded rows/columns should be attached to the return value as an attribute.
 }
 }
 \value{
@@ -34,8 +37,8 @@ Elements are rows/columns of \code{x}. Dimnames are retained as names.
 
 \code{mfill} returns a single number with the matrix fill value.
 
-\code{rdrop} and \code{cdrop} return the original matrix but excluding rows (\code{rdrop}), or columns (\code{cdrop})
-that has sum <= \code{cutoff}. Excluded row/colum numbers and specifications are stored in the \code{"exclude"} attribute.
+\code{rdrop} and \code{cdrop} returns the original object but excluding rows (\code{rdrop}), or columns (\code{cdrop})
+that has sum <= \code{cutoff}. Excluded row/colum numbers and specifications are stored in the \code{"exclude"} attribute of \code{attrib = TRUE}.
 }
 \references{
 \enc{S\'olymos}{Solymos} P. (2008) mefa: an R package for handling and reporting count data. \emph{Community Ecology} \bold{9}, 125--127.
