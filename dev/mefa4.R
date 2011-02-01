@@ -25,7 +25,13 @@ OK - join 2 Xtab, Mefa objects, inner/outer/left/right join operations
      needs careful planning, but should be pretty straightforward
      left join version is implemented as mbind in mefa4
 OK - add a vignette on performance comparisons, new classes and methods
-- write documentation (Rd)
+OK - write documentation (Rd)
+OK - sparseMatrixList virtual class added
+- methods for sparseMatrixList [, [<-
+- how to incorporate sparseMatrixList into Mefa?
+     define new class, that will need [, [<-
+- compatibility with 'mefa' class: xtab should be the segm list, segm should be a MefaDataFrame
+- rename slot?
 - print, summary (not sure what to do with these)
 - plot, image (see image plot for Matrix classes) - it is not urgent, image(as.mefa(x))
 ? set a class union for XtabMatrix and Mefa -- currently no need for it
