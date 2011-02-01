@@ -52,5 +52,7 @@ data in R with the mefa package.
 S3 classes: \code{\link[mefa]{mefa}}
 }
 \examples{
+\dontrun{
 vignette("mefa4")
+}
 }

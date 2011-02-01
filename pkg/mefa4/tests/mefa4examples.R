@@ -136,3 +136,14 @@ taxax <- NULL
 mbind(x,y)
 mbind(as(x,"sparseMatrix"),as(y,"sparseMatrix"))
 mbind(Mefa(x,sampx),Mefa(y,sampy,taxay))
+
+## segments
+
+xx <- data.frame(
+    sample = paste("Sample", c(1,1,2,2,3,4), sep="."),
+    species = c(paste("Species", c(1,1,1,2,3), sep="."),  "zero.pseudo"),
+    count = c(1,2,10,3,4,0),
+    segment = letters[c(6,13,6,13,6,6)])
+xx
+Xtab(count ~ sample + species, xx)
+Xtab(count ~ sample + species + segment, xx)

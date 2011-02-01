@@ -37,6 +37,19 @@ setClass("Mefa",
             return("'join' must be \"left\" if both 'samp' and 'taxa' slots are 'NULL'")
         TRUE
     })
+setClass("sparseMatrixList", representation("VIRTUAL"),
+    validity = function(object) {
+        n <- length(object)
+        d <- lapply(object, dimnames)
+        if (1:n) {
+            if (!is(object[[i]], "sparseMatrix"))
+                return(paste("element", i, "not sparseMatrix"))
+            if (i > 1)
+                if (!identical(d[[1]], d[[i]]))
+                    return("dimnames must be identical")
+        }
+        TRUE
+    })
 
 ## creator functions
 
@@ -79,8 +92,10 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
             u <- factor(u, exclude = exclude)
         u[, drop = drop.unused.levels]
     })
-    if (length(by) != 2)
-        stop("function applies only to two-way tables")
+#    if (length(by) != 2)
+#        stop("function applies only to two-way tables")
+    if (!(length(by) %in% 2:3))
+        stop("function applies only to two- or three-way tables")
     rows <- by[[1]]
     cols <- by[[2]]
     rl <- levels(rows)
@@ -88,8 +103,11 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     if (is.null(y)) 
         y <- rep.int(1, length(rows))
     ## this is how it is constructed, then converted into dgCMatrix
-    out <- as(new("dgTMatrix", i = as.integer(rows) - 1L, j = as.integer(cols) - 
-        1L, x = as.double(y), Dim = c(length(rl), length(cl)), 
+    out <- as(new("dgTMatrix", 
+        i = as.integer(rows) - 1L, 
+        j = as.integer(cols) - 1L, 
+        x = as.double(y), 
+        Dim = c(length(rl), length(cl)), 
         Dimnames = list(rl, cl)), "CsparseMatrix")
     rkeep <- 1:nrow(out)
     ckeep <- 1:ncol(out)
@@ -113,10 +131,32 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
             ckeep <- setdiff(colnames(out), cdrop)
         } else stop("inappropriate 'cdrop' value")
     }
-    out <- out[rkeep, ckeep]
-    out <- drop0(out)
-    as(out, "dgCMatrix")
+    if (length(by) == 2) {
+        out <- out[rkeep, ckeep]
+        out <- drop0(out)
+        out <- as(out, "dgCMatrix")
+    }
+    if (length(by) == 3) {
+        segm <- by[[3]]
+        sl <- levels(segm)
+        out <- vector("list", length(sl))
+        names(out) <- sl
+        for (i in 1:length(sl)) {
+            id <- which(as.integer(segm) == i)
+            out[[sl[i]]] <- as(new("dgTMatrix", 
+                i = as.integer(rows[id]) - 1L, 
+                j = as.integer(cols[id]) - 1L, 
+                x = as.double(y[id]), 
+                Dim = c(length(rl), length(cl)), 
+                Dimnames = list(rl, cl)), "CsparseMatrix")
+            out[[sl[i]]] <- out[[sl[i]]][rkeep, ckeep]
+            out[[sl[i]]] <- drop0(out[[sl[i]]])
+        }
+        class(out) <- "sparseMatrixList"
+    }
+    out
 }
+#Xtab(~ sample + species+segm, x,cdrop="zero.pseudo")
 
 Mefa <-
 function(xtab, samp, taxa,
@@ -522,6 +562,10 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         ## xtab
         xtabx <- x@xtab
         xtaby <- y@xtab
+        if (length(xtabx) == 0)
+            stop("length of 'x' must not be 0")
+        if (length(xtaby) == 0)
+            stop("length of 'y' must not be 0")
         r1 <- rownames(xtabx)
         c1 <- colnames(xtabx)
         r2 <- rownames(xtaby)
