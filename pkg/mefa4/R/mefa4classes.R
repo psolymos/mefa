@@ -623,8 +623,8 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
             taxax2 <- data.frame(ROWNAMES=rownames(taxax), TAXAPART=1, taxax)
             taxay2 <- data.frame(ROWNAMES=rownames(taxay), TAXAPART=2, taxay)
             tm <- merge(taxax2, taxay2, all=TRUE)
-            tid1 <- which(sm$TAXAPART==1 & sm$ROWNAMES %in% c1)
-            tid2 <- which(sm$TAXAPART==2 & sm$ROWNAMES %in% cy)
+            tid1 <- which(tm$TAXAPART==1 & tm$ROWNAMES %in% c1)
+            tid2 <- which(tm$TAXAPART==2 & tm$ROWNAMES %in% cy)
             tm2 <- tm[c(tid1, tid2),]
             rownames(tm2) <- tm2$ROWNAMES
             tm2$ROWNAMES <- tm2$taxaPART <- NULL
