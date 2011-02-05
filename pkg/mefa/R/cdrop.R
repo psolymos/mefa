@@ -1,8 +1,11 @@
 cdrop <-
 function(x, cutoff=0, attrib=FALSE)
 {
-    cs <- if (inherits(x, "mefa") || inherits(x, "Mefa"))
-        colSums(xtab(x)) else colSums(x)
+    if (inherits(x, "mefa")) {
+        cs <- colSums(xtab(x))
+    } else if (inherits(x, "Mefa")) {
+        cs <- colSums(mefa4::xtab(x))
+    } else cs <- colSums(x)
     if (any(cs <= cutoff)) {
         exclude <- which(cs <= cutoff)
         rval <- x[,-exclude]

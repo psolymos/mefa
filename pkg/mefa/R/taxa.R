@@ -1,2 +1,2 @@
 taxa <- function (x, ...) 
-    UseMethod("taxa")
+    if (isS4(x)) mefa4::taxa(x) else UseMethod("taxa")

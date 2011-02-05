@@ -12,6 +12,9 @@ Version 3.1-7 -- January 21, 2011
     * segm() returned NULL instead of $xtab when segm was NULL,
       this is fixed.
     * rdrop/cdrop can take mefa orMefa object as argument.
+    * Namespace clash caused by xtab, samp, taxa generics fixed
+      (S4 objects were accessed wrong when mefa4 was overloaded
+      by mefa).
 
 
 Version 3.1-6 -- August 23, 2010

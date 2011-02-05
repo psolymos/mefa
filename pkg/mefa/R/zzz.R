@@ -1,8 +1,3 @@
-#.First.lib <- function(lib, pkg){
-#    cat("This is mefa ", utils::packageDescription("mefa", field="Version"),
-#    " (", utils::packageDescription("mefa", field="Date"), ")\n", sep="")
-#}
-
 .onAttach <- function(libname,pkgname){
     ver <- read.dcf(file=system.file("DESCRIPTION", package=pkgname), 
                     fields=c("Version", "Date"))
