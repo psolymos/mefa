@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-0 -- February 7, 2011
+    * CRAN release along with first release of mefa4.
+
+
 Version 3.1-7 -- January 21, 2011
     * zero sample handling bug fixed in stcs
     * coercion methods for S4 classes Xtab and Mefa added
@@ -15,6 +19,8 @@ Version 3.1-7 -- January 21, 2011
     * Namespace clash caused by xtab, samp, taxa generics fixed
       (S4 objects were accessed wrong when mefa4 was overloaded
       by mefa).
+    * Matrix::as.matrix() is used inside cdrop/rdrop when x is
+      an S4 Mefa object (col[row]Sums failed - now fixed).
 
 
 Version 3.1-6 -- August 23, 2010

@@ -4,7 +4,7 @@ function(x, cutoff=0, attrib=FALSE)
     if (inherits(x, "mefa")) {
         rs <- rowSums(xtab(x))
     } else if (inherits(x, "Mefa")) {
-        rs <- rowSums(mefa4::xtab(x))
+        rs <- rowSums(Matrix::as.matrix(mefa4::xtab(x)))
     } else rs <- rowSums(x)
     if (any(rs <= cutoff)) {
         exclude <- which(rs <= cutoff)
