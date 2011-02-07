@@ -23,7 +23,7 @@ non duplicated values of \code{y}.
 }
 }
 \details{
-This function is hendy to keep only one set of duplicated data that is common
+This function is handy to keep only one set of duplicated data that is common
 in long formatted database files.
 }
 \value{

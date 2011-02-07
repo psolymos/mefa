@@ -37,19 +37,20 @@ setClass("Mefa",
             return("'join' must be \"left\" if both 'samp' and 'taxa' slots are 'NULL'")
         TRUE
     })
-setClass("sparseMatrixList", representation("VIRTUAL"),
-    validity = function(object) {
-        n <- length(object)
-        d <- lapply(object, dimnames)
-        if (1:n) {
-            if (!is(object[[i]], "sparseMatrix"))
-                return(paste("element", i, "not sparseMatrix"))
-            if (i > 1)
-                if (!identical(d[[1]], d[[i]]))
-                    return("dimnames must be identical")
-        }
-        TRUE
-    })
+#setClass("sparseMatrixList", representation("VIRTUAL"))
+#setClass("sparseMatrixList", representation("VIRTUAL"),
+#    validity = function(object) {
+#        n <- length(object)
+#        d <- lapply(object, dimnames)
+#        for (i in 1:n) {
+#            if (!is(object[[i]], "sparseMatrix"))
+#                return(paste("element", i, "not sparseMatrix"))
+#            if (i > 1)
+#                if (!identical(d[[1]], d[[i]]))
+#                    return("dimnames must be identical")
+#        }
+#        TRUE
+#    })
 
 ## creator functions
 
@@ -152,11 +153,10 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
             out[[sl[i]]] <- out[[sl[i]]][rkeep, ckeep]
             out[[sl[i]]] <- drop0(out[[sl[i]]])
         }
-        class(out) <- "sparseMatrixList"
+#        class(out) <- "sparseMatrixList"
     }
     out
 }
-#Xtab(~ sample + species+segm, x,cdrop="zero.pseudo")
 
 Mefa <-
 function(xtab, samp, taxa,

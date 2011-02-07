@@ -1,7 +1,7 @@
 export(Xtab, Mefa,
     nonDuplicated)
-exportClasses(Mefa, stcs, mefa, MefaMatrix, MefaDataFrame, 
-    sparseMatrixList)
+exportClasses(Mefa, stcs, mefa, MefaMatrix, MefaDataFrame)
+#    sparseMatrixList
 exportMethods(xtab, samp, taxa, dim, dimnames, "dimnames<-",
     "xtab<-", "samp<-", "taxa<-", "[",
     groupSums, groupMeans,

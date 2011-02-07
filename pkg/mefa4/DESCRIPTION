@@ -1,12 +1,14 @@
 Package: mefa4
 Type: Package
 Title: Multivariate Data Handling with S4 Classes and Sparse Matrices
-Version: 0.1-2
-Date: 2011-01-26
-Author: Peter Solymos, Manuel Schneider
+Version: 0.2-0
+Date: 2011-02-07
+Author: Peter Solymos
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 Description: An S4 update of the 'mefa' package
   using sparse matrices for enhanced efficiency.
+  Sparse array-like obejects are supported via
+  lists of sparse matrices.
 Depends: methods, Matrix
 Enhances: mefa
 License: GPL-2

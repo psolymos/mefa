@@ -44,7 +44,7 @@ replacement value.
 The \code{[} method ensures that the \code{xtab} sparse matrix part and the
 corresponding attribute tables are subsetted correctly.
 
-When replacing slots of an object validity check is performed.
+Validity check is performed when replacing slots of an object.
 }
 \value{
 An object of S4 class \code{"Mefa"}.

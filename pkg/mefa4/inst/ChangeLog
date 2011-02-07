@@ -1,5 +1,8 @@
 MEFA4 VERSIONS
 
+Version 0.2-0 -- February 7, 2011
+    * First public CRAN release.
+
 Version 0.1-2 -- January 26, 2011
     * nonDuplicated function added.
     * segmented Xtab output implemnted

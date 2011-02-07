@@ -19,7 +19,7 @@ a \code{\link{formula}} object with the cross-classifying variables (separated b
 an optional matrix or data frame (or similar: see \code{\link{model.frame}}) containing the variables in the formula formula. By default the variables are taken from environment(formula).
 }
   \item{rdrop, cdrop}{
-logical (should zero marginal rows/columns be removed after cross tabulation), character or nmeric (what rows/columns should be removed).
+logical (should zero marginal rows/columns be removed after cross tabulation), character or numeric (what rows/columns should be removed).
 }
   \item{subset}{
 an optional vector specifying a subset of observations to be used.
@@ -37,12 +37,12 @@ a logical indicating whether to drop unused levels in the classifying factors. I
 \details{
 The function creates two- or three-way cross tabulation. Only works for two or three factors. 
 
-If a left hand side is given in formula, its entries are simply summed over the cells corresponding to the right hand side; this also works if the lhs does not give counts. 
+If a left hand side is given in formula, its entries are simply summed over the cells corresponding to the right hand side; this also works if the left hand side does not give counts. 
 }
 \value{
 A sparse numeric matrix inheriting from \code{\link{sparseMatrix}}, specifically an object of S4 class \code{dgCMatrix}. 
 
-For three factors, a list of sparse matrices (S4 class \code{sparseMatrixList}).
+For three factors, a list of sparse matrices.
 }
 \author{
 This function is a slight modification of the \code{\link[Matrix]{xtabs}} function in the \pkg{Matrix} package.
