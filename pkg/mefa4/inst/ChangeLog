@@ -6,8 +6,7 @@ Version 0.2-0 -- February 7, 2011
 Version 0.1-2 -- January 26, 2011
     * nonDuplicated function added.
     * segmented Xtab output implemnted
-      needs testing and new class virtual
-      spaseMatrixList.
+      as list of sparse matrices.
 
 Version 0.1-1 -- January 25, 2011
     * S4 classes working properly.
