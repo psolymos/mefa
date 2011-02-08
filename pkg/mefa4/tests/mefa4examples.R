@@ -26,6 +26,10 @@ taxa
 Xtab(count ~ sample + species, x, cdrop=TRUE,rdrop=FALSE)
 ## drop specific columns by placeholder
 Xtab(count ~ sample + species, x, cdrop="zero.pseudo")
+
+## 3-way crosstab
+x33 <- Xtab(count ~ sample + species + segment, x)
+
 ## Mefa class, standard
 (x3 <- Mefa(x1, samp, taxa))
 unclass(x3)
@@ -70,12 +74,13 @@ unclass(x3[,1:2])
 ## simple methods, dim, dimnames
 dim(x5)
 dimnames(x5)
-dn <- list(paste("S", 1:3, sep=""), paste("SPP", 1:4, sep=""))
+dn <- list(paste("S", 1:dim(x5)[1], sep=""),
+    paste("SPP", 1:dim(x5)[2], sep=""))
 dimnames(x5) <- dn
 unclass(x5)
-dimnames(x5)[[1]] <- paste("S", 1:3, sep="_")
+dimnames(x5)[[1]] <- paste("S", 1:dim(x5)[1], sep="_")
 unclass(x5)
-dimnames(x5)[[2]] <- paste("SPP", 1:4, sep="_")
+dimnames(x5)[[2]] <- paste("SPP", 1:dim(x5)[2], sep="_")
 unclass(x5)
 
 ## transpose
@@ -116,6 +121,8 @@ as.Xtab(s)
 as.Mefa(s)
 melt(x1)
 melt(x3)
+## sparse matrix list
+as.mefa(x33)
 
 ## mbind
 x=matrix(1:4,2,2)
@@ -137,13 +144,3 @@ mbind(x,y)
 mbind(as(x,"sparseMatrix"),as(y,"sparseMatrix"))
 mbind(Mefa(x,sampx),Mefa(y,sampy,taxay))
 
-## segments
-
-xx <- data.frame(
-    sample = paste("Sample", c(1,1,2,2,3,4), sep="."),
-    species = c(paste("Species", c(1,1,1,2,3), sep="."),  "zero.pseudo"),
-    count = c(1,2,10,3,4,0),
-    segment = letters[c(6,13,6,13,6,6)])
-xx
-Xtab(count ~ sample + species, xx)
-Xtab(count ~ sample + species + segment, xx)

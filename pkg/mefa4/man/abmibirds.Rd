@@ -6,7 +6,7 @@ Raw Dataset of Bird Point Counts
 }
 \description{
 A data set of bird point counts collected by the Alberta
-Biodiversity Monitoring Institute.
+Biodiversity Monitoring Institute (ABMI, \url{http://www.abmi.ca}).
 }
 \usage{data(abmibirds)}
 \format{

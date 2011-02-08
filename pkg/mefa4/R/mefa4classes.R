@@ -636,4 +636,3 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         ## assembling
         Mefa(part5, sm2, tm2, join="left", drop)
 })
-

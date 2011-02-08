@@ -22,7 +22,8 @@
   \pkg{mefa4} is a reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
   The new S4 class \code{"Mefa"} has all the consistency checks that S3 classes
   cannot have, and most importantly, it stores the crosstabuted results as a compact
-  sparse matrix (\code{"dgCMatrix"}). The use of sparse matrices speed up computations,
+  sparse matrix (S4 object class \code{"dgCMatrix"} of the \pkg{Matrix} package).
+  The use of sparse matrices speed up computations,
   and reduces object sizes considerably. This vignette introduces the main functions,
   classes and methods of the package \pkg{mefa4}.
 
@@ -57,7 +58,7 @@ options(prompt = "R> ", continue = "+   ", useFancyQuotes = FALSE, width = 76)
 The aim of the \pkg{mefa} and \pkg{mefa4} packages are to help in storing cross tabulated
 ecological data tables (community data) together with attributes for rows (samples) and columns
 (species, taxa). This allows that one can easily subset the relational data object without
-seperately manipulating 2--3 \proglang{R} objects. By doing so, the chances of errors are reduced.
+seperately manipulating 2--3 pieces of \proglang{R} objects. By doing so, the chances of errors are reduced.
 
 As ecological data sets are increasing in size, it is necessary to find more efficient ways of
 data storage and manipulation. To this end, it was in the air for some time to redesign
@@ -77,19 +78,16 @@ x <- data.frame(
     species = c(paste("Species", c(1,1,1,2,3), sep="."),  "zero.pseudo"),
     count = c(1,2,10,3,4,0),
     segment = letters[c(6,13,6,13,6,6)])
-x
-samp <- data.frame(samples=levels(x$sample), var1=1:2)
-taxa <- data.frame(specnames=levels(x$species), var2=c("b","a"))
-rownames(samp) <- samp$samples
-rownames(taxa) <- taxa$specnames
-samp
-taxa
 s <- stcs(x)
 attributes(s)
 @
 These attributes ensure that the crosstab made by the function \code{mefa()} creates a proper
-crosstab by eliminating columns, etc:
+crosstab by eliminating the column that is only a placeholder for empty samples, etc:
 <<>>=
+samp <- data.frame(samples=levels(x$sample), var1=1:2)
+taxa <- data.frame(specnames=levels(x$species), var2=c("b","a"))
+rownames(samp) <- samp$samples
+rownames(taxa) <- taxa$specnames
 (m <- mefa(s, samp, taxa))
 m$xtab
 @
@@ -99,21 +97,23 @@ function with \code{sparse = TRUE}. This function is adapted to some extent, so 
 the crosstabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
 that is available as the \code{Xtab} function in the \pkg{mefa4} package). This takes a formula,
 and can be applied directly on a data frame. The formula can have a left-hand side, or the left-hand side can be 
-missing:
+missing. The right-hand side can contain 2--3 factors, and the result will be a sparse matrix
+or a list of sparse matrices, respectively:
 <<>>=
 library(mefa4)
-(x0 <- Xtab(~ sample + species, x))
-(x1 <- Xtab(count ~ sample + species, x))
+x0  <- Xtab(~ sample + species, x)
+x1  <- Xtab(count ~ sample + species, x)
+x11 <- Xtab(count ~ sample + species + segment, x)
 @
 Dropping some rows/columns can be done in several ways.
 A logical statement implies that all empty rows/columns are dropped,
 but indices (numeric or character) can also be used:
 <<>>=
-(x2 <- Xtab(count ~ sample + species, x, cdrop=FALSE, rdrop=TRUE))
-Xtab(count ~ sample + species, x, cdrop=TRUE, rdrop=FALSE)
-Xtab(count ~ sample + species, x, cdrop="zero.pseudo")
+x2  <- Xtab(count ~ sample + species, x, cdrop=FALSE, rdrop=TRUE)
+x21 <- Xtab(count ~ sample + species, x, cdrop=TRUE, rdrop=FALSE)
+(x22 <- Xtab(count ~ sample + species, x, cdrop="zero.pseudo"))
 @
-The results here are sparse matrices in compact mode, meaning that
+The results here are sparse matrices in compact mode, this means that
 redundant indices are only kept once, so it is more compact than
 a long formatted database representation stored in an \code{stcs}
 object or in the original data frame, or a triplet representation of a sparse matrix. See vignettes in the 
@@ -123,18 +123,17 @@ The S4 class \code{"Mefa"} is defined in the \pkg{mefa4} package.
 It can be created by the \code{Mefa()} function, and the result has 4 slots:
 <<>>=
 (x3 <- Mefa(x1, samp, taxa))
-unclass(x3)
 @
 The \code{xtab} slot stores the crosstab in sparse matrix format.
-The \code{samp} slot stores the row attributes for \code{xtab} or
-can be \code{NULL}.
-The \code{taxa} slot stores the column attributes for \code{xtab} or
-can be \code{NULL}. Validity checks are done to ensure
+The \code{samp} slot stores the row attributes for \code{xtab}
+as data frame or can be \code{NULL}.
+The \code{taxa} slot stores the column attributes for \code{xtab} 
+as data frame or can be \code{NULL}. Validity checks are done to ensure
 proper object classes to be used and matching dimnames.
 The option that a column in the attribute tables can be specified
 to find matching names is not available in the new implementation.
-Rownames of the data frames has to match dimnames of \code{xtab}.
-The \code{joint} slot can be \code{"left"} (all rows/columns in the
+Corresponding rownames of the data frames has to match dimnames of \code{xtab}.
+The \code{join} slot can be \code{"left"} (all rows/columns in the
 \code{xtab} are kept, matching attributes are selected, non matching
 attributes are excluded, and missing attributes are filled up with \code{NA})
 or \code{"inner"} (only the intersection of corresponding dimnames are used to
@@ -145,13 +144,11 @@ but it will be stored in a sparse mode. Here we use a matrix as input,
 and \code{samp} has missing values (\code{"left"} join is used by default):
 <<>>=
 (x4 <- Mefa(as.matrix(x1), samp[1:2,]))
-unclass(x4)
 @
 The effect of \code{"inner"} join is as follows:
 <<>>=
 (x5 <- Mefa(x2, samp, taxa, join="inner"))
-unclass(x5)
-unclass(Mefa(x1, samp[1:2,], join="inner"))
+(x51 <- Mefa(x2, samp[1:2,], taxa, join="inner"))
 @
 A \code{"Mefa"} object with only \code{xtab} can also be defined:
 <<>>=
@@ -162,21 +159,22 @@ The structure of the S3 and S4 classes are very similar, and even the
 accessor methods (\code{xtab()}, \code{samp()}, \code{taxa()}, \code{segm()})
 work properly on both types. The S4 class does not have a slot for
 a call, and there is no \code{segm} element/slot either. This means that
-a \code{"Mefa"} object cannot have 3 dimensions, only 2. This might not be
-a nice feature, and 3 dimensional S4 classes might be added in future releases.
-Currently it is however, not a priority, as the gain in efficiency was the main
-reason. For those who require 3D representation, the S3 classes should be
-sufficient for the time being.
+a \code{"Mefa"} object cannot have 3 dimensions, only 2. \code{Xtab} can create
+3-dimensional sparse array-like objects (list of sparse matrices of the same dimensions),
+but there is no formal S4 class that can handle sparse matrix lists as part of 
+a \code{"Mefa"} object.
+The \code{as.mefa} method can convert such a list of sparse matrices into an S3
+\code{"mefa"} object with segments.
 
 \section{Back and forth}
 
 Coercion methods are defined in both the \pkg{mefa} and \pkg{mefa4} packages
-to ensure that S3 and S4 objects are interchangeable (within certain computing limits).
+to ensure that S3 and S4 objects are interchangeable:
 <<results=hide>>=
 as.stcs(x1)
 as.mefa(x1)
 as.stcs(x3)
-(a <- as.mefa(x3))
+a <- as.mefa(x3)
 xtab(a)
 samp(a)
 taxa(a)
@@ -184,7 +182,7 @@ segm(a)
 segm(x3)
 as.Mefa(a)
 as.Xtab(a)
-(s <- melt(a))
+s <- melt(a)
 as.Xtab(s)
 as.Mefa(s)
 melt(x1)
@@ -196,7 +194,7 @@ melt(x3)
 Accessing and replacing parts of the \code{"Mefa"} object
 is conveniently done by methods \code{xtab}, \code{samp},
 and \code{taxa} (the \code{segm} S3 method only returns the
-code{xtab} slot):
+code{xtab} slot of an S4 \code{"Mefa"} object):
 <<>>=
 xtab(x3)
 x1[3,1] <- 999
@@ -230,9 +228,9 @@ samp(x3)[1,]
 Subsetting the whole \code{"Mefa"} object is done via the \code{[}
 method:
 <<>>=
-unclass(x3[3:2, 1:2])
-unclass(x3[3:2,])
-unclass(x3[,1:2])
+x3[3:2, 1:2]
+x3[3:2, ]
+x3[ ,1:2]
 @
 
 \section{Methods for S4 classes}
@@ -241,21 +239,12 @@ Simple methods are provided for convenience:
 <<>>=
 dim(x5)
 dimnames(x5)
-dn <- list(paste("S", 1:3, sep=""), paste("SPP", 1:4, sep=""))
+dn <- list(paste("S", 1:dim(x5)[1], sep=""),
+    paste("SPP", 1:dim(x5)[2], sep=""))
 dimnames(x5) <- dn
-unclass(x5)
-dimnames(x5)[[1]] <- paste("S", 1:3, sep="_")
-unclass(x5)
-dimnames(x5)[[2]] <- paste("SPP", 1:4, sep="_")
-unclass(x5)
-@
-
-Transpose (I have never used it, but it was easy to implement):
-<<>>=
-x5
+dimnames(x5)[[1]] <- paste("S", 1:dim(x5)[1], sep="_")
+dimnames(x5)[[2]] <- paste("SPP", 1:dim(x5)[2], sep="_")
 t(x5)
-unclass(x5)
-unclass(t(x5))
 @
 
 \section{\code{groupSums} and \code{groupMeans}}
@@ -263,7 +252,7 @@ unclass(t(x5))
 The \code{aggregate} method was defined for 
 S3 \code{mefa} objects. Its equivalent (although it cannot
 sum the cells simultaneously for rows and columns, but
-it was done in 2 steps anyways \ldots) is the
+it was done in 2 subsequent steps anyway) is the
 \code{groupSums} method. The \code{MARGIN} argument
 indicates if rows (\code{MARGIN = 1}) or columns
 (\code{MARGIN = 2}) are to be added together:
@@ -286,17 +275,54 @@ groupMeans(x5, 1, c(1,1,2))
 groupMeans(x5, 2, c(1,1,2,2))
 @
 
+\section{Combine objects with \code{mbind}}
+
+\code{mbind} can be used to combine 2 matrices (dense or sparse).
+The 2 input objects are combined in a left join manner, which means 
+that all the elements in the first object are retained, 
+and only non-overlapping elements in the second object are used.
+Elements of the returning object that are not part of either objects (outer set)
+are filled up with value provided as \code{fill} argument.
+<<>>=
+x=matrix(1:4,2,2)
+rownames(x) <- c("a", "b")
+colnames(x) <- c("A", "B")
+y=matrix(11:14,2,2)
+rownames(y) <- c("b", "c")
+colnames(y) <- c("B", "C")
+mbind(x, y)
+mbind(x, y, fill=0)
+mbind(as(x, "sparseMatrix"), as(y, "sparseMatrix"))
+@
+
+\code{"Mefa"} objects can be combined in a similar way, where
+attribute tables are combined in a left join fashion
+(S3 \code{"mefa"} objects have to be coerced
+by the \code{as.Mefa} method beforehand -- this is so
+because the S3 class does not allow \code{NA} values in
+\code{$xtab}, and it is safer to avoid unnecessary complications):
+<<>>=
+sampx <- data.frame(x1=1:2, x2=2:1)
+rownames(sampx) <- rownames(x)
+sampy <- data.frame(x1=3:4, x3=10:11)
+rownames(sampy) <- rownames(y)
+taxay <- data.frame(x1=1:2, x2=2:1)
+rownames(taxay) <- colnames(y)
+taxax <- NULL
+mbind(Mefa(x, sampx), Mefa(y, sampy, taxay))
+@
+
 \section{Performace comparisons}
 
-Now we compare the performance of the \pkg{mefa} and \pkg{mefa4}
+We compare the performance of the \pkg{mefa} and \pkg{mefa4}
 packages. We are using a long formatted raw data file from the Alberta
 Biodiversity Monitoring Institute database (available at \href{http://www.abmi.ca}{http://www.abmi.ca}):
 <<>>=
 data(abmibirds)
-str(abmibirds)
 @
 
-This is the processing with \pkg{mefa}:
+This is the processing with \pkg{mefa} and S3 object classes 
+(we are storing the results and processing times):
 <<>>=
 b3 <- abmibirds
 b3 <- b3[!(b3$Scientific.Name %in% c("VNA", "DNC", "PNA")),]
@@ -323,7 +349,7 @@ t34 <- system.time(m32 <- mefa(y30, x3, z3))
 m32
 @
 
-The equivalent processing with \pkg{mefa4}:
+The equivalent processing with \pkg{mefa4} and S4 object classes:
 <<>>=
 b4 <- abmibirds
 b4$Label <- with(b4, paste(ABMI.Site, Year, 
@@ -348,7 +374,8 @@ m42
 sum(m42@xtab)
 @
 
-Let us compare object sizes and processing times:
+Let us compare object sizes and processing times, stars indicate
+similar S3 (\code{*=3}) and S4 (\code{*=4}) objects:
 <<echo=false>>=
 res <- cbind("SIZE, *=3"=c("b*"=object.size(b3),
     "s*"=object.size(s3),
@@ -376,32 +403,29 @@ res <- cbind("SIZE, *=3"=c("b*"=object.size(b3),
     "m*2"=t44[3]))
 (res <- cbind(res, "SIZE"=res[,2]/res[,1], "TIME"=res[,4]/res[,3]))
 @
-The compressed sparse matrix representation is 44\% of the \code{stcs} object in size.
-\code{"Mefa"} object sizes are 15\% of the S3 representatives.
-Processing time speed-up is enormous with sparse matrices, and still
-quite high by standard matrices.
+The compressed sparse matrix representation is \Sexpr{round(100*res[2,5], 1)}\% of the \code{stcs} object in size.
+\code{"Mefa"} object sizes are maximum of \Sexpr{round(100*max(res[5:6,5]),1)}\% of their S3 representatives.
+Processing time speed-up is enormous with sparse matrices (\Sexpr{round(100*mean(res[4:5,6]),1)}\%), and still
+quite high by standard matrices (\Sexpr{round(100*res[6,6],1)}\%).
 
-Make sure that objects are the same:
+Check that objects are the same:
 <<>>=
-dim(y30)
-dim(y40)
-setdiff(rownames(y30), rownames(y40))
-setdiff(rownames(y40), rownames(y30))
-setdiff(colnames(y30), colnames(y40))
-setdiff(colnames(y40), colnames(y30))
+stopifnot(identical(dim(y30), dim(y40)))
+stopifnot(identical(setdiff(rownames(y30), rownames(y40)), character(0)))
+stopifnot(identical(setdiff(rownames(y40), rownames(y30)), character(0)))
+stopifnot(identical(setdiff(colnames(y30), colnames(y40)), character(0)))
+stopifnot(identical(setdiff(colnames(y40), colnames(y30)), character(0)))
 @
 
-The aggregation has also improved quite a bit:
+The aggregation also improved quite a bit with sparse matrices:
 <<>>=
 system.time(xx3 <- aggregate(m31, "ABMI.Site"))
 system.time(xx4 <- groupSums(m41, 1, m41@samp$ABMI.Site))
-as.Mefa(xx3)
-xx4
 @
 
 \section{Conclusions}
 
-The redesign of the old S3 classes onto S4 ones resulted in large savings in computing time
+The redesign of the old S3 classes into S4 ones resulted in large savings in computing time
 and object sizes. Old features are still available due to the free conversion
 between the two implementations.
 

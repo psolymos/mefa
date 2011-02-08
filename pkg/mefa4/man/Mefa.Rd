@@ -66,7 +66,7 @@ Peter Solymos <solymos@ualberta.ca>
 If \code{xtab} has no dimnames, matching it up with the attribute tables can be problematic.
 }
 \seealso{
-Creating crosstabulations: \code{\link{Xtab}}, \code{\link[stats]{xtabs}}, \code{\link[Matrix]{xtabs}}
+Creating crosstabulations: \code{\link{Xtab}}, \code{\link[stats]{xtabs}} in package \pkg{stats}, \code{\link[Matrix]{xtabs}} in package \pkg{Matrix}
 
 \code{"mefa"} S3 class: \code{\link[mefa]{mefa}} in \pkg{mefa} package.
 

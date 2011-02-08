@@ -12,6 +12,8 @@ using sparse matrices for enhanced efficiency.
 \details{
 An S4 update of the 'mefa' package
 using sparse matrices for enhanced efficiency.
+Sparse array-like obejects are supported via
+lists of sparse matrices.
 
 Main functions: \code{\link{Xtab}}, \code{\link{Mefa}}.
 
@@ -30,7 +32,7 @@ gives a comparison of S3 and S4 object classes, and presents a performance
 review.
 }
 \author{
-Peter Solymos, Manuel Schneider
+Peter Solymos
 
 Maintainer: Peter Solymos <solymos@ualberta.ca>
 }
