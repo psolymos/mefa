@@ -39,7 +39,6 @@ export(as.mefa,
     aoplot,
     as.Xtab,
     as.Mefa)
-#    as.array) ## Matrix clash
 
 #importMethodsFrom(mefa4, xtab, samp, taxa)
 

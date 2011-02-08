@@ -21,6 +21,7 @@ Version 3.1-7 -- January 21, 2011
       by mefa).
     * Matrix::as.matrix() is used inside cdrop/rdrop when x is
       an S4 Mefa object (col[row]Sums failed - now fixed).
+    * as.mefa.list can handle lists of sparse matrices.
 
 
 Version 3.1-6 -- August 23, 2010

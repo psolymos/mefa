@@ -2,9 +2,13 @@
 function(x, ...)
 {
     n <- length(x)
-    if (n == 1 && is.matrix(x[[1]]))
-        return(as.mefa.default(x[[1]]))
+    if (isS4(x[[1]]))
+        for (i in 1:n) {
+            x[[i]] <- Matrix::as.matrix(x[[i]])
+        }
     tmp <- x
+    if (n == 1 && length(dim(tmp[[1]])) == 2)
+        return(as.mefa.default(tmp[[1]]))
     for (i in 2:n) {
         tmp[[i]] <- tmp[[(i-1)]] + x[[i]]
     }
