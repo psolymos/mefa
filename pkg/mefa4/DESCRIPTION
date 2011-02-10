@@ -10,7 +10,7 @@ Description: An S4 update of the 'mefa' package
   Sparse array-like obejects are supported via
   lists of sparse matrices.
 Depends: methods, Matrix
-Enhances: mefa
+Suggests: mefa
 License: GPL-2
 URL: http://mefa.r-forge.r-project.org/
 LazyLoad: yes

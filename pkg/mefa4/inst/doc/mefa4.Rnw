@@ -247,7 +247,7 @@ dimnames(x5)[[2]] <- paste("SPP", 1:dim(x5)[2], sep="_")
 t(x5)
 @
 
-\section{\code{groupSums} and \code{groupMeans}}
+\section{Grouping rows and columns}
 
 The \code{aggregate} method was defined for 
 S3 \code{mefa} objects. Its equivalent (although it cannot
@@ -275,7 +275,7 @@ groupMeans(x5, 1, c(1,1,2))
 groupMeans(x5, 2, c(1,1,2,2))
 @
 
-\section{Combine objects with \code{mbind}}
+\section{Combining objects}
 
 \code{mbind} can be used to combine 2 matrices (dense or sparse).
 The 2 input objects are combined in a left join manner, which means 
