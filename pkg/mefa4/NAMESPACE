@@ -1,5 +1,5 @@
 export(Xtab, Mefa,
-    nonDuplicated)
+    nonDuplicated, Melt)
 exportClasses(Mefa, stcs, mefa, MefaMatrix, MefaDataFrame)
 #    sparseMatrixList
 exportMethods(xtab, samp, taxa, dim, dimnames, "dimnames<-",
