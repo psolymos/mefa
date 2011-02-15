@@ -45,6 +45,16 @@ unclass(Mefa(x1, samp[1:2,], join="inner"))
 ## creating new Mefa object without Mefa()
 new("Mefa", xtab=x1, samp=samp, taxa=taxa,join="left")
 
+## Melt
+x0 <- Xtab(count ~ sample + species, x)
+x33 <- Xtab(count ~ sample + species + segment, x)
+(M1 <- Melt(x0))
+Melt(as.matrix(x0))
+(M2 <- Melt(x33))
+stopifnot(identical(Xtab(value ~ rows + cols, M1), x0))
+stopifnot(identical(Xtab(value ~ rows + cols + segm, M2), x33))
+
+
 ## accessing the xtab slot
 xtab(x3)
 ## replacing the slot value
@@ -144,10 +154,3 @@ mbind(x,y)
 mbind(as(x,"sparseMatrix"),as(y,"sparseMatrix"))
 mbind(Mefa(x,sampx),Mefa(y,sampy,taxay))
 
-x0 <- Xtab(count ~ sample + species, xx)
-x33 <- Xtab(count ~ sample + species + segment, xx)
-(M1 <- Melt(x0))
-Melt(as.matrix(x0))
-(M2 <- Melt(x33))
-stopifnot(identical(Xtab(value ~ rows + cols, M1), x0))
-stopifnot(identical(Xtab(value ~ rows + cols + segm, M2), x33))

@@ -11,7 +11,8 @@ Melt(x)
 }
 \arguments{
   \item{x}{
-A matrix, or sparse matrix object, or a list of sparse matrices with identical dimnames.
+A matrix, or sparse matrix object, a list of sparse matrices with identical dimnames,
+a 'mefa' or 'Mefa' object.
 }
 }
 \value{

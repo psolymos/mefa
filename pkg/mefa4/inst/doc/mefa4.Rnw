@@ -155,6 +155,16 @@ A \code{"Mefa"} object with only \code{xtab} can also be defined:
 (x6 <- Mefa(x1))
 @
 
+The equivalent of the \code{melt} method of the \pkg{mefa} package is
+the \code{Melt} function in \pkg{mefa4}. It can be used to reverse
+the side effects of the cross-tabulation, thus making a data frame
+from a matrix, sparse matrix, list of sparse matrices, 
+a \code{mefa} or a \code{Mefa} object:
+<<>>=
+Melt(x1)
+Melt(x11)
+@
+
 The structure of the S3 and S4 classes are very similar, and even the
 accessor methods (\code{xtab()}, \code{samp()}, \code{taxa()}, \code{segm()})
 work properly on both types. The S4 class does not have a slot for

@@ -15,6 +15,10 @@ nonDuplicated <- function(x, y, change.rownames=FALSE) {
 Melt <-
 function(x)
 {
+    if (inherits(x, "Mefa"))
+        x <- x@xtab
+    if (inherits(x, "mefa"))
+        x <- as(x$xtab, "dgCMatrix")
     if (inherits(x, "matrix"))
         x <- as(x, "dgCMatrix")
     if (inherits(x, "sparseMatrix")) {
