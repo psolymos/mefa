@@ -27,14 +27,14 @@ OK - join 2 Xtab, Mefa objects, inner/outer/left/right join operations
 OK - add a vignette on performance comparisons, new classes and methods
 OK - write documentation (Rd)
 OK - sparseMatrixList virtual class added
-- methods for sparseMatrixList [, [<-
-- how to incorporate sparseMatrixList into Mefa?
+? - methods for sparseMatrixList [, [<-
+? - how to incorporate sparseMatrixList into Mefa?
      define new class, that will need [, [<-
-- compatibility with 'mefa' class: xtab should be the segm list, segm should be a MefaDataFrame
-- rename slot?
-- print, summary (not sure what to do with these)
-- plot, image (see image plot for Matrix classes) - it is not urgent, image(as.mefa(x))
-? set a class union for XtabMatrix and Mefa -- currently no need for it
-? which operatons should affect @call? -- update all the time, or remove @call
-? is there a need for call and update? -- I think no
+? - compatibility with 'mefa' class: xtab should be the segm list, segm should be a MefaDataFrame
+? - rename slot?
+? - print, summary (not sure what to do with these)
+? - plot, image (see image plot for Matrix classes) - it is not urgent, image(as.mefa(x))
+? - set a class union for XtabMatrix and Mefa -- currently no need for it
+? - which operatons should affect @call? -- update all the time, or remove @call
+? - is there a need for call and update? -- I think no
 
