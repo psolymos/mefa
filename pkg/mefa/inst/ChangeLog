@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-1 -- May 13, 2011
+    * Vignette: value of 'strip.white' option is now lowercase.
+
+
 Version 3.2-0 -- February 7, 2011
     * CRAN release along with first release of mefa4.
 
