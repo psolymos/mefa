@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-2 -- May 14, 2011
+    *
+
+
 Version 3.2-1 -- May 13, 2011
     * Vignette: value of 'strip.white' option is now lowercase.
 

@@ -1,5 +1,8 @@
 MEFA4 VERSIONS
 
+Version 0.2-2 -- May 13, 2011
+    *
+
 Version 0.2-1 -- February 14, 2011
     * Melt function added to reverse side effects of Xtab.
     * Docs for Melt added (Rd, tests, vignette).
