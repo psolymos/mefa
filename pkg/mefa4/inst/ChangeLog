@@ -1,7 +1,7 @@
 MEFA4 VERSIONS
 
 Version 0.2-2 -- May 13, 2011
-    *
+    * Allowing for 0 and 1 row Mefa objects ('xtab<-' and '[').
 
 Version 0.2-1 -- February 14, 2011
     * Melt function added to reverse side effects of Xtab.

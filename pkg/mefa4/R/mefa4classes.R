@@ -249,7 +249,12 @@ setReplaceMethod("xtab", signature(x = "Mefa", value = "MefaMatrix"),
             } else {
                 colnames(value)
             }
-            x@xtab <- value[rkeep, ckeep]
+            XTAB <- value[rkeep, ckeep]
+            if (is.null(dim(XTAB))) {
+                dim(XTAB) <- c(length(rkeep), length(ckeep))
+                dimnames(XTAB) <- list(rkeep, ckeep)
+            }
+            x@xtab <- XTAB
             if (!is.null(x@samp))
                 x@samp <- x@samp[rkeep,]
             if (!is.null(x@taxa))
@@ -310,7 +315,18 @@ setMethod("[", signature(x = "Mefa", i = "ANY",
             stop("index contains 'NA'")
         if (any(is.na(j)))
             stop("index contains 'NA'")
-        x@xtab <- x@xtab[i,j]
+
+        XTAB <- x@xtab[i,j]
+        if (is.null(dim(XTAB))) {
+            li <- if (is.logical(i))
+                sum(i) else length(i)
+            lj <- if (is.logical(j))
+                sum(j) else length(j)
+            dim(XTAB) <- c(li, lj)
+            dimnames(XTAB) <- list(rownames(x@xtab)[i], colnames(x@xtab)[j])
+        }
+
+        x@xtab <- XTAB
         if (!is.null(x@samp)) {
             x@samp <- x@samp[i,]
             if (drop)
