@@ -9,13 +9,12 @@ Subset a data frame using non duplicated elemnts in a vector.
 \usage{
 nonDuplicated(x, y, change.rownames = FALSE)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{
 a data frame.
 }
   \item{y}{
-a vector.
+a vector. It can be a name of a column in \code{x} without quotes.
 }
   \item{change.rownames}{
 if original rownames of \code{x} are to be replaced by unique 
@@ -38,6 +37,8 @@ Peter Solymos <solymos@ualberta.ca>
 \examples{
 data(abmibirds)
 x <- nonDuplicated(abmibirds, abmibirds$ABMI.Site, TRUE)
+## or equivalently
+#x <- nonDuplicated(abmibirds, ABMI.Site, TRUE)
 dim(abmibirds)
 dim(x)
 length(unique(abmibirds$ABMI.Site))

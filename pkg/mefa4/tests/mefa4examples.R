@@ -45,6 +45,12 @@ unclass(Mefa(x1, samp[1:2,], join="inner"))
 ## creating new Mefa object without Mefa()
 new("Mefa", xtab=x1, samp=samp, taxa=taxa,join="left")
 
+## 0 and 1 row/col Mefa object
+x3[c(FALSE,FALSE,FALSE,FALSE),c(FALSE,FALSE,FALSE,FALSE)]
+x3[c(TRUE,FALSE,FALSE,FALSE),c(FALSE,FALSE,FALSE,FALSE)]
+x3[c(FALSE,FALSE,FALSE,FALSE),c(TRUE,FALSE,FALSE,FALSE)]
+x3[c(TRUE,FALSE,FALSE,FALSE),c(TRUE,FALSE,FALSE,FALSE)]
+
 ## Melt
 x0 <- Xtab(count ~ sample + species, x)
 x33 <- Xtab(count ~ sample + species + segment, x)

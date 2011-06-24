@@ -3,6 +3,9 @@
 nonDuplicated <- function(x, y, change.rownames=FALSE) {
     if (length(dim(x)) != 2)
         stop("'x' must have 2 dimensions")
+    z <- deparse(substitute(y))
+    if (z %in% colnames(x))
+        y <- x[,z]
     if (nrow(x) != length(y))
         stop("non matching arguments 'x' and 'y'")
     keep <- !duplicated(y)
