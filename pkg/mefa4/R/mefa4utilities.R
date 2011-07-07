@@ -1,4 +1,4 @@
-## class definitions
+## utility functions
 
 nonDuplicated <- function(x, y, change.rownames=FALSE) {
     if (length(dim(x)) != 2)
