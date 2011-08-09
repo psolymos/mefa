@@ -7,7 +7,8 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
     ss <- stcs(x, expand = FALSE, drop.zero=drop.zero)
     if (!segment) {
  #       out <- as.matrix(table(ss$samp, ss$taxa))
-        out <- as.matrix(xtabs(count ~ samp + taxa, ss))
+        out <- xtabs(count ~ samp + taxa, ss)
+        class(out) <- NULL
         if (attr(ss, "zero.count") && !drop.zero)
             out <- out[, -which(colnames(out) %in% attr(ss, "zero.pseudo"))]}
     if (segment) {
@@ -20,7 +21,8 @@ function(x, segment=FALSE, nested=FALSE, drop.zero=FALSE)
             for (i in 1:nsegm) {
                 if (drop.zero || (levels(ss$segm)[i] != attr(ss, "zero.pseudo"))) {
 #                    out[[i]] <- as.matrix(table(ss$samp, ss$tax, ss$segm)[,,i])
-                    out[[i]] <- as.matrix(xtabs(count ~ samp + taxa + segm, ss)[,,i])
+                    out[[i]] <- xtabs(count ~ samp + taxa + segm, ss)[,,i]
+                    class(out[[i]]) <- NULL
                 if (attr(ss, "zero.count") && !drop.zero)
                     out[[i]] <- out[[i]][, -which(colnames(out[[i]]) %in% attr(ss, "zero.pseudo"))]
                 names(out)[i] <- levels(ss$segm)[i]}}

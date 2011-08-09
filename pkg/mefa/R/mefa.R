@@ -28,7 +28,7 @@ drop.zero=FALSE, drop.index=FALSE, xtab.fixed=TRUE)
         segm <- if (segment) {
             mefaCrosstab(x, segment=TRUE, nested=nested, drop.zero=drop.zero)
             } else {NULL}}
-# make stab
+# make samp
     xtab2 <- xtab
     if (!is.null(samp)) {
         if (NCOL(samp) == 1 && drop.index)
