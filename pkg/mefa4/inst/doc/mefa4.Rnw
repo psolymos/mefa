@@ -21,7 +21,7 @@
 \Abstract{
   \pkg{mefa4} is a reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
   The new S4 class \code{"Mefa"} has all the consistency checks that S3 classes
-  cannot have, and most importantly, it stores the crosstabuted results as a compact
+  cannot have, and most importantly, it stores the cross-tabuted results as a compact
   sparse matrix (S4 object class \code{"dgCMatrix"} of the \pkg{Matrix} package).
   The use of sparse matrices speed up computations,
   and reduces object sizes considerably. This vignette introduces the main functions,
@@ -58,7 +58,7 @@ options(prompt = "R> ", continue = "+   ", useFancyQuotes = FALSE, width = 76)
 The aim of the \pkg{mefa} and \pkg{mefa4} packages are to help in storing cross tabulated
 ecological data tables (community data) together with attributes for rows (samples) and columns
 (species, taxa). This allows that one can easily subset the relational data object without
-seperately manipulating 2--3 pieces of \proglang{R} objects. By doing so, the chances of errors are reduced.
+separately manipulating 2--3 pieces of \proglang{R} objects. By doing so, the chances of errors are reduced.
 
 As ecological data sets are increasing in size, it is necessary to find more efficient ways of
 data storage and manipulation. To this end, it was in the air for some time to redesign
@@ -81,8 +81,8 @@ x <- data.frame(
 s <- stcs(x)
 attributes(s)
 @
-These attributes ensure that the crosstab made by the function \code{mefa()} creates a proper
-crosstab by eliminating the column that is only a placeholder for empty samples, etc:
+These attributes ensure that the cross-tab made by the function \code{mefa()} creates a proper
+cross-tab by eliminating the column that is only a placeholder for empty samples, etc.:
 <<>>=
 samp <- data.frame(samples=levels(x$sample), var1=1:2)
 taxa <- data.frame(specnames=levels(x$species), var2=c("b","a"))
@@ -94,7 +94,7 @@ m$xtab
 
 The \code{stcs} step is almost redundant, and inefficient relative to the \code{Matrix:::xtabs}
 function with \code{sparse = TRUE}. This function is adapted to some extent, so it can subset
-the crosstabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
+the cross-tabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
 that is available as the \code{Xtab} function in the \pkg{mefa4} package). This takes a formula,
 and can be applied directly on a data frame. The formula can have a left-hand side, or the left-hand side can be 
 missing. The right-hand side can contain 2--3 factors, and the result will be a sparse matrix
@@ -124,7 +124,7 @@ It can be created by the \code{Mefa()} function, and the result has 4 slots:
 <<>>=
 (x3 <- Mefa(x1, samp, taxa))
 @
-The \code{xtab} slot stores the crosstab in sparse matrix format.
+The \code{xtab} slot stores the cross-tab in sparse matrix format.
 The \code{samp} slot stores the row attributes for \code{xtab}
 as data frame or can be \code{NULL}.
 The \code{taxa} slot stores the column attributes for \code{xtab} 
@@ -134,7 +134,7 @@ The option that a column in the attribute tables can be specified
 to find matching names is not available in the new implementation.
 Corresponding rownames of the data frames has to match dimnames of \code{xtab}.
 The \code{join} slot can be \code{"left"} (all rows/columns in the
-\code{xtab} are kept, matching attributes are selected, non matching
+\code{xtab} are kept, matching attributes are selected, non-matching
 attributes are excluded, and missing attributes are filled up with \code{NA})
 or \code{"inner"} (only the intersection of corresponding dimnames are used to
 form the return value).
@@ -322,7 +322,7 @@ taxax <- NULL
 mbind(Mefa(x, sampx), Mefa(y, sampy, taxay))
 @
 
-\section{Performace comparisons}
+\section{Performance comparisons}
 
 We compare the performance of the \pkg{mefa} and \pkg{mefa4}
 packages. We are using a long formatted raw data file from the Alberta
