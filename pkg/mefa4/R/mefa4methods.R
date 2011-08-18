@@ -27,9 +27,9 @@ setReplaceMethod("xtab", signature(x = "Mefa", value = "MefaMatrix"),
             ckeep <- colnames(value)
             x@xtab <- value
             if (!is.null(x@samp))
-                x@samp <- x@samp[rkeep,]
+                x@samp <- x@samp[rkeep,,drop=FALSE]
             if (!is.null(x@taxa))
-                x@taxa <- x@taxa[ckeep,]
+                x@taxa <- x@taxa[ckeep,,drop=FALSE]
         }
         if (x@join == "inner") {
             rkeep <- if (!is.null(x@samp)) {
@@ -42,16 +42,17 @@ setReplaceMethod("xtab", signature(x = "Mefa", value = "MefaMatrix"),
             } else {
                 colnames(value)
             }
-            XTAB <- value[rkeep, ckeep]
-            if (is.null(dim(XTAB))) {
-                dim(XTAB) <- c(length(rkeep), length(ckeep))
-                dimnames(XTAB) <- list(rkeep, ckeep)
-            }
-            x@xtab <- XTAB
+#            XTAB <- value[rkeep, ckeep,drop=FALSE]
+#            if (is.null(dim(XTAB))) {
+#                dim(XTAB) <- c(length(rkeep), length(ckeep))
+#                dimnames(XTAB) <- list(rkeep, ckeep)
+#            }
+#            x@xtab <- XTAB
+            x@xtab <- value[rkeep, ckeep,drop=FALSE]
             if (!is.null(x@samp))
-                x@samp <- x@samp[rkeep,]
+                x@samp <- x@samp[rkeep,,drop=FALSE]
             if (!is.null(x@taxa))
-                x@taxa <- x@taxa[ckeep,]
+                x@taxa <- x@taxa[ckeep,,drop=FALSE]
         }
         if (!is.null(x@samp))
             rownames(x@samp) <- rkeep
@@ -64,12 +65,12 @@ setReplaceMethod("samp", signature(x = "Mefa", value = "MefaDataFrame"),
         if (!is.null(value)) {
             if (x@join == "left") {
                 rkeep <- rownames(x@xtab)
-                x@samp <- value[rkeep,]
+                x@samp <- value[rkeep,,drop=FALSE]
             }
             if (x@join == "inner") {
                 rkeep <- intersect(rownames(x@xtab), rownames(value))
-                x@xtab <- x@xtab[rkeep,]
-                x@samp <- value[rkeep,]
+                x@xtab <- x@xtab[rkeep,,drop=FALSE]
+                x@samp <- value[rkeep,,drop=FALSE]
             }
             rownames(x@samp) <- rkeep
         } else x@samp <- NULL
@@ -80,12 +81,12 @@ setReplaceMethod("taxa", signature(x = "Mefa", value = "MefaDataFrame"),
         if (!is.null(value)) {
             if (x@join == "left") {
                 ckeep <- colnames(x@xtab)
-                x@taxa <- value[ckeep,]
+                x@taxa <- value[ckeep,,drop=FALSE]
             }
             if (x@join == "inner") {
                 ckeep <- intersect(colnames(x@xtab), rownames(value))
-                x@xtab <- x@xtab[,ckeep]
-                x@taxa <- value[ckeep,]
+                x@xtab <- x@xtab[,ckeep,drop=FALSE]
+                x@taxa <- value[ckeep,,drop=FALSE]
             }
             rownames(x@taxa) <- ckeep
         } else x@taxa <- NULL
@@ -108,23 +109,24 @@ setMethod("[", signature(x = "Mefa", i = "ANY",
             stop("index contains 'NA'")
         if (any(is.na(j)))
             stop("index contains 'NA'")
-        XTAB <- x@xtab[i,j]
-        if (is.null(dim(XTAB))) {
-            li <- if (is.logical(i))
-                sum(i) else length(i)
-            lj <- if (is.logical(j))
-                sum(j) else length(j)
-            dim(XTAB) <- c(li, lj)
-            dimnames(XTAB) <- list(rownames(x@xtab)[i], colnames(x@xtab)[j])
-        }
-        x@xtab <- XTAB
+#        XTAB <- x@xtab[i,j,drop=FALSE]
+#        if (is.null(dim(XTAB))) {
+#            li <- if (is.logical(i))
+#                sum(i) else length(i)
+#            lj <- if (is.logical(j))
+#                sum(j) else length(j)
+#            dim(XTAB) <- c(li, lj)
+#            dimnames(XTAB) <- list(rownames(x@xtab)[i], colnames(x@xtab)[j])
+#        }
+#        x@xtab <- XTAB
+        x@xtab <- x@xtab[i,j,drop=FALSE]
         if (!is.null(x@samp)) {
-            x@samp <- x@samp[i,]
+            x@samp <- x@samp[i,,drop=FALSE]
             if (drop)
                 x@samp <- lapply(x@samp, function(z) z[drop=TRUE])
         }
         if (!is.null(x@taxa)) {
-            x@taxa <- x@taxa[j,]
+            x@taxa <- x@taxa[j,,drop=FALSE]
             if (drop)
                 x@taxa <- lapply(x@taxa, function(z) z[drop=TRUE])
         }
