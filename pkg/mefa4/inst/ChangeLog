@@ -4,6 +4,8 @@ Version 0.2-3 -- July 9, 2011
     * packageStartupMessage used in zzz.R .onAttach
     * Typos fixed in vignette.
     * 1x1 dim issues fixed again using drop=FALSE in '['
+    * typo corrected in mbind for Mefa objects that
+      left TAXAPART temp variable in result.
 
 Version 0.2-2 -- May 13, 2011
     * Allowing for 0 and 1 row/col Mefa objects ('xtab<-' and '[').

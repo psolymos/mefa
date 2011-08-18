@@ -249,7 +249,7 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
             tid2 <- which(tm$TAXAPART==2 & tm$ROWNAMES %in% cy)
             tm2 <- tm[c(tid1, tid2),]
             rownames(tm2) <- tm2$ROWNAMES
-            tm2$ROWNAMES <- tm2$taxaPART <- NULL
+            tm2$ROWNAMES <- tm2$TAXAPART <- NULL
         }
         if (!is.null(taxax) && is.null(taxay))
             tm2 <- taxax
