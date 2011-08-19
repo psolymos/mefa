@@ -227,8 +227,8 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         if (is.null(sampx) && is.null(sampy))
             sm2 <- NULL
         if (!is.null(sampx) && !is.null(sampy)) {
-            sampx2 <- data.frame(ROWNAMES=rownames(sampx), SAMPPART=1, sampx)
-            sampy2 <- data.frame(ROWNAMES=rownames(sampy), SAMPPART=2, sampy)
+            sampx2 <- data.frame(ROWNAMES=rownames(sampx), SAMPPART=1, sampx[,,drop=FALSE])
+            sampy2 <- data.frame(ROWNAMES=rownames(sampy), SAMPPART=2, sampy[,,drop=FALSE])
             sm <- merge(sampx2, sampy2, all=TRUE)
             sid1 <- which(sm$SAMPPART==1 & sm$ROWNAMES %in% r1)
             sid2 <- which(sm$SAMPPART==2 & sm$ROWNAMES %in% ry)
@@ -246,8 +246,10 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         if (is.null(taxax) && is.null(taxay))
             tm2 <- NULL
         if (!is.null(taxax) && !is.null(taxay)) {
-            taxax2 <- data.frame(ROWNAMES=rownames(taxax), TAXAPART=1, taxax)
-            taxay2 <- data.frame(ROWNAMES=rownames(taxay), TAXAPART=2, taxay)
+            taxax2 <- data.frame(ROWNAMES=rownames(taxax), TAXAPART=1, taxax[,,drop=FALSE])
+            taxay2 <- data.frame(ROWNAMES=rownames(taxay), TAXAPART=2, taxay[,,drop=FALSE])
+            ## 1: merge common cols only from y to x
+            ## 2: add unique cols from y to tm
             tm <- merge(taxax2, taxay2, all=TRUE)
             tid1 <- which(tm$TAXAPART==1 & tm$ROWNAMES %in% c1)
             tid2 <- which(tm$TAXAPART==2 & tm$ROWNAMES %in% cy)
