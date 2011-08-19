@@ -28,6 +28,9 @@ other argument, not used.
 \code{x} are retained, and only non-overlapping elements in \code{y} are used.
 Elements of the returning object that are not part of \code{x} and \code{y} (outer set)
 are filled up with \code{fill}.
+
+If relational table in \code{x} is \code{NULL}, corresponding values from same table
+of \code{y} are used.
 }
 \value{
 An object similar to the input one.
@@ -58,7 +61,7 @@ taxax <- NULL
 
 mbind(x,y)
 mbind(as(x,"sparseMatrix"),as(y,"sparseMatrix"))
-mbind(Mefa(x,sampx),Mefa(y,sampy,taxay))
+unclass(mbind(Mefa(x,sampx),Mefa(y,sampy,taxay)))
 }
 \keyword{ methods }
 \keyword{ manip }% __ONLY ONE__ keyword per line

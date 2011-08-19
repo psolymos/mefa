@@ -172,16 +172,3 @@ unclass(z0)
 xtab(z0) <- y[1,1,drop=FALSE]
 unclass(z0)
 
-## mbind again
-x=matrix(1:4,2,2)
-rownames(x) <- c("a","b")
-colnames(x) <- c("A","B")
-y=matrix(11:14,2,2)
-rownames(y) <- c("a","b")
-colnames(y) <- c("B","C")
-
-sampx <- data.frame(x1=1:2, x2=2:1)
-rownames(sampx) <- rownames(x)
-sampy <- data.frame(x1=3:4, x3=10:11)
-rownames(sampy) <- rownames(y)
-unclass(mbind(Mefa(x,sampx),Mefa(y,sampy)))
