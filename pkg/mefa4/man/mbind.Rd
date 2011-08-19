@@ -36,7 +36,7 @@ of \code{y} are used.
 An object similar to the input one.
 }
 \author{
-Modified by Peter Solymos <solymos@ualberta.ca>
+Peter Solymos <solymos@ualberta.ca>
 }
 \seealso{
 \code{\link{rbind}}, \code{\link{cbind}} 

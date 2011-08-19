@@ -52,7 +52,7 @@ so calculations can be more efficient compared to using \code{\link{aggregate}}.
 An object similar to the input one.
 }
 \author{
-Modified by Peter Solymos <solymos@ualberta.ca>
+Peter Solymos <solymos@ualberta.ca>
 }
 \seealso{
 \code{\link{rowSums}}, \code{\link{rowMeans}}, \code{\link{colSums}}, \code{\link{colMeans}}
