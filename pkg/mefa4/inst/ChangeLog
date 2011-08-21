@@ -9,6 +9,7 @@ Version 0.2-3 -- July 9, 2011
       left TAXAPART temp variable in result.
     * samp/taxa table handling in mbind for Mefa objects
       is revised, not using default merge(..., all=TRUE).
+    * Xtab: lhs must be numeric.
 
 Version 0.2-2 -- May 13, 2011
     * Allowing for 0 and 1 row/col Mefa objects ('xtab<-' and '[').

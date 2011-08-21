@@ -91,6 +91,8 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     cl <- levels(cols)
     if (is.null(y)) 
         y <- rep.int(1, length(rows))
+    if (!is.numeric(y))
+        stop("lhs of formula not numeric")
     ## this is how it is constructed, then converted into dgCMatrix
     out <- as(new("dgTMatrix", 
         i = as.integer(rows) - 1L, 
