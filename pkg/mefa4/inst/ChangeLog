@@ -1,5 +1,8 @@
 MEFA4 VERSIONS
 
+Version 0.2-4 -- August 23, 2011
+    *
+
 Version 0.2-3 -- July 9, 2011
     * packageStartupMessage used in zzz.R .onAttach
     * Typos fixed in vignette and help pages.
