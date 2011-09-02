@@ -37,7 +37,7 @@ a data frame or \code{NULL}.
 character, \code{"left"} (default) or \code{"inner"}.
 }
   \item{drop}{
-logica, if unused levels in the data frames should be dropped.
+logical, if unused levels in the data frames should be dropped.
 }
 }
 \details{
