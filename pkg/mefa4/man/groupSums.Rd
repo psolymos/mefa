@@ -39,6 +39,8 @@ numeric, \code{1} indicates rows are to be summed/averaged, \code{2} indicates c
   corresponding to \code{MARGIN} is dropped (\code{NULL}), \code{replace}ment table can be specified via this argument.
 }
   \item{na.rm}{logical. Should missing values be removed?
+  Sum is calculated by zeroing out \code{NA} values,
+  mean is calculated as dividing the sum by the number of non-\code{NA} values when collapsing.
 }
   \item{\dots}{
 other argument, currently not implemented.
