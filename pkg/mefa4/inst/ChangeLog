@@ -1,7 +1,7 @@
 MEFA4 VERSIONS
 
 Version 0.2-5 -- October 18, 2011
-    *
+    * Startup message: line break removed.
 
 Version 0.2-4 -- August 23, 2011
     * groupMeans: NA handling changed, mean is calculated
