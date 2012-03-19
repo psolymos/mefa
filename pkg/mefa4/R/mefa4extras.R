@@ -1,4 +1,4 @@
-## TODO: mbind for matrix cound use sparse matrix code
+## TODO: mbind for matrix could use sparse matrix code
 ## check for necessity of [,,drop=FALSE] in mbind for 1x cases
 ## check problem with merge for samp/taxa
 

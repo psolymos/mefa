@@ -1,5 +1,9 @@
 MEFA4 VERSIONS
 
+Version 0.2-6 -- March 19, 2012
+    * Rd link to Matrix:::xtabs removed (sparse=TRUE is in
+      stats:::xtabs). Reported by Uwe Ligges.
+
 Version 0.2-5 -- October 18, 2011
     * Startup message: line break removed.
 

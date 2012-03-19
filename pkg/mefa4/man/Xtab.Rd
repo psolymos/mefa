@@ -45,12 +45,12 @@ A sparse numeric matrix inheriting from \code{\link{sparseMatrix}}, specifically
 For three factors, a list of sparse matrices.
 }
 \author{
-This function is a slight modification of the \code{\link[Matrix]{xtabs}} function in the \pkg{Matrix} package.
+This function is a slight modification of the \code{\link[stats]{xtabs}} function in the \pkg{stats} package.
 
 Modified by Peter Solymos <solymos@ualberta.ca>
 }
 \seealso{
-See also \code{\link[stats]{xtabs}} in \pkg{stats} and \code{\link[Matrix]{xtabs}} in \pkg{Matrix} packages.
+See also \code{\link[stats]{xtabs}} in \pkg{stats} package.
 
 \code{"mefa"} S3 class: \code{\link[mefa]{mefa}} in \pkg{mefa} package.
 }
