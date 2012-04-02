@@ -1,7 +1,7 @@
 aoplot.default <- 
 function(x, log=TRUE, xlab, ylab, ...) {
     x <- as.matrix(x)
-    A <- AA <- .colSums(x)
+    A <- AA <- colSums(x)
     O <-  colSums(x > 0)
     lx <- ly <- 0:max(O)
     if (missing(xlab))

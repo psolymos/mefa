@@ -3,10 +3,10 @@ function(object, nlist = 10, ...)
 {
 x <- object
 out <- list(
-    s.rich = .rowSums(x$xtab > 0),
-    s.abu = .rowSums(x$xtab),
-    t.occ = .colSums(x$xtab > 0),
-    t.abu = .colSums(x$xtab),
+    s.rich = rowSums(x$xtab > 0),
+    s.abu = rowSums(x$xtab),
+    t.occ = colSums(x$xtab > 0),
+    t.abu = colSums(x$xtab),
     ntot = sum(x$xtab),
     mfill = sum(x$xtab > 0)/(dim(x)[1]*dim(x)[2]),
     nsamp = dim(x)[1],

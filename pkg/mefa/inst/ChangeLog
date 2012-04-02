@@ -1,9 +1,5 @@
 MEFA VERSIONS
 
-Version 3.2-4 -- April 2, 2012
-    * .rowSums and .colSums used (R 2.15.0).
-
-
 Version 3.2-3 -- August 23, 2011
     * Startup message: line break removed.
 

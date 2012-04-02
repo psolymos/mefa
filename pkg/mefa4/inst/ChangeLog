@@ -1,8 +1,5 @@
 MEFA4 VERSIONS
 
-Version 0.2-7 -- April 2, 2012
-    * .rowSums and .colSums used in Xtab (R 2.15.0).
-
 Version 0.2-6 -- March 19, 2012
     * Rd link to Matrix:::xtabs removed (sparse=TRUE is in
       stats:::xtabs). Reported by Uwe Ligges.
