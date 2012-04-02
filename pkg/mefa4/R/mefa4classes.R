@@ -105,7 +105,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     if (!missing(rdrop)) {
         if (is.logical(rdrop)) {
             if (rdrop)
-                rkeep <- which(rowSums(out) > 0)
+                rkeep <- which(.rowSums(out) > 0)
         } else if (is.numeric(rdrop)) {
             rkeep <- setdiff(rkeep, rdrop)
         } else if (is.character(rdrop)) {
@@ -115,7 +115,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
     if (!missing(cdrop)) {
         if (is.logical(cdrop)) {
             if (cdrop)
-                ckeep <- which(colSums(out) > 0)
+                ckeep <- which(.colSums(out) > 0)
         } else if (is.numeric(cdrop)) {
             ckeep <- setdiff(ckeep, cdrop)
         } else if (is.character(cdrop)) {

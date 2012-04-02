@@ -11,7 +11,7 @@ m <- if (!is.null(segm))
     x$segm[[segm]] else x$xtab
 # ordering based on totals
 if (ordering)
-    m <- m[order(rowSums(x$xtab)), order(colSums(x$xtab),decreasing=TRUE)]
+    m <- m[order(.rowSums(x$xtab)), order(.colSums(x$xtab),decreasing=TRUE)]
 mm <- t(m)
 # transformations
 if (trafo == "log")

@@ -85,7 +85,7 @@ if (is.null(dimnames(x)[[2]]))
         if (is.null(dimnames(x$xtab)[[1]]))
             rownames(x$xtab) <- 1:nrow(x$xtab)
         if (any(summary(x)$s.abu == 0)) {
-            zsamps <- rownames(x$xtab)[rowSums(x$xtab) == 0]
+            zsamps <- rownames(x$xtab)[.rowSums(x$xtab) == 0]
             nzsamp <- length(zsamps)
         } else nzsamp <- 0
 
