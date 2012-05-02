@@ -2,6 +2,7 @@ MEFA VERSIONS
 
 Version 3.2-3 -- August 23, 2011
     * Startup message: line break removed.
+    * inst/CITATION removed.
 
 
 Version 3.2-2 -- May 14, 2011
