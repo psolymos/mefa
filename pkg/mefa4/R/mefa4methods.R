@@ -181,3 +181,24 @@ setMethod("show", "Mefa", function(object) {
     invisible(object)
 })
 
+setMethod("stack", "Mefa", function(x, ...) {
+    d <- dim(x)
+    dn <- dimnames(x)
+    X <- data.frame(
+        samp=as.factor(rep(dn[[1]], d[2])),
+        taxa=as.factor(rep(dn[[2]], each=d[1])),
+        values=as.numeric(xtab(x)))
+    SAMP <- samp(x)
+    if (!is.null(SAMP)) {
+        colnames(SAMP) <- paste("samp", colnames(SAMP), sep="_")
+        X <- data.frame(X, 
+            SAMP[match(X$samp, rownames(SAMP)),])
+    }
+    TAXA <- taxa(x)
+    if (!is.null(TAXA)) {
+        colnames(TAXA) <- paste("samp", colnames(TAXA), sep="_")
+        X <- data.frame(X, 
+            TAXA[match(X$taxa, rownames(TAXA)),])
+    }
+    X
+})

@@ -14,6 +14,7 @@
 \alias{dimnames<-,Mefa,list-method}
 \alias{t,Mefa-method}
 \alias{show,Mefa-method}
+\alias{stack,Mefa-method}
 \title{
 'Mefa' Class
 }
@@ -142,5 +143,8 @@ x3[c(FALSE,FALSE,FALSE,FALSE),c(FALSE,FALSE,FALSE,FALSE)]
 x3[c(TRUE,FALSE,FALSE,FALSE),c(FALSE,FALSE,FALSE,FALSE)]
 x3[c(FALSE,FALSE,FALSE,FALSE),c(TRUE,FALSE,FALSE,FALSE)]
 x3[c(TRUE,FALSE,FALSE,FALSE),c(TRUE,FALSE,FALSE,FALSE)]
+
+## stack
+stack(x3)
 }
 \keyword{ manip }

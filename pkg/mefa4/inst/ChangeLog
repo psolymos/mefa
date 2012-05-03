@@ -2,6 +2,7 @@ MEFA4 VERSIONS
 
 Version 0.2-7 -- May 2, 2012
     * inst/COPYING removed.
+    * stack method added to Mefa class.
 
 Version 0.2-6 -- March 19, 2012
     * Rd link to Matrix:::xtabs removed (sparse=TRUE is in

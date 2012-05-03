@@ -13,3 +13,4 @@ importClassesFrom(Matrix, dgCMatrix, CsparseMatrix,
 importMethodsFrom(Matrix, colSums, rowSums, 
     colMeans, rowMeans, t,
     dim, dimnames, "dimnames<-")
+importFrom(utils, stack)

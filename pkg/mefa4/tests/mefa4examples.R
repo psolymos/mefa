@@ -60,6 +60,8 @@ Melt(as.matrix(x0))
 stopifnot(identical(Xtab(value ~ rows + cols, M1), x0))
 stopifnot(identical(Xtab(value ~ rows + cols + segm, M2), x33))
 
+## stack
+stack(x3)
 
 ## accessing the xtab slot
 xtab(x3)
