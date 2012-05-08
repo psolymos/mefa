@@ -57,12 +57,17 @@ setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FAL
     x <- groupSums(object@xtab, MARGIN, by, na.rm, ...)
     if (missing(replace))
         replace <- NULL
+    JOIN <- object@join
     if (MARGIN == 2) {
+        if (is.null(object@samp) && is.null(replace))
+            JOIN <- "inner"
         new("Mefa", xtab = x, samp = object@samp,
-            taxa = replace, join = object@join)
+            taxa = replace, join = JOIN)
     } else {
+        if (is.null(object@taxa) && is.null(replace))
+            JOIN <- "inner"
         new("Mefa", xtab = x, samp = replace,
-            taxa = object@taxa, join = object@join)
+            taxa = object@taxa, join = JOIN)
     }
 })
 
@@ -81,12 +86,17 @@ setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FA
     x <- groupMeans(as(object, "sparseMatrix"), MARGIN, by, na.rm, ...)
     if (missing(replace))
         replace <- NULL
+    JOIN <- object@join
     if (MARGIN == 2) {
+        if (is.null(object@samp) && is.null(replace))
+            JOIN <- "inner"
         new("Mefa", xtab = x, samp = object@samp,
-            taxa = replace, join = object@join)
+            taxa = replace, join = JOIN)
     } else {
+        if (is.null(object@taxa) && is.null(replace))
+            JOIN <- "inner"
         new("Mefa", xtab = x, samp = replace,
-            taxa = object@taxa, join = object@join)
+            taxa = object@taxa, join = JOIN)
     }
 })
 
