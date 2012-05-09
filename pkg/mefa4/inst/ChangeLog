@@ -3,9 +3,10 @@ MEFA4 VERSIONS
 Version 0.2-7 -- May 2, 2012
     * inst/COPYING removed.
     * stack method added to Mefa class.
-    * groupSums, groupMeans: join slot changes to "inner" if both
-      samp and taxa slots of the new object are NULL
-      (reported by D. Stralberg).
+    * groupSums, groupMeans: failed when join was "inner" and both
+      samp and taxa slots of the new object were NULL. Check
+      on NULL attribute table related join type is now relaxed
+      for object class Mefa (reported by D. Stralberg).
 
 Version 0.2-6 -- March 19, 2012
     * Rd link to Matrix:::xtabs removed (sparse=TRUE is in

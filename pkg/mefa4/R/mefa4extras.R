@@ -59,13 +59,13 @@ setMethod("groupSums", "Mefa", function(object, MARGIN, by, replace, na.rm = FAL
         replace <- NULL
     JOIN <- object@join
     if (MARGIN == 2) {
-        if (is.null(object@samp) && is.null(replace))
-            JOIN <- "inner"
+#        if (is.null(object@samp) && is.null(replace))
+#            JOIN <- "inner"
         new("Mefa", xtab = x, samp = object@samp,
             taxa = replace, join = JOIN)
     } else {
-        if (is.null(object@taxa) && is.null(replace))
-            JOIN <- "inner"
+#        if (is.null(object@taxa) && is.null(replace))
+#            JOIN <- "inner"
         new("Mefa", xtab = x, samp = replace,
             taxa = object@taxa, join = JOIN)
     }
@@ -88,13 +88,13 @@ setMethod("groupMeans", "Mefa", function(object, MARGIN, by, replace, na.rm = FA
         replace <- NULL
     JOIN <- object@join
     if (MARGIN == 2) {
-        if (is.null(object@samp) && is.null(replace))
-            JOIN <- "inner"
+#        if (is.null(object@samp) && is.null(replace))
+#            JOIN <- "inner"
         new("Mefa", xtab = x, samp = object@samp,
             taxa = replace, join = JOIN)
     } else {
-        if (is.null(object@taxa) && is.null(replace))
-            JOIN <- "inner"
+#        if (is.null(object@taxa) && is.null(replace))
+#            JOIN <- "inner"
         new("Mefa", xtab = x, samp = replace,
             taxa = object@taxa, join = JOIN)
     }

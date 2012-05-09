@@ -33,10 +33,10 @@ setClass("Mefa",
             return("Inconsistent 'xtab' and 'taxa' dimnames")
         if (!(object@join %in% c("left", "inner")))
             return("'join' must be in c(\"left\", \"inner\")")
-        if (is.null(object@samp) &&
-            is.null(object@taxa) &&
-            object@join != "left")
-            return("'join' must be \"left\" if both 'samp' and 'taxa' slots are 'NULL'")
+#        if (is.null(object@samp) &&
+#            is.null(object@taxa) &&
+#            object@join != "left")
+#            return("'join' must be \"left\" if both 'samp' and 'taxa' slots are 'NULL'")
         TRUE
     })
 
