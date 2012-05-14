@@ -7,6 +7,7 @@ Version 0.2-7 -- May 2, 2012
       samp and taxa slots of the new object were NULL. Check
       on NULL attribute table related join type is now relaxed
       for object class Mefa (reported by D. Stralberg).
+    * mbind uses drop=TRUE to protect single column/row cases.
 
 Version 0.2-6 -- March 19, 2012
     * Rd link to Matrix:::xtabs removed (sparse=TRUE is in

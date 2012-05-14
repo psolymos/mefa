@@ -128,12 +128,12 @@ setMethod("mbind", signature(x="matrix", y="matrix", fill="ANY"),
         cx <- setdiff(c1, c2)
         cxy <- intersect(c1, c2)
         cy <- setdiff(c2, c1)
-        xx <- x[c(rx, rxy), c(cx, cxy)]
+        xx <- x[c(rx, rxy), c(cx, cxy), drop=FALSE]
         z1 <- matrix(fill, length(ry), length(cx))
         z2 <- matrix(fill, length(rx), length(cy))
-        yx1 <- y[ry, cxy]
-        yx2 <- y[rxy, cy]
-        yy <- y[ry, cy]
+        yx1 <- y[ry, cxy, drop=FALSE]
+        yx2 <- y[rxy, cy, drop=FALSE]
+        yy <- y[ry, cy, drop=FALSE]
         if (length(ry) > 0) {
             part1 <- cbind(z1, yx1)
             part2 <- rbind(xx, part1)
@@ -171,12 +171,12 @@ setMethod("mbind", signature(x="sparseMatrix", y="sparseMatrix", fill="ANY"),
         cx <- setdiff(c1, c2)
         cxy <- intersect(c1, c2)
         cy <- setdiff(c2, c1)
-        xx <- x[c(rx, rxy), c(cx, cxy)]
+        xx <- x[c(rx, rxy), c(cx, cxy), drop=FALSE]
         z1 <- as(matrix(fill, length(ry), length(cx)), "sparseMatrix")
         z2 <- as(matrix(fill, length(rx), length(cy)), "sparseMatrix")
-        yx1 <- y[ry, cxy]
-        yx2 <- y[rxy, cy]
-        yy <- y[ry, cy]
+        yx1 <- y[ry, cxy, drop=FALSE]
+        yx2 <- y[rxy, cy, drop=FALSE]
+        yy <- y[ry, cy, drop=FALSE]
         if (length(ry) > 0) {
             part1 <- cBind(z1, yx1)
             part2 <- rBind(xx, part1)
@@ -215,12 +215,12 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         cx <- setdiff(c1, c2)
         cxy <- intersect(c1, c2)
         cy <- setdiff(c2, c1)
-        xx <- xtabx[c(rx, rxy), c(cx, cxy)]
+        xx <- xtabx[c(rx, rxy), c(cx, cxy), drop=FALSE]
         z1 <- as(matrix(fill, length(ry), length(cx)), "sparseMatrix")
         z2 <- as(matrix(fill, length(rx), length(cy)), "sparseMatrix")
-        yx1 <- xtaby[ry, cxy]
-        yx2 <- xtaby[rxy, cy]
-        yy <- xtaby[ry, cy]
+        yx1 <- xtaby[ry, cxy, drop=FALSE]
+        yx2 <- xtaby[rxy, cy, drop=FALSE]
+        yy <- xtaby[ry, cy, drop=FALSE]
         if (length(ry) > 0) {
             part1 <- cBind(z1, yx1)
             part2 <- rBind(xx, part1)
@@ -242,10 +242,10 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
             sampy2 <- data.frame(ROWNAMES=rownames(sampy), SAMPPART=2, sampy[,,drop=FALSE])
             saa <- intersect(names(sampy2), names(sampx2))
             sbb <- c(saa, setdiff(names(sampx2), names(sampy2)))
-            sm <- merge(sampx2[,sbb], sampy2[,saa], all=TRUE)
+            sm <- merge(sampx2[,sbb, drop=FALSE], sampy2[,saa, drop=FALSE], all=TRUE)
             sid1 <- which(sm$SAMPPART==1 & sm$ROWNAMES %in% r1)
             sid2 <- which(sm$SAMPPART==2 & sm$ROWNAMES %in% ry)
-            sm2 <- sm[c(sid1, sid2),]
+            sm2 <- sm[c(sid1, sid2), , drop=FALSE]
             rownames(sm2) <- sm2$ROWNAMES
             scc <- setdiff(names(sampy), names(sampx))
             sm2 <- data.frame(sm2, sampy[rownames(sm2),scc,drop=FALSE])
@@ -254,7 +254,7 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         if (!is.null(sampx) && is.null(sampy))
             sm2 <- sampx
         if (is.null(sampx) && !is.null(sampy))
-            sm2 <- sampy[c(r1,ry),]
+            sm2 <- sampy[c(r1,ry), , drop=FALSE]
         ## taxa
         taxax <- x@taxa
         taxay <- y@taxa
@@ -265,10 +265,10 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
             taxay2 <- data.frame(ROWNAMES=rownames(taxay), TAXAPART=2, taxay[,,drop=FALSE])
             taa <- intersect(names(taxay2), names(taxax2))
             tbb <- c(taa, setdiff(names(taxax2), names(taxay2)))
-            tm <- merge(taxax2[,tbb], taxay2[,taa], all=TRUE)
+            tm <- merge(taxax2[,tbb, drop=FALSE], taxay2[,taa, drop=FALSE], all=TRUE)
             tid1 <- which(tm$TAXAPART==1 & tm$ROWNAMES %in% c1)
             tid2 <- which(tm$TAXAPART==2 & tm$ROWNAMES %in% cy)
-            tm2 <- tm[c(tid1, tid2),]
+            tm2 <- tm[c(tid1, tid2), , drop=FALSE]
             rownames(tm2) <- tm2$ROWNAMES
             tcc <- setdiff(names(taxay), names(taxax))
             tm2 <- data.frame(tm2, taxay[rownames(tm2),tcc,drop=FALSE])
@@ -277,7 +277,7 @@ setMethod("mbind", signature(x="Mefa", y="Mefa", fill="ANY"),
         if (!is.null(taxax) && is.null(taxay))
             tm2 <- taxax
         if (is.null(taxax) && !is.null(taxay))
-            tm2 <- taxay[c(c1,cy),]
+            tm2 <- taxay[c(c1,cy), , drop=FALSE]
         ## assembling
         Mefa(part5, sm2, tm2, join="left", drop)
 })
