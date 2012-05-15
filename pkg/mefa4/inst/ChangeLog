@@ -1,7 +1,9 @@
 MEFA4 VERSIONS
 
 Version 0.2-8 -- May 14, 2012
-    *
+    * mbind2: inner set is based on x+y instead of left join x.
+      Methods for matrix and sparse matrix classes, but not for
+      Mefa where the sum is not trivial.
 
 Version 0.2-7 -- May 2, 2012
     * inst/COPYING removed.

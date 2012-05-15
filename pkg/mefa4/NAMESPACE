@@ -5,7 +5,7 @@ exportClasses(Mefa, stcs, mefa, MefaMatrix, MefaDataFrame)
 exportMethods(xtab, samp, taxa, dim, dimnames, "dimnames<-",
     "xtab<-", "samp<-", "taxa<-", "[",
     groupSums, groupMeans,
-    show, mbind, stack)
+    show, mbind, mbind2, stack)
 importFrom(Matrix, rBind, cBind)
 importClassesFrom(Matrix, dgCMatrix, CsparseMatrix,
     dsparseMatrix, generalMatrix, dMatrix,
