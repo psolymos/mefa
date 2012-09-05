@@ -7,7 +7,7 @@ Non Duplicated Rows in Data Frame
 Subset a data frame using non duplicated elemnts in a vector.
 }
 \usage{
-nonDuplicated(x, y, change.rownames = FALSE)
+nonDuplicated(x, y, change.rownames = FALSE, na.rm = FALSE)
 }
 \arguments{
   \item{x}{
@@ -19,6 +19,11 @@ a vector. It can be a name of a column in \code{x} without quotes.
   \item{change.rownames}{
 if original rownames of \code{x} are to be replaced by unique 
 non duplicated values of \code{y}.
+}
+  \item{na.rm}{
+logical. If rows should be removed where \code{y} is \code{NA}.
+This is to be applied if values of \code{y} are used as rownames
+by setting \code{change.rownames = TRUE}
 }
 }
 \details{
