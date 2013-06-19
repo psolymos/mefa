@@ -123,7 +123,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
         } else stop("inappropriate 'cdrop' value")
     }
     if (length(by) == 2) {
-        out <- out[rkeep, ckeep]
+        out <- out[rkeep, ckeep, drop=FALSE]
         out <- drop0(out)
         out <- as(out, "dgCMatrix")
     }
@@ -140,7 +140,7 @@ subset, na.action, exclude = c(NA, NaN), drop.unused.levels = FALSE)
                 x = as.double(y[id]), 
                 Dim = c(length(rl), length(cl)), 
                 Dimnames = list(rl, cl)), "CsparseMatrix")
-            out[[sl[i]]] <- out[[sl[i]]][rkeep, ckeep]
+            out[[sl[i]]] <- out[[sl[i]]][rkeep, ckeep, drop=FALSE]
             out[[sl[i]]] <- drop0(out[[sl[i]]])
         }
 #        class(out) <- "sparseMatrixList"

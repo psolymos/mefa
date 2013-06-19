@@ -1,5 +1,9 @@
 MEFA4 VERSIONS
 
+Version 0.2-9 -- June 19, 2013
+    * Xtab: 1-row/col matrices dropped dimnames -- now fixed.
+
+
 Version 0.2-8 -- July 6, 2012
     * mbind2: inner set is based on x+y instead of left join x.
       Methods for matrix and sparse matrix classes, but not for
