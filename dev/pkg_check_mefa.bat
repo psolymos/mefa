@@ -6,7 +6,7 @@ svn export c:\svn\mefa\pkg\mefa c:\svn\mefa\dev\tests\mefa
 svn export c:\svn\mefa\pkg\mefa4 c:\svn\mefa\dev\tests\mefa4
 :: update R packages
 R CMD BATCH --vanilla c:\svn\dcr\dev\pkg_check\updates.R c:\svn\mefa\dev\tests\updates.Rout
- change dir to test
+:: change dir to test
 cd c:\svn\mefa\dev\tests\
 :: export pkg dirs from svn
 R CMD build mefa --compact-vignettes
