@@ -12,7 +12,7 @@ using sparse matrices for enhanced efficiency.
 \details{
 An S4 update of the 'mefa' package
 using sparse matrices for enhanced efficiency.
-Sparse array-like obejects are supported via
+Sparse array-like objects are supported via
 lists of sparse matrices.
 
 Main functions: \code{\link{Xtab}}, \code{\link{Mefa}}.
