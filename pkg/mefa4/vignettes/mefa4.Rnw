@@ -1,0 +1,448 @@
+\documentclass[article,shortnames,nojss]{jss}
+\usepackage{thumbpdf}
+
+%% need no \usepackage{Sweave.sty}
+\SweaveOpts{engine = R, strip.white = true, keep.source = TRUE, eps = FALSE}
+
+\newcommand{\class}[1]{`\code{#1}'}
+
+%\VignetteIndexEntry{mefa4 Design Decisions and Performance}
+%\VignettePackage{mefa4}
+%\VignetteDepends{}
+%\VignetteKeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
+
+\author{P\'eter S\'olymos\\\href{mailto:solymos@ualberta.ca}{solymos@ualberta.ca}}
+\Plainauthor{P\'eter S\'olymos}
+
+\title{\pkg{mefa4} Design Decisions and Performance}
+\Plaintitle{mefa4 Design Decisions and Performance}
+\Shorttitle{\pkg{mefa4} Design Decisions and Performance}
+
+\Abstract{
+  \pkg{mefa4} is a reimplementation of the S3 object classes found in the \pkg{mefa} \proglang{R} package.
+  The new S4 class \code{"Mefa"} has all the consistency checks that S3 classes
+  cannot have, and most importantly, it stores the cross-tabuted results as a compact
+  sparse matrix (S4 object class \code{"dgCMatrix"} of the \pkg{Matrix} package).
+  The use of sparse matrices speed up computations,
+  and reduces object sizes considerably. This vignette introduces the main functions,
+  classes and methods of the package \pkg{mefa4}.
+
+  Processed with \pkg{mefa4} \Sexpr{packageDescription("mefa4", field="Version")}
+  and \pkg{mefa} \Sexpr{packageDescription("mefa", field="Version")} in \Sexpr{R.version.string} on \today.
+}
+
+\Keywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, \proglang{R}, sparse matrices}
+\Plainkeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R, sparse matrices}
+
+\Address{
+  P\'eter S\'olymos\\
+  Alberta Biodiversity Monitoring Institute\\
+  and Boreal Avian Modelling project\\
+  Department of Biological Sciences\\
+  CW 405, Biological Sciences Bldg\\
+  University of Alberta\\
+  Edmonton, Alberta, T6G 2E9, Canada\\
+  E-mail: \email{solymos@ualberta.ca}
+}
+
+\begin{document}
+
+
+<<echo=FALSE, results=hide>>=
+options(prompt = "R> ", continue = "+   ", useFancyQuotes = FALSE, width = 76)
+@
+
+
+\section{Introduction}
+
+The aim of the \pkg{mefa} and \pkg{mefa4} packages are to help in storing cross tabulated
+ecological data tables (community data) together with attributes for rows (samples) and columns
+(species, taxa). This allows that one can easily subset the relational data object without
+separately manipulating 2--3 pieces of \proglang{R} objects. By doing so, the chances of errors are reduced.
+
+As ecological data sets are increasing in size, it is necessary to find more efficient ways of
+data storage and manipulation. To this end, it was in the air for some time to redesign
+the \pkg{mefa} package and take advantages of sparse matrices from the \pkg{Matrix} package.
+This is done at the costs of some old functionalities not being available for S4 classes at the time being.
+Here I give an overview so the user can decide how to use the parallel availability
+of old S3 and newer S4 classes.
+
+\section{Comparison of S3 and S4 classes}
+
+The S3 classes defined in \pkg{mefa} were \code{stcs} and \code{mefa}.
+\code{stcs} is a data frame with several attributes:
+<<>>=
+library(mefa)
+x <- data.frame(
+    sample = paste("Sample", c(1,1,2,2,3,4), sep="."),
+    species = c(paste("Species", c(1,1,1,2,3), sep="."),  "zero.pseudo"),
+    count = c(1,2,10,3,4,0),
+    segment = letters[c(6,13,6,13,6,6)])
+s <- stcs(x)
+attributes(s)
+@
+These attributes ensure that the cross-tab made by the function \code{mefa()} creates a proper
+cross-tab by eliminating the column that is only a placeholder for empty samples, etc.:
+<<>>=
+samp <- data.frame(samples=levels(x$sample), var1=1:2)
+taxa <- data.frame(specnames=levels(x$species), var2=c("b","a"))
+rownames(samp) <- samp$samples
+rownames(taxa) <- taxa$specnames
+(m <- mefa(s, samp, taxa))
+m$xtab
+@
+
+The \code{stcs} step is almost redundant, and inefficient relative to the \code{stats:::xtabs}
+function with \code{sparse = TRUE}. This function is adapted to some extent, so it can subset
+the cross-tabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
+that is available as the \code{Xtab} function in the \pkg{mefa4} package). This takes a formula,
+and can be applied directly on a data frame. The formula can have a left-hand side, or the left-hand side can be 
+missing. The right-hand side can contain 2--3 factors, and the result will be a sparse matrix
+or a list of sparse matrices, respectively:
+<<>>=
+library(mefa4)
+x0  <- Xtab(~ sample + species, x)
+x1  <- Xtab(count ~ sample + species, x)
+x11 <- Xtab(count ~ sample + species + segment, x)
+@
+Dropping some rows/columns can be done in several ways.
+A logical statement implies that all empty rows/columns are dropped,
+but indices (numeric or character) can also be used:
+<<>>=
+x2  <- Xtab(count ~ sample + species, x, cdrop=FALSE, rdrop=TRUE)
+x21 <- Xtab(count ~ sample + species, x, cdrop=TRUE, rdrop=FALSE)
+(x22 <- Xtab(count ~ sample + species, x, cdrop="zero.pseudo"))
+@
+The results here are sparse matrices in compact mode, this means that
+redundant indices are only kept once, so it is more compact than
+a long formatted database representation stored in an \code{stcs}
+object or in the original data frame, or a triplet representation of a sparse matrix. See vignettes in the 
+\pkg{Matrix} package for more details on S4 sparse matrix classes.
+
+The S4 class \code{"Mefa"} is defined in the \pkg{mefa4} package.
+It can be created by the \code{Mefa()} function, and the result has 4 slots:
+<<>>=
+(x3 <- Mefa(x1, samp, taxa))
+@
+The \code{xtab} slot stores the cross-tab in sparse matrix format.
+The \code{samp} slot stores the row attributes for \code{xtab}
+as data frame or can be \code{NULL}.
+The \code{taxa} slot stores the column attributes for \code{xtab} 
+as data frame or can be \code{NULL}. Validity checks are done to ensure
+proper object classes to be used and matching dimnames.
+The option that a column in the attribute tables can be specified
+to find matching names is not available in the new implementation.
+Corresponding rownames of the data frames has to match dimnames of \code{xtab}.
+The \code{join} slot can be \code{"left"} (all rows/columns in the
+\code{xtab} are kept, matching attributes are selected, non-matching
+attributes are excluded, and missing attributes are filled up with \code{NA})
+or \code{"inner"} (only the intersection of corresponding dimnames are used to
+form the return value).
+
+The call in \code{Mefa()} can take any matrix or sparse matrix as argument,
+but it will be stored in a sparse mode. Here we use a matrix as input,
+and \code{samp} has missing values (\code{"left"} join is used by default):
+<<>>=
+(x4 <- Mefa(as.matrix(x1), samp[1:2,]))
+@
+The effect of \code{"inner"} join is as follows:
+<<>>=
+(x5 <- Mefa(x2, samp, taxa, join="inner"))
+(x51 <- Mefa(x2, samp[1:2,], taxa, join="inner"))
+@
+A \code{"Mefa"} object with only \code{xtab} can also be defined:
+<<>>=
+(x6 <- Mefa(x1))
+@
+
+The equivalent of the \code{melt} method of the \pkg{mefa} package is
+the \code{Melt} function in \pkg{mefa4}. It can be used to reverse
+the side effects of the cross-tabulation, thus making a data frame
+from a matrix, sparse matrix, list of sparse matrices, 
+a \code{mefa} or a \code{Mefa} object:
+<<>>=
+Melt(x1)
+Melt(x11)
+@
+
+The structure of the S3 and S4 classes are very similar, and even the
+accessor methods (\code{xtab()}, \code{samp()}, \code{taxa()}, \code{segm()})
+work properly on both types. The S4 class does not have a slot for
+a call, and there is no \code{segm} element/slot either. This means that
+a \code{"Mefa"} object cannot have 3 dimensions, only 2. \code{Xtab} can create
+3-dimensional sparse array-like objects (list of sparse matrices of the same dimensions),
+but there is no formal S4 class that can handle sparse matrix lists as part of 
+a \code{"Mefa"} object.
+The \code{as.mefa} method can convert such a list of sparse matrices into an S3
+\code{"mefa"} object with segments.
+
+\section{Back and forth}
+
+Coercion methods are defined in both the \pkg{mefa} and \pkg{mefa4} packages
+to ensure that S3 and S4 objects are interchangeable:
+<<results=hide>>=
+as.stcs(x1)
+as.mefa(x1)
+as.stcs(x3)
+a <- as.mefa(x3)
+xtab(a)
+samp(a)
+taxa(a)
+segm(a)
+segm(x3)
+as.Mefa(a)
+as.Xtab(a)
+s <- melt(a)
+as.Xtab(s)
+as.Mefa(s)
+melt(x1)
+melt(x3)
+@
+
+\section{Subsetting and replacement}
+
+Accessing and replacing parts of the \code{"Mefa"} object
+is conveniently done by methods \code{xtab}, \code{samp},
+and \code{taxa} (the \code{segm} S3 method only returns the
+code{xtab} slot of an S4 \code{"Mefa"} object):
+<<>>=
+xtab(x3)
+x1[3,1] <- 999
+xtab(x3) <- x1
+xtab(x3)
+@
+
+Attribute tables can be set to \code{NULL}, or replaced:
+<<>>=
+samp(x3)
+samp(x3) <- NULL
+samp(x3)
+samp(x3) <- samp[1:3,]
+samp(x3)
+@
+<<results=hide>>=
+taxa(x3)
+taxa(x3) <- NULL
+taxa(x3)
+taxa(x3) <- taxa[1:3,]
+taxa(x3)
+@
+
+Replacing parts of these attribute tables can be done as
+<<>>=
+samp(x3)[1,]
+samp(x3)[1,2] <- 3
+samp(x3)[1,]
+@
+
+Subsetting the whole \code{"Mefa"} object is done via the \code{[}
+method:
+<<>>=
+x3[3:2, 1:2]
+x3[3:2, ]
+x3[ ,1:2]
+@
+
+\section{Methods for S4 classes}
+
+Simple methods are provided for convenience:
+<<>>=
+dim(x5)
+dimnames(x5)
+dn <- list(paste("S", 1:dim(x5)[1], sep=""),
+    paste("SPP", 1:dim(x5)[2], sep=""))
+dimnames(x5) <- dn
+dimnames(x5)[[1]] <- paste("S", 1:dim(x5)[1], sep="_")
+dimnames(x5)[[2]] <- paste("SPP", 1:dim(x5)[2], sep="_")
+t(x5)
+@
+
+\section{Grouping rows and columns}
+
+The \code{aggregate} method was defined for 
+S3 \code{mefa} objects. Its equivalent (although it cannot
+sum the cells simultaneously for rows and columns, but
+it was done in 2 subsequent steps anyway) is the
+\code{groupSums} method. The \code{MARGIN} argument
+indicates if rows (\code{MARGIN = 1}) or columns
+(\code{MARGIN = 2}) are to be added together:
+<<>>=
+groupSums(as.matrix(x2), 1, c(1,1,2))
+groupSums(as.matrix(x2), 2, c(1,1,2,2))
+groupSums(x2, 1, c(1,1,2))
+groupSums(x2, 2, c(1,1,2,2))
+groupSums(x5, 1, c(1,1,2))
+groupSums(x5, 2, c(1,1,2,2))
+@
+A simple extension of this is the \code{groupMeans}
+method:
+<<results=hide>>=
+groupMeans(as.matrix(x2), 1, c(1,1,2))
+groupMeans(as.matrix(x2), 2, c(1,1,2,2))
+groupMeans(x2, 1, c(1,1,2))
+groupMeans(x2, 2, c(1,1,2,2))
+groupMeans(x5, 1, c(1,1,2))
+groupMeans(x5, 2, c(1,1,2,2))
+@
+
+\section{Combining objects}
+
+\code{mbind} can be used to combine 2 matrices (dense or sparse).
+The 2 input objects are combined in a left join manner, which means 
+that all the elements in the first object are retained, 
+and only non-overlapping elements in the second object are used.
+Elements of the returning object that are not part of either objects (outer set)
+are filled up with value provided as \code{fill} argument.
+<<>>=
+x=matrix(1:4,2,2)
+rownames(x) <- c("a", "b")
+colnames(x) <- c("A", "B")
+y=matrix(11:14,2,2)
+rownames(y) <- c("b", "c")
+colnames(y) <- c("B", "C")
+mbind(x, y)
+mbind(x, y, fill=0)
+mbind(as(x, "sparseMatrix"), as(y, "sparseMatrix"))
+@
+
+\code{"Mefa"} objects can be combined in a similar way, where
+attribute tables are combined in a left join fashion
+(S3 \code{"mefa"} objects have to be coerced
+by the \code{as.Mefa} method beforehand -- this is so
+because the S3 class does not allow \code{NA} values in
+\code{$xtab}, and it is safer to avoid unnecessary complications):
+<<>>=
+sampx <- data.frame(x1=1:2, x2=2:1)
+rownames(sampx) <- rownames(x)
+sampy <- data.frame(x1=3:4, x3=10:11)
+rownames(sampy) <- rownames(y)
+taxay <- data.frame(x1=1:2, x2=2:1)
+rownames(taxay) <- colnames(y)
+taxax <- NULL
+mbind(Mefa(x, sampx), Mefa(y, sampy, taxay))
+@
+
+\section{Performance comparisons}
+
+We compare the performance of the \pkg{mefa} and \pkg{mefa4}
+packages. We are using a long formatted raw data file from the Alberta
+Biodiversity Monitoring Institute database (available at \href{http://www.abmi.ca}{http://www.abmi.ca}):
+<<>>=
+data(abmibirds)
+@
+
+This is the processing with \pkg{mefa} and S3 object classes 
+(we are storing the results and processing times):
+<<>>=
+b3 <- abmibirds
+b3 <- b3[!(b3$Scientific.Name %in% c("VNA", "DNC", "PNA")),]
+levels(b3$Scientific.Name)[levels(b3$Scientific.Name) 
+    %in% c("NONE", "SNI")] <- "zero.pseudo"
+b3$Counts <- ifelse(b3$Scientific.Name == "zero.pseudo", 0, 1)
+b3$Label <- with(b3, paste(ABMI.Site, Year, 
+    Point.Count.Station, sep="_"))
+x3 <- b3[!duplicated(b3$Label), c("Label", 
+    "ABMI.Site", "Year", "Field.Date", 
+    "Point.Count.Station", "Wind.Conditions", "Precipitation")]
+rownames(x3) <- x3$Label
+z3 <- b3[!duplicated(b3$Scientific.Name), c("Common.Name",
+    "Scientific.Name", "Taxonomic.Resolution", 
+    "Unique.Taxonomic.Identification.Number")]
+rownames(z3) <- z3$Scientific.Name
+z3 <- z3[z3$Scientific.Name != "zero.pseudo",]
+t31 <- system.time(s3 <- suppressWarnings(stcs(b3[,
+    c("Label","Scientific.Name","Counts")])))
+t32 <- system.time(m30 <- mefa(s3))
+t33 <- system.time(m31 <- mefa(s3, x3, z3))
+y30 <- m30$xtab
+t34 <- system.time(m32 <- mefa(y30, x3, z3))
+m32
+@
+
+The equivalent processing with \pkg{mefa4} and S4 object classes:
+<<>>=
+b4 <- abmibirds
+b4$Label <- with(b4, paste(ABMI.Site, Year, 
+    Point.Count.Station, sep="_"))
+x4 <- b4[!duplicated(b4$Label), c("Label", "ABMI.Site", 
+    "Year", "Field.Date", "Point.Count.Station",
+    "Wind.Conditions", "Precipitation")]
+rownames(x4) <- x4$Label
+z4 <- b4[!duplicated(b4$Scientific.Name), c("Common.Name",
+    "Scientific.Name", "Taxonomic.Resolution", 
+    "Unique.Taxonomic.Identification.Number")]
+rownames(z4) <- z4$Scientific.Name
+t41 <- system.time(s4 <- Xtab(~ Label + Scientific.Name, 
+    b4, cdrop = c("NONE", "SNI"), 
+    subset = !(b4$Scientific.Name %in% c("VNA", "DNC", "PNA")), 
+    drop.unused.levels = TRUE))
+t42 <- system.time(m40 <- Mefa(s4))
+t43 <- system.time(m41 <- Mefa(s4, x4, z4))
+y40 <- as.matrix(m40@xtab)
+t44 <- system.time(m42 <- Mefa(y40, x4, z4))
+m42
+sum(m42@xtab)
+@
+
+Let us compare object sizes and processing times, stars indicate
+similar S3 (\code{*=3}) and S4 (\code{*=4}) objects:
+<<echo=false>>=
+res <- cbind("SIZE, *=3"=c("b*"=object.size(b3),
+    "s*"=object.size(s3),
+    "y*0"=object.size(y30),
+    "m*0"=object.size(m30),
+    "m*1"=object.size(m31),
+    "m*2"=object.size(m32)),
+"SIZE, *=4"=c("b*"=object.size(b4),
+    "s*"=object.size(s4),
+    "y*0"=object.size(y40),
+    "m*0"=object.size(m40),
+    "m*1"=object.size(m41),
+    "m*2"=object.size(m42)),
+"TIME, *=3"=c("b*"=NA,
+    "s*"=t31[3],
+    "y*0"=NA,
+    "m*0"=t32[3],
+    "m*1"=t33[3],
+    "m*2"=t34[3]),
+"TIME, *=4"=c("b*"=NA,
+    "s*"=t41[3],
+    "y*0"=NA,
+    "m*0"=t42[3],
+    "m*1"=t43[3],
+    "m*2"=t44[3]))
+(res <- cbind(res, "SIZE"=res[,2]/res[,1], "TIME"=res[,4]/res[,3]))
+@
+The compressed sparse matrix representation is \Sexpr{round(100*res[2,5], 1)}\% of the \code{stcs} object in size.
+\code{"Mefa"} object sizes are maximum of \Sexpr{round(100*max(res[5:6,5]),1)}\% of their S3 representatives.
+Processing time speed-up is enormous with sparse matrices (\Sexpr{round(100*mean(res[4:5,6]),1)}\%), and still
+quite high by standard matrices (\Sexpr{round(100*res[6,6],1)}\%).
+
+Check that objects are the same:
+<<>>=
+stopifnot(identical(dim(y30), dim(y40)))
+stopifnot(identical(setdiff(rownames(y30), rownames(y40)), character(0)))
+stopifnot(identical(setdiff(rownames(y40), rownames(y30)), character(0)))
+stopifnot(identical(setdiff(colnames(y30), colnames(y40)), character(0)))
+stopifnot(identical(setdiff(colnames(y40), colnames(y30)), character(0)))
+@
+
+The aggregation also improved quite a bit with sparse matrices:
+<<>>=
+system.time(xx3 <- aggregate(m31, "ABMI.Site"))
+system.time(xx4 <- groupSums(m41, 1, m41@samp$ABMI.Site))
+@
+
+\section{Conclusions}
+
+The redesign of the old S3 classes into S4 ones resulted in large savings in computing time
+and object sizes. Old features are still available due to the free conversion
+between the two implementations.
+
+\section{Session Info}
+
+<<echo=false,results=tex>>=
+toLatex(sessionInfo(), locale=FALSE)
+@
+
+\end{document}
