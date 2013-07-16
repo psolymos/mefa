@@ -7,3 +7,4 @@ samp.default <- function(x, summaries=FALSE, ...) {
     }
     stop("not mefa class")
 }
+
