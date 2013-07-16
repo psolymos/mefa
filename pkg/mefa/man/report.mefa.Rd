@@ -34,11 +34,11 @@ report(x, \ldots)
   \item{binary}{logical, if \code{TRUE} the result will contains count data.}
   \item{tex.control}{a list with LaTex formatting options (if \code{tex = TRUE}). The \code{ital.taxa} controls italicised taxa names, \code{noindent} controls indentation of paragraphs, \code{bold.sect} controls boldface type of paragraph openings, \code{bold.1st} controls the boldface type of first elements of each record of a given species, \code{vspace1} controls the space between species blocks, \code{vspace2} controls the space between paragraphs of the same species (if \code{gouping = FALSE}).}
   \item{sep}{character vector of length 7. The 1st separates values in \code{samp.var}, 2nd is placed between values of \code{samp.var} if redundant elements were dropped, 3rd is the opening character before count data, 4th stands after the segment name, 5th separates values of segments, 6th is the closing character after the count data, 7th separates the records.}
-  \item{dir}{character, full path of the directory where the file should be written (working directory is then restored). If \code{NULL}, the current working directoty is used.}
+  \item{dir}{character, full path of the directory where the file should be written (working directory is then restored). If \code{NULL}, the current working directory is used.}
   \item{\ldots}{further arguments potentially passed (currently there are none).}
 }
 \details{
- The resulting file can be recicled by copy-and-pasting into a document (if \code{tex = FALSE}) or be included into a LaTeX report (e.g. via the package \code{Sweave}, see \code{mefadocs("SampleReport")}). Contrary to the many arguments, the default values do not need much modifications in most of the cases (see examples).
+ The resulting file can be recycled by copy-and-pasting into a document (if \code{tex = FALSE}) or be included into a LaTeX report (e.g. via the package \code{Sweave}, see \code{mefadocs("SampleReport")}). Contrary to the many arguments, the default values do not need much modifications in most of the cases (see examples).
 }
 \value{
 Writes a file into the working (or a specified) directory.

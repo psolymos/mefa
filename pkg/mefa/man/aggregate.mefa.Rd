@@ -8,7 +8,7 @@
 \alias{segm}
 \title{Extract and Aggregate Objects of Class 'mefa'}
 \description{
-These methods are useful when extracting or aggregating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa are extracted or aggrgated at the same time.
+These methods are useful when extracting or aggregating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa are extracted or aggregated at the same time.
 }
 \usage{
 \method{aggregate}{mefa}(x, by.samp = NULL, by.taxa = NULL, \ldots)
@@ -29,7 +29,7 @@ segm(x, ...)
 \details{
 If a 'mefa' object is aggregated, either or both tables for samples and taxa (depending on if the aggregation was made by rows, columns or both) are set to \code{NULL}. Because aggregation is not straightforward for data frames with mixed type of data (e.g. factors, character vectors), and the applied function (mean, sum, etc.) depends on the type of the numeric variables. Consequently, if new data table is needed, that must be defined again by the function \code{\link{mefa}}. If the original data frame contained only numeric columns, it can be easily aggregated if the function to apply is known. For factors and numeric columns, however, such aggregation is not defined.
 
-The ordering of dimensions follow the ordering of the indices in the extraction call, except for nested subsets, when sequence of nested segments is not allowd to be affected by the extraction (error message is given). The extracting method retains samples and taxa tables as well. If non-nested segments are extracted, the \code{x$xtab} matrix will contain the sum of segments, and not the original values of \code{x$xtab}. Thus if a resulting 'mefa' object has only one segment, it will be identical to the \code{x$xtab} matrix. If nested segments are extracted, \code{x$xtab} will be identical to the last segment and not the sum of segments. See the examples for these differences. If the original object had nested segments and the first is excluded, segment names change as a result. If only one segment remains in the result, the nested attribute is turned off.
+The ordering of dimensions follow the ordering of the indices in the extraction call, except for nested subsets, when sequence of nested segments is not allowed to be affected by the extraction (error message is given). The extracting method retains samples and taxa tables as well. If non-nested segments are extracted, the \code{x$xtab} matrix will contain the sum of segments, and not the original values of \code{x$xtab}. Thus if a resulting 'mefa' object has only one segment, it will be identical to the \code{x$xtab} matrix. If nested segments are extracted, \code{x$xtab} will be identical to the last segment and not the sum of segments. See the examples for these differences. If the original object had nested segments and the first is excluded, segment names change as a result. If only one segment remains in the result, the nested attribute is turned off.
 
 If the aggregation is done over a vector that is not part of the tables inside the 'mefa' object, it must have a class attribute to be recognised, use e.g. the \code{\link{as.factor}} function (see 'Examples').
 

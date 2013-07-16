@@ -42,23 +42,26 @@ logical, if unused levels in the data frames should be dropped.
 }
 }
 \details{
-\code{samp} and \code{taxa} tables are matched with corresponding dimnames in \code{xtab}:
+\code{samp} and \code{taxa} tables are matched with 
+corresponding dimnames in \code{xtab}:
 rownames with \code{samp}, colnames with \code{taxa}.
 If \code{join = "left"}, all rows and columns in \code{xtab} are retained,
 while missing items in the corresponding attribute tables are filled up with \code{NA}s.
 If \code{join = "inner"}, only the intersection of corresponding names are retained.
 
 The \code{xtab} slot is a sparse matrix (\code{dgCMatrix}). The input
-should be in class \code{MefaMatrix} that is a class union of \code{matrix} and \code{sparseMatrix} classes.
+should be in class \code{MefaMatrix} that is a class union of 
+\code{matrix} and \code{sparseMatrix} classes.
 
 The \code{samp} and \code{taxa} slots take data frame or \code{NULL}, which two form
 the \code{MefaDataFrame} class union.
 
-The virtual classes \code{mefa} and \code{stcs} are defined for seamless coercion between
-S3 and S4 classes.
+The virtual classes \code{mefa} and \code{stcs} are defined for 
+seamless coercion between S3 and S4 classes.
 }
 \value{
-An S4 object of class \code{"Mefa"} with 4 slots: \code{xtab}, \code{samp}, \code{taxa}, \code{join}.
+An S4 object of class \code{"Mefa"} with 4 slots: \code{xtab}, 
+\code{samp}, \code{taxa}, \code{join}.
 }
 \author{
 Peter Solymos <solymos@ualberta.ca>

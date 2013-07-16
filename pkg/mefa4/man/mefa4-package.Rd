@@ -24,7 +24,7 @@ Methods: \code{\link{mbind}}, \code{\link{groupSums}},
 \code{\link{groupMeans}}.
 
 Coercion methods and virtual classes defined for
-cross compatibitity with the \code{\link[mefa]{mefa}} package.
+cross compatibility with the \code{\link[mefa]{mefa}} package.
 S4 object classes are described in \code{\link{Mefa}} help page.
 
 The vignette \code{vignette("mefa4")} gives an overview of the package,

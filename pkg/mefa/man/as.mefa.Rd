@@ -46,7 +46,7 @@ mtr(x, name, make.unique = FALSE, \ldots)
   \item{taxa}{a data frame containing rows for taxa, or \code{NULL}. See argument \code{xtab.fixed} and details for taxa matching options.}
   \item{fun}{a function to determine what to return, see details. It has no default, because the choice is not trivial.}
   \item{name}{optional character vector, names to return if not all possible elements are needed, see details.}
-  \item{make.unique}{logical, useful to use \code{make.unique = TRUE} if names to returne are non-unique, dee details.}
+  \item{make.unique}{logical, useful to use \code{make.unique = TRUE} if names to return are non-unique, see details.}
   \item{\ldots}{other arguments passed to the generic function \code{\link{as.data.frame}}.}
 }
 \details{
@@ -55,9 +55,9 @@ The usage of most of these coercion methods is trivial. Arrays and lists can be 
 Coercing among object classes 'matrix' and 'mefa' is done via using the \code{xtab} element.
 
 By \code{as.data.frame.mefa}, four kinds of data frames can be returned, depending on the function used as the \code{fun} argument:
-\code{mss} returns summary statistics for samples (richness and abundence) and \code{x$samp};
+\code{mss} returns summary statistics for samples (richness and abundance) and \code{x$samp};
 \code{msr} returns raw data (\code{x$xtab}) and \code{x$samp};
-\code{mts} returns summary statistics for taxa (occurrence and abundence) and \code{x$taxa};
+\code{mts} returns summary statistics for taxa (occurrence and abundance) and \code{x$taxa};
 \code{mtr} returns raw data (\code{t(x$xtab)}) and \code{x$taxa}.
 
 The \code{name} can be used if only a subset of the summary statistics, or raw data should be returned. The character vector should contain names of elements to return (see examples).

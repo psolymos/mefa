@@ -21,19 +21,22 @@ mbind2(x, y, fill, ...)
 objects to combine, see Details.
 }
   \item{fill}{
-numeric value or \code{NA} (default) to fill up outer set (not part of union) of dimnames.
+numeric value or \code{NA} (default) to fill up outer set 
+(not part of union) of dimnames.
 }
   \item{\dots}{
 other argument, not used.
 }
 }
 \details{
-\code{x} and \code{y} are combined in a left join manner, meaning that all the elements in
+\code{x} and \code{y} are combined in a left join manner, 
+meaning that all the elements in
 \code{x} are retained, and only non-overlapping elements in \code{y} are used.
-Elements of the returning object that are not part of \code{x} and \code{y} (outer set)
-are filled up with \code{fill}.
+Elements of the returning object that are not part of \code{x} 
+and \code{y} (outer set) are filled up with \code{fill}.
 
-If relational table in \code{x} is \code{NULL}, corresponding values from same table
+If relational table in \code{x} is \code{NULL}, 
+corresponding values from same table
 of \code{y} are used.
 
 \code{mbind2} combines \code{x} and \code{y} so that inner set is
@@ -49,7 +52,8 @@ Peter Solymos <solymos@ualberta.ca>
 \seealso{
 \code{\link{rbind}}, \code{\link{cbind}} 
 
-\code{\link{rBind}}, \code{\link{cBind}} for sparse matrices in \pkg{Matrix} package
+\code{\link{rBind}}, \code{\link{cBind}} for sparse matrices in 
+\pkg{Matrix} package
 }
 \examples{
 x=matrix(1:4,2,2)

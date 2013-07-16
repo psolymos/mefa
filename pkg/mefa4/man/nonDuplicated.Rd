@@ -4,7 +4,7 @@
 Non Duplicated Rows in Data Frame
 }
 \description{
-Subset a data frame using non duplicated elemnts in a vector.
+Subset a data frame using non duplicated elements in a vector.
 }
 \usage{
 nonDuplicated(x, y, change.rownames = FALSE, na.rm = FALSE)
@@ -27,7 +27,8 @@ by setting \code{change.rownames = TRUE}
 }
 }
 \details{
-This function is handy to keep only one set of duplicated data that is common
+This function is handy to keep only one set of 
+duplicated data that is common
 in long formatted database files.
 }
 \value{

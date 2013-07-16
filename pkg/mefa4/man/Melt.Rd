@@ -16,7 +16,7 @@ a 'mefa' or 'Mefa' object.
 }
 }
 \value{
-A data frame with columns corrsponding to \code{rows}, \code{cols},
+A data frame with columns corresponding to \code{rows}, \code{cols},
 possibly \code{segm} (names of the list if \code{x} was a list of
 sparse matrices), and \code{value}. \code{value} is numeric, other
 columns are factors.

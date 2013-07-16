@@ -10,7 +10,7 @@
 \alias{dimnames.mefa}
 \title{Create an Object of Class 'mefa'}
 \description{
-An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (count) data, and optionally (count) data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\strong{me}ta\strong{fa}unistics', indicationg that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
+An object of class 'mefa' is a compendium of a crosstabulated taxa-by-samples (count) data, and optionally (count) data for segments, and linked tables for samples and taxa. The 'mefa' term stand for an acronym of '\strong{me}ta\strong{fa}unistics', indicating that data processing is a critical and often time consuming step before data analysis. The 'mefa' package aims to help in this respect.
 }
 \usage{
 mefa(xtab, samp = NULL, taxa = NULL, id.samp = NULL, id.taxa = NULL,
@@ -53,7 +53,7 @@ The summary contains statistics calculated from the 'mefa' object (species richn
 
 Methods for extracting, subsetting, plotting and reporting 'mefa' objects are discussed elsewhere (see links in 'See also' section). On how the 'mefa' objects can be used in further analyses, see 'Examples' and the vignette (\code{vignette("mefa")}).
 
-When the \code{as.mefa} function is used with a 'mefa' object as argumentum, samples and taxa tables are used when \code{samp} and \code{taxa} atguments are missing. If the aim is to redefine these tables, those also can be given.
+When the \code{as.mefa} function is used with a 'mefa' object as argument, samples and taxa tables are used when \code{samp} and \code{taxa} arguments are missing. If the aim is to redefine these tables, those also can be given.
 }
 \value{
 The \code{mefa} function returns an object of class 'mefa'. It is a list with 5 elements:
@@ -79,7 +79,7 @@ The \code{summary.mefa} function returns a list invisibly, with elements:
   \code{call}: the function call from the 'mefa' object,
   \code{nested, drop.zero, xtab.fixed}: attributes of the 'mefa' object.
 
-The method \code{dim} returns a vector of length 3 with values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identical.to the matrix \code{x$xtab}, thus no need for a replicate).
+The method \code{dim} returns a vector of length 3 with values for number of samples, number of taxa and number of segments in the 'mefa' object. The third value is 1 in cases, when \code{s$segm} is \code{NULL} (because it is 1 undefined segment essentially identical to the matrix \code{x$xtab}, thus no need for a replicate).
 
 The \code{dimnames} method returns a list of three character vectors for names of samples, taxa and segments. These can be \code{NULL} as well.
 }
@@ -97,7 +97,7 @@ The \code{dimnames} method returns a list of three character vectors for names o
 The \code{mefa} function alone can be used instead of the combination of object classes \code{xcount} and \code{xorder} used in older (< 2.0) versions of the \strong{mefa} package. Further it is also extended by previously undocumented features.
 }
 \seealso{
-Further methods are discussed on seperate help pages: see \code{\link{[.mefa}} and \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} \code{\link{boxplot.mefa}} and \code{\link{image.mefa}} for graphical display.
+Further methods are discussed on separate help pages: see \code{\link{[.mefa}} and \code{\link{aggregate.mefa}} for extracting and aggregating the data, \code{\link{melt.mefa}} for redefining segments or melting data into long format, \code{\link{report.mefa}} for generating report into file, and \code{\link{plot.mefa}} \code{\link{boxplot.mefa}} and \code{\link{image.mefa}} for graphical display.
 
 See \code{\link{as.mefa}} for coercion methods.
 
