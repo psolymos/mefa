@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-4 -- July 16, 2013
+    * Spell check completed using utils:::aspell.
+
+
 Version 3.2-3 -- July 11, 2012
     * Startup message: line break removed.
     * inst/COPYING removed.
