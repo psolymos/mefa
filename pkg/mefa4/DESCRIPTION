@@ -9,7 +9,7 @@ Description: An S4 update of the 'mefa' package
   using sparse matrices for enhanced efficiency.
   Sparse array-like objects are supported via
   lists of sparse matrices.
-Depends: methods, Matrix
+Depends: R (>= 2.14.0), methods, Matrix
 Suggests: mefa
 License: GPL-2
 URL: http://mefa.r-forge.r-project.org/

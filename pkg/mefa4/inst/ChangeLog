@@ -3,6 +3,7 @@ MEFA4 VERSIONS
 Version 0.3-0 -- Sept 25, 2013
     * Spell check completed using utils:::aspell.
     * Import methods pkg in namespace to satisfy R 3.0.2 checks.
+    * Depends: R (>= 2.14.0) because vignette directory has moved.
 
 Version 0.2-9 -- July 11, 2013
     * Xtab: 1-row/col matrices dropped dimnames -- now fixed.
