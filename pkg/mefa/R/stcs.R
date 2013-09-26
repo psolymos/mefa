@@ -36,7 +36,7 @@ function(dframe, expand = FALSE, drop.zero = FALSE, zero.pseudo="zero.pseudo")
 # expand argument
     if (expand) {
 #        tmp <- data.frame(inflate(x[, c(1:2,4)], x[, 3])) ## inflate is obsolete
-        tmp <- mefa:::rep.data.frame(x[, c(1:2,4)], x[, 3])
+        tmp <- rep.data.frame(x[, c(1:2,4)], x[, 3])
         x <- data.frame(tmp[, 1:2], rep(1, sum(x[, 3])), tmp[, 3])}
 # check match with predefined characters
     if (!is.null(zpart)){

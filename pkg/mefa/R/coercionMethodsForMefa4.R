@@ -47,9 +47,9 @@ as.Mefa.mefa <- function(x, ...) {
 }
 
 as.Xtab.stcs <- function(x, ...) {
-    mefa4:::Xtab(count ~ samp + taxa, x)
+    mefa4::Xtab(count ~ samp + taxa, x)
 }
 
 as.Mefa.stcs <- function(x, ...) {
-    mefa4:::Mefa(as.Xtab(x))
+    mefa4::Mefa(as.Xtab(x))
 }

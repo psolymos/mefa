@@ -14,3 +14,4 @@ importMethodsFrom(Matrix, colSums, rowSums,
     colMeans, rowMeans, t,
     dim, dimnames, "dimnames<-")
 importFrom(utils, stack)
+importFrom(methods)
