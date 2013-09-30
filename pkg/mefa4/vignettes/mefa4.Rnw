@@ -92,7 +92,7 @@ rownames(taxa) <- taxa$specnames
 m$xtab
 @
 
-The \code{stcs} step is almost redundant, and inefficient relative to the \code{stats:::xtabs}
+The \code{stcs} step is almost redundant, and inefficient relative to the \code{stats::xtabs}
 function with \code{sparse = TRUE}. This function is adapted to some extent, so it can subset
 the cross-tabulated results before returning the value (\code{rdrop} and \code{cdrop} arguments,
 that is available as the \code{Xtab} function in the \pkg{mefa4} package). This takes a formula,
