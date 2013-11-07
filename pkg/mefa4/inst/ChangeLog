@@ -1,5 +1,9 @@
 MEFA4 VERSIONS
 
+Version 0.3-1 -- Nov 7, 2013
+    * stack method for Mefa objects:
+      column labels for taxa tables fixed.
+
 Version 0.3-0 -- Sept 25, 2013
     * Spell check completed using utils:::aspell.
     * Import methods pkg in namespace to satisfy R 3.0.2 checks.

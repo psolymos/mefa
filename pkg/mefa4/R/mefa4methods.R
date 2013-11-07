@@ -196,7 +196,7 @@ setMethod("stack", "Mefa", function(x, ...) {
     }
     TAXA <- taxa(x)
     if (!is.null(TAXA)) {
-        colnames(TAXA) <- paste("samp", colnames(TAXA), sep="_")
+        colnames(TAXA) <- paste("taxa", colnames(TAXA), sep="_")
         X <- data.frame(X, 
             TAXA[match(X$taxa, rownames(TAXA)),])
     }
