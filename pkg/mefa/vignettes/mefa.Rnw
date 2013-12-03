@@ -574,16 +574,11 @@ m6.ado
 
 The results revealed that 18~\% of the total variation in community composition was due to sampling method (see also Figure~\ref{image}), and 24.6~\% was explained by microhabitats. Their interaction was also significant, explaining 15.4~\% of the total variation. But the unexplained variance remained relatively high (42~\%).
 
-We can visualize this relationship by constrained (canonical) correspondence analysis (CCA). For this, use the \code{cca} function from the \pkg{ade4} package \citep{ade4-jss-07, dray-jss-07}. We base the analysis only on the matrix of the \code{"fresh"} segment (note that here we use it as data frame\footnote{We have to unload the package \pkg{vegan} because the object class 'cca' is defined in both the \pkg{vegan} and \pkg{ade4} packages.}) and use the samples table for environmental constraints:
-
-<<echo=FALSE, results=hide>>=
-library("ade4")
-@
+We can visualize this relationship by constrained (canonical) correspondence analysis (CCA). For this, use the \code{cca} function from the \pkg{vegan} package \citep{vegan-manual}. We base the analysis only on the matrix of the \code{"fresh"} segment (note that here we use it as data frame) and use the samples table for environmental constraints:
 
 <<cca, fig=TRUE, include=FALSE>>=
-detach("package:vegan", unload=TRUE)
-library("ade4")
-m2.cca <- cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
+m2.cca <- cca(m2$segm[["fresh"]] ~ ., data=m2$samp, 
+    subset=rowSums(m2$segm[["fresh"]]) > 0)
 plot(m2.cca)
 @
 
@@ -592,7 +587,7 @@ plot(m2.cca)
     \caption{Compound results of the constrained correspondence analysis based on a \class{mefa} object.\label{cca}}
 \end{figure}
 
-The compound results in Figure~\ref{cca} show environmental variables loadings and correlations (top and middle left), projection of the axes of the taxa analysis into the CCA (lower left), species scores (bottom middle), eigenvalues bar chart (bottom right), and a biplot of site scores superimposed with their predictions by environmental variables (main graph). Most of the species tend to be associated with dead wood and rock microsites, and samples separate well according to sampling method (see middle letters in the main graph).
+Most of the species tend to be associated with dead wood and rock microsites, and samples separate well according to sampling method (Figure~\ref{cca}).
 
 
 %%%%%%%%%%%%%
