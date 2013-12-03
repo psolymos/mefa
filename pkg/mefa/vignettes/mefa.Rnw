@@ -574,16 +574,17 @@ m6.ado
 
 The results revealed that 18~\% of the total variation in community composition was due to sampling method (see also Figure~\ref{image}), and 24.6~\% was explained by microhabitats. Their interaction was also significant, explaining 15.4~\% of the total variation. But the unexplained variance remained relatively high (42~\%).
 
-We can visualize this relationship by constrained (canonical) correspondence analysis (CCA). For this, use the \code{cca} function from the \pkg{ade4} package \citep{ade4-jss-07, dray-jss-07}. We base the analysis only on the matrix of the \code{"fresh"} segment (note that here we use it as data frame\footnote{We have to use the package name in the call as \code{ade4::cca}, and the \code{plot.pcaiv} function written in full, because the object class 'cca' is defined in both the \pkg{vegan} and \pkg{ade4} packages.}) and use the samples table for environmental constraints:
+We can visualize this relationship by constrained (canonical) correspondence analysis (CCA). For this, use the \code{cca} function from the \pkg{ade4} package \citep{ade4-jss-07, dray-jss-07}. We base the analysis only on the matrix of the \code{"fresh"} segment (note that here we use it as data frame\footnote{We have to unload the package \pkg{vegan} because the object class 'cca' is defined in both the \pkg{vegan} and \pkg{ade4} packages.}) and use the samples table for environmental constraints:
 
 <<echo=FALSE, results=hide>>=
 library("ade4")
 @
 
 <<cca, fig=TRUE, include=FALSE>>=
+detach("package:vegan", unload=TRUE)
 library("ade4")
-m2.cca <- ade4::cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
-plot.pcaiv(m2.cca)
+m2.cca <- cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
+plot(m2.cca)
 @
 
 \begin{figure}[t!]
