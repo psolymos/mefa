@@ -212,9 +212,10 @@ m6.ado
 
 wait()
 
-if (require(ade4)) {
-m2.cca <- ade4::cca(data.frame(m2$segm[["fresh"]]), m2$samp, scan = FALSE)
-plot.pcaiv(m2.cca)
+if (require(vegan)) {
+m2.cca <- cca(m2$segm[["fresh"]] ~ ., data=m2$samp, 
+    subset=rowSums(m2$segm[["fresh"]]) > 0)
+plot(m2.cca)
 }
 
 wait()
