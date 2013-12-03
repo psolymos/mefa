@@ -8,7 +8,7 @@
 
 %\VignetteIndexEntry{Processing Ecological Data in R with the mefa Package}
 %\VignettePackage{mefa}
-%\VignetteDepends{MASS, ade4, vegan}
+%\VignetteDepends{MASS, vegan}
 %\VignetteKeywords{biodiversity, biogeography, data manipulation, ecology, multivariate methods, R}
 
 \author{P\'eter S\'olymos\\University of Alberta}
