@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-5 -- December 3, 2013
+    * ade4 based cca example removed from vignette and demo.
+
+
 Version 3.2-4 -- Sept 25, 2013
     * Spell check completed using utils:::aspell.
     * Removed ::: from mefa:::rep.data.frame call, 
