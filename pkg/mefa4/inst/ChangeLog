@@ -3,6 +3,9 @@ MEFA4 VERSIONS
 Version 0.3-1 -- Nov 7, 2013
     * stack method for Mefa objects:
       column labels for taxa tables fixed.
+    * New functions: pasteDate, paste0date, nameAlnum.
+      These were added to facilitate common character operations
+      (versioning files, cleaning up taxonomic names).
 
 Version 0.3-0 -- Sept 25, 2013
     * Spell check completed using utils:::aspell.

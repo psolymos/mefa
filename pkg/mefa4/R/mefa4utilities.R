@@ -63,3 +63,25 @@ function(x)
     } else stop("object class not appropriate")
     out
 }
+
+## atatch a time stamp to file names etc.
+pasteDate <- 
+function(..., sep = " ", collapse = NULL, sep.date = sep)
+{
+    out <- paste(..., sep = sep, collapse = collapse)
+    paste(out, Sys.Date(), sep = sep.date)
+}
+paste0date <- 
+function(..., collapse = NULL)
+{
+    paste0(paste0(..., collapse = collapse), Sys.Date())
+}
+
+## clear up species names
+nameAlnum <- 
+function(x) {
+    sapply(x, function(z) {
+        paste0(strsplit(gsub("[^[:alnum:] ]", "", z), " +")[[1]], collapse="")
+    }, USE.NAMES = FALSE)
+}
+
