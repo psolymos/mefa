@@ -1,0 +1,394 @@
+MEFA VERSIONS
+
+Version 3.2-5 -- December 3, 2013
+    * ade4 based cca example removed from vignette and demo,
+      ade4 dependency removed as a result.
+
+
+Version 3.2-4 -- Sept 25, 2013
+    * Spell check completed using utils:::aspell.
+    * Removed ::: from mefa:::rep.data.frame call, 
+      mefa4:::Mefa and mefa4:::Xtab to satisfy R 3.0.2 checks.
+    * Depends: R (>= 2.14.0) because vignette directory has moved.
+
+
+Version 3.2-3 -- July 11, 2012
+    * Startup message: line break removed.
+    * inst/COPYING removed.
+    * Vignette moved to vignettes from inst/doc.
+
+
+Version 3.2-2 -- May 14, 2011
+    * mefaCrosstab: xtabs/table class attribute removed 
+      from return object.
+    * packageStartupMessage used in zzz.R .onAttach
+
+
+Version 3.2-1 -- May 13, 2011
+    * Vignette: value of 'strip.white' option is now lowercase.
+
+
+Version 3.2-0 -- February 7, 2011
+    * CRAN release along with first release of mefa4.
+
+
+Version 3.1-7 -- January 21, 2011
+    * zero sample handling bug fixed in stcs
+    * coercion methods for S4 classes Xtab and Mefa added
+    * if mefa is loaded after mefa4, as.array gives a warning
+      because of Matrix overloads base as.matrix and as.array,
+      so mefa should be called before mefa4
+    * accessors work irrespective of loading sequence
+      of mefa and mefa4 (still masked out but it has no
+      effect on functionality.
+    * segm() returned NULL instead of $xtab when segm was NULL,
+      this is fixed.
+    * rdrop/cdrop can take mefa orMefa object as argument.
+    * Namespace clash caused by xtab, samp, taxa generics fixed
+      (S4 objects were accessed wrong when mefa4 was overloaded
+      by mefa).
+    * Matrix::as.matrix() is used inside cdrop/rdrop when x is
+      an S4 Mefa object (col[row]Sums failed - now fixed).
+    * as.mefa.list can handle lists of sparse matrices.
+
+
+Version 3.1-6 -- August 23, 2010
+    * image plot for 'dist' objects
+    * aoplot method added for abundance-occupancy
+      plots as in Digby and Kempton 1987 p. 40.
+    * New extractor methods added for mefa objects:
+      xtab, samp, taxa, segm
+
+
+Version 3.1-5 -- June 4, 2010
+
+    * as.data.frame.dist renamed to stack.dist
+    * as.mefa.default now return call correctly
+    * plot returns histogram if data is continuous
+      and barplot if data is discrete
+
+Version 3.1-4 -- November 10, 2009 (closed - r486)
+
+    * .onUnload problem fixed (reported by B D Ripley)
+
+
+Version 3.1-3 -- October 15, 2009 (closed - r484)
+
+    * CRAN minor release.
+
+
+Version 3.1-2 -- September 22, 2009 (closed - r478)
+
+    * mefa got namespace.
+    * reshape function in reshape is no longer
+      available, citations now pointing to cast
+      instead (in manual and vignette).
+
+
+Version 3.1-1 -- July 10, 2009 (closed - r477)
+
+    * dist2vec: deleted (use as.vector instead)
+    * fill.na: accepts 1 dimensional vectors.
+    * as.data.frame.dist: now returns labels of the
+      dist object (dim.names=TRUE).
+    * inflate: is now obsolete, rep.data.frame is
+      used instead.
+
+
+Version 3.1-0 -- June 14, 2009 (closed - r407)
+
+    * CRAN major release.
+
+
+Version 3.0-3 -- June 14, 2009 (closed - r406)
+
+    * distance matrix manipulation tools added (is.dist,
+      dist2vec, as.data.frame.dist)
+    * report.mefa: dir argument became more transparent
+      by using getwd().
+
+
+Version 3.0-2 -- May 20, 2009 (closed - r381)
+
+    * vec2dist: function to convert a vector to dist.
+    * mfill, rdrop, cdrop: new functions to
+      calculate matrix fill and drop rows/columns
+      from matrices (similar to na.exclude).
+    * documentation encoding problems fixed.
+    * mat2list: new function converting a matrix
+      into list (row or columnwise).
+
+
+Version 3.0-1 -- May 1, 2009 (closed - r363)
+
+    * citation info: updated in the Rd files.
+    * class attribute of mefa objects: the 'list'
+      element has been removed in order to leave
+      as.mefa.default work properly.
+    * as.mefa/as.stcs: redefined as method, together
+      with 'default' class, and a bunch of coercion
+      methods added (matrix, list, array, data.frame).
+
+
+Version 3.0-0 -- March 7, 2009 (closed - r320)
+
+    * Version update: to indicate that this is the
+      published version.
+    * CITATION: points to JSS paper.
+    * vignette: changes made by Achim Zeileis to
+      conform to the final version of the JSS paper.
+    * Suggests: MASS, ade4 and vegan because of the
+      vignette.
+
+
+Version 2.1-3 -- February 17, 2009 (closed - r318)
+
+    * documentation fixes: due to stricter R CMD
+      check of R devel.
+    * vignette: minor changes to mirror requested
+      changes in JSS manuscript
+    * citation: new citation of accepted JSS
+      manuscript added.
+
+
+Version 2.1-2 -- January 6, 2009 (closed - r315)
+
+    * suggests and vignette dependencies: ade4 and
+      vegan added, due to error reported by Kurt
+      Hornik after CRAN submission.
+    * label: assigns and returns a label stored as
+      a deparsed attribute. Can be used to store
+      relevant information on the current data
+      set. Note: inheritance is not implemented,
+      so by any transformation of the object
+      into another one, it is lost.
+    * vignette and demo updated: based on changes
+      made in the JSS paper due to second revision.
+    * as.data.frame: new method to take advantage
+      in modeling. It returns a data frame containing
+      variables that are to be used in a model
+      i.e. glm. Four helper functions are made to
+      support this function, but those can be used
+      on their own as well (mss, msr, mts, mtr).
+    * plot methods: many tiny changes, image method
+      now display names, but by default the axes are
+      hided and just a box is drawn.
+
+
+Version 2.1-1 -- December 11, 2008 (closed - r268)
+
+    * melt.mefa: did not return stcs class if segments
+      were present -- bug fixed.
+    * mefaTable: xtab.fixed=TRUE behaved like FALSE
+      when names had exact match, fixed.
+    * demo: got a new ending, by a question for opening
+      mefa website.
+
+
+Version 2.1-0 -- November 17, 2008 (closed - r268)
+
+    * minor release: on CRAN containing additions of
+      from 2.0-2 and some polishing.
+    * basic object structures and methods: will not change
+      in future versions. mefa 2.1 is a yardstick in
+      package development. Sorry for any inconveniences
+      happened because of restructuring the package.
+
+
+Version 2.0-2 -- November 12, 2008 (closed - r252)
+
+    * onload text: mefa gives date info when loaded.
+    * mefaCompare: compares 2 objects of class mefa,
+      based on dimnames and numeric values. Sample
+      and taxa tables are not compared.
+    * demo: added, based on the vignette (also a tests
+      directory to check the demo script).
+    * vignette: added to inst/doc based on a manuscript
+      submitted to JSS. Dependencies are excluded and
+      a verbatim code is placed in the vignette instead.
+    * DOLINA data sets: reworked. A more simple example
+      is given: dol.count, dol.samp, dol.taxa. The previous
+      full data set is available at: hdl:1902.1/12060.
+    * extract.mefa: nested segment indexing convention
+      introduced when extracted.
+    * mefaNestedless: makes an object with non-nested
+      segments, to be used in melt.
+    * as.mefa: if class is mefa, the object can be
+      rebuilt with new arguments (e.g. drop.zero,
+      nested, segment).
+    * mefaCrosstab: xtabs function is now used for
+      crosstabulation internally, instead of the
+      inflate function. This implementation allows
+      non integer values as 'count'. All other
+      functions (stcs, melt, aggregate) accept it, too.
+      The inflate function is in use for integer counts
+      used by stcs when expand is TRUE. Help pages and
+      examples modified accordingly.
+    * boxplot: new argument 'all' for plotting all
+      segments and the separate segments in the same graph.
+    * melt.mefa: now accepts mefa object with xtab
+      element without dimnames. In this case, rows and
+      columns are names by integers. When only melt(x)
+      is used and x has original segments, those are
+      used to build the stcs object. This can however be
+      avoided by melt(as.mefa(x, segment = FALSE)).
+      As a result, ordering of dimnames can be different.
+    * mefa: the restriction of at least 2 columns for
+      samp and taxa tables is no longer necessary.
+    * qvector: na.rm and ... arguments added.
+    * plot: labels corrected.
+    * melt.mefa: takes care of zero.pseudo flags silently,
+      and returns call attribute as well of raw=FALSE.
+    * print.mefa: returns segment names to avoid confusion
+      when all other details are the same.
+    * mefaTables: xtab.fixed argument now works properly.
+    * stcs: argument zero.pseudo now accepts a two element
+      vector for species and segments, respectively.
+    * summary.mefa: returns list with different names
+      for [1:4] elements due to consistency with
+      samples/taxa sides: s.rich, s.abu, t.occ, t.abu,
+      and these are used in the print.summary method, too.
+      Accordingly, the class has now a call attribute to
+      return it by the summary.
+    * help pages: lots of minor improvements.
+    * R code: annotated with comments.
+    * summary.stcs: returns same info as summary.mefa,
+      but print.stcs remained the default data frame method.
+    * plot, boxplot, image methods for stcs: also added
+      for avoiding the use of calls like plot(mefa(x)).
+
+
+Version 2.0-1 -- November 8, 2008 (closed - r205)
+
+    * extract.mefa: now accepts negative indexing
+      for exclusion (not as character), and
+      column extraction bug fixed
+    * type arg of plot.mefa: "hist" replaced by "bar"
+
+
+Version 2.0-0 -- September 29, 2008 (closed - r200)
+
+    * The package was extensively rewritten
+      (started on September 16, 2008).
+      It is more easy and efficient than
+      < 2.0 versions. The number of object
+      classes reduced. The new class stcs
+      is almost equivalent to the old sscount.
+      The new class mefa can be used either
+      as the old xcount and mefa classes
+      (and the xclist and mflist classes
+      only provided with the undocumented
+      patch file). The old xorder class
+      is bow useless, too.
+    * New methods are provided for manipulating
+      pbjects. The "[.mefa" replaces the old
+      exclmf function, the aggregate method
+      replaces the old strify function.
+    * plot, print and summary methods only
+      provided for the class mefa. For the
+      stcs class, methods for data frames can
+      be used (because an stcs object is
+      essentially a data frame with some
+      conventions and additional attributes).
+    * The melt method is provided to convert
+      a mefa object into stcs, or redefine
+      new segments.
+    * dim and dimnames methods also available
+      for mefa objects.
+    * the mefalogo function depicts the
+      general representation of an object
+      of class mefa.
+
+
+Version 1.1-4 -- September 20, 2008 (closed)
+
+    * inflate: arguments of any() corrected
+
+
+Version 1.1-3 -- September 15, 2008 (closed)
+
+    * citation entry added
+
+
+Version 1.1-2 -- June 24, 2008 (closed)
+
+    * several minor fixes in .Rd files
+    * xytrend moved to sedar
+    * preliminary modifications made according to later
+      introduction of 'list' objects
+    * report as generic function added for methods
+    * as.mefa added
+    * startup message is added
+
+
+Version 1.1-1 -- June 12, 2008 (closed)
+                 April 02, 2008 (started)
+
+	* accumulate was rewritten
+	* vignette is corrected and updated
+	* help pages are corrected and updated
+
+
+Version 1.1-0 -- March 14, 2008
+
+	* vignette is made available
+	  and can be used as reference for the
+	  dolina demo
+	* add.attrib can now handle mefa objects
+	  containing NULL attribute table
+	* logscale argument inserted into plot methods
+	* cutoff argument inserted into print methods
+	* report.mefa bug fixed & help corrected
+	* new functions: qdef, mapmf, accumulate,
+	  ivgen, xytrend
+	* mefa from now depends on other packages
+	  (xytrend requires vegan)
+	* mefa developement is now on R-Forge
+
+
+Version 1.0-4 -- February 11, 2008
+
+	* the demo was rewritten
+	  (and still under construction...)
+	* amf function is provided
+	* class definitions are rewritten
+	* print and plot S3 methods provided for classes
+	* digits argument is placed into sscount 
+	  and related functions
+
+
+Version 1.0-3 -- January 4, 2008
+
+	* mefa object can be used in function as.xcount
+	* default setting of index argument
+	  in add.attrib was changed
+	* "SampleReport" option is available 
+	  in mefadocs function, showing options for 
+	  Sweave report generation.
+	* bug fixed in exclmf
+	* bug fixed in dolina demo.
+	* warning message is placed in strify code
+
+
+Version 1.0-2 -- December 18, 2007
+
+	* new function: exclmf
+	* default setting of index argument 
+	  in xorder and check.attrib has changed
+	* thus manual was modified inseveral pages
+	* There is a mefadocs function, 
+	  based on J. Oksanen's vegandocs function
+	* currently only "changelog" is active
+	* A bug is present in report.mefa, 
+	  a WARNING is placed in the manual 
+	  will be fixed later
+
+
+Version 1.0-1 -- December 7, 2007
+
+	* bugs fixed in function stify
+
+
+Version 1.0 -- November 13, 2007
+
+	* the first public version

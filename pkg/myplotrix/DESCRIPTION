@@ -1,9 +1,0 @@
-Package: myplotrix
-Version: 3.2-2
-Date: 2011-05-31
-Title: Various plotting functions
-Author: Peter Solymos
-Maintainer: Peter Solymos <solymos@ualberta.ca>
-Description: This is collection of functions contributed by
-        Peter Solymos to plotrix package.
-License: GPL (>= 2)
