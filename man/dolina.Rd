@@ -44,7 +44,7 @@ The data sets are results of the 'DOLINA 2007' expedition (Vilisics et al. 2008)
 
 \enc{S\'olymos}{Solymos}, P., Kemencei, Z., \enc{P\'all}{Pall}-Gergely, B., Farkas, R., Vilisics, F., Hornung, E. (2009) Does shell accumulation matter in micro scale land snail surveys? \emph{Malacologia}, \bold{51}, 389--393.
 
-Vilisics, F., Nagy, A., \enc{S\'olymos}{Solymos}, P., Farkas, R., Kemencei, Z., \enc{P\'all}{Pall}-Gergely, B., Kisfali, M., Hornung, E. (2008) Data on the terrestrial isopoda fauna of the \enc{Als\'o}{Also}-hegy, Aggtelek National Park, Hungary. \emph{Folia Faunistica Slovaca} \bold{13}, 9--12. \url{http://zoology.fns.uniba.sk/ffs/interface/00053-Vilisics-et-al-2008.pdf}.
+Vilisics, F., Nagy, A., \enc{S\'olymos}{Solymos}, P., Farkas, R., Kemencei, Z., \enc{P\'all}{Pall}-Gergely, B., Kisfali, M., Hornung, E. (2008) Data on the terrestrial isopoda fauna of the \enc{Als\'o}{Also}-hegy, Aggtelek National Park, Hungary. \emph{Folia Faunistica Slovaca} \bold{13}, 9--12.
 
 Kerney, M. P., Cameron, R. A. D., Jungbluth, J. H. (1983) \emph{Die Landschnecken Nord- und Mitteleuropas}. P. Parey, Hamburg-Berlin, 384 p.
 }
