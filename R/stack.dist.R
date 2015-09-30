@@ -16,8 +16,8 @@ function (x, dim.names = FALSE, ...)
     if (dim.names) {
         out$row <- as.factor(out$row)
         out$col <- as.factor(out$col)
-        levels(out$row) <- rownames(id)
-        levels(out$col) <- colnames(id)
+        levels(out$row) <- rownames(id)[-1]
+        levels(out$col) <- colnames(id)[-ncol(id)]
     }
     out
 }

@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-6 -- Sept 30, 2015
+    * stack.dist gave wrong labels.
+
+
 Version 3.2-5 -- December 3, 2013
     * ade4 based cca example removed from vignette and demo,
       ade4 dependency removed as a result.
