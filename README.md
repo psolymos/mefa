@@ -14,6 +14,11 @@ Mefa is a framework package aimed to provide standardized computational environm
 
 [![Build Status](https://travis-ci.org/psolymos/mefa.svg?branch=master)](https://travis-ci.org/psolymos/mefa)  [![Build status](https://ci.appveyor.com/api/projects/status/hc8dbxrim2nj3c1i/branch/master)](https://ci.appveyor.com/project/psolymos/mefa/branch/master)
 
+## Report a problem
+
+Use the [issue tracker](https://github.com/psolymos/mefa/issues)
+to report a problem.
+
 ## References
 
 Solymos P. 2008. mefa: an R package for handling and reporting count data. _Community Ecology_ **9**, 125-127.

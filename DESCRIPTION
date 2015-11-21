@@ -10,6 +10,6 @@ Depends: R (>= 2.14.0)
 Suggests: MASS, vegan, mefa4, Matrix
 Imports: methods
 License: GPL-2
-URL: http://mefa.r-forge.r-project.org/
+URL: https://github.com/psolymos/mefa
 LazyLoad: yes
 LazyData: true
