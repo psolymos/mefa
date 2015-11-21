@@ -37,10 +37,10 @@ data(dol.taxa)
   }
 }
 \details{
-The data sets are results of the 'DOLINA 2007' expedition (Vilisics et al. 2008). Species characteristics are based on Kerney et al. (1983). The full dataset (\enc{S\'olymos}{Solymos} &  Kemencei 2008) from which this example was derived is available at the Dataverse Network (\url{hdl:1902.1/12060}) with the code to make the subsetting.
+The data sets are results of the 'DOLINA 2007' expedition (Vilisics et al. 2008). Species characteristics are based on Kerney et al. (1983). The full dataset (\enc{S\'olymos}{Solymos} &  Kemencei 2008) from which this example was derived is available at the Dataverse Network (hdl:1902.1/12060) with the code to make the subsetting.
 }
 \source{
-\enc{S\'olymos}{Solymos}, P.,  Kemencei, Z. (2008) Methodological study data set of land snails from the Dolina 2007 project. Available at the Dataverse Network: (hdl:1902.1/12060).
+\enc{S\'olymos}{Solymos}, P.,  Kemencei, Z. (2008) Methodological study data set of land snails from the Dolina 2007 project. Available at the Dataverse Network: hdl:1902.1/12060.
 
 \enc{S\'olymos}{Solymos}, P., Kemencei, Z., \enc{P\'all}{Pall}-Gergely, B., Farkas, R., Vilisics, F., Hornung, E. (2009) Does shell accumulation matter in micro scale land snail surveys? \emph{Malacologia}, \bold{51}, 389--393.
 
