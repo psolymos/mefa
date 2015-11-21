@@ -1,42 +1,51 @@
 MEFA VERSIONS
 
-Version 3.2-6 -- Sept 30, 2015
+Version 3.2-6 -- Nov 21, 2015
+
     * stack.dist gave wrong labels.
+    * cleanup to Rd files.
 
 
 Version 3.2-5 -- December 3, 2013
+
     * ade4 based cca example removed from vignette and demo,
       ade4 dependency removed as a result.
 
 
 Version 3.2-4 -- Sept 25, 2013
+
     * Spell check completed using utils:::aspell.
-    * Removed ::: from mefa:::rep.data.frame call, 
+    * Removed ::: from mefa:::rep.data.frame call,
       mefa4:::Mefa and mefa4:::Xtab to satisfy R 3.0.2 checks.
     * Depends: R (>= 2.14.0) because vignette directory has moved.
 
 
 Version 3.2-3 -- July 11, 2012
+
     * Startup message: line break removed.
     * inst/COPYING removed.
     * Vignette moved to vignettes from inst/doc.
 
 
 Version 3.2-2 -- May 14, 2011
-    * mefaCrosstab: xtabs/table class attribute removed 
+
+    * mefaCrosstab: xtabs/table class attribute removed
       from return object.
     * packageStartupMessage used in zzz.R .onAttach
 
 
 Version 3.2-1 -- May 13, 2011
+
     * Vignette: value of 'strip.white' option is now lowercase.
 
 
 Version 3.2-0 -- February 7, 2011
+
     * CRAN release along with first release of mefa4.
 
 
 Version 3.1-7 -- January 21, 2011
+
     * zero sample handling bug fixed in stcs
     * coercion methods for S4 classes Xtab and Mefa added
     * if mefa is loaded after mefa4, as.array gives a warning
@@ -57,6 +66,7 @@ Version 3.1-7 -- January 21, 2011
 
 
 Version 3.1-6 -- August 23, 2010
+
     * image plot for 'dist' objects
     * aoplot method added for abundance-occupancy
       plots as in Digby and Kempton 1987 p. 40.
@@ -357,7 +367,7 @@ Version 1.0-4 -- February 11, 2008
 	* amf function is provided
 	* class definitions are rewritten
 	* print and plot S3 methods provided for classes
-	* digits argument is placed into sscount 
+	* digits argument is placed into sscount
 	  and related functions
 
 
@@ -366,8 +376,8 @@ Version 1.0-3 -- January 4, 2008
 	* mefa object can be used in function as.xcount
 	* default setting of index argument
 	  in add.attrib was changed
-	* "SampleReport" option is available 
-	  in mefadocs function, showing options for 
+	* "SampleReport" option is available
+	  in mefadocs function, showing options for
 	  Sweave report generation.
 	* bug fixed in exclmf
 	* bug fixed in dolina demo.
@@ -377,14 +387,14 @@ Version 1.0-3 -- January 4, 2008
 Version 1.0-2 -- December 18, 2007
 
 	* new function: exclmf
-	* default setting of index argument 
+	* default setting of index argument
 	  in xorder and check.attrib has changed
 	* thus manual was modified inseveral pages
-	* There is a mefadocs function, 
+	* There is a mefadocs function,
 	  based on J. Oksanen's vegandocs function
 	* currently only "changelog" is active
-	* A bug is present in report.mefa, 
-	  a WARNING is placed in the manual 
+	* A bug is present in report.mefa,
+	  a WARNING is placed in the manual
 	  will be fixed later
 
 
