@@ -12,7 +12,7 @@ Mefa is a framework package aimed to provide standardized computational environm
 
 ### Build status for development version
 
-[![Build Status](https://travis-ci.org/psolymos/mefa.svg?branch=master)](https://travis-ci.org/psolymos/mefa)  [![Build status](https://ci.appveyor.com/api/projects/status/hc8dbxrim2nj3c1i/branch/master)](https://ci.appveyor.com/project/psolymos/mefa/branch/master)
+[![Build Status](https://travis-ci.org/psolymos/mefa.svg?branch=master)](https://travis-ci.org/psolymos/mefa)
 
 ## Report a problem
 
