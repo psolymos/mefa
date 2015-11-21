@@ -1,6 +1,8 @@
-importFrom(utils, stack)
-importFrom(stats, aggregate)
-importFrom(graphics, boxplot, image)
+importFrom("graphics", "axis", "box", "hist", "lines", "mtext", "par",
+  "plot", "polygon", "text", "boxplot", "image")
+importFrom("methods", "as", "new")
+importFrom("stats", "quantile", "runif", "xtabs", "aggregate")
+importFrom("utils", "browseURL", "stack")
 
 export(as.mefa,
     as.stcs,
