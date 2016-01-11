@@ -2,7 +2,7 @@ MEFA VERSIONS
 
 Version 3.2-7 -- Jan 11, 2016
 
-    * Vignette produced error/warning due tu unsave use of '...'.
+    * Vignette produced error/warning due to unsafe use of '...'.
       The names could match current or future control arguments such as
       'decreasing'.  A sometimes-encountered unsafe practice is to call
       do.call('order', df_obj) where df_obj might be a data frame.
