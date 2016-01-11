@@ -1,14 +1,16 @@
 `report.mefa` <-
 function (x, filename, segment = FALSE, n = NULL, by.taxa = TRUE,
     samp.var = NULL, drop.redundant = NULL, collapse = TRUE,
-    taxa.name = NULL, author.name = NULL, taxa.order = NULL, 
+    taxa.name = NULL, author.name = NULL, taxa.order = NULL,
     grouping = FALSE, tex = FALSE, binary = FALSE,
-    tex.control = list(ital.taxa = TRUE, noindent = TRUE, 
+    tex.control = list(ital.taxa = TRUE, noindent = TRUE,
     bold.sect = TRUE, bold.1st = TRUE, vspace1 = 0.5, vspace2 = 0.2),
     sep = c(",", ":", "(", ":", ",", ")", ";"), dir = getwd(), ...)
 {
 current.dir <- getwd()
 setwd(dir)
+on.exit(setwd(current.dir))
+
 mf <- x[drop = TRUE]
 if (is.null(taxa.name)) {
     taxa.name <- 1
@@ -19,7 +21,7 @@ if (is.null(taxa.name)) {
         stop("object is not of class 'mefa'")
     if (is.null(mf$samp) || is.null(mf$taxa))
         stop("report needs both '$samp' and '$taxa'")
-    if (length(sep) != 7) 
+    if (length(sep) != 7)
         stop("specify exactly 7 'sep' values")
     if (is.null(taxa.order))
         taxa.order <- taxa.name
@@ -38,7 +40,10 @@ if (is.null(taxa.name)) {
 # ordering sample attributes
     if (is.null(samp.var))
         loca <- mf$samp else loca <- mf$samp[, samp.var]
-    loc <- loca[do.call(order, loca), ]
+    nnloca <- loca
+    names(nnloca) <- NULL
+    ord_loca <- do.call(order, nnloca)
+    loc <- loca[ord_loca, ]
 
     if (!is.null(drop.redundant) & length(drop.redundant) >= ncol(loca))
         stop("'drop.redundant' should be smaller than length of 'samp.var'")
@@ -73,16 +78,16 @@ if (is.null(taxa.name)) {
     }
 
 # ordering counts
-    xcr <- mfdata[do.call(order, loca), order(mf$taxa[, taxa.order])]
+    xcr <- mfdata[ord_loca, order(mf$taxa[, taxa.order])]
     mfdl <- list()
     for (i in 1:length.n) {
-        mfdl[[i]] <- mfd[[i]][do.call(order, loca), order(mf$taxa[, taxa.order])]
+        mfdl[[i]] <- mfd[[i]][ord_loca, order(mf$taxa[, taxa.order])]
         }
     names(mfdl) <- names(mfd)
 
 # species names
     nam <- as.vector(mf$taxa)[, taxa.name][order(mf$taxa[, taxa.order])]
-    if (!is.null(author.name)) 
+    if (!is.null(author.name))
         autv <- as.vector(mf$taxa)[, author.name][order(mf$taxa[, taxa.order])]
 
 # formatting
@@ -104,7 +109,7 @@ if (is.null(taxa.name)) {
     if (by.taxa) {
 
         zz <- file(filename, "w")
-        cat("%% Start writing data from a 'mefa' object sorted by species into file \"", 
+        cat("%% Start writing data from a 'mefa' object sorted by species into file \"",
             filename, "\" on ", date(), ".\n%% Call: ", calling, "\n", file = zz, sep = "")
 
 # start of SPEC loop
@@ -258,7 +263,6 @@ if (grouping) cat("\n\n", file = zz, sep = "")
 
 if (!by.taxa) stop("'by.taxa = FALSE' is not yet implemented\n")
 
-setwd(current.dir)
 invisible()
 } # end of function
 
