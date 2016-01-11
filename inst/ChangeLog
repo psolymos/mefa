@@ -6,7 +6,7 @@ Version 3.2-7 -- Jan 11, 2016
       The names could match current or future control arguments such as
       'decreasing'.  A sometimes-encountered unsafe practice is to call
       do.call('order', df_obj) where df_obj might be a data frame.
-      Fix: copy df_obj and remove any names.
+      Fix: copy df_obj and remove any names in report.mefa.
 
 Version 3.2-6 -- Nov 21, 2015
 
