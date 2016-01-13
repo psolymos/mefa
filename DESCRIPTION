@@ -11,5 +11,6 @@ Suggests: MASS, vegan, mefa4, Matrix
 Imports: methods
 License: GPL-2
 URL: https://github.com/psolymos/mefa
+BugReports: https://github.com/psolymos/mefa/issues
 LazyLoad: yes
 LazyData: true
