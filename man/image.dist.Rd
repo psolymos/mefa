@@ -39,4 +39,3 @@ g <- with(m$samp, interaction(microhab, method))
 image(d)
 }
 \keyword{ hplot }
-\keyword{ ~kwd2 }

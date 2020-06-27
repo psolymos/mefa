@@ -2,4 +2,8 @@
 .git*
 .DS_Store
 .*~
-.travis.yml
+^\.travis\.yml$
+^docs$
+^_pkgdown\.yml$
+^.*\.Rproj$
+^\.Rproj\.user$
