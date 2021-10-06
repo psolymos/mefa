@@ -30,7 +30,7 @@
   presents worked examples on a variety of ecological analyses.
 
   This vignette is based on the manuscript: P\'eter S\'olymos, 2009, Processing Ecological Data in R With the mefa
-  Package. \emph{Journal of Statistical Software} 29(8), 1--28. \url{http://www.jstatsoft.org/v29/i08/};
+  Package. \emph{Journal of Statistical Software} 29(8), 1--28. \doi{10.18637/jss.v029.i08};
   processed with \pkg{mefa} \Sexpr{packageDescription("mefa", field="Version")} in \Sexpr{R.version.string} on \today.
 }
 
