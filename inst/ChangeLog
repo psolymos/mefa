@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-8 -- Oct 6, 2021
+
+    * Added DOI for JSS article to replace URL.
+
 Version 3.2-7 -- Jan 11, 2016
 
     * Vignette produced error/warning due to unsafe use of '...'.
