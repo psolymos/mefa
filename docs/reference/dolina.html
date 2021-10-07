@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="The Dolina Dataset — dolina" />
 <meta property="og:description" content="Data were collected in dolines (sinkholes, karstic depressions) of Northeast Hungary." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mefa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2-8</span>
       </span>
     </div>
 
@@ -87,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,8 +100,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/psolymos/mefa">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/psolymos/mefa/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,14 +127,14 @@
     <p>Data were collected in dolines (sinkholes, karstic depressions) of Northeast Hungary.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.count</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.samp</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.taxa</span>)</pre>
+    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.samp</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.taxa</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>The <code>dol.count</code> data set is a data frame with 297 observations on the following 4 variables.</p><dl class='dl-horizontal'>
+    <p>The <code>dol.count</code> data set is a data frame with 297 observations on the following 4 variables.</p><dl>
     <dt><code>samp</code></dt><dd><p>a factor with levels for samples.</p></dd>
     <dt><code>taxa</code></dt><dd><p>a factor with levels for the species.</p></dd>
     <dt><code>count</code></dt><dd><p>a numeric vector with count data.</p></dd>
@@ -139,13 +142,13 @@
   
 </dl>
 
-<p>The <code>dol.samp</code> data set is a data frame with 24 observations on the following 2 variables.</p><dl class='dl-horizontal'>
+<p>The <code>dol.samp</code> data set is a data frame with 24 observations on the following 2 variables.</p><dl>
     <dt><code>microhab</code></dt><dd><p>a factor with levels <code>dead.wood</code> <code>litter</code> <code>live.wood</code> <code>rock</code> for microhabitats.</p></dd>
     <dt><code>method</code></dt><dd><p>a factor with levels <code>time</code> <code>quadrat</code> for the sampling method applied.</p></dd>
   
 </dl>
 
-<p>The <code>dol.taxa</code> data set is a data frame with 121 observations on the following 4 variables.</p><dl class='dl-horizontal'>
+<p>The <code>dol.taxa</code> data set is a data frame with 121 observations on the following 4 variables.</p><dl>
     <dt><code>species</code></dt><dd><p>a factor with levels the species names.</p></dd>
     <dt><code>author</code></dt><dd><p>a factor with levels for authors of the species and description dates (accents are removed).</p></dd>
     <dt><code>familia</code></dt><dd><p>a factor with levels for family level classification.</p></dd>
@@ -164,30 +167,28 @@
 <p>Kerney, M. P., Cameron, R. A. D., Jungbluth, J. H. (1983) <em>Die Landschnecken Nord- und Mitteleuropas</em>. P. Parey, Hamburg-Berlin, 384 p.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.count</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>dol.count</span>)</div><div class='output co'>#&gt; 'data.frame':	297 obs. of  4 variables:
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	297 obs. of  4 variables:
 #&gt;  $ samp : Factor w/ 24 levels "DQ1","DQ2","DQ3",..: 7 7 7 7 7 7 7 10 8 8 ...
 #&gt;  $ taxa : Factor w/ 32 levels "aacu","amin",..: 1 2 2 13 17 25 25 32 1 2 ...
 #&gt;  $ count: num  1 1 2 1 1 13 15 0 1 1 ...
-#&gt;  $ segm : Factor w/ 3 levels "fresh","broken",..: 1 2 1 2 2 1 2 3 1 2 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.samp</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>dol.samp</span>)</div><div class='output co'>#&gt; 'data.frame':	24 obs. of  2 variables:
+#&gt;  $ segm : Factor w/ 3 levels "fresh","broken",..: 1 2 1 2 2 1 2 3 1 2 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.samp</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>dol.samp</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	24 obs. of  2 variables:
 #&gt;  $ microhab: Factor w/ 4 levels "dead.wood","litter",..: 2 2 2 2 2 1 1 1 1 1 ...
-#&gt;  $ method  : Factor w/ 2 levels "time","quadrat": 2 2 1 2 1 2 1 2 1 2 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.taxa</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>dol.taxa</span>)</div><div class='output co'>#&gt; 'data.frame':	121 obs. of  4 variables:
+#&gt;  $ method  : Factor w/ 2 levels "time","quadrat": 2 2 1 2 1 2 1 2 1 2 ...</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.taxa</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>dol.taxa</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 'data.frame':	121 obs. of  4 variables:
 #&gt;  $ species: Factor w/ 121 levels "Acanthinula aculeata",..: 3 2 81 82 16 17 92 93 72 32 ...
 #&gt;  $ author : Factor w/ 65 levels "(Alder, 1830)",..: 26 53 42 19 44 47 31 14 47 43 ...
 #&gt;  $ familia: Factor w/ 21 levels "Aciculidae","Bradybaenidae",..: 1 1 14 14 6 6 17 17 17 5 ...
 #&gt;  $ size   : num  3.4 5.5 16 16 2.2 2.3 17 8 12 7.5 ...</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#source">Source</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -198,7 +199,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

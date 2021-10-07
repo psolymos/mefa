@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Create an Object of Class 'stcs' — stcs" />
 <meta property="og:description" content="This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the mefa package. The 'stcs' object can be converted into an object of class 'mefa' with the function mefa. The function name 'stcs' refers to first letters of column names of the resulting object: samples, taxa, counts, segments." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mefa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2-8</span>
       </span>
     </div>
 
@@ -87,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,8 +100,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/psolymos/mefa">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/psolymos/mefa/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,11 +127,11 @@
     <p>This function creates object of class 'stcs' from a data frame. This is the primary format for long (database style) data sets in the <strong>mefa</strong> package. The 'stcs' object can be converted into an object of class 'mefa' with the function <code>mefa</code>. The function name 'stcs' refers to first letters of column names of the resulting object: <strong>s</strong>amples, <strong>t</strong>axa, <strong>c</strong>ounts, <strong>s</strong>egments.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>stcs</span>(<span class='no'>dframe</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>drop.zero</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>zero.pseudo</span> <span class='kw'>=</span> <span class='st'>"zero.pseudo"</span>)
+    <pre class="usage"><span class='fu'>stcs</span><span class='op'>(</span><span class='va'>dframe</span>, expand <span class='op'>=</span> <span class='cn'>FALSE</span>, drop.zero <span class='op'>=</span> <span class='cn'>FALSE</span>, zero.pseudo <span class='op'>=</span> <span class='st'>"zero.pseudo"</span><span class='op'>)</span>
 <span class='co'># S3 method for stcs</span>
-<span class='fu'>is</span>(<span class='no'>x</span>)
+<span class='fu'>is</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 <span class='co'># S3 method for stcs</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -171,8 +174,11 @@
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>S\'olymos P. (2008) mefa: an R package for handling and reporting count data. <em>Community Ecology</em> <b>9</b>, 125--127.</p>
-<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. <a href='http://www.jstatsoft.org/v29/i08/'>http://www.jstatsoft.org/v29/i08/</a></p>
+<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. doi: <a href='https://doi.org/10.18637/jss.v029.i08'>10.18637/jss.v029.i08</a></p>
 <p><a href='http://mefa.r-forge.r-project.org/'>http://mefa.r-forge.r-project.org/</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The <code>stcs</code> function nearly equivalent to the <code>sscount</code> function in older (&lt; 2.0) versions of the <strong>mefa</strong> package.</p>
@@ -185,34 +191,40 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## General long format data</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(
-    <span class='kw'>sample</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Sample"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span>), <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"."</span>),
-    <span class='kw'>species</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"Species"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span>), <span class='kw'>sep</span><span class='kw'>=</span><span class='st'>"."</span>),  <span class='st'>"zero.pseudo"</span>),
-    <span class='kw'>count</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>10</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>0</span>),
-    <span class='kw'>segment</span> <span class='kw'>=</span> <span class='no'>letters</span>[<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>6</span>,<span class='fl'>13</span>,<span class='fl'>6</span>,<span class='fl'>13</span>,<span class='fl'>6</span>,<span class='fl'>6</span>)])
-<span class='no'>x</span></div><div class='output co'>#&gt;     sample     species count segment
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
+    sample <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Sample"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>2</span>,<span class='fl'>3</span>,<span class='fl'>4</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>"."</span><span class='op'>)</span>,
+    species <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Species"</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>3</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>"."</span><span class='op'>)</span>,  <span class='st'>"zero.pseudo"</span><span class='op'>)</span>,
+    count <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>,<span class='fl'>2</span>,<span class='fl'>10</span>,<span class='fl'>3</span>,<span class='fl'>4</span>,<span class='fl'>0</span><span class='op'>)</span>,
+    segment <span class='op'>=</span> <span class='va'>letters</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>6</span>,<span class='fl'>13</span>,<span class='fl'>6</span>,<span class='fl'>13</span>,<span class='fl'>6</span>,<span class='fl'>6</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+<span class='va'>x</span>
+</div><div class='output co'>#&gt;     sample     species count segment
 #&gt; 1 Sample.1   Species.1     1       f
 #&gt; 2 Sample.1   Species.1     2       m
 #&gt; 3 Sample.2   Species.1    10       f
 #&gt; 4 Sample.2   Species.2     3       m
 #&gt; 5 Sample.3   Species.3     4       f
 #&gt; 6 Sample.4 zero.pseudo     0       f</div><div class='input'><span class='co'>## Long format as stcs</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'>stcs</span>(<span class='no'>x</span>)
-<span class='no'>y</span></div><div class='output co'>#&gt;       samp        taxa count        segm
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='va'>y</span>
+</div><div class='output co'>#&gt;       samp        taxa count        segm
 #&gt; 1 Sample.1   Species.1     1           f
 #&gt; 2 Sample.1   Species.1     2           m
 #&gt; 3 Sample.2   Species.1    10           f
 #&gt; 4 Sample.2   Species.2     3           m
 #&gt; 5 Sample.3   Species.3     4           f
 #&gt; 6 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='co'>## Methods</span>
-<span class='fu'><a href='as.mefa.html'>as.stcs</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;       samp        taxa count        segm
+<span class='fu'><a href='as.mefa.html'>as.stcs</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp        taxa count        segm
 #&gt; 1 Sample.1   Species.1     1           f
 #&gt; 2 Sample.1   Species.1     2           m
 #&gt; 3 Sample.2   Species.1    10           f
 #&gt; 4 Sample.2   Species.2     3           m
 #&gt; 5 Sample.3   Species.3     4           f
-#&gt; 6 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>is</span>(<span class='no'>y</span>, <span class='st'>"stcs"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>is</span>(<span class='no'>y</span>, <span class='st'>"data.frame"</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'>## Effects of arguments</span>
-<span class='fu'>stcs</span>(<span class='no'>x</span>, <span class='kw'>expand</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;        samp        taxa count        segm
+#&gt; 6 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>is</span><span class='op'>(</span><span class='va'>y</span>, <span class='st'>"stcs"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>is</span><span class='op'>(</span><span class='va'>y</span>, <span class='st'>"data.frame"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='co'>## Effects of arguments</span>
+<span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span>, expand <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        samp        taxa count        segm
 #&gt; 1  Sample.1   Species.1     1           f
 #&gt; 2  Sample.1   Species.1     1           m
 #&gt; 3  Sample.1   Species.1     1           m
@@ -233,40 +245,46 @@
 #&gt; 18 Sample.3   Species.3     1           f
 #&gt; 19 Sample.3   Species.3     1           f
 #&gt; 20 Sample.3   Species.3     1           f
-#&gt; 21 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>stcs</span>(<span class='no'>x</span>, <span class='kw'>drop.zero</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt;       samp      taxa count segm
+#&gt; 21 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span>, drop.zero <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp      taxa count segm
 #&gt; 1 Sample.1 Species.1     1    f
 #&gt; 2 Sample.1 Species.1     2    m
 #&gt; 3 Sample.2 Species.1    10    f
 #&gt; 4 Sample.2 Species.2     3    m
-#&gt; 5 Sample.3 Species.3     4    f</div><div class='input'><span class='fu'>stcs</span>(<span class='no'>x</span>, <span class='kw'>zero.pseudo</span> <span class='kw'>=</span> <span class='st'>"pseudo.secies"</span>)</div><div class='output co'>#&gt;       samp          taxa count          segm
+#&gt; 5 Sample.3 Species.3     4    f</div><div class='input'><span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span>, zero.pseudo <span class='op'>=</span> <span class='st'>"pseudo.secies"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp          taxa count          segm
 #&gt; 1 Sample.1     Species.1     1             f
 #&gt; 2 Sample.1     Species.1     2             m
 #&gt; 3 Sample.2     Species.1    10             f
 #&gt; 4 Sample.2     Species.2     3             m
 #&gt; 5 Sample.3     Species.3     4             f
 #&gt; 6 Sample.4 pseudo.secies     0 pseudo.secies</div><div class='input'><span class='co'>## Input options</span>
-<span class='fu'>stcs</span>(<span class='no'>x</span>[,<span class='fl'>1</span>:<span class='fl'>2</span>])</div><div class='output co'>#&gt;       samp        taxa count      segm
+<span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp        taxa count      segm
 #&gt; 1 Sample.1   Species.1     1 undefined
 #&gt; 2 Sample.1   Species.1     1 undefined
 #&gt; 3 Sample.2   Species.1     1 undefined
 #&gt; 4 Sample.2   Species.2     1 undefined
 #&gt; 5 Sample.3   Species.3     1 undefined
-#&gt; 6 Sample.4 zero.pseudo     1 undefined</div><div class='input'><span class='fu'>stcs</span>(<span class='no'>x</span>[,<span class='fl'>1</span>:<span class='fl'>3</span>])</div><div class='output co'>#&gt;       samp        taxa count        segm
+#&gt; 6 Sample.4 zero.pseudo     1 undefined</div><div class='input'><span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp        taxa count        segm
 #&gt; 1 Sample.1   Species.1     1   undefined
 #&gt; 2 Sample.1   Species.1     2   undefined
 #&gt; 3 Sample.2   Species.1    10   undefined
 #&gt; 4 Sample.2   Species.2     3   undefined
 #&gt; 5 Sample.3   Species.3     4   undefined
-#&gt; 6 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>stcs</span>(<span class='no'>x</span>[,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>2</span>,<span class='fl'>4</span>)])</div><div class='output co'>#&gt;       samp        taxa count segm
+#&gt; 6 Sample.4 zero.pseudo     0 zero.pseudo</div><div class='input'><span class='fu'>stcs</span><span class='op'>(</span><span class='va'>x</span><span class='op'>[</span>,<span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>,<span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       samp        taxa count segm
 #&gt; 1 Sample.1   Species.1     1    f
 #&gt; 2 Sample.1   Species.1     1    m
 #&gt; 3 Sample.2   Species.1     1    f
 #&gt; 4 Sample.2   Species.2     1    m
 #&gt; 5 Sample.3   Species.3     1    f
 #&gt; 6 Sample.4 zero.pseudo     1    f</div><div class='input'><span class='co'>## The Dolina dataset</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.count</span>)
-<span class='no'>dol</span> <span class='kw'>&lt;-</span> <span class='fu'>stcs</span>(<span class='no'>dol.count</span>)
-<span class='no'>dol</span></div><div class='output co'>#&gt;     samp        taxa count        segm
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>
+<span class='va'>dol</span> <span class='op'>&lt;-</span> <span class='fu'>stcs</span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>
+<span class='va'>dol</span>
+</div><div class='output co'>#&gt;     samp        taxa count        segm
 #&gt; 1    DQ1        amin     2       fresh
 #&gt; 2    DQ1        amin     2      broken
 #&gt; 3    DQ1        ctri     2       fresh
@@ -563,22 +581,13 @@
 #&gt; 294  WT2        dper     2       fresh
 #&gt; 295  WT3        amin     4      broken
 #&gt; 296  WT3        ffau     1      broken
-#&gt; 297  WT3        vidi     1       fresh</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.html'>plot</a></span>(<span class='no'>dol</span>)</div><div class='img'><img src='stcs-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; 297  WT3        vidi     1       fresh</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>dol</span><span class='op'>)</span>
+</div><div class='img'><img src='stcs-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -589,7 +598,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

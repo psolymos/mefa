@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Extract and Aggregate Objects of Class 'mefa' — aggregate.mefa" />
 <meta property="og:description" content="These methods are useful when extracting or aggregating 'mefa' objects. The count data matrix, the matrices for segments and the linked tables of samples and taxa are extracted or aggregated at the same time." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mefa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2-8</span>
       </span>
     </div>
 
@@ -87,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,8 +100,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/psolymos/mefa">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/psolymos/mefa/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -175,20 +178,24 @@ segm(x, ...)</pre>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>S\'olymos P. (2008) mefa: an R package for handling and reporting count data. <em>Community Ecology</em> <b>9</b>, 125--127.</p>
-<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. <a href='http://www.jstatsoft.org/v29/i08/'>http://www.jstatsoft.org/v29/i08/</a></p>
+<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. doi: <a href='https://doi.org/10.18637/jss.v029.i08'>10.18637/jss.v029.i08</a></p>
 <p><a href='http://mefa.r-forge.r-project.org/'>http://mefa.r-forge.r-project.org/</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>The <code>aggregate</code> method replaces the function <code>strify</code>, the <code>[</code> method replaces the function <code>exclmf</code> of the old (&lt; 2.0) versions of the <strong>mefa</strong> package.</p>
+    <p>The <code>aggregate</code> method replaces the function <code>strify</code>, the <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code> method replaces the function <code>exclmf</code> of the old (&lt; 2.0) versions of the <strong>mefa</strong> package.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='mefa.html'>mefa</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>dol.count</span>, <span class='no'>dol.samp</span>, <span class='no'>dol.taxa</span>)
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mefa.html'>mefa</a></span>(<span class='fu'><a href='stcs.html'>stcs</a></span>(<span class='no'>dol.count</span>), <span class='no'>dol.samp</span>, <span class='no'>dol.taxa</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>dol.count</span>, <span class='va'>dol.samp</span>, <span class='va'>dol.taxa</span><span class='op'>)</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mefa.html'>mefa</a></span><span class='op'>(</span><span class='fu'><a href='stcs.html'>stcs</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>, <span class='va'>dol.samp</span>, <span class='va'>dol.taxa</span><span class='op'>)</span>
 <span class='co'>## These two are identical</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x</span>, <span class='st'>"microhab"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"microhab"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 28 taxa in 4 samples,
@@ -196,7 +203,8 @@ segm(x, ...)</pre>
 #&gt;          fresh, broken,
 #&gt;  $ samp: table for samples not provided,
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x</span>, <span class='no'>x</span>$<span class='no'>samp</span>$<span class='no'>microhab</span>, <span class='kw'>inside</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x</span><span class='op'>$</span><span class='va'>samp</span><span class='op'>$</span><span class='va'>microhab</span>, inside <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 28 taxa in 4 samples,
@@ -205,7 +213,8 @@ segm(x, ...)</pre>
 #&gt;  $ samp: table for samples not provided,
 #&gt;  $ taxa: table for taxa provided (4 variables).
 #&gt; </div><div class='input'><span class='co'>## Interaction</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"method"</span>, <span class='st'>"microhab"</span>))</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"method"</span>, <span class='st'>"microhab"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 28 taxa in 8 samples,
@@ -214,7 +223,8 @@ segm(x, ...)</pre>
 #&gt;  $ samp: table for samples not provided,
 #&gt;  $ taxa: table for taxa provided (4 variables).
 #&gt; </div><div class='input'><span class='co'>## Both samples and taxa tables</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x</span>, <span class='st'>"microhab"</span>, <span class='st'>"familia"</span>)</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"microhab"</span>, <span class='st'>"familia"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 9 taxa in 4 samples,
@@ -223,7 +233,8 @@ segm(x, ...)</pre>
 #&gt;  $ samp: table for samples not provided,
 #&gt;  $ taxa: table for taxa not provided.
 #&gt; </div><div class='input'><span class='co'>## To use a factor</span>
-<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span>(<span class='no'>x</span>, <span class='st'>"microhab"</span>, <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span>(<span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>x</span>)[<span class='fl'>2</span>], <span class='fl'>1</span>, <span class='fl'>0.5</span>)))</div><div class='output co'>#&gt; 
+<span class='fu'><a href='https://rdrr.io/r/stats/aggregate.html'>aggregate</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>"microhab"</span>, <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>2</span><span class='op'>]</span>, <span class='fl'>1</span>, <span class='fl'>0.5</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 2 taxa in 4 samples,
@@ -232,7 +243,8 @@ segm(x, ...)</pre>
 #&gt;  $ samp: table for samples not provided,
 #&gt;  $ taxa: table for taxa not provided.
 #&gt; </div><div class='input'><span class='co'>## Extraction</span>
-<span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, ]</div><div class='output co'>#&gt; 
+<span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 236 individuals of 28 taxa in 10 samples,
@@ -240,7 +252,8 @@ segm(x, ...)</pre>
 #&gt;          fresh, broken,
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='no'>x</span>[, <span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>x</span><span class='op'>[</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 126 individuals of 5 taxa in 24 samples,
@@ -248,7 +261,8 @@ segm(x, ...)</pre>
 #&gt;          fresh, broken,
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='no'>x</span>[, , <span class='st'>"broken"</span>]</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>x</span><span class='op'>[</span>, , <span class='st'>"broken"</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 338 individuals of 28 taxa in 24 samples,
@@ -256,7 +270,8 @@ segm(x, ...)</pre>
 #&gt;          broken,
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fl'>1</span>:<span class='fl'>5</span>]</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 33 individuals of 5 taxa in 10 samples,
@@ -264,7 +279,8 @@ segm(x, ...)</pre>
 #&gt;          fresh, broken,
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='no'>x</span>[<span class='fl'>1</span>:<span class='fl'>10</span>, <span class='fl'>1</span>:<span class='fl'>5</span>, <span class='fl'>2</span>]</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>x</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>, <span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 12 individuals of 5 taxa in 10 samples,
@@ -273,11 +289,14 @@ segm(x, ...)</pre>
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
 #&gt; </div><div class='input'><span class='co'>## Note factor levels</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>[<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>x</span>$<span class='no'>samp</span>$<span class='no'>method</span> <span class='kw'>==</span> <span class='st'>"time"</span>), ]
-<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span>(<span class='no'>y</span>$<span class='no'>samp</span>$<span class='no'>method</span>)</div><div class='output co'>#&gt; [1] "time"    "quadrat"</div><div class='input'><span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='no'>x</span>[<span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>x</span>$<span class='no'>samp</span>$<span class='no'>method</span> <span class='kw'>==</span> <span class='st'>"time"</span>), <span class='kw'>drop</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span>(<span class='no'>z</span>$<span class='no'>samp</span>$<span class='no'>method</span>)</div><div class='output co'>#&gt; [1] "time"</div><div class='input'><span class='co'>## Note the differences in total sums</span>
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='mefa.html'>mefa</a></span>(<span class='fu'><a href='stcs.html'>stcs</a></span>(<span class='no'>dol.count</span>), <span class='no'>dol.samp</span>, <span class='no'>dol.taxa</span>, <span class='kw'>nested</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>x</span>[ , , <span class='fl'>2</span>]</div><div class='output co'>#&gt; 
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>samp</span><span class='op'>$</span><span class='va'>method</span> <span class='op'>==</span> <span class='st'>"time"</span><span class='op'>)</span>, <span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>$</span><span class='va'>samp</span><span class='op'>$</span><span class='va'>method</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "time"    "quadrat"</div><div class='input'><span class='va'>z</span> <span class='op'>&lt;-</span> <span class='va'>x</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>$</span><span class='va'>samp</span><span class='op'>$</span><span class='va'>method</span> <span class='op'>==</span> <span class='st'>"time"</span><span class='op'>)</span>, drop <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>z</span><span class='op'>$</span><span class='va'>samp</span><span class='op'>$</span><span class='va'>method</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "time"</div><div class='input'><span class='co'>## Note the differences in total sums</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='mefa.html'>mefa</a></span><span class='op'>(</span><span class='fu'><a href='stcs.html'>stcs</a></span><span class='op'>(</span><span class='va'>dol.count</span><span class='op'>)</span>, <span class='va'>dol.samp</span>, <span class='va'>dol.taxa</span>, nested <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>x</span><span class='op'>[</span> , , <span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 338 individuals of 28 taxa in 24 samples,
@@ -285,7 +304,8 @@ segm(x, ...)</pre>
 #&gt;          broken,
 #&gt;  $ samp: table for samples provided (2 variables),
 #&gt;  $ taxa: table for taxa provided (4 variables).
-#&gt; </div><div class='input'><span class='no'>y</span>[ , , <span class='fl'>2</span>]</div><div class='output co'>#&gt; 
+#&gt; </div><div class='input'><span class='va'>y</span><span class='op'>[</span> , , <span class='fl'>2</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; 
 #&gt; An object of class 'mefa' containing
 #&gt; 
 #&gt;  $ xtab: 731 individuals of 28 taxa in 24 samples,
@@ -295,20 +315,10 @@ segm(x, ...)</pre>
 #&gt;  $ taxa: table for taxa provided (4 variables).
 #&gt; </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -319,7 +329,7 @@ segm(x, ...)</pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

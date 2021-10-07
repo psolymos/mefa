@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Matrix Manipulation Tools — mat2list" />
 <meta property="og:description" content="Converts a matrix to a list, calculates matrix fill, or exclude rows/columns with certain rox/column sums." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -65,7 +68,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -79,7 +82,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">mefa</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.2-8</span>
       </span>
     </div>
 
@@ -87,7 +90,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -97,8 +100,8 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/psolymos/mefa">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/psolymos/mefa/">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -124,10 +127,10 @@
     <p>Converts a matrix to a list, calculates matrix fill, or exclude rows/columns with certain rox/column sums.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>mat2list</span>(<span class='no'>x</span>, <span class='kw'>MARGIN</span> <span class='kw'>=</span> <span class='fl'>1</span>)
-<span class='fu'>mfill</span>(<span class='no'>x</span>)
-<span class='fu'>rdrop</span>(<span class='no'>x</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'>cdrop</span>(<span class='no'>x</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>attrib</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>mat2list</span><span class='op'>(</span><span class='va'>x</span>, MARGIN <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='fu'>mfill</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'>rdrop</span><span class='op'>(</span><span class='va'>x</span>, cutoff <span class='op'>=</span> <span class='fl'>0</span>, attrib <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'>cdrop</span><span class='op'>(</span><span class='va'>x</span>, cutoff <span class='op'>=</span> <span class='fl'>0</span>, attrib <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -160,14 +163,18 @@ that has sum &lt;= <code>cutoff</code>. Excluded row/colum numbers and specifica
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>S\'olymos P. (2008) mefa: an R package for handling and reporting count data. <em>Community Ecology</em> <b>9</b>, 125--127.</p>
-<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. <a href='http://www.jstatsoft.org/v29/i08/'>http://www.jstatsoft.org/v29/i08/</a></p>
+<p>S\'olymos P. (2009) Processing ecological data in R with the mefa package. <em>Journal of Statistical Software</em> <b>29(8)</b>, 1--28. doi: <a href='https://doi.org/10.18637/jss.v029.i08'>10.18637/jss.v029.i08</a></p>
 <p><a href='http://mefa.r-forge.r-project.org/'>http://mefa.r-forge.r-project.org/</a></p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span>(<span class='fl'>1</span>:<span class='fl'>12</span>, <span class='fl'>3</span>, <span class='fl'>4</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>letters</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]
-<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>LETTERS</span>[<span class='fl'>1</span>:<span class='fl'>4</span>]
-<span class='fu'>mat2list</span>(<span class='no'>x</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; $a
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>12</span>, <span class='fl'>3</span>, <span class='fl'>4</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>rownames</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>letters</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/base/colnames.html'>colnames</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>LETTERS</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span>
+<span class='fu'>mat2list</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $a
 #&gt;  A  B  C  D 
 #&gt;  1  4  7 10 
 #&gt; 
@@ -178,7 +185,8 @@ that has sum &lt;= <code>cutoff</code>. Excluded row/colum numbers and specifica
 #&gt; $c
 #&gt;  A  B  C  D 
 #&gt;  3  6  9 12 
-#&gt; </div><div class='input'><span class='fu'>mat2list</span>(<span class='no'>x</span>, <span class='fl'>2</span>)</div><div class='output co'>#&gt; $A
+#&gt; </div><div class='input'><span class='fu'>mat2list</span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; $A
 #&gt; a b c 
 #&gt; 1 2 3 
 #&gt; 
@@ -193,32 +201,31 @@ that has sum &lt;= <code>cutoff</code>. Excluded row/colum numbers and specifica
 #&gt; $D
 #&gt;  a  b  c 
 #&gt; 10 11 12 
-#&gt; </div><div class='input'><span class='no'>x</span>[<span class='fl'>2</span>, ] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
-<span class='no'>x</span>[, <span class='fl'>2</span>] <span class='kw'>&lt;-</span> <span class='fl'>0</span>
-<span class='fu'>mfill</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; [1] 0.5</div><div class='input'><span class='fu'>mfill</span>(<span class='no'>x</span>) <span class='kw'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span>(<span class='no'>x</span> <span class='kw'>&gt;</span> <span class='fl'>0</span>) / <span class='fu'><a href='https://rdrr.io/r/base/prod.html'>prod</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span>(<span class='no'>x</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>rdrop</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;   A B C  D
+#&gt; </div><div class='input'><span class='va'>x</span><span class='op'>[</span><span class='fl'>2</span>, <span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='va'>x</span><span class='op'>[</span>, <span class='fl'>2</span><span class='op'>]</span> <span class='op'>&lt;-</span> <span class='fl'>0</span>
+<span class='fu'>mfill</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.5</div><div class='input'><span class='fu'>mfill</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>&gt;</span> <span class='fl'>0</span><span class='op'>)</span> <span class='op'>/</span> <span class='fu'><a href='https://rdrr.io/r/base/prod.html'>prod</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>rdrop</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   A B C  D
 #&gt; a 1 0 7 10
-#&gt; c 3 0 9 12</div><div class='input'><span class='fu'>cdrop</span>(<span class='no'>x</span>)</div><div class='output co'>#&gt;   A C  D
+#&gt; c 3 0 9 12</div><div class='input'><span class='fu'>cdrop</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   A C  D
 #&gt; a 1 7 10
 #&gt; b 0 0  0
-#&gt; c 3 9 12</div><div class='input'><span class='fu'>cdrop</span>(<span class='no'>x</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt;   C  D
+#&gt; c 3 9 12</div><div class='input'><span class='fu'>cdrop</span><span class='op'>(</span><span class='va'>x</span>, cutoff <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   C  D
 #&gt; a 7 10
 #&gt; b 0  0
-#&gt; c 9 12</div><div class='input'><span class='fu'>cdrop</span>(<span class='no'>x</span>, <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='fl'>22</span>) <span class='co'># be careful</span></div><div class='output co'>#&gt;  
+#&gt; c 9 12</div><div class='input'><span class='fu'>cdrop</span><span class='op'>(</span><span class='va'>x</span>, cutoff <span class='op'>=</span> <span class='fl'>22</span><span class='op'>)</span> <span class='co'># be careful</span>
+</div><div class='output co'>#&gt;  
 #&gt; a
 #&gt; b
 #&gt; c</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>P\'eter S\'olymos, <a href='mailto:solymos@ualberta.ca'>solymos@ualberta.ca</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -229,7 +236,7 @@ that has sum &lt;= <code>cutoff</code>. Excluded row/colum numbers and specifica
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
