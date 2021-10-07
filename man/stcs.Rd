@@ -51,8 +51,6 @@ The \code{stcs} function nearly equivalent to the \code{sscount} function in old
 See \code{\link{plot.stcs}} \code{\link{boxplot.stcs}} and \code{\link{image.stcs}} for graphical display options.
 
 See \code{\link{as.stcs}} for coercion methods.
-
-Similar standardized count data formats can be found in the \strong{untb} package by Robin K. S. Hankin: \code{\link[untb]{count}}, \code{\link[untb]{census}}.
 }
 \examples{
 ## General long format data

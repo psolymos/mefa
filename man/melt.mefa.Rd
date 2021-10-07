@@ -39,13 +39,6 @@ An object of class 'stsc' if \code{raw = FALSE}, pure 'data.frame' otherwise (be
 \author{
 \enc{P\'eter S\'olymos}{Peter Solymos}, \email{solymos@ualberta.ca}
 }
-\seealso{
-The generic function \code{melt} can also be found in the \strong{reshape} package of Hadley Wickham, along with methods for data frames, arrays and lists (\code{\link[reshape]{melt.default}}, \code{\link[reshape]{melt.data.frame}}, \code{\link[reshape]{melt.array}}).
-
-Similar function in the \strong{Hmisc} package by Frank Harrel is the \code{\link[Hmisc]{reShape}}.
-
-Similar function in the \strong{simba} package by  Gerald Jurasinski is the \code{\link[simba]{liste}}.
-}
 \examples{
 data(dol.count, dol.samp, dol.taxa)
 x <- mefa(stcs(dol.count), dol.samp, dol.taxa)
