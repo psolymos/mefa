@@ -560,7 +560,7 @@ It is clear that the proportion of fresh shells is not constant among microhabit
 %%%%%%%%%%%%%
 
 
-We employ a non-parametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis} function \citep{mcardle-01, anderson-01} of the \pkg{vegan} package \citep{vegan-manual}. The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
+We employ a non-parametric multivariate analysis of variance to assess the effects of covariates on community composition. The method is implemented in the \code{adonis2} function \citep{mcardle-01, anderson-01} of the \pkg{vegan} package \citep{vegan-manual}. The method is based on a distance matrix calculated from the community data by the Bray--Curtis index of dissimilarity, by default. Thus, the input data matrix should not contain rows with zero sum. We have to remove those samples from the count data matrix and the samples table as well. This is most easily done by the \code{as.mefa} method with using the argument \code{drop.zero = TRUE}:
 
 <<results=hide>>=
 library("vegan")
@@ -568,7 +568,7 @@ library("vegan")
 
 <<>>=
 m6 <- as.mefa(m2, drop.zero = TRUE)
-m6.ado <- adonis(m6$xtab ~ .^2, data = m6$samp, permutations = 100)
+m6.ado <- adonis2(m6$xtab ~ .^2, data = m6$samp, permutations = 100)
 m6.ado
 @
 
