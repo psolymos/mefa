@@ -1,5 +1,9 @@
 MEFA VERSIONS
 
+Version 3.2-10 -- July 12, 2025
+
+    * Use Authors@R field in DESCRIPTION.
+
 Version 3.2-9 -- May 19, 2024
 
     * Replace deprecated vegan::adonis with vegan::adonis2.
